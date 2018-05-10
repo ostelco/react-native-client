@@ -1,6 +1,16 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
-    "androidStatusBarColor": "#334393"
+    "androidStatusBarColor": "#334393",
+    "name": "panacea-client-2018",
+    "icon": "./images/icon.png",
+    "version": "1.0.0",
+    "slug": "ostelco-react-native-client",
+    "ios": {
+      "bundleIdentifier": "digital.telenor.panacea"
+    },
+    "android": {
+      "package": "digital.telenor.panacea"
+    }
   }
 }

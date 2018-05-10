@@ -4,6 +4,11 @@
 - [React Navigation](https://reactnavigation.org/) used for routing and navigation
 - [Folder Structure](https://github.com/asimolmez/react-native-folder-structure) describes the folder structure 
 
+## Deployment
+
+- `brew cask install fastlane`
+- Deploy android beta: `npm run android: beta`
+- See fastlane/README.md for more info
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 

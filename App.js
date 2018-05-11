@@ -23,8 +23,8 @@ import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-i
 import Confetti from 'react-native-confetti';
 
 class OnBoardingScreen extends React.Component {
-  _showLogin = () => {
-    this.props.navigation.navigate('Login')
+  _showSignup = () => {
+    this.props.navigation.navigate('Signup')
   };
 
   render() {
@@ -37,27 +37,27 @@ class OnBoardingScreen extends React.Component {
           </Body>
           <Right />
         </Header>
-        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
-          <List>
+        <Content contentContainerStyle={{ flex: 1 }}>
+          <List style={{ flex: 1, justifyContent: 'center' }}>
             <ListItem noBorder>
               <Body>
                 <Text style={{ textAlign: 'center' }}>If you think data is the most important, PI is the carrier for you.</Text>
               </Body>
             </ListItem>
-            <ListItem noBorder style={{ justifyContent: 'center' }}>
+          </List>
+          <List style={{ flex: -1 }}>
+            <ListItem noBorder>
               <Body>
-                <Text style={{ textAlign: 'center' }}>Insert your SIM card from PI</Text>
+                <Button block onPress={this._showSignup}><Text>Sign in with Google</Text></Button>
+              </Body>
+            </ListItem>
+            <ListItem noBorder>
+              <Body>
+                <Text>By using PI you agree to our terms & conditions</Text>
               </Body>
             </ListItem>
           </List>
         </Content>
-        <Footer>
-          <FooterTab>
-            <Body>
-              <Button block onPress={this._showLogin}><Text> Ok, lets start</Text></Button>
-            </Body>
-          </FooterTab>
-        </Footer>
       </Container>
     )
   }
@@ -786,6 +786,27 @@ class TermsAndConditionsScreen extends React.Component {
   }
 }
 
+class SignupScreen extends React.Component {
+  render() {
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+          <Title>Personal details</Title>
+          </Body>
+        </Header>
+        <Content padder>
+        </Content>
+      </Container>
+    )
+  }
+}
+
 /*
 const RootStack = createStackNavigator({
   Home: {
@@ -853,14 +874,27 @@ const AppStack = createStackNavigator({
 });
 
 const RootStack = createSwitchNavigator({
-  OnBoarding: OnBoardingScreen,
-  Login: LoginScreen,
+  // OnBoarding: OnBoardingScreen,
+  OnBoarding: createStackNavigator({
+    Home: {
+      screen: OnBoardingScreen
+    },
+    TermsAndConditions: {
+      screen: TermsAndConditionsScreen
+    },
+    Signup: {
+      screen: SignupScreen
+    }
+  }, {
+    initialRouteName: 'Home',
+    headerMode: 'none'
+  }),
   GDPR: GDPRScreen,
   App: {
     screen: AppStack
   }
 }, {
-  initialRouteName: 'Login'
+  initialRouteName: 'OnBoarding'
 });
 
 export default class App extends React.Component {

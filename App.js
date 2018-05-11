@@ -27,6 +27,10 @@ class OnBoardingScreen extends React.Component {
     this.props.navigation.navigate('Signup')
   };
 
+  _showTermsAndConditions = () => {
+    this.props.navigation.navigate('TermsAndConditions');
+  };
+
   render() {
     return (
       <Container>
@@ -51,7 +55,7 @@ class OnBoardingScreen extends React.Component {
                 <Button block onPress={this._showSignup}><Text>Sign in with Google</Text></Button>
               </Body>
             </ListItem>
-            <ListItem noBorder>
+            <ListItem noBorder button onPress={this._showTermsAndConditions}>
               <Body>
                 <Text>By using PI you agree to our terms & conditions</Text>
               </Body>
@@ -180,10 +184,10 @@ class HomeScreen extends React.Component {
           </Body>
         </Header>
         <Content padder style={{ }}>
-          <Card containerStyle={{ padding: 30 }}>
+          <Card style={{ padding: 30 }}>
             <CardItem style={{ justifyContent: 'center', flexDirection: 'column' }} header>
               <Text style={{ fontSize: 50 }}>
-                2GB
+                4GB
               </Text>
               <Text style={{ fontSize: 10, fontWeight: 'normal' }}>
                 left
@@ -430,6 +434,10 @@ class SettingsScreen extends React.Component {
     this.props.navigation.navigate('DeleteAccount');
   };
 
+  _showOnBoarding = () => {
+    this.props.navigation.navigate('OnBoarding');
+  };
+
   render() {
     return (
       <Container>
@@ -477,6 +485,15 @@ class SettingsScreen extends React.Component {
                 <Card>
                   <CardItem button onPress={this._showDeleteAccount}>
                     <Text>Delete account</Text>
+                  </CardItem>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Card>
+                  <CardItem button onPress={this._showOnBoarding}>
+                    <Text>Logout</Text>
                   </CardItem>
                 </Card>
               </Col>
@@ -530,7 +547,7 @@ class PrivacyScreen extends React.Component {
   };
 
   _showTermsAndConditions = () => {
-    alert('What does this do?');
+    this.props.navigation.navigate('TermsAndConditions')
   };
 
   render() {
@@ -557,18 +574,10 @@ class PrivacyScreen extends React.Component {
             </ListItem>
             <ListItem noBorder>
               <Body>
-                <Text>Track your behaviour in the app to improve the user experience.</Text>
-              </Body>
-              <Right>
-                <Switch value={true} />
-              </Right>
-            </ListItem>
-            <ListItem noBorder>
-              <Body>
                 <Text>Analyze your data usage to be able to give you personalized offers.</Text>
               </Body>
               <Right>
-                <Switch value={false} />
+                <Switch value={true} />
               </Right>
             </ListItem>
             <ListItem noBorder button onPress={this._showPrivacyPolicy}>
@@ -772,10 +781,28 @@ class TermsAndConditionsScreen extends React.Component {
             </Button>
           </Left>
           <Body>
-          <Title>Delete account</Title>
+          <Title>Terms & Conditions</Title>
           </Body>
         </Header>
         <Content padder>
+          <List>
+            <ListItem header noBorder>
+              <Text>Headline</Text>
+            </ListItem>
+            <ListItem noBorder>
+              <Text>We collect information in the following ways</Text>
+            </ListItem>
+            <ListItem noBorder>
+              <Text>
+                Information you give us. For example, many of our services require you to sign up for an account. When you do, we'll ask for personal information, like your name, email address, telephone number or credit card to store with you account. If you want to take full advantage of the sharing feature we offer, we might also ask you to create a publicly visible profile, which may include your name and photo.
+              </Text>
+            </ListItem>
+            <ListItem noBorder>
+              <Text>
+                Information we get from your use of our services. We collect information about the services that you use and how you use them, like when you watch a video, visit a website that uses our advertising services, or view and interact with our ads and content.
+              </Text>
+            </ListItem>
+          </List>
         </Content>
       </Container>
     )
@@ -914,7 +941,7 @@ const RootStack = createSwitchNavigator({
     screen: AppStack
   }
 }, {
-  initialRouteName: 'GDPR'
+  initialRouteName: 'OnBoarding'
 });
 
 export default class App extends React.Component {

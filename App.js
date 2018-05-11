@@ -135,12 +135,8 @@ class GDPRScreen extends React.Component {
               </Body>
             </ListItem>
             <ListItem noBorder>
-              <Body>
-                <Text>Track your behaviour in the app to improve user experience</Text>
-              </Body>
-            </ListItem>
-            <ListItem noBorder>
-              <Body>
+              <Body style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+                <Icon name='basket' style={{ textAlign: 'center' }}/>
                 <Text>Analyze your data usage to be able to give you personalized offers</Text>
               </Body>
             </ListItem>
@@ -787,6 +783,11 @@ class TermsAndConditionsScreen extends React.Component {
 }
 
 class SignupScreen extends React.Component {
+
+  _showGDPR = () => {
+    this.props.navigation.navigate('GDPR');
+  }
+
   render() {
     return (
       <Container>
@@ -801,6 +802,25 @@ class SignupScreen extends React.Component {
           </Body>
         </Header>
         <Content padder>
+          <Form>
+            <Item stackedLabel>
+              <Label>Full name</Label>
+              <Input />
+            </Item>
+            <Item stackedLabel>
+              <Label>Address</Label>
+              <Input />
+            </Item>
+            <Item stackedLabel>
+              <Label>Postal code</Label>
+              <Input />
+            </Item>
+            <Item stackedLabel last>
+              <Label>City</Label>
+              <Input />
+            </Item>
+            <Button block onPress={this._showGDPR}><Text>Done</Text></Button>
+          </Form>
         </Content>
       </Container>
     )
@@ -894,7 +914,7 @@ const RootStack = createSwitchNavigator({
     screen: AppStack
   }
 }, {
-  initialRouteName: 'OnBoarding'
+  initialRouteName: 'GDPR'
 });
 
 export default class App extends React.Component {

@@ -3,21 +3,21 @@ import {Text} from "native-base";
 import styles from "./styles";
 import PropTypes from 'prop-types';
 
-const Title = props => {
+const AppTitle = props => {
   const { text } = props;
   return (
     <Text style={props.style}>{text}</Text>
   )
 };
 
-Title.propTypes = {
+AppTitle.propTypes = {
   style: PropTypes.number,
   text: PropTypes.string
 };
 
-Title.defaultProps = {
+AppTitle.defaultProps = {
   style: styles.title,
   text: "BUTTON DEFAULT TEXT"
 };
 
-export default Title;
+export default AppTitle;

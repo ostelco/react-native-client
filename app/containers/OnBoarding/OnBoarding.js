@@ -1,6 +1,6 @@
 import {Body, Container, Content, List, ListItem, Text, Button, View, Icon} from "native-base";
 import React from "react";
-import {Title, AppHeader} from '../../components';
+import {AppTitle, AppHeader} from '../../components';
 import {colors} from "../..//config/colors";
 import PropTypes from 'prop-types';
 
@@ -11,8 +11,8 @@ const OnBoarding = (props) => {
   return (
     <Container>
       <AppHeader>
-        <Body>
-        <Title text={'pi'} />
+        <Body style={{ alignItems: 'center'}}>
+          <AppTitle text={'pi'} />
         </Body>
       </AppHeader>
       <Content contentContainerStyle={{ flex: 1, alignItems: 'center', paddingTop: 80, paddingBottom: 30, paddingHorizontal: 30, backgroundColor: colors.rosa, justifyContent: 'space-between' }}>
@@ -32,22 +32,22 @@ const OnBoarding = (props) => {
         <List style={{ flex: -1, width: '100%' }}>
           <ListItem noBorder>
             <Body>
-            <Button block onPress={signIn} style={{
-              height: 61,
-              borderRadius: 4,
-              backgroundColor: colors.white,
-              shadowColor: "rgba(0, 0, 0, 0.24)",
-              shadowOffset: {
-                width: 0,
-                height: 1
-              },
-              shadowRadius: 2,
-              shadowOpacity: 1,
-              position: 'relative'
-            }}>
-              <Icon name='home' style={{ color: colors.warmGrey, position: 'absolute', left: 0 }} />
-              <Text style={{ color: colors.warmGrey }}>Sign in with Google</Text>
-            </Button>
+              <Button block onPress={signIn} style={{
+                height: 61,
+                borderRadius: 4,
+                backgroundColor: colors.white,
+                shadowColor: "rgba(0, 0, 0, 0.24)",
+                shadowOffset: {
+                  width: 0,
+                  height: 1
+                },
+                shadowRadius: 2,
+                shadowOpacity: 1,
+                position: 'relative'
+              }}>
+                <Icon name='home' style={{ color: colors.warmGrey, position: 'absolute', left: 0 }} />
+                <Text style={{ color: colors.warmGrey }}>Sign in with Google</Text>
+              </Button>
             </Body>
           </ListItem>
           <ListItem noBorder button onPress={showTermsAndConditions}>

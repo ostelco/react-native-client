@@ -1,2 +1,2 @@
-export {Title} from './Title'
+export {AppTitle} from './AppTitle'
 export {AppHeader} from './AppHeader';

@@ -4,7 +4,7 @@
 - [Fastlane](https://fastlane.tools/) ~~used to automate development and release process for android and ios~~
 - [React Navigation](https://reactnavigation.org/) used for routing and navigation
 - [Folder Structure](https://github.com/asimolmez/react-native-folder-structure) describes the folder structure 
-
+- [Link to design](https://app.zeplin.io/project/5ad46cf612304dbd7b7690d0)
 ## Deployment
 
 - https://docs.expo.io/versions/latest/guides/building-standalone-apps.html

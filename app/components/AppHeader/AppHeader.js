@@ -15,7 +15,7 @@ const AppHeader = props => {
 
 AppHeader.propTypes = {
   style: PropTypes.number,
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   color: PropTypes.string
 };
 

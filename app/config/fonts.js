@@ -1,6 +1,9 @@
+import {StyleSheet} from "react-native";
+import {colors} from "./colors";
+
 export const textStyles = StyleSheet.create({
   textStyle12: {
-    fontFamily: "Nudista",
+    // // fontFamily: "Nudista",
     fontSize: 70,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -9,7 +12,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle24: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 44,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -18,7 +21,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle20: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 36,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -27,7 +30,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle10: {
-    fontFamily: "Pacifico",
+    // fontFamily: "Pacifico",
     fontSize: 24,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -36,7 +39,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle11: {
-    fontFamily: "Pacifico",
+    // fontFamily: "Pacifico",
     fontSize: 24,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -45,7 +48,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle22: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 22,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -54,7 +57,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle19: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 22,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -63,7 +66,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle3: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 22,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -72,7 +75,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 20,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -81,7 +84,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle27: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 18,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -90,7 +93,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle7: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 18,
     fontWeight: "300",
     fontStyle: "normal",
@@ -99,7 +102,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle16: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -109,7 +112,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle14: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -119,7 +122,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle26: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -129,7 +132,7 @@ export const textStyles = StyleSheet.create({
     color: colors.rosa
   },
   textStyle6: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -139,7 +142,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle5: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -149,7 +152,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle8: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -159,7 +162,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle21: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -169,7 +172,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle13: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -178,7 +181,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle17: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -188,7 +191,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle25: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -198,7 +201,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle15: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -208,7 +211,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle23: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -217,7 +220,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle4: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
@@ -227,7 +230,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle2: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 14,
     fontWeight: "normal",
     fontStyle: "normal",
@@ -236,7 +239,7 @@ export const textStyles = StyleSheet.create({
     color: colors.white
   },
   textStyle18: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 14,
     fontWeight: "300",
     fontStyle: "normal",
@@ -246,7 +249,7 @@ export const textStyles = StyleSheet.create({
     color: colors.brownishGrey
   },
   textStyle9: {
-    fontFamily: "Nudista",
+    // fontFamily: "Nudista",
     fontSize: 14,
     fontWeight: "300",
     fontStyle: "italic",

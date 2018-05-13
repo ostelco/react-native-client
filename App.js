@@ -21,7 +21,7 @@ import {AppLoading, Font} from "expo";
 import ReadMore from "react-native-read-more-text";
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import Confetti from 'react-native-confetti';
-import { OnBoardingContainer, SignupContainer } from "./app/containers";
+import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer } from "./app/containers";
 
 class OnBoardingScreen extends React.Component {
   _showSignup = () => {
@@ -928,7 +928,7 @@ const RootStack = createSwitchNavigator({
       screen: OnBoardingContainer
     },
     TermsAndConditions: {
-      screen: TermsAndConditionsScreen
+      screen: TermsAndConditionsContainer
     },
     Signup: {
       screen: SignupContainer

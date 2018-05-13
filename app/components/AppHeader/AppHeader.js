@@ -7,7 +7,7 @@ import {colors} from "../../config/colors";
 const AppHeader = props => {
   const { children } = props;
   return (
-    <Header style={props.style} noShadow androidStatusBarColor={colors.rosa}>
+    <Header style={props.style} noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'}>
       {children}
     </Header>
   )

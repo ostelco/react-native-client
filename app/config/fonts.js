@@ -118,7 +118,7 @@ export const textStyles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 28,
     letterSpacing: 0,
-    textAlign: "right",
+    // textAlign: "right",
     color: colors.brownishGrey
   },
   textStyle26: {
@@ -207,7 +207,7 @@ export const textStyles = StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 28,
     letterSpacing: 0,
-    textAlign: "left",
+    // textAlign: "left",
     color: colors.brownishGrey
   },
   textStyle23: {

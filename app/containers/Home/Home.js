@@ -67,7 +67,7 @@ const Home = props => {
           <Icon name="menu" style={{ color: colors.white }} onPress={showMenu} />
         </Right>
       </Header>
-      <Content contentContainerStyle={style.content}>
+      <Content contentContainerStyle={style.content} bounces={false}>
         <List style={{ flex: 1 }}>
           <ListItem noBorder>
             <Body>
@@ -77,7 +77,7 @@ const Home = props => {
               <Text style={textStyles.textStyle13}>Left</Text>
             </Body>
           </ListItem>
-          <ListItem noBorder button onPress={showPayment}>
+          <ListItem noBorder onPress={showPayment}>
             <Body style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
               <View style={{
                 width: 220,

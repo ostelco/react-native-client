@@ -4,7 +4,7 @@
     "androidStatusBarColor": "#334393",
     "name": "panacea-client-2018",
     "icon": "./images/icon.png",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "slug": "ostelco-react-native-client",
     "ios": {
       "bundleIdentifier": "digital.telenor.panacea"

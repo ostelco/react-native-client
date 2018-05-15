@@ -319,12 +319,20 @@ class PaymentForm extends React.Component {
   }
 }
 
-class RNConfetti extends React.Component {
+export class RNConfetti extends React.Component {
 
   componentDidMount() {
     if(this._confettiView) {
       this._confettiView.startConfetti();
     }
+  }
+
+  componentWillEnter() {
+
+  }
+
+  componentWillLeave() {
+
   }
 
   componentWillUnmount ()
@@ -336,41 +344,19 @@ class RNConfetti extends React.Component {
   }
 
   _showHome = () => {
-    this.props.navigation.pop()
+    this.props.close()
   }
 
   render() {
-    return <View style={styles2.container}>
-      <Container>
-        <Content padder contentContainerStyle={{ justifyContent: 'center' }}>
-          <Card>
-            <CardItem header style={{ justifyContent: 'center' }}>
-              <H1>Thank you!</H1>
-            </CardItem>
-            <CardItem>
-              <Text>Enjoy your new</Text>
-            </CardItem>
-            <CardItem style={{ justifyContent: 'center' }}>
-              <Text style={{ fontSize: 50 }}>
-                2GB
-              </Text>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Button block onPress={this._showHome}><Text>Ok</Text></Button>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-      <Confetti ref={(node) => this._confettiView = node} />
-    </View>
+    return (
+        <Confetti ref={(node) => this._confettiView = node} />
+    )
   }
 }
 
 const styles2 = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   }
 });
 
@@ -913,9 +899,11 @@ const AppStack = createStackNavigator({
       headerMode: 'none'
     })
   },
+  /*
   Confetti: {
     screen: RNConfetti
   }
+  */
 }, {
   headerMode: 'none',
   initialRouteName: 'Home',
@@ -942,7 +930,7 @@ const RootStack = createSwitchNavigator({
     screen: AppStack
   }
 }, {
-  initialRouteName: 'OnBoarding'
+  initialRouteName: 'App'
 });
 export default class App extends React.Component {
 

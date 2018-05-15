@@ -16,6 +16,8 @@ import {textStyles} from "../../config/fonts";
 import {colors} from "../../config/colors";
 import {StyleSheet, TouchableHighlight} from "react-native";
 import { toolbarHeight, deviceWidth } from '../../config/variables';
+import Modal from "react-native-modal";
+import {RNConfetti} from "../../../App";
 
 const styles = StyleSheet.create({
   content: {
@@ -45,18 +47,85 @@ const styles = StyleSheet.create({
     ],
     // Make so shape does not occupy any space on the screen, use translate to position it where it's wanted
     marginTop: -deviceWidth
+  },
+  roundedBox2: {
+    // Make perfect circle
+    width: deviceWidth,
+    borderBottomRightRadius: deviceWidth / 2,
+    borderBottomLeftRadius: deviceWidth / 2,
+    height: deviceWidth,
+    backgroundColor: colors.white,
+    transform: [
+      // Create oval by scaling X to get correct angle on border
+      {rotate: "180deg"},
+      {scaleX: 1.8},
+      // Expose bottom part of oval in the margin of the content between the header and content
+      // {translateY: -deviceWidth - deviceHeight / 2 + 150},
+    ],
+    // Make so shape does not occupy any space on the screen, use translate to position it where it's wanted
+    // marginTop: -deviceWidth,
+    position: 'absolute'
+  },
+  roundedBox3: {
+    // Make perfect circle
+    width: deviceWidth,
+    borderBottomRightRadius: deviceWidth / 2,
+    borderBottomLeftRadius: deviceWidth / 2,
+    height: deviceWidth,
+    backgroundColor: colors.white,
+    transform: [
+      // Create oval by scaling X to get correct angle on border
+      {scaleX: 1.8},
+      // Expose bottom part of oval in the margin of the content between the header and content
+    ],
+    // Make so shape does not occupy any space on the screen, use translate to position it where it's wanted
+    position: 'absolute',
+    marginTop: -deviceWidth + 35
   }
 });
 
 const Payment = props => {
-  const { style, cancel, confirm } = props;
+  const { style, goBack, confirm, isDialogVisible } = props;
   return (
     <Container style={{ position: 'relative', backgroundColor: colors.whiteTwo, overflow: 'hidden' }}>
       <View style={style.roundedBox}>
       </View>
+
+      <Modal isVisible={isDialogVisible} style={{ margin: 0 }}>
+        <View style={{height: 35, position: 'relative', overflow: 'hidden', width: '100%' }}>
+          <View style={style.roundedBox2}></View>
+        </View>
+
+        <View style={{ width: '100%', justifyContent: 'center' }}>
+          <View style={{ backgroundColor: colors.white, padding: 30 }}>
+            <Text style={textStyles.textStyle22}>Thank you</Text>
+            <View style={{ height: 10 }} />
+            <Text style={textStyles.textStyle23}>Enjoy your new</Text>
+            <View style={{ padding: 50 }}>
+              <Text style={textStyles.textStyle24}>1GB</Text>
+            </View>
+            <TouchableHighlight style={{
+              height: 60,
+              borderRadius: 5,
+              backgroundColor: colors.rosa,
+              justifyContent: 'center'
+            }} onPress={goBack}>
+              <Text style={textStyles.textStyle6}>Ok</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+
+        <View style={{ height: 35, position: 'relative', overflow: 'hidden', width: '100%' }}>
+          <View style={style.roundedBox3}>
+          </View>
+        </View>
+
+        <RNConfetti />
+      </Modal>
+
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={[style.header, { position: 'relative', justifyContent: 'space-evenly' }]}>
         <Left style={{ flex: -1 }}>
-          <Icon name="arrow-back" style={{ color: colors.brownishGrey }} onPress={cancel} />
+          <Icon name="arrow-back" style={{ color: colors.brownishGrey }} onPress={goBack} />
         </Left>
         <Body style={{ alignItems: 'center', flex: 1 }}>
           <Title>
@@ -127,8 +196,9 @@ const Payment = props => {
 
 Payment.propTypes = {
   style: PropTypes.object,
-  cancel: PropTypes.func,
+  goBack: PropTypes.func,
   confirm: PropTypes.func,
+  isDialogVisible: PropTypes.bool
 };
 
 Payment.defaultProps = {

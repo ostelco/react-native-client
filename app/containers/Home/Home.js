@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Container,
-  Left,
-  Button,
   Icon,
   Body,
   Title,
@@ -17,7 +15,7 @@ import {
 import PropTypes from 'prop-types';
 import {textStyles} from "../../config/fonts";
 import {colors} from "../../config/colors";
-import {StyleSheet, TouchableHighlight} from "react-native";
+import {StyleSheet, TouchableHighlight } from "react-native";
 import { toolbarHeight, deviceWidth } from '../../config/variables';
 
 const styles = StyleSheet.create({
@@ -44,10 +42,10 @@ const styles = StyleSheet.create({
       // Create oval by scaling X to get correct angle on border
       {scaleX: 1.8},
       // Expose bottom part of oval in the margin of the content between the header and content
-      {translateY: toolbarHeight + 300}
     ],
     // Make so shape does not occupy any space on the screen, use translate to position it where it's wanted
-    marginTop: -deviceWidth
+    marginTop: -deviceWidth + 35,
+    position: 'absolute'
   }
 });
 
@@ -55,8 +53,6 @@ const Home = props => {
   const { style, showMenu, showPayment } = props;
   return (
     <Container style={{ position: 'relative', backgroundColor: colors.whiteTwo }}>
-      <View style={style.roundedBox}>
-      </View>
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={[style.header, { position: 'relative', justifyContent: 'space-evenly' }]}>
         <Body style={{ alignItems: 'center', flex: 1 }}>
           <Title>
@@ -68,7 +64,7 @@ const Home = props => {
         </Right>
       </Header>
       <Content contentContainerStyle={style.content} bounces={false}>
-        <List style={{ flex: 1 }}>
+        <List style={{ backgroundColor: colors.rosa }}>
           <ListItem noBorder>
             <Body>
               <Text style={textStyles.textStyle12}>
@@ -95,13 +91,15 @@ const Home = props => {
             </Body>
           </ListItem>
         </List>
+        <View style={{ height: 35, position: 'relative', overflow: 'hidden', width: '100%' }}>
+          <View style={style.roundedBox}>
+          </View>
+        </View>
         <View style={{
-          padding: 30,
-          marginTop: 90,
-          flex: 1
+          padding: 30
         }}>
           <View style={{
-            flex: 1,
+            width: '100%',
             height: 225,
             borderRadius: 5,
             backgroundColor: colors.white,

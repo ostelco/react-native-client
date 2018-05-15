@@ -349,7 +349,7 @@ export class RNConfetti extends React.Component {
 
   render() {
     return (
-        <Confetti ref={(node) => this._confettiView = node} />
+        <Confetti ref={(node) => this._confettiView = node} confettiCount={5000} timeout={5}  />
     )
   }
 }
@@ -930,7 +930,7 @@ const RootStack = createSwitchNavigator({
     screen: AppStack
   }
 }, {
-  initialRouteName: 'OnBoarding'
+  initialRouteName: 'App'
 });
 export default class App extends React.Component {
 

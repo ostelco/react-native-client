@@ -12,7 +12,7 @@ const OnBoarding = (props) => {
   return (
     <Container>
       <Image source={require('../../../assets/sweets.jpg')} style={{ flex: 1, resizeMode: 'cover', width: '100%', height: '100%', position: 'absolute' }} />
-      <Header androidStatusBarColor={'transparent'} style={{ backgroundColor: 'transparent', paddingTop: 60 }}>
+      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={{ backgroundColor: 'transparent' }} noShadow>
         <Body style={{ alignItems: 'center'}}>
           <AppTitle text={'pi'} />
         </Body>

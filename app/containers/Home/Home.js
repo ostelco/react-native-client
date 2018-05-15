@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     ],
     // Make so shape does not occupy any space on the screen, use translate to position it where it's wanted
     marginTop: -deviceWidth + 35,
-    position: 'absolute'
   }
 });
 
@@ -91,7 +90,7 @@ const Home = props => {
             </Body>
           </ListItem>
         </List>
-        <View style={{ height: 35, position: 'relative', overflow: 'hidden', width: '100%' }}>
+        <View style={{ height: 35, overflow: 'hidden', width: '100%', zIndex: -1 }}>
           <View style={style.roundedBox}>
           </View>
         </View>

@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
       // Expose bottom part of oval in the margin of the content between the header and content
     ],
     // Make so shape does not occupy any space on the screen, use translate to position it where it's wanted
-    position: 'absolute',
     marginTop: -deviceWidth + 35
   }
 });
@@ -115,7 +114,7 @@ const Payment = props => {
           </View>
         </View>
 
-        <View style={{ height: 35, position: 'relative', overflow: 'hidden', width: '100%' }}>
+        <View style={{ height: 35, overflow: 'hidden', width: '100%', zIndex: -1 }}>
           <View style={style.roundedBox3}>
           </View>
         </View>

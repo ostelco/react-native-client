@@ -1,9 +1,9 @@
 import React from "react";
-import { AppHeader, ScreenTitle } from "../../components";
-import {Container, Body, Left, Button, Icon, Content, Form, Item, Label, Input} from "native-base";
+import {ScreenTitle } from "../../components";
+import {Container, Body, Left, Button, Icon, Content, Form, Item, Label, Input, Header} from "native-base";
 import {colors} from "../../config/colors";
 import {textStyles} from "../../config/fonts";
-import {StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, View} from "react-native";
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     paddingRight: 30,
-    backgroundColor: colors.rosa,
   }
 });
 
@@ -48,7 +47,8 @@ const Signup = props => {
   const { style, goBack, showNext } = props;
   return (
     <Container>
-      <AppHeader>
+      <Image source={require('../../../assets/sweets.jpg')} style={{ flex: 1, resizeMode: 'cover', width: '100%', height: '100%', position: 'absolute' }} />
+      <Header androidStatusBarColor={'transparent'} style={{ backgroundColor: 'transparent', paddingTop: 60 }}>
         <Left>
           <Button transparent onPress={goBack}>
             <Icon name="arrow-back" />
@@ -57,7 +57,7 @@ const Signup = props => {
         <Body>
           <ScreenTitle text={'Personal details'} />
         </Body>
-      </AppHeader>
+      </Header>
       <Content contentContainerStyle={style.content}>
         <Form>
           <FormItem fixedLabel>

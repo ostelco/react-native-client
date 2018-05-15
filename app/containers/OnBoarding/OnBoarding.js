@@ -1,8 +1,9 @@
-import {Body, Container, Content, List, ListItem, Text, Button, View, Icon} from "native-base";
+import {Body, Container, Content, List, ListItem, Text, Button, View, Icon, Header} from "native-base";
 import React from "react";
 import {AppTitle, AppHeader} from '../../components';
 import {colors} from "../..//config/colors";
 import PropTypes from 'prop-types';
+import {Image} from "react-native";
 
 // TODO: Move styles to stylesheet
 
@@ -10,12 +11,13 @@ const OnBoarding = (props) => {
   const { showTermsAndConditions, signIn } = props;
   return (
     <Container>
-      <AppHeader>
+      <Image source={require('../../../assets/sweets.jpg')} style={{ flex: 1, resizeMode: 'cover', width: '100%', height: '100%', position: 'absolute' }} />
+      <Header androidStatusBarColor={'transparent'} style={{ backgroundColor: 'transparent', paddingTop: 60 }}>
         <Body style={{ alignItems: 'center'}}>
           <AppTitle text={'pi'} />
         </Body>
-      </AppHeader>
-      <Content contentContainerStyle={{ flex: 1, alignItems: 'center', paddingTop: 80, paddingBottom: 30, paddingHorizontal: 30, backgroundColor: colors.rosa, justifyContent: 'space-between' }}>
+      </Header>
+      <Content contentContainerStyle={{ flex: 1, alignItems: 'center', paddingTop: 80, paddingBottom: 30, paddingHorizontal: 30, justifyContent: 'space-between' }}>
 
         <Text style={{
           width: 210,

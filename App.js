@@ -930,7 +930,7 @@ const RootStack = createSwitchNavigator({
     screen: AppStack
   }
 }, {
-  initialRouteName: 'App'
+  initialRouteName: 'OnBoarding'
 });
 export default class App extends React.Component {
 

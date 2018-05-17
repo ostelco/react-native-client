@@ -5,7 +5,36 @@
 - [React Navigation](https://reactnavigation.org/) used for routing and navigation
 - [Folder Structure](https://github.com/asimolmez/react-native-folder-structure) describes the folder structure 
 - [Link to design](https://app.zeplin.io/project/5ad46cf612304dbd7b7690d0)
+
+## Start the project
+I haven't done the steps below yet, but tried documenting what needed to be done to get the project up and running.
+ 
+- Create an expo account [link to signup](https://expo.io/signup)
+- Install the exp command line tool globally: `npm install -g exp`
+
+For authentication to work, you need to login to expo:
+exp login
+
+Unfortunately expo currently doesn't support multiple users per project, so you would need to create your own expo account with a separate project name (I think).
+After that, you need to add a new redirect url to auth0 for the authentication to work locally
+The redirect url to use is printed in the console after clicking `login with google`. The code for this exists in OnBoardingContainer.js in the method _loginWithAuth0
+
+After that has been done, you can start the project like so:
+- exp start
+- exp start --ios
+- exp start --android
+
+or read the exp documentation
+
+Note: If you remove the authentication part, you don't need an expo account and you can start the project normally using: `yarn start`
+
 ## Deployment
+Currently, expo takes care of building and deployment.
+If we need to use any native libraries not supported by expo, we need to detach from expo.
+After detaching, we end up with a normal react native code base where you have your ios and android folder with native code.
+[link to expo detach](https://docs.expo.io/versions/latest/expokit/detach)
+
+This section is not done yet.
 
 - https://docs.expo.io/versions/latest/guides/building-standalone-apps.html
 - `npm install -g exp`

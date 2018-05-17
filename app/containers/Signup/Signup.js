@@ -44,11 +44,12 @@ const AppInput = props => (
 );
 
 const Signup = props => {
-  const { style, goBack, showNext } = props;
+  const { style, goBack, showNext, profile } = props;
+
   return (
     <Container>
       <Image source={require('../../../assets/sweets.jpg')} style={{ flex: 1, resizeMode: 'cover', width: '100%', height: '100%', position: 'absolute' }} />
-      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={{ backgroundColor: 'transparent' }} noShadow>
+        <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={{ backgroundColor: 'transparent' }} noShadow>
         <Left>
           <Button transparent onPress={goBack}>
             <Icon name="arrow-back" />
@@ -62,7 +63,7 @@ const Signup = props => {
         <Form>
           <FormItem fixedLabel>
             <AppLabel>Full Name</AppLabel>
-            <AppInput value={'David Berg'} />
+            <AppInput value={profile.name} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>Address</AppLabel>
@@ -92,11 +93,15 @@ const Signup = props => {
 Signup.propTypes = {
   style: PropTypes.object,
   goBack: PropTypes.func,
-  showNext: PropTypes.func
+  showNext: PropTypes.func,
+  profile: PropTypes.object
 };
 
 Signup.defaultProps = {
-  style: styles
+  style: styles,
+  profile: {
+    name: 'David Berg'
+  }
 };
 
 export default Signup;

@@ -12,8 +12,12 @@ class SignupContainer extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const profile = navigation.getParam('profile', {
+      name: 'David Berg'
+    });
     return (
-      <Signup goBack={this._goBack} showNext={this._showGDPR} />
+      <Signup goBack={this._goBack} showNext={this._showGDPR} profile={profile} />
     )
   }
 }

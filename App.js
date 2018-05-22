@@ -23,51 +23,6 @@ import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-i
 import Confetti from 'react-native-confetti';
 import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer } from "./app/containers";
 
-class OnBoardingScreen extends React.Component {
-  _showSignup = () => {
-    this.props.navigation.navigate('Signup')
-  };
-
-  _showTermsAndConditions = () => {
-    this.props.navigation.navigate('TermsAndConditions');
-  };
-
-  render() {
-    return (
-      <Container>
-        <Header>
-          <Left />
-          <Body>
-            <Title>PI</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content contentContainerStyle={{ flex: 1 }}>
-          <List style={{ flex: 1, justifyContent: 'center' }}>
-            <ListItem noBorder>
-              <Body>
-                <Text style={{ textAlign: 'center' }}>If you think data is the most important, PI is the carrier for you.</Text>
-              </Body>
-            </ListItem>
-          </List>
-          <List style={{ flex: -1 }}>
-            <ListItem noBorder>
-              <Body>
-                <Button block onPress={this._showSignup}><Text>Sign in with Google</Text></Button>
-              </Body>
-            </ListItem>
-            <ListItem noBorder button onPress={this._showTermsAndConditions}>
-              <Body>
-                <Text>By using PI you agree to our terms & conditions</Text>
-              </Body>
-            </ListItem>
-          </List>
-        </Content>
-      </Container>
-    )
-  }
-}
-
 class LoginScreen extends React.Component {
   _showGDPR = () => {
     this.props.navigation.navigate('GDPR')
@@ -117,93 +72,6 @@ class LoginScreen extends React.Component {
   }
 }
 
-
-class HomeScreen extends React.Component {
-
-  _showPayment = () => {
-    this.props.navigation.navigate('Payment')
-  };
-
-  render() {
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.navigate('Menu')}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>PI</Title>
-          </Body>
-        </Header>
-        <Content padder style={{ }}>
-          <Card style={{ padding: 30 }}>
-            <CardItem style={{ justifyContent: 'center', flexDirection: 'column' }} header>
-              <Text style={{ fontSize: 50 }}>
-                4GB
-              </Text>
-              <Text style={{ fontSize: 10, fontWeight: 'normal' }}>
-                left
-              </Text>
-            </CardItem>
-          </Card>
-          <Card transparent>
-            <CardItem>
-              <Body>
-              <Button block light onPress={this._showPayment}>
-                <Grid>
-                  <Col>
-                    <Text>+2GB</Text>
-                  </Col>
-                  <Col>
-                    <Text style={{ textAlign: 'right' }}>40 NOK</Text>
-                  </Col>
-                </Grid>
-              </Button>
-              </Body>
-            </CardItem>
-          </Card>
-          <Card>
-            <CardItem header style={{ justifyContent: 'center' }}>
-              <H1>Monday Special!</H1>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Button block light onPress={this._showPayment}>
-                  <Grid>
-                    <Col>
-                      <Text>+2GB</Text>
-                    </Col>
-                    <Col>
-                      <Text style={{ textAlign: 'right' }}>20 NOK</Text>
-                    </Col>
-                  </Grid>
-                </Button>
-              </Body>
-            </CardItem>
-            <CardItem>
-              <ReadMore
-                numberOfLines={2}
-                onReady={() => {}}>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor
-                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                  nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                  sunt in culpa qui officia deserunt mollit anim id est laborum
-                </Text>
-              </ReadMore>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    )
-  }
-}
-
 const s = StyleSheet.create({
   container: {
     backgroundColor: "#F5F5F5",
@@ -217,60 +85,6 @@ const s = StyleSheet.create({
     color: "black",
   },
 });
-
-class PaymentForm extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state ={};
-  }
-
-  _onChange = formData => {
-    /* eslint no-console: 0 */
-    console.log(JSON.stringify(formData, null, " "));
-  };
-
-  _onFocus = field => {
-    /* eslint no-console: 0 */
-    console.log(field);
-  };
-  render() {
-    return (
-      <View style={s.container}>
-
-
-
-        { false ?
-          (<LiteCreditCardInput
-            autoFocus
-            inputStyle={s.input}
-
-            validColor={"black"}
-            invalidColor={"red"}
-            placeholderColor={"darkgray"}
-
-            onFocus={this._onFocus}
-            onChange={this._onChange} />) :
-          (<CreditCardInput
-            autoFocus
-
-            // requiresName
-            requiresCVC
-            // requiresPostalCode
-
-            labelStyle={s.label}
-            inputStyle={s.input}
-            validColor={"black"}
-            invalidColor={"red"}
-            placeholderColor={"darkgray"}
-
-            onFocus={this._onFocus}
-            onChange={this._onChange} />)
-        }
-      </View>
-    );
-  }
-}
 
 export class RNConfetti extends React.Component {
 

@@ -16,7 +16,7 @@ class PaymentContainer extends React.Component {
   };
 
   _handlePayment = () => {
-    // this.props.navigation.navigate('Confetti');
+    // TODO: send payment request to server
     this.setState({ isDialogVisible: true });
   };
 

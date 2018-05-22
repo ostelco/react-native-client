@@ -10,7 +10,7 @@ import {
   List,
   ListItem,
   View,
-  Right
+  Right, Spinner
 } from "native-base";
 import PropTypes from 'prop-types';
 import {textStyles} from "../../config/fonts";
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 const Home = props => {
-  const { style, showMenu, showPayment } = props;
+  const { style, showMenu, showPayment, dataLeft, specialOffer } = props;
   return (
     <Container style={{ position: 'relative', backgroundColor: colors.whiteTwo }}>
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={[style.header, { position: 'relative', justifyContent: 'space-evenly' }]}>
@@ -65,12 +65,14 @@ const Home = props => {
       <Content contentContainerStyle={style.content} bounces={false}>
         <List style={{ backgroundColor: colors.rosa }}>
           <ListItem noBorder>
-            <Body>
-              <Text style={textStyles.textStyle12}>
-                3GB
-              </Text>
-              <Text style={textStyles.textStyle13}>Left</Text>
-            </Body>
+            { dataLeft ? (
+              <Body>
+                <Text style={textStyles.textStyle12}>
+                  { dataLeft }
+                </Text>
+                <Text style={textStyles.textStyle13}>Left</Text>
+              </Body>
+              ) : <Body><Spinner color="white" /></Body>}
           </ListItem>
           <ListItem noBorder onPress={showPayment}>
             <Body style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
@@ -94,44 +96,46 @@ const Home = props => {
           <View style={style.roundedBox}>
           </View>
         </View>
-        <View style={{
-          padding: 30
-        }}>
+        { specialOffer ? (
           <View style={{
-            width: '100%',
-            height: 225,
-            borderRadius: 5,
-            backgroundColor: colors.white,
-            paddingHorizontal: 30,
-            justifyContent: 'space-evenly',
-            alignItems: 'center'
+            padding: 30
           }}>
-            <Text style={textStyles.textStyle8}>
-              Monday Special!
-            </Text>
-            <TouchableHighlight onPress={showPayment}>
-              <View style={{
-                width: 220,
-                height: 60,
-                borderRadius: 5,
-                backgroundColor: colors.rosa,
-                paddingHorizontal: 40,
-                flexDirection: 'row',
-                justifyContent: 'center'
-              }}>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                  <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>+2GB</Text>
+            <View style={{
+              width: '100%',
+              height: 225,
+              borderRadius: 5,
+              backgroundColor: colors.white,
+              paddingHorizontal: 30,
+              justifyContent: 'space-evenly',
+              alignItems: 'center'
+            }}>
+              <Text style={textStyles.textStyle8}>
+                Monday Special!
+              </Text>
+              <TouchableHighlight onPress={showPayment}>
+                <View style={{
+                  width: 220,
+                  height: 60,
+                  borderRadius: 5,
+                  backgroundColor: colors.rosa,
+                  paddingHorizontal: 40,
+                  flexDirection: 'row',
+                  justifyContent: 'center'
+                }}>
+                  <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>+2GB</Text>
+                  </View>
+                  <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>25 NOK</Text>
+                  </View>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                  <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>25 NOK</Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <Text style={textStyles.textStyle18}>
-              Lorem ipsum dolor sit amet, consec tetur dipiscing elit lorum ipsum…
-            </Text>
+              </TouchableHighlight>
+              <Text style={textStyles.textStyle18}>
+                Lorem ipsum dolor sit amet, consec tetur dipiscing elit lorum ipsum…
+              </Text>
+            </View>
           </View>
-        </View>
+        ) : null}
       </Content>
     </Container>
   )
@@ -140,11 +144,13 @@ const Home = props => {
 Home.propTypes = {
   style: PropTypes.object,
   showMenu: PropTypes.func.isRequired,
-  showPayment: PropTypes.func.isRequired
+  showPayment: PropTypes.func.isRequired,
+  dataLeft: PropTypes.string,
+  specialOffer: PropTypes.object
 };
 
 Home.defaultProps = {
-  style: styles
+  style: styles,
 };
 
 export default Home;

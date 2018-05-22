@@ -4,6 +4,7 @@ import GDPR from "./GDPR";
 class GDPRContainer extends React.Component {
 
   _showHome = () => {
+    // TODO: Send consent true / false to server
     this.props.navigation.navigate('App');
   };
 

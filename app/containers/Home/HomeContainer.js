@@ -3,6 +3,16 @@ import Home from "./Home";
 
 class HomeContainer extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+  componentDidMount() {
+    // TODO:
+    // - Fetch data left and update the state: this.setState({ dataLeft: ... });
+    // - Fetch offers and update the state: this.setState({ specialOffer: ... });
+  }
+
   _showMenu = () => {
     this.props.navigation.navigate('Menu');
   };
@@ -13,7 +23,7 @@ class HomeContainer extends React.Component {
 
   render() {
     return (
-      <Home showMenu={this._showMenu} showPayment={this._showPayment} />
+      <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={this.state.dataLeft} specialOffer={this.state.specialOffer}/>
     )
   }
 }

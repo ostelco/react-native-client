@@ -8,6 +8,7 @@ class SignupContainer extends React.Component {
   };
 
   _showGDPR = () => {
+    // TODO: save profile data to server
     this.props.navigation.navigate('GDPR')
   };
 

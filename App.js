@@ -117,53 +117,6 @@ class LoginScreen extends React.Component {
   }
 }
 
-class GDPRScreen extends React.Component {
-  _showHome = () => {
-    this.props.navigation.navigate('App')
-  };
-
-  render() {
-    return (
-      <Container>
-        <Header>
-          <Left />
-          <Body>
-            <Title>PI</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content contentContainerStyle={{ justifyContent: 'space-between', flex: 1 }}>
-          <List>
-            <ListItem noBorder>
-              <Body>
-                <Text>In order to give you offers that fit your needs, you need to agree to let us:</Text>
-              </Body>
-            </ListItem>
-            <ListItem noBorder>
-              <Body style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-                <Icon name='basket' style={{ textAlign: 'center' }}/>
-                <Text>Analyze your data usage to be able to give you personalized offers</Text>
-              </Body>
-            </ListItem>
-          </List>
-          <List>
-            <ListItem noBorder>
-              <Body style={{ flex: 1, flexDirection: 'row'  }}>
-                <Button block style={{ flex: 1 }} onPress={this._showHome}><Text>No</Text></Button>
-                <Button block style={{ flex: 1 }} onPress={this._showHome}><Text>Yes, I Agree</Text></Button>
-              </Body>
-            </ListItem>
-            <ListItem noBorder>
-              <Body>
-                <Text>You can change this in the Privacy settings later</Text>
-              </Body>
-            </ListItem>
-          </List>
-        </Content>
-      </Container>
-    )
-  }
-}
 
 class HomeScreen extends React.Component {
 
@@ -359,49 +312,6 @@ const styles2 = StyleSheet.create({
     flex: 1,
   }
 });
-
-class PaymentScreen extends React.Component {
-
-  _handlePayment = () => {
-    this.props.navigation.navigate('PaymentComplete')
-  };
-
-  render() {
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.pop()}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Enter payment details</Title>
-          </Body>
-        </Header>
-        <Content>
-          <Card style={{ paddingHorizontal: 30 }}>
-            <CardItem header style={{ justifyContent: 'space-between' }}>
-              <Text style={{ fontSize: 30 }}>
-                2GB
-              </Text>
-              <Text style={{ fontSize: 30 }}>
-                20 NOK
-              </Text>
-            </CardItem>
-          </Card>
-
-          <PaymentForm />
-
-          <Button block onPress={this._handlePayment}>
-            <Text>Pay 20 NOK</Text>
-          </Button>
-
-        </Content>
-      </Container>
-    )
-  }
-}
 
 class SettingsScreen extends React.Component {
 
@@ -790,51 +700,6 @@ class TermsAndConditionsScreen extends React.Component {
               </Text>
             </ListItem>
           </List>
-        </Content>
-      </Container>
-    )
-  }
-}
-
-class SignupScreen extends React.Component {
-
-  _showGDPR = () => {
-    this.props.navigation.navigate('GDPR');
-  }
-
-  render() {
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-          <Title>Personal details</Title>
-          </Body>
-        </Header>
-        <Content padder>
-          <Form>
-            <Item stackedLabel>
-              <Label>Full name</Label>
-              <Input />
-            </Item>
-            <Item stackedLabel>
-              <Label>Address</Label>
-              <Input />
-            </Item>
-            <Item stackedLabel>
-              <Label>Postal code</Label>
-              <Input />
-            </Item>
-            <Item stackedLabel last>
-              <Label>City</Label>
-              <Input />
-            </Item>
-            <Button block onPress={this._showGDPR}><Text>Done</Text></Button>
-          </Form>
         </Content>
       </Container>
     )

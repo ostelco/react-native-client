@@ -74,8 +74,8 @@ class OnBoardingContainer extends React.Component {
   };
 
   _signIn = async () => {
-    const profile = await this._loginWithAuth0();
-    console.log('profile', profile);
+    // const profile = await this._loginWithAuth0();
+    const profile = {};
     this.props.navigation.navigate('Signup', { profile });
   };
 

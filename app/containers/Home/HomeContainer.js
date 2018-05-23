@@ -1,5 +1,7 @@
 import React from "react";
+import prettyBytes from "pretty-bytes";
 import Home from "./Home";
+import * as api from "../../helper/api";
 
 class HomeContainer extends React.Component {
 
@@ -11,6 +13,26 @@ class HomeContainer extends React.Component {
     // TODO:
     // - Fetch data left and update the state: this.setState({ dataLeft: ... });
     // - Fetch offers and update the state: this.setState({ specialOffer: ... });
+    this.fetchSubscriptionStatus();
+  }
+
+  getDataLeft(remaining) {
+    return `${prettyBytes(remaining)}`;
+  }
+
+  fetchSubscriptionStatus() {
+    api.getSubscriptionStatus()
+      .then((response) => {
+        console.log(JSON.stringify(response));
+        return response.json();
+      })
+      .then((subscription) => {
+        console.log(JSON.stringify(subscription));
+        this.setState({...this.state, dataLeft: this.getDataLeft(subscription.remaining)});
+      })
+      .catch((error) => {
+        console.log('Error fetching the subscription', error)
+      });
   }
 
   _showMenu = () => {

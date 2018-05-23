@@ -1,6 +1,5 @@
 import React from "react";
 import OnBoarding from "./OnBoarding";
-import { AuthSession } from 'expo';
 import jwtDecoder from 'jwt-decode'
 import { Alert } from "react-native";
 
@@ -19,29 +18,7 @@ const toQueryString = params => {
 class OnBoardingContainer extends React.Component {
 
   _loginWithAuth0 = async () => {
-    let redirectUrl = AuthSession.getRedirectUrl();
-    console.log('Redirect Url:', redirectUrl);
-    const redirectionURL = authorize_url + toQueryString({
-      client_id: auth0ClientId,
-      response_type: 'token',
-      scope: 'openid profile',
-      connection: 'google-oauth2',
-      audience: 'http://google_api',
-      redirect_uri: redirectUrl,
-      state: redirectUrl,
-    });
 
-    let result = await AuthSession.startAsync({
-      authUrl: redirectionURL
-    });
-
-    console.log(result);
-
-    if (result.type === 'success') {
-      return this.handleParams(result.params);
-    }
-
-    // TODO: Handle error
   };
 
   handleParams = (responseObj) => {

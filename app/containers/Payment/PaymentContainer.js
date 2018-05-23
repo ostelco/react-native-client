@@ -7,8 +7,8 @@ class PaymentContainer extends React.Component {
     super(props);
     this.state = {
       isDialogVisible: false,
-      price: "22 NOK",
-      topUpAmount: "2 GB"
+      price: this.props.navigation.state.params.price,
+      topUpAmount: this.props.navigation.state.params.topUpAmount
     }
   }
 

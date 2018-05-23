@@ -20,3 +20,5 @@ yarn-error.log*
 
 # fastlane
 fastlane/report.xml
+
+app/utils/token.json

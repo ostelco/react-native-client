@@ -17,7 +17,6 @@ import {
   Title,
   Right, Left, List, ListItem, Grid, Row, Col, Icon, Card, CardItem, H1, Label, Switch, Radio
 } from "native-base";
-import {AppLoading, Font} from "expo";
 import ReadMore from "react-native-read-more-text";
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer } from "./app/containers";
@@ -51,7 +50,7 @@ class SettingsScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.pop()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -64,7 +63,7 @@ class SettingsScreen extends React.Component {
               <Col>
                 <Card style={{ padding: 20 }}>
                   <CardItem cardBody style={{ flex: 1, justifyContent: 'center', flexDirection: 'column' }} button onPress={this._showUserDetails}>
-                    <Icon name="ios-person" style={{ textAlign: 'center' }} />
+                    {/* <Icon name="ios-person" style={{ textAlign: 'center' }} /> */}
                     <Text>Personal details</Text>
                   </CardItem>
                 </Card>
@@ -72,7 +71,7 @@ class SettingsScreen extends React.Component {
               <Col>
                 <Card style={{ padding: 20 }}>
                   <CardItem cardBody style={{ flex: 1, justifyContent: 'center', flexDirection: 'column' }} button onPress={this._showPrivacy}>
-                    <Icon name="key" style={{ textAlign: 'center' }} />
+                    {/* <Icon name="key" style={{ textAlign: 'center' }} /> */}
                     <Text>Privacy</Text>
                   </CardItem>
                 </Card>
@@ -119,7 +118,7 @@ class UserDetailsScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -163,7 +162,7 @@ class PrivacyScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.pop()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -211,7 +210,7 @@ class PurchaseHistoryScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -266,7 +265,7 @@ class DeleteAccountScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -345,7 +344,7 @@ class PrivacyPolicyScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -384,7 +383,7 @@ class TermsAndConditionsScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
+              {/* <Icon name="arrow-back" /> */}
             </Button>
           </Left>
           <Body>
@@ -493,6 +492,13 @@ const RootStack = createSwitchNavigator({
 }, {
   initialRouteName: 'OnBoarding'
 });
+
+
+const AppLoading = () => (
+  <Text>Loading...</Text>
+);
+
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -501,10 +507,12 @@ export default class App extends React.Component {
   }
 
   async componentWillMount() {
+    /*
     await Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
     });
+    */
     this.setState({ loading: false });
   }
 

@@ -44,7 +44,7 @@ const TermsAndConditions = props => {
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={[style.header, { position: 'relative' }]}>
         <Left>
           <Button transparent onPress={goBack}>
-            <Icon name="arrow-back" style={{ color: colors.brownishGrey }} />
+            {/* <Icon name="arrow-back" style={{ color: colors.brownishGrey }} /> */}
           </Button>
         </Left>
         <Body>

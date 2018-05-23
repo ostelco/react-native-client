@@ -16,5 +16,7 @@
     "android": {
       "package": "digital.telenor.panacea"
     }
-  }
+  },
+  "name": "PanaceaReactNativeClient",
+  "displayName": "panacea-client-2018"
 }

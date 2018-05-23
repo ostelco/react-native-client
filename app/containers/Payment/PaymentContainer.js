@@ -6,7 +6,9 @@ class PaymentContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDialogVisible: false
+      isDialogVisible: false,
+      price: "22 NOK",
+      topUpAmount: "2 GB"
     }
   }
 
@@ -22,7 +24,7 @@ class PaymentContainer extends React.Component {
 
   render() {
     return (
-      <Payment goBack={this._goBack} confirm={this._handlePayment} isDialogVisible={this.state.isDialogVisible} />
+      <Payment goBack={this._goBack} confirm={this._handlePayment} isDialogVisible={this.state.isDialogVisible} price={this.state.price} topUpAmount={this.state.topUpAmount}/>
     )
   }
 }

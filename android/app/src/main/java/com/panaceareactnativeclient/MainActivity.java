@@ -1,4 +1,4 @@
-package com.panaceareactnativeclient;
+package digital.telenor.panacea;
 
 import com.facebook.react.ReactActivity;
 

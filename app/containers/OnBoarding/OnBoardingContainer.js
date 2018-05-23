@@ -1,43 +1,27 @@
 import React from "react";
 import OnBoarding from "./OnBoarding";
-import jwtDecoder from 'jwt-decode'
-import { Alert } from "react-native";
+import { AsyncStorage } from "react-native";
+import Auth0 from 'react-native-auth0';
+
 
 // TODO: Move to configuration file or variables.js
 const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
 const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
-const authorize_url = `https://${AUTH0_DOMAIN}/authorize`;
 
 // TODO: Move to utils file
-const toQueryString = params => {
-  return '?' + Object.entries(params)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-    .join('&')
-};
+const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: auth0ClientId });
+
 
 class OnBoardingContainer extends React.Component {
 
-  _loginWithAuth0 = async () => {
-
-  };
-
-  handleParams = (responseObj) => {
-    if (responseObj.error) {
-      Alert.alert('Error', responseObj.error_description
-        || 'something went wrong while logging in');
-      return;
-    }
-    const encodedToken = responseObj.access_token;
-    const decodedToken = jwtDecoder(encodedToken);
-
-    console.log(decodedToken);
-
+  _getProfile = async () => {
+    const authToken = await AsyncStorage.getItem('@app:session');
     return fetch('https://pantel-2decb.appspot.com/profile', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer '+ encodedToken
+        Authorization: 'Bearer '+ authToken
       },
       body: JSON.stringify({
         name: 'Prasanth Ullattil',
@@ -48,11 +32,22 @@ class OnBoardingContainer extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-  };
+  }
 
   _signIn = async () => {
-    // const profile = await this._loginWithAuth0();
-    const profile = {};
+    console.log('signIn');
+
+    await auth0
+      .webAuth
+      .authorize({scope: 'openid profile', audience: 'http://google_api', connection: 'google-oauth2', response_type: 'token'})
+      .then(credentials => {
+        console.log(credentials);
+        return AsyncStorage.setItem('@app:session', credentials.accessToken)
+      })
+      .catch(error => console.log(error));
+
+    const profile = await this._getProfile();
+    console.log(profile);
     this.props.navigation.navigate('Signup', { profile });
   };
 

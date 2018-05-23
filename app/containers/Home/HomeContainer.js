@@ -14,6 +14,7 @@ class HomeContainer extends React.Component {
     // - Fetch data left and update the state: this.setState({ dataLeft: ... });
     // - Fetch offers and update the state: this.setState({ specialOffer: ... });
     this.fetchSubscriptionStatus();
+    this.fetchProducts();
   }
 
   getDataLeft(remaining) {
@@ -32,6 +33,21 @@ class HomeContainer extends React.Component {
       })
       .catch((error) => {
         console.log('Error fetching the subscription', error)
+      });
+  }
+
+  fetchProducts() {
+    api.getProducts()
+      .then((response) => {
+        console.log(JSON.stringify(response));
+        return response.json();
+      })
+      .then((products) => {
+        console.log(JSON.stringify(products));
+        this.setState({...this.state, specialOffer: products[0]});
+      })
+      .catch((error) => {
+        console.log('Error fetching the products', error)
       });
   }
 

@@ -10,25 +10,34 @@ class HomeContainer extends React.Component {
     this.state = {}
   }
   componentDidMount() {
+    console.log("HomeContainer componentDidMount")
     // TODO:
     // - Fetch data left and update the state: this.setState({ dataLeft: ... });
     // - Fetch offers and update the state: this.setState({ specialOffer: ... });
-    this.state.authHeader = getAuthHeader();
+    this.fetchProducts();
+  }
+
+  componentDidUpdate() {
+    console.log("HomeContainer componentDidUpdate")
+    // TODO:
+    // - Fetch data left and update the state: this.setState({ dataLeft: ... });
+    // - Fetch offers and update the state: this.setState({ specialOffer: ... });
     this.fetchProducts();
   }
 
   fetchProducts() {
-    // getProducts(this.state.authHeader)
-    //   .then((response) => response.json())
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    getProducts(this.state.authHeader)
+    getProducts(getAuthHeader())
       .then((response) => {
         console.log(JSON.stringify(response));
+        return response.json();
+      })
+      .then((products) => {
+        console.log(JSON.stringify(products));
+        return products;
       })
       .catch((error) => {
-        console.error(error);
+        console.log('Error fetching the products')
+        //console.error(error);
       });
   };
 

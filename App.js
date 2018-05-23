@@ -20,112 +20,8 @@ import {
 import {AppLoading, Font} from "expo";
 import ReadMore from "react-native-read-more-text";
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
-import Confetti from 'react-native-confetti';
 import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer } from "./app/containers";
-
-class LoginScreen extends React.Component {
-  _showGDPR = () => {
-    this.props.navigation.navigate('GDPR')
-  };
-
-  render() {
-    return (
-      <Container>
-        <Header>
-          <Left />
-          <Body>
-            <Title>PI</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
-          <List>
-            <ListItem noBorder>
-              <Text>Login to start using PI</Text>
-            </ListItem>
-            <ListItem noBorder>
-              <Item>
-                <Input placeholder="Email" />
-              </Item>
-            </ListItem>
-            <ListItem noBorder>
-              <Item>
-                <Input placeholder="Password" />
-              </Item>
-            </ListItem>
-            <ListItem noBorder>
-              <Body>
-                <Button block onPress={this._showGDPR}><Text>Login</Text></Button>
-              </Body>
-            </ListItem>
-          </List>
-        </Content>
-        <Footer>
-          <FooterTab>
-            <Body>
-              <Text>By using PI you agree to our terms & conditions</Text>
-            </Body>
-          </FooterTab>
-        </Footer>
-      </Container>
-    )
-  }
-}
-
-const s = StyleSheet.create({
-  container: {
-    backgroundColor: "#F5F5F5",
-  },
-  label: {
-    color: "black",
-    fontSize: 12,
-  },
-  input: {
-    fontSize: 16,
-    color: "black",
-  },
-});
-
-export class RNConfetti extends React.Component {
-
-  componentDidMount() {
-    if(this._confettiView) {
-      this._confettiView.startConfetti();
-    }
-  }
-
-  componentWillEnter() {
-
-  }
-
-  componentWillLeave() {
-
-  }
-
-  componentWillUnmount ()
-  {
-    if (this._confettiView)
-    {
-      this._confettiView.stopConfetti();
-    }
-  }
-
-  _showHome = () => {
-    this.props.close()
-  }
-
-  render() {
-    return (
-        <Confetti ref={(node) => this._confettiView = node} confettiCount={5000} timeout={5}  />
-    )
-  }
-}
-
-const styles2 = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
+import { RNConfetti } from "./app/components";
 
 class SettingsScreen extends React.Component {
 
@@ -520,15 +416,6 @@ class TermsAndConditionsScreen extends React.Component {
   }
 }
 
-/*
-const RootStack = createStackNavigator({
-  Home: {
-    screen: HomeScreen
-  },
-}, {
-  initialRouteName: 'Home',
-});
-*/
 
 const AppStack = createStackNavigator({
   Home: {
@@ -578,11 +465,6 @@ const AppStack = createStackNavigator({
       headerMode: 'none'
     })
   },
-  /*
-  Confetti: {
-    screen: RNConfetti
-  }
-  */
 }, {
   headerMode: 'none',
   initialRouteName: 'Home',

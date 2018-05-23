@@ -17,7 +17,7 @@ import {colors} from "../../config/colors";
 import {StyleSheet, TouchableHighlight} from "react-native";
 import { toolbarHeight, deviceWidth } from '../../config/variables';
 import Modal from "react-native-modal";
-import {RNConfetti} from "../../../App";
+import {RNConfetti} from "../../components";
 
 const styles = StyleSheet.create({
   content: {

@@ -4,29 +4,27 @@
   "private": true,
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "babel-runtime": "^7.0.0-beta.3",
-    "jest-expo": "~27.0.0",
+    "jest": "^22.4.4",
+    "jest-react-native": "^18.0.0",
     "prop-types": "^15.6.1",
     "react-dom": "16.3.1",
-    "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "test": "jest",
     "ios:beta": "fastlane ios beta",
     "android:beta": "fastlane android beta"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "react-native"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
-    "expo": "^27.0.1",
     "jwt-decode": "^2.2.0",
     "native-base": "^2.4.3",
     "react": "16.3.1",

@@ -2,7 +2,7 @@ import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux'
 
 const subscription = (state = { isFetching: false, status: null }, action) => {
-  console.log("Action = ", action)
+  console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.SUBSCRIPTION_REQUEST:
@@ -12,11 +12,11 @@ const subscription = (state = { isFetching: false, status: null }, action) => {
     case ActionTypes.SUBSCRIPTION_SUCCESS:
       return {isFetching: false, status:response};
   }
-  return state
+  return state;
 }
 
 const products = (state = { isFetching: false, list: null }, action) => {
-  console.log("Action = ", action)
+  console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.PRODUCTS_REQUEST:
@@ -26,29 +26,28 @@ const products = (state = { isFetching: false, list: null }, action) => {
     case ActionTypes.PRODUCTS_SUCCESS:
       return {isFetching: false, list:response};
   }
-  return state
+  return state;
 }
 
 const selectedProduct = (state = null, action) => {
   switch (action.type) {
     case ActionTypes.SELECT_PRODUCT:
-      return action.product
+      return action.product;
     default:
-      return state
+      return state;
   }
 }
 
 // Updates error message to notify about the failed fetches.
 const errorMessage = (state = null, action) => {
-  const { type, error } = action
+  const { type, error } = action;
 
   if (type === ActionTypes.RESET_ERROR_MESSAGE) {
-    return null
+    return null;
   } else if (error) {
-    return error
+    return error;
   }
-
-  return state
+  return state;
 }
 
 const rootReducer = combineReducers({
@@ -56,6 +55,6 @@ const rootReducer = combineReducers({
   products,
   selectedProduct,
   errorMessage,
-})
+});
 
-export default rootReducer
+export default rootReducer;

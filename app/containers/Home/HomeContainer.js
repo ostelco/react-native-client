@@ -78,10 +78,10 @@ const mapStateToProps = (state) => {
     subscription,
     products
   };
-}
+};
 
 export default connect(mapStateToProps, {
   loadSubscription,
   loadProducts,
   selectProduct
-})(HomeContainer)
+})(HomeContainer);

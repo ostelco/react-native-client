@@ -38,10 +38,10 @@ const mapStateToProps = (state) => {
     error,
     selectedProduct
   };
-}
+};
 
 export default connect(mapStateToProps, {
   buyProduct
-})(PaymentContainer)
+})(PaymentContainer);
 
 

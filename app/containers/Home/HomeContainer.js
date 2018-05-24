@@ -35,11 +35,20 @@ class HomeContainer extends React.Component {
     }
     return null;
   }
-  formatSpecialProducts(products) {
+
+  formatDefaultProduct(products) {
     if (products.list) {
       return products.list[0];
     }
     return null;
+  }
+
+  formatSpecialProducts(products) {
+    if (products.list) {
+      if (Array.isArray(products.list) && products.list.length > 1)
+      return products.list[1];
+    }
+    return this.formatDefaultProduct(products);
   }
 
   _showMenu = () => {
@@ -47,7 +56,6 @@ class HomeContainer extends React.Component {
   };
 
   _showPayment = product => {
-    console.log("_showPayment", product);
     this.props.selectProduct(product);
     this.props.navigation.navigate('Payment');
   };
@@ -56,7 +64,7 @@ class HomeContainer extends React.Component {
 
     const dataLeft = this.formatDataLeft(this.props.subscription)
     const specialOffer = this.formatSpecialProducts(this.props.products)
-    const defaultOffer = this.formatSpecialProducts(this.props.products)
+    const defaultOffer = this.formatDefaultProduct(this.props.products)
     return (
       <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={dataLeft} defaultOffer={defaultOffer} specialOffer={specialOffer}/>
     )

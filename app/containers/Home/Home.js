@@ -59,7 +59,7 @@ const Home = props => {
           </Title>
         </Body>
         <Right style={{ flex: -1 }}>
-          {/* <Icon name="menu" style={{ color: colors.white }} onPress={showMenu} /> */}
+          <Icon name="menu" style={{ color: colors.white }} onPress={showMenu} />
         </Right>
       </Header>
       <Content contentContainerStyle={style.content} bounces={false}>

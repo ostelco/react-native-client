@@ -47,7 +47,7 @@ const OnBoarding = (props) => {
                 shadowOpacity: 1,
                 position: 'relative'
               }}>
-                {/* <Icon name='home' style={{ color: colors.warmGrey, position: 'absolute', left: 0 }} /> */}
+                <Icon name='home' style={{ color: colors.warmGrey, position: 'absolute', left: 0 }} />
                 <Text style={{ color: colors.warmGrey }}>Sign in with Google</Text>
               </Button>
             </Body>

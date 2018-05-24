@@ -58,7 +58,7 @@ const GDPR = props => {
           </ListItem>
           <ListItem noBorder>
             <Body>
-            {/* <Icon name="basket" style={{ textAlign: 'center' }} /> */}
+            <Icon name="basket" style={{ textAlign: 'center' }} />
             </Body>
           </ListItem>
           <ListItem noBorder>

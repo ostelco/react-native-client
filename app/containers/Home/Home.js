@@ -74,7 +74,7 @@ const Home = props => {
               </Body>
               ) : <Body><Spinner color="white" /></Body>}
           </ListItem>
-          <ListItem noBorder onPress={showPayment}>
+          <ListItem noBorder onPress={() => showPayment(defaultOffer)}>
             <Body style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
               <View style={{
                 width: 220,
@@ -112,7 +112,7 @@ const Home = props => {
               <Text style={textStyles.textStyle8}>
                 Monday Special!
               </Text>
-              <TouchableHighlight onPress={showPayment}>
+              <TouchableHighlight onPress={() => showPayment(specialOffer)}>
                 <View style={{
                   width: 220,
                   height: 60,

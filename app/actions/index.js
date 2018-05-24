@@ -58,6 +58,13 @@ export const loadProducts = () => (dispatch, getState) => {
   return dispatch(fetchProducts())
 }
 
+export const SELECT_PRODUCT = 'SELECT_PRODUCT'
+
+export const selectProduct = product => ({
+  type: SELECT_PRODUCT,
+  product
+})
+
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE'
 
 // Resets the currently visible error message.

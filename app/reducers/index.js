@@ -29,6 +29,15 @@ const products = (state = { isFetching: false, list: null }, action) => {
   return state
 }
 
+const selectedProduct = (state = null, action) => {
+  switch (action.type) {
+    case ActionTypes.SELECT_PRODUCT:
+      return action.product
+    default:
+      return state
+  }
+}
+
 // Updates error message to notify about the failed fetches.
 const errorMessage = (state = null, action) => {
   const { type, error } = action
@@ -45,6 +54,7 @@ const errorMessage = (state = null, action) => {
 const rootReducer = combineReducers({
   subscription,
   products,
+  selectedProduct,
   errorMessage,
 })
 

@@ -3,7 +3,7 @@ import prettyBytes from "pretty-bytes";
 import Home from "./Home";
 import * as api from "../../helper/api";
 import { connect } from 'react-redux';
-import { loadSubscription, loadProducts } from "../../actions";
+import { loadSubscription, loadProducts, selectProduct } from "../../actions";
 
 class HomeContainer extends React.Component {
 
@@ -47,8 +47,10 @@ class HomeContainer extends React.Component {
     this.props.navigation.navigate('Menu');
   };
 
-  _showPayment = () => {
-    this.props.navigation.navigate('Payment', {price: {amount: "25", currency: "NOK"}, itemDescription: "4 Gb", sku:"DataTopup4GB"})
+  _showPayment = product => {
+    console.log("_showPayment", product);
+    this.props.selectProduct(product);
+    this.props.navigation.navigate('Payment', {price: {amount: "25", currency: "NOK"}, itemDescription: "4 Gb", sku:"DataTopup4GB"});
   };
 
   render() {
@@ -73,5 +75,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   loadSubscription,
-  loadProducts
+  loadProducts,
+  selectProduct
 })(HomeContainer)

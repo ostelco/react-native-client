@@ -126,7 +126,7 @@ const Home = props => {
                     <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>+2GB</Text>
                   </View>
                   <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>25 NOK</Text>
+                    <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>{specialOffer.price.amount} {specialOffer.price.currency}</Text>
                   </View>
                 </View>
               </TouchableHighlight>

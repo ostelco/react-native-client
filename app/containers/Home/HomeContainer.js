@@ -1,7 +1,6 @@
 import React from "react";
 import prettyBytes from "pretty-bytes";
 import Home from "./Home";
-import * as api from "../../helper/api";
 import { connect } from 'react-redux';
 import { loadSubscription, loadProducts, selectProduct } from "../../actions";
 

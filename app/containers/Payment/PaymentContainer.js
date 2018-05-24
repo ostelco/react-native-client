@@ -1,6 +1,5 @@
 import React from "react";
 import Payment from "./Payment";
-import * as api from "../../helper/api";
 import { buyProduct } from "../../actions";
 import { connect } from 'react-redux';
 

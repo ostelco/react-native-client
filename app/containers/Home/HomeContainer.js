@@ -10,10 +10,6 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {}
   }
-  componentDidMount() {
-    this.props.loadSubscription();
-    this.props.loadProducts();
-  }
 
   getDataLeft(remaining) {
     return `${prettyBytes(remaining)}`;

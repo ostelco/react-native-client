@@ -21,6 +21,10 @@ import ReadMore from "react-native-read-more-text";
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer } from "./app/containers";
 import { RNConfetti } from "./app/components";
+import { Provider } from 'react-redux';
+import configureStore from './app/store/configureStore'
+
+const store = configureStore()
 
 class SettingsScreen extends React.Component {
 
@@ -519,15 +523,19 @@ export default class App extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <Root>
-          <AppLoading />
-        </Root>
+        <Provider store={store}>
+          <Root>
+            <AppLoading />
+          </Root>
+        </Provider>
       );
     }
     return (
-      <Root>
-        <RootStack />
-      </Root>
+      <Provider store={store}>
+        <Root>
+          <RootStack />
+        </Root>
+      </Provider>
     );
   }
 }

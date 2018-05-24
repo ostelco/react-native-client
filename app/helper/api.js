@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native";
 
-async function getAuthHeader() {
+export async function getAuthHeader() {
     const value = await AsyncStorage.getItem('@app:session');
     if (value !== null) {
       // We have data!!

@@ -2,6 +2,8 @@ import React from "react";
 import prettyBytes from "pretty-bytes";
 import Home from "./Home";
 import * as api from "../../helper/api";
+import { connect } from 'react-redux';
+import { loadSubscription, loadProducts } from "../../actions";
 
 class HomeContainer extends React.Component {
 
@@ -13,12 +15,32 @@ class HomeContainer extends React.Component {
     // TODO:
     // - Fetch data left and update the state: this.setState({ dataLeft: ... });
     // - Fetch offers and update the state: this.setState({ specialOffer: ... });
-    this.fetchSubscriptionStatus();
-    this.fetchProducts();
+    //this.fetchSubscriptionStatus();
+    //this.fetchProducts();
+    this.props.loadSubscription();
+    this.props.loadProducts();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Old Props', prevProps)
+    console.log('New Props', this.props)
   }
 
   getDataLeft(remaining) {
     return `${prettyBytes(remaining)}`;
+  }
+
+  formatDataLeft(subscription) {
+    if (subscription.status) {
+      return `${prettyBytes(subscription.status.remaining)}`;
+    }
+    return null;
+  }
+  formatSpecialProducts(products) {
+    if (products.list) {
+      return products.list[0];
+    }
+    return null;
   }
 
   fetchSubscriptionStatus() {
@@ -60,10 +82,25 @@ class HomeContainer extends React.Component {
   };
 
   render() {
+
+    const dataLeft = this.formatDataLeft(this.props.subscription)
+    const specialOffer = this.formatSpecialProducts(this.props.products)
     return (
-      <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={this.state.dataLeft} specialOffer={this.state.specialOffer}/>
+      <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={dataLeft} specialOffer={specialOffer}/>
     )
   }
 }
 
-export default HomeContainer;
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps", state);
+  const { subscription, products } = state;
+  return {
+    subscription,
+    products
+  };
+}
+
+export default connect(mapStateToProps, {
+  loadSubscription,
+  loadProducts
+})(HomeContainer)

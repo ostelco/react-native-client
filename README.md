@@ -24,7 +24,7 @@ The project was initially created with CRNA (create-react-native-app) before we 
 ## Creating a release
 
 - Add required ios certificates in your keychain
-- Install fastlane https://docs.fastlane.tools/#getting-started
+- Install fastlane [click for instructions](https://docs.fastlane.tools/#getting-started)
 - git flow release start x.x.x
 - Update the version for android and ios also create a git tag which then is committed to git with the following command: `npm version ...` [Possible commands](https://docs.npmjs.com/cli/version)
 - Build a new ios version: `APPLE_ID="yourappledeveloperuserid@telenordigital.com" fastlane ios beta`

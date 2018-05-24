@@ -1,5 +1,8 @@
 import React from "react";
 import Payment from "./Payment";
+import * as api from "../../helper/api";
+import { buyProduct } from "../../actions";
+import { connect } from 'react-redux';
 
 class PaymentContainer extends React.Component {
 
@@ -7,9 +10,6 @@ class PaymentContainer extends React.Component {
     super(props);
     this.state = {
       isDialogVisible: false,
-      price: this.props.navigation.state.params.price,
-      itemDescription: this.props.navigation.state.params.itemDescription,
-      sku: this.props.navigation.state.params.sku
     }
   }
 
@@ -19,15 +19,30 @@ class PaymentContainer extends React.Component {
   };
 
   _handlePayment = () => {
-    // TODO: send payment request to server
     this.setState({ isDialogVisible: true });
+
+    console.log('Buying sku', this.props.selectedProduct.sku)
+    this.props.buyProduct(this.props.selectedProduct.sku)
   };
 
   render() {
     return (
-      <Payment goBack={this._goBack} confirm={this._handlePayment} isDialogVisible={this.state.isDialogVisible} price={this.state.price} itemDescription={this.state.itemDescription}/>
+      <Payment goBack={this._goBack} confirm={this._handlePayment} isDialogVisible={this.state.isDialogVisible} price={this.props.selectedProduct.price} itemDescription={this.props.selectedProduct.sku}/>
     )
   }
 }
 
-export default PaymentContainer;
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps", state);
+  const { error, selectedProduct } = state;
+  return {
+    error,
+    selectedProduct
+  };
+}
+
+export default connect(mapStateToProps, {
+  buyProduct
+})(PaymentContainer)
+
+

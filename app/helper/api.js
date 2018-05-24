@@ -33,3 +33,15 @@ export async function getSubscriptionStatus() {
   });
 }
 
+export async function buyProduct(sku) {
+  const authHeader = await getAuthHeader();
+  return fetch('https://api.ostelco.org/products/' + sku, {
+    method: 'POST',
+    body: '{}',
+    headers: {
+      Accept: 'application/json',
+      Authorization: authHeader
+    }
+  });
+}
+

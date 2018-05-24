@@ -52,7 +52,7 @@ export const PRODUCT_BUY_REQUEST = 'PRODUCT_BUY_REQUEST';
 export const PRODUCT_BUY_SUCCESS = 'PRODUCT_BUY_SUCCESS';
 export const PRODUCT_BUY_FAILURE = 'PRODUCT_BUY_FAILURE';
 
-const buyProductInternal = sku => ({
+const purchaseProduct = sku => ({
   [CALL_API]: {
     types: [ PRODUCT_BUY_REQUEST, PRODUCT_BUY_SUCCESS, PRODUCT_BUY_FAILURE ],
     endpoint: `products/${sku}`,
@@ -62,7 +62,7 @@ const buyProductInternal = sku => ({
 
 export const buyProduct = (sku) => (dispatch, getState) => {
   console.log("buyProduct =", sku);
-  return dispatch(buyProductInternal(sku));
+  return dispatch(purchaseProduct(sku));
 }
 
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';

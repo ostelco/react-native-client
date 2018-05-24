@@ -1,9 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
 import {createStackNavigator, createSwitchNavigator } from "react-navigation";
 import { Root, Text} from "native-base";
-import ReadMore from "react-native-read-more-text";
-import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer, PurchaseHistoryContainer, UserDetailsContainer, PrivacyPolicyContainer, DeleteAccountContainer, SettingsContainer, PrivacyContainer } from "./app/containers";
 import { RNConfetti } from "./app/components";
 import { Provider } from 'react-redux';
@@ -65,7 +62,6 @@ const AppStack = createStackNavigator({
 });
 
 const RootStack = createSwitchNavigator({
-  // OnBoarding: OnBoardingScreen,
   OnBoarding: createStackNavigator({
     Home: {
       screen: OnBoardingContainer

@@ -78,7 +78,7 @@ class HomeContainer extends React.Component {
   };
 
   _showPayment = () => {
-    this.props.navigation.navigate('Payment')
+    this.props.navigation.navigate('Payment', {price: {amount: "25", currency: "NOK"}, itemDescription: "4 Gb", sku:"DataTopup4GB"})
   };
 
   render() {

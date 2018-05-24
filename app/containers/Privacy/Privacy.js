@@ -3,7 +3,7 @@ import React from "react";
 import {Container, Body, Left, Title, List, ListItem, Right, Text, Button, Icon, Content, Header, Switch} from "native-base";
 
 const Privacy = props => {
-    const { goBack,  showPrivacyPolicy, showTermsAndConditions} = props;
+    const { goBack,  showPrivacyPolicy, showTermsAndConditions, consent, setConsent} = props;
     return (
       <Container>
         <Header>
@@ -30,7 +30,9 @@ const Privacy = props => {
                 <Text>Analyze your data usage to be able to give you personalized offers.</Text>
               </Body>
               <Right>
-                <Switch value={true} />
+                <Switch value={consent.accepted}
+                  onValueChange={(value) => {setConsent(consent.consentId, value)}}
+                 />
               </Right>
             </ListItem>
             <ListItem noBorder button onPress={showPrivacyPolicy}>

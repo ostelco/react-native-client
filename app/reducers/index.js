@@ -29,16 +29,23 @@ const products = (state = { isFetching: false, list: null }, action) => {
   return state;
 }
 
-const consents = (state = { isFetching: false, list: null }, action) => {
+function getPrivacyConsent(list) {
+  if (list && Array.isArray(list)) {
+    return list.find( consent => consent.consentId === 'privacy');
+  }
+  return null;
+}
+
+const consents = (state = { isFetching: false, list: null, privacy: null }, action) => {
   console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.CONSENTS_REQUEST:
       return {...state, isFetching: true};
     case ActionTypes.CONSENTS_FAILURE:
-      return {isFetching: false, list:null};
+      return {isFetching: false, list: null, privacy: null};
     case ActionTypes.CONSENTS_SUCCESS:
-      return {isFetching: false, list:response};
+      return {isFetching: false, list: response, privacy: getPrivacyConsent(response)};
   }
   return state;
 }

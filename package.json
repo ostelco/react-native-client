@@ -1,6 +1,6 @@
 {
   "name": "PanaceaReactNativeClient",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
@@ -10,6 +10,7 @@
     "jest-react-native": "^18.0.0",
     "prop-types": "^15.6.1",
     "react-dom": "16.3.1",
+    "react-native-version": "^2.6.0",
     "react-test-renderer": "16.3.1"
   },
   "scripts": {
@@ -18,7 +19,8 @@
     "ios": "react-native run-ios",
     "test": "jest",
     "ios:beta": "fastlane ios beta",
-    "android:beta": "fastlane android beta"
+    "android:beta": "fastlane android beta",
+    "postversion": "react-native-version"
   },
   "jest": {
     "preset": "react-native"

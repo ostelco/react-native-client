@@ -26,11 +26,8 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@expo/vector-icons": "^6.3.1",
-    "humps": "^2.0.1",
     "jwt-decode": "^2.2.0",
     "native-base": "^2.4.3",
-    "normalizr": "^3.2.4",
     "pretty-bytes": "^5.0.0",
     "react": "16.3.1",
     "react-native": "~0.55.2",

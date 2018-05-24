@@ -54,7 +54,7 @@ class SettingsScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.pop()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>
@@ -67,7 +67,7 @@ class SettingsScreen extends React.Component {
               <Col>
                 <Card style={{ padding: 20 }}>
                   <CardItem cardBody style={{ flex: 1, justifyContent: 'center', flexDirection: 'column' }} button onPress={this._showUserDetails}>
-                    {/* <Icon name="ios-person" style={{ textAlign: 'center' }} /> */}
+                    <Icon name="ios-person" style={{ textAlign: 'center' }} />
                     <Text>Personal details</Text>
                   </CardItem>
                 </Card>
@@ -75,7 +75,7 @@ class SettingsScreen extends React.Component {
               <Col>
                 <Card style={{ padding: 20 }}>
                   <CardItem cardBody style={{ flex: 1, justifyContent: 'center', flexDirection: 'column' }} button onPress={this._showPrivacy}>
-                    {/* <Icon name="key" style={{ textAlign: 'center' }} /> */}
+                    <Icon name="key" style={{ textAlign: 'center' }} />
                     <Text>Privacy</Text>
                   </CardItem>
                 </Card>
@@ -122,7 +122,7 @@ class UserDetailsScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>
@@ -166,7 +166,7 @@ class PrivacyScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.pop()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>
@@ -214,7 +214,7 @@ class PurchaseHistoryScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>
@@ -269,7 +269,7 @@ class DeleteAccountScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>
@@ -348,7 +348,7 @@ class PrivacyPolicyScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>
@@ -387,7 +387,7 @@ class TermsAndConditionsScreen extends React.Component {
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              {/* <Icon name="arrow-back" /> */}
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>

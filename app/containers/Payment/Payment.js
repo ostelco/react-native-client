@@ -124,7 +124,7 @@ const Payment = props => {
 
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={[style.header, { position: 'relative', justifyContent: 'space-evenly' }]}>
         <Left style={{ flex: -1 }}>
-          {/* <Icon name="arrow-back" style={{ color: colors.brownishGrey }} onPress={goBack} /> */}
+          <Icon name="arrow-back" style={{ color: colors.brownishGrey }} onPress={goBack} />
         </Left>
         <Body style={{ alignItems: 'center', flex: 1 }}>
           <Title>

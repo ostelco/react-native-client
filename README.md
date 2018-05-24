@@ -1,23 +1,44 @@
 # Developer Notes
 
-- [Expo.io][https://docs.expo.io/versions/latest/guides/building-standalone-apps.html] used build and deploy the client for android and ios
+## Intro
+
+The project was initially created with CRNA (create-react-native-app) before we [ejected](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md) because we needed native libraries like auth0 and firebase.  
+
+## Links
+
+- [Git Flow](https://danielkummer.github.io/git-flow-cheatsheet/) We use git flow
 - [Fastlane](https://fastlane.tools/) ~~used to automate development and release process for android and ios~~
 - [React Navigation](https://reactnavigation.org/) used for routing and navigation
 - [Folder Structure](https://github.com/asimolmez/react-native-folder-structure) describes the folder structure 
 - [Link to design](https://app.zeplin.io/project/5ad46cf612304dbd7b7690d0)
+- [Yarn](https://yarnpkg.com/) We use yarn instead of NPM
+- [React Native](https://github.com/facebook/react-native)
 
+## Developer setup
 
-## Deployment
-` THIS SECTION IS NOT DONE YET `
+- install yarn [click for instructions](https://yarnpkg.com/lang/en/docs/install)
+- install react native [click for instructions](https://facebook.github.io/react-native/docs/getting-started.html) make sure you follow the guide for `Building Projects with Native Code` and not the guide using `create-reacte-native-app`
+ also called `CRNA`
+- run `git flow init` and select the default options for everything except version prefix, version prefix should be `v`
 
-- Update the version: `npm version ...` [Possible commands](https://docs.npmjs.com/cli/version)
-- TODO: ...
+## Creating a release
+
+- git flow release start x.x.x
+- Update the version with `npm version ...` [All possible commands](https://docs.npmjs.com/cli/version)
+- archive project with xcode and upload ios version
+- android TODO
 
 - `brew cask install fastlane`
 - ~~Deploy android beta:~~ `npm run android: beta`
 - ~~See fastlane/README.md for more info~~
 
+## Changing the app icon or splash screen
 
+- [install dependencies](https://github.com/bamlab/generator-rn-toolbox/tree/master/generators/assets)
+- Generate icons `yo rn-toolbox:assets --icon path/to/icon/icon.png`
+- Generate splash screen for ios and android `yo rn-toolbox:assets --splash splash.psd --ios` `yo rn-toolbox:assets --splash splash.psd --android
+
+## Initial generated README
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

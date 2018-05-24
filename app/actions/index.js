@@ -56,7 +56,8 @@ const purchaseProduct = sku => ({
   [CALL_API]: {
     types: [ PRODUCT_BUY_REQUEST, PRODUCT_BUY_SUCCESS, PRODUCT_BUY_FAILURE ],
     endpoint: `products/${sku}`,
-    method: 'POST'
+    method: 'POST',
+    allowEmptyResponse: true
   }
 });
 

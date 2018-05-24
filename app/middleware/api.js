@@ -25,6 +25,7 @@ const callApi = async (endpoint, method, allowEmptyResponse) => {
     .then(response => {
       console.log("Response = ", response);
       return response.text().then(text => {
+        //console.log(`Response text =[${text}]`);
         let json = null;
         let exception = null;
         // Capture any JSON parse exception.

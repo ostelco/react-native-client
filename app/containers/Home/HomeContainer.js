@@ -43,36 +43,6 @@ class HomeContainer extends React.Component {
     return null;
   }
 
-  fetchSubscriptionStatus() {
-    api.getSubscriptionStatus()
-      .then((response) => {
-        console.log(JSON.stringify(response));
-        return response.json();
-      })
-      .then((subscription) => {
-        console.log(JSON.stringify(subscription));
-        this.setState({...this.state, dataLeft: this.getDataLeft(subscription.remaining)});
-      })
-      .catch((error) => {
-        console.log('Error fetching the subscription', error)
-      });
-  }
-
-  fetchProducts() {
-    api.getProducts()
-      .then((response) => {
-        console.log(JSON.stringify(response));
-        return response.json();
-      })
-      .then((products) => {
-        console.log(JSON.stringify(products));
-        this.setState({...this.state, specialOffer: products[0]});
-      })
-      .catch((error) => {
-        console.log('Error fetching the products', error)
-      });
-  }
-
   _showMenu = () => {
     this.props.navigation.navigate('Menu');
   };
@@ -85,8 +55,9 @@ class HomeContainer extends React.Component {
 
     const dataLeft = this.formatDataLeft(this.props.subscription)
     const specialOffer = this.formatSpecialProducts(this.props.products)
+    const defaultOffer = this.formatSpecialProducts(this.props.products)
     return (
-      <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={dataLeft} specialOffer={specialOffer}/>
+      <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={dataLeft} defaultOffer={defaultOffer} specialOffer={specialOffer}/>
     )
   }
 }

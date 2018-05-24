@@ -10,7 +10,6 @@ const fetchSubscription = () => ({
   [CALL_API]: {
     types: [ SUBSCRIPTION_REQUEST, SUBSCRIPTION_SUCCESS, SUBSCRIPTION_FAILURE ],
     endpoint: 'subscription/status',
-    schema: Schemas.SUBSCRIPTION,
     method: 'GET'
   }
 })
@@ -40,7 +39,6 @@ const fetchProducts = () => ({
   [CALL_API]: {
     types: [ PRODUCTS_REQUEST, PRODUCTS_SUCCESS, PRODUCTS_FAILURE ],
     endpoint: 'products',
-    schema: Schemas.SUBSCRIPTION, // unused
     method: 'GET'
   }
 })

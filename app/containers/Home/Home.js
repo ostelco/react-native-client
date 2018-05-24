@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 const Home = props => {
-  const { style, showMenu, showPayment, dataLeft, specialOffer } = props;
+  const { style, showMenu, showPayment, dataLeft, defaultOffer, specialOffer } = props;
   return (
     <Container style={{ position: 'relative', backgroundColor: colors.whiteTwo }}>
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={[style.header, { position: 'relative', justifyContent: 'space-evenly' }]}>
@@ -74,7 +74,7 @@ const Home = props => {
               </Body>
               ) : <Body><Spinner color="white" /></Body>}
           </ListItem>
-          <ListItem noBorder onPress={showPayment}>
+          <ListItem noBorder onPress={() => showPayment(defaultOffer)}>
             <Body style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
               <View style={{
                 width: 220,
@@ -86,7 +86,7 @@ const Home = props => {
                 justifyContent: 'space-evenly',
                 alignItems: 'center'
               }}>
-                  <Text style={[textStyles.textStyle14, { textAlign: 'center' }]}>+2GB</Text>
+                  <Text style={[textStyles.textStyle14, { textAlign: 'center' }]}>{defaultOffer ? defaultOffer.sku : ''}</Text>
                   <Text style={[textStyles.textStyle15, { textAlign: 'center' }]}>40 NOK</Text>
               </View>
             </Body>
@@ -112,7 +112,7 @@ const Home = props => {
               <Text style={textStyles.textStyle8}>
                 Monday Special!
               </Text>
-              <TouchableHighlight onPress={showPayment}>
+              <TouchableHighlight onPress={() => showPayment(specialOffer)}>
                 <View style={{
                   width: 220,
                   height: 60,
@@ -123,7 +123,7 @@ const Home = props => {
                   justifyContent: 'center'
                 }}>
                   <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>+2GB</Text>
+                    <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>{specialOffer ? specialOffer.sku : ''}</Text>
                   </View>
                   <View style={{ flex: 1, justifyContent: 'center' }}>
                     <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>{specialOffer.price.amount} {specialOffer.price.currency}</Text>
@@ -146,6 +146,7 @@ Home.propTypes = {
   showMenu: PropTypes.func.isRequired,
   showPayment: PropTypes.func.isRequired,
   dataLeft: PropTypes.string,
+  defaultOffer: PropTypes.object,
   specialOffer: PropTypes.object
 };
 

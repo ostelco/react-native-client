@@ -1,25 +1,43 @@
 import React from "react";
 import Privacy from "./Privacy";
+import { connect } from 'react-redux';
+import { setConsent } from "../../actions";
 
 class PrivacyContainer extends React.Component {
 
-    _goBack = () => {
-        this.props.navigation.pop();
-    };
+  _goBack = () => {
+    this.props.navigation.pop();
+  };
 
-    _showPrivacyPolicy = () => {
-        this.props.navigation.navigate('PrivacyPolicy');
-    };
-    
-    _showTermsAndConditions = () => {
-        this.props.navigation.navigate('TermsAndConditions')
-    };
+  _showPrivacyPolicy = () => {
+    this.props.navigation.navigate('PrivacyPolicy');
+  };
 
-    render() {
-        return (
-          <Privacy goBack={this._goBack} showPrivacyPolicy={this._showPrivacyPolicy} showTermsAndConditions={this._showTermsAndConditions}/>
-        )
-    }
+  _showTermsAndConditions = () => {
+    this.props.navigation.navigate('TermsAndConditions')
+  };
+
+  render() {
+    return (
+      <Privacy
+        goBack={this._goBack}
+        consent={this.props.privacy}
+        setConsent={this.props.setConsent}
+        consentshowPrivacyPolicy={this._showPrivacyPolicy}
+        showTermsAndConditions={this._showTermsAndConditions}
+      />
+    )
+  }
 }
 
-export default PrivacyContainer;
+const mapStateToProps = (state) => {
+  const { consents, error } = state;
+  return {
+    privacy: consents.privacy,
+    error
+  };
+};
+
+export default connect(mapStateToProps, {
+  setConsent
+})(PrivacyContainer);

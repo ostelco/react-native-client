@@ -29,6 +29,27 @@ const products = (state = { isFetching: false, list: null }, action) => {
   return state;
 }
 
+function getPrivacyConsent(list) {
+  if (list && Array.isArray(list)) {
+    return list.find( consent => consent.consentId === 'privacy');
+  }
+  return null;
+}
+
+const consents = (state = { isFetching: false, list: null, privacy: null }, action) => {
+  console.log("Action = ", action);
+  const  { type, response } = action;
+  switch(type) {
+    case ActionTypes.CONSENTS_REQUEST:
+      return {...state, isFetching: true};
+    case ActionTypes.CONSENTS_FAILURE:
+      return {isFetching: false, list: null, privacy: null};
+    case ActionTypes.CONSENTS_SUCCESS:
+      return {isFetching: false, list: response, privacy: getPrivacyConsent(response)};
+  }
+  return state;
+}
+
 const selectedProduct = (state = null, action) => {
   switch (action.type) {
     case ActionTypes.SELECT_PRODUCT:
@@ -52,6 +73,7 @@ const error = (state = null, action) => {
 const rootReducer = combineReducers({
   subscription,
   products,
+  consents,
   selectedProduct,
   error,
 });

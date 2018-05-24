@@ -1,18 +1,31 @@
 import React from "react";
 import GDPR from "./GDPR";
+import { connect } from 'react-redux';
+import { setConsent } from "../../actions";
 
 class GDPRContainer extends React.Component {
 
-  _showHome = () => {
-    // TODO: Send consent true / false to server
+  _showHome = (consentId, accepted) => {
+    // Send consent true / false to server
+    this.props.setConsent(consentId, accepted);
     this.props.navigation.navigate('App');
-  };
+  }
 
   render() {
     return (
-      <GDPR cancel={this._showHome} confirm={this._showHome} />
+      <GDPR confirm={this._showHome} consent={this.props.privacy}/>
     )
   }
 }
 
-export default GDPRContainer;
+const mapStateToProps = (state) => {
+  const { consents, error } = state;
+  return {
+    privacy: consents.privacy,
+    error
+  };
+};
+
+export default connect(mapStateToProps, {
+  setConsent
+})(GDPRContainer);

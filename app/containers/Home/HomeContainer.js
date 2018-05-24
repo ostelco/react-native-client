@@ -58,10 +58,11 @@ class HomeContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { subscription, products } = state;
+  const { subscription, products, error } = state;
   return {
     subscription,
-    products
+    products,
+    error
   };
 };
 

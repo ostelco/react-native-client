@@ -60,12 +60,12 @@ const TermsAndConditions = props => {
           </ListItem>
           <ListItem noBorder>
             <Text style={textStyles.textStyle15}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec nibh justo. Fusce interdum tellus sit amet augue eleifend, in porttitor nulla scelerisque.
+            Information you give us. For example, many of our services require you to sign up for an account. When you do, we'll ask for personal information, like your name, email address, telephone number or credit card to store with you account. If you want to take full advantage of the sharing feature we offer, we might also ask you to create a publicly visible profile, which may include your name and photo.
             </Text>
           </ListItem>
           <ListItem noBorder>
             <Text style={textStyles.textStyle15}>
-              Duis nec nibh justo. Fusce interdum tellus sit amet augue eleifend, in porttitor nulla scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Information we get from your use of our services. We collect information about the services that you use and how you use them, like when you watch a video, visit a website that uses our advertising services, or view and interact with our ads and content.
             </Text>
           </ListItem>
         </List>

@@ -52,7 +52,7 @@ const Signup = props => {
         <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={{ backgroundColor: 'transparent' }} noShadow>
         <Left>
           <Button transparent onPress={goBack}>
-            {/* <Icon name="arrow-back" /> */}
+            <Icon name="arrow-back" />
           </Button>
         </Left>
         <Body>

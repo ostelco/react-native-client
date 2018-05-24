@@ -2,7 +2,8 @@ import React from "react";
 import OnBoarding from "./OnBoarding";
 import { AsyncStorage } from "react-native";
 import Auth0 from 'react-native-auth0';
-
+import { connect } from 'react-redux';
+import { loadSubscription, loadProducts } from "../../actions";
 
 // TODO: Move to configuration file or variables.js
 const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
@@ -43,6 +44,11 @@ class OnBoardingContainer extends React.Component {
       .then(credentials => {
         console.log(credentials);
         return AsyncStorage.setItem('@app:session', credentials.accessToken)
+        .then(() => {
+          console.log("Load subscription & products");
+          this.props.loadSubscription();
+          this.props.loadProducts();
+        })
       })
       .catch(error => console.log(error));
 
@@ -62,4 +68,14 @@ class OnBoardingContainer extends React.Component {
   }
 }
 
-export default OnBoardingContainer;
+const mapStateToProps = (state) => {
+  const { error } = state;
+  return {
+    error
+  };
+};
+
+export default connect(mapStateToProps, {
+  loadSubscription,
+  loadProducts
+})(OnBoardingContainer);

@@ -3,8 +3,6 @@ import { AsyncStorage } from "react-native";
 async function getAuthHeader() {
     const value = await AsyncStorage.getItem('@app:session');
     if (value !== null) {
-      // We have data!!
-      console.log(value);
       return `Bearer ${value}`;
     } else {
       return null;

@@ -4,8 +4,6 @@ export const SUBSCRIPTION_REQUEST = 'SUBSCRIPTION_REQUEST';
 export const SUBSCRIPTION_SUCCESS = 'SUBSCRIPTION_SUCCESS';
 export const SUBSCRIPTION_FAILURE = 'SUBSCRIPTION_FAILURE';
 
-// Fetches the subscription status.
-// Relies on the custom API middleware defined in ../middleware/api.js.
 const fetchSubscription = () => ({
   [CALL_API]: {
     types: [ SUBSCRIPTION_REQUEST, SUBSCRIPTION_SUCCESS, SUBSCRIPTION_FAILURE ],
@@ -14,18 +12,15 @@ const fetchSubscription = () => ({
   }
 });
 
-// Fetches the subscription unless it is cached.
-// Relies on Redux Thunk middleware.
 export const loadSubscription = () => (dispatch, getState) => {
   const subscription = getState().subscription;
-  console.log("loadSubscription -> subscription =", subscription);
-  if (subscription) {
-    const {status, isFetching } = subscription;
-    if (status && !isFetching) {
-      return null;
-    }
+  if (subscription && subscription.isFetching) {
+    // We are curently fetching the subscription,
+    // wait before sending a new request
+    console.log("In the middle of fetching subscription")
+    return null;
   }
-  console.log("loadSubscription -> fetchSubscription");
+  console.log("Fetching subscription")
   return dispatch(fetchSubscription());
 }
 
@@ -33,8 +28,6 @@ export const PRODUCTS_REQUEST = 'PRODUCTS_REQUEST';
 export const PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS';
 export const PRODUCTS_FAILURE = 'PRODUCTS_FAILURE';
 
-// Fetches the list of products for this user.
-// Relies on the custom API middleware defined in ../middleware/api.js.
 const fetchProducts = () => ({
   [CALL_API]: {
     types: [ PRODUCTS_REQUEST, PRODUCTS_SUCCESS, PRODUCTS_FAILURE ],
@@ -43,18 +36,15 @@ const fetchProducts = () => ({
   }
 });
 
-// Fetches the subscription unless it is cached.
-// Relies on Redux Thunk middleware.
 export const loadProducts = () => (dispatch, getState) => {
   const products = getState().products;
-  console.log("loadProducts -> products =", products);
-  if (products) {
-    const { list, isFetching } = products;
-    if (list && !isFetching) {
-      return null;
-    }
+  if (products && products.isFetching) {
+    // We are curently fetching the product list,
+    // wait before sending a new request
+    console.log("In the middle of fetching products")
+    return null;
   }
-  console.log("loadProducts -> fetchProducts");
+  console.log("Fetching products");
   return dispatch(fetchProducts());
 }
 

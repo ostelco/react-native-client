@@ -8,8 +8,16 @@ class UserDetailsContainer extends React.Component {
     };
 
     render() {
+        const profile = {
+          name: 'Kerstin Kaspersen',
+          email: 'kerstin@mail.com',
+          street: 'Kongsvejen 17',
+          postalCode: '1177',
+          city: 'Oslo',
+          country: 'Norway'
+        };
         return (
-          <UserDetails goBack={this._goBack} />
+          <UserDetails goBack={this._goBack} profile={profile} />
         )
     }
 }

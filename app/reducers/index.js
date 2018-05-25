@@ -16,7 +16,6 @@ const subscription = (state = { isFetching: false, status: null }, action) => {
 }
 
 const products = (state = { isFetching: false, list: null }, action) => {
-  console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.PRODUCTS_REQUEST:
@@ -37,7 +36,6 @@ function getPrivacyConsent(list) {
 }
 
 const consents = (state = { isFetching: false, list: null, privacy: null }, action) => {
-  console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.CONSENTS_REQUEST:
@@ -50,10 +48,34 @@ const consents = (state = { isFetching: false, list: null, privacy: null }, acti
   return state;
 }
 
+const profile = (state = { isFetching: false, data: null, queried: false }, action) => {
+  const  { type, response } = action;
+  switch(type) {
+    case ActionTypes.PROFILE_REQUEST:
+      return {...state, isFetching: true, queried: false};
+    case ActionTypes.PROFILE_FAILURE:
+       return {isFetching: false, data: null, queried: true};
+    case ActionTypes.PROFILE_SUCCESS:
+    case ActionTypes.PROFILE_CREATE_SUCCESS:
+    case ActionTypes.PROFILE_UPDATE_SUCCESS:
+       return {isFetching: false, data: response, queried: true};
+  }
+  return state;
+}
+
 const selectedProduct = (state = null, action) => {
   switch (action.type) {
     case ActionTypes.SELECT_PRODUCT:
       return action.product;
+    default:
+      return state;
+  }
+}
+
+const auth = (state = null, action) => {
+  switch (action.type) {
+    case ActionTypes.SET_AUTH:
+      return action.auth;
     default:
       return state;
   }
@@ -71,9 +93,11 @@ const error = (state = null, action) => {
 }
 
 const rootReducer = combineReducers({
+  auth,
   subscription,
   products,
   consents,
+  profile,
   selectedProduct,
   error,
 });

@@ -11,21 +11,24 @@ async function getAuthHeader() {
 
 const API_ROOT = 'https://api.ostelco.org/'
 
-const callApi = async (endpoint, method, allowEmptyResponse) => {
+const callApi = async (endpoint, method, body, allowEmptyResponse) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
   const authHeader = await getAuthHeader();
-  const options = {
+  let options = {
     method,
     headers: {
       Accept: 'application/json',
       Authorization: authHeader
     }
   };
+  if (body) {
+    options.body = body;
+    options.headers['content-type'] = 'application/json';
+  }
   return fetch(fullUrl, options)
     .then(response => {
-      console.log("Response = ", response);
       return response.text().then(text => {
-        //console.log(`Response text =[${text}]`);
+        console.log(`Response text for -> ${fullUrl} ==> [${text}]`);
         let json = null;
         let exception = null;
         // Capture any JSON parse exception.
@@ -62,7 +65,7 @@ export default store => next => action => {
   }
 
   let { endpoint } = callAPI;
-  const { types, method, allowEmptyResponse } = callAPI;
+  const { types, method, body, allowEmptyResponse } = callAPI;
 
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState());
@@ -87,7 +90,7 @@ export default store => next => action => {
   const [ requestType, successType, failureType ] = types;
   next(actionWith({ type: requestType }));
 
-  return callApi(endpoint, method, allowEmptyResponse).then(
+  return callApi(endpoint, method, body, allowEmptyResponse).then(
     response => next(actionWith({
       response,
       type: successType

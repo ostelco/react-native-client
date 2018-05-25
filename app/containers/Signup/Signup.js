@@ -44,7 +44,13 @@ const AppInput = props => (
 );
 
 const Signup = props => {
-  const { style, goBack, showNext, profile } = props;
+  const { style, goBack, showNext,
+     profile,
+     handleNameChange,
+     handleAddressChange,
+     handlePostCodeChange,
+     handleCityChange,
+     } = props;
 
   return (
     <Container>
@@ -63,19 +69,19 @@ const Signup = props => {
         <Form>
           <FormItem fixedLabel>
             <AppLabel>Full Name</AppLabel>
-            <AppInput value={profile.name} />
+            <AppInput value={profile.name} onChangeText={handleNameChange} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>Address</AppLabel>
-            <AppInput value={'Storvej 10'} />
+            <AppInput value={profile.address} onChangeText={handleAddressChange} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>Postal Code</AppLabel>
-            <AppInput value={'132 23'} />
+            <AppInput value={profile.postCode} onChangeText={handlePostCodeChange} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>City</AppLabel>
-            <AppInput value={'Oslo'} />
+            <AppInput value={profile.city}  onChangeText={handleCityChange} />
           </FormItem>
           <View style={{ paddingLeft: 15 }}>
             <Button onPress={showNext} style={{ height: 60,

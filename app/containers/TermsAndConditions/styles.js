@@ -20,5 +20,5 @@ export default StyleSheet.create({
     padding: 15,
     paddingRight: 30,
     marginTop: 30
-  },
+  }
 });

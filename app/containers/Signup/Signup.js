@@ -1,30 +1,15 @@
 import React from "react";
-import {ScreenTitle } from "../../components";
-import {Container, Body, Left, Button, Icon, Content, Form, Item, Label, Input, Header} from "native-base";
-import {colors} from "../../config/colors";
+import {BackgroundImage } from "../../components";
+import {Container, Body, Left, Button, Icon, Content, Form, Item, Label, Input, Header, Title, Right} from "native-base";
 import {textStyles} from "../../config/fonts";
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Text, View} from "react-native";
 import PropTypes from 'prop-types';
-
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    padding: 15,
-    paddingRight: 30,
-  }
-});
+import styles from './styles';
 
 const FormItem = props => {
   const { children } = props;
   return (
-    <Item {...props} style={{
-      height: 60,
-      marginVertical: 8,
-      paddingLeft: 19,
-      paddingRight: 15,
-      borderRadius: 5,
-      backgroundColor: colors.white
-    }}>
+    <Item {...props} style={styles.formItem}>
       {children}
     </Item>
   )
@@ -44,28 +29,31 @@ const AppInput = props => (
 );
 
 const Signup = props => {
-  const { style, goBack, showNext,
-     profile,
-     handleNameChange,
-     handleAddressChange,
-     handlePostCodeChange,
-     handleCityChange,
-     } = props;
+  const {
+    goBack,
+    showNext,
+    profile,
+    handleNameChange,
+    handleAddressChange,
+    handlePostCodeChange,
+    handleCityChange,
+  } = props;
 
   return (
     <Container>
-      <Image source={require('../../../assets/sweets.jpg')} style={{ flex: 1, resizeMode: 'cover', width: '100%', height: '100%', position: 'absolute' }} />
-        <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={{ backgroundColor: 'transparent' }} noShadow>
+      <BackgroundImage />
+      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Left>
           <Button transparent onPress={goBack}>
-            <Icon name="arrow-back" />
+            <Icon style={styles.headerLeftButton} name="arrow-back" />
           </Button>
         </Left>
-        <Body>
-          <ScreenTitle text={'Personal details'} />
+        <Body style={styles.headerTitleContainer}>
+          <Title style={textStyles.textStyle3}>Personal details</Title>
         </Body>
+        <Right></Right>
       </Header>
-      <Content contentContainerStyle={style.content}>
+      <Content contentContainerStyle={styles.content}>
         <Form>
           <FormItem fixedLabel>
             <AppLabel>Full Name</AppLabel>
@@ -83,11 +71,8 @@ const Signup = props => {
             <AppLabel>City</AppLabel>
             <AppInput value={profile.city}  onChangeText={handleCityChange} />
           </FormItem>
-          <View style={{ paddingLeft: 15 }}>
-            <Button onPress={showNext} style={{ height: 60,
-              marginVertical: 8,
-              borderRadius: 5,
-              backgroundColor: colors.duskBlue }} block><Text style={textStyles.textStyle6}>Done</Text></Button>
+          <View style={styles.doneButtonContainer}>
+            <Button onPress={showNext} style={styles.doneButton} block><Text style={textStyles.textStyle6}>Done</Text></Button>
           </View>
 
         </Form>
@@ -104,7 +89,6 @@ Signup.propTypes = {
 };
 
 Signup.defaultProps = {
-  style: styles,
   profile: {
     name: 'David Berg'
   }

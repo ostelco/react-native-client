@@ -113,11 +113,76 @@ export const setConsent = (consentId, accepted) => (dispatch, getState) => {
     });
 }
 
+export const PROFILE_REQUEST = 'PROFILE_REQUEST';
+export const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
+export const PROFILE_FAILURE = 'PROFILE_FAILURE';
+
+const fetchProfile = () => ({
+  [CALL_API]: {
+    types: [ PROFILE_REQUEST, PROFILE_SUCCESS, PROFILE_FAILURE ],
+    endpoint: 'profile',
+    method: 'GET'
+  }
+});
+
+export const getProfile = () => (dispatch, getState) => {
+  const profile = getState().profile;
+  if (profile && profile.isFetching) {
+    // We are curently fetching the profile,
+    // wait before sending a new request
+    console.log("In the middle of fetching profile")
+    return null;
+  }
+  console.log("Fetching profile");
+  return dispatch(fetchProfile());
+}
+
+export const PROFILE_CREATE_REQUEST = 'PROFILE_CREATE_REQUEST';
+export const PROFILE_CREATE_SUCCESS = 'PROFILE_CREATE_SUCCESS';
+export const PROFILE_CREATE_FAILURE = 'PROFILE_CREATE_FAILURE';
+
+export const PROFILE_UPDATE_REQUEST = 'PROFILE_UPDATE_REQUEST';
+export const PROFILE_UPDATE_SUCCESS = 'PROFILE_UPDATE_SUCCESS';
+export const PROFILE_UPDATE_FAILURE = 'PROFILE_UPDATE_FAILURE';
+
+const postProfile = profile => ({
+  [CALL_API]: {
+    types: [ PROFILE_CREATE_REQUEST, PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_FAILURE ],
+    endpoint: 'profile',
+    method: 'POST',
+    body: JSON.stringify(profile)
+  }
+});
+const putProfile = profile => ({
+  [CALL_API]: {
+    types: [ PROFILE_UPDATE_REQUEST, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILURE ],
+    endpoint: 'profile',
+    method: 'PUT',
+    body: JSON.stringify(profile)
+  }
+});
+
+export const createProfile = profile => (dispatch) => {
+  console.log("Creating profile");
+  return dispatch(postProfile(profile));
+}
+export const updateProfile = profile => (dispatch) => {
+  console.log("Updating profile");
+  return dispatch(putProfile(profile));
+}
+
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 export const selectProduct = product => ({
   type: SELECT_PRODUCT,
   product
+});
+
+export const SET_AUTH = 'SET_AUTH';
+
+export const setAuthentication = auth => ({
+  type: SET_AUTH,
+  auth
 });
 
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';

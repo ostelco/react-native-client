@@ -26,11 +26,23 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - git flow release start x.x.x
 - Update the version with `npm version ...` [All possible commands](https://docs.npmjs.com/cli/version)
 - archive project with xcode and upload ios version
-- android TODO
 
-- `brew cask install fastlane`
-- ~~Deploy android beta:~~ `npm run android: beta`
-- ~~See fastlane/README.md for more info~~
+### Android Specific
+
+### Prerequisits
+
+- Get android keystore and put it in the project root folder
+- Get password for android keystore and alias
+- Add password to your keychain with mac as account and android_keystore as name [see this article for instructions](https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/) 
+
+### Deploy process
+
+use fastlane inside the android folder to deploy
+
+- cd android
+- fastlane android alpha
+  - you might have to install fastlane plugins first
+  - provide password to keychain when asked
 
 ## Changing the app icon or splash screen
 

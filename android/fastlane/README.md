@@ -16,11 +16,6 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## Android
-### android beta
-```
-fastlane android beta
-```
-Ship to Playstore Beta.
 ### android alpha
 ```
 fastlane android alpha

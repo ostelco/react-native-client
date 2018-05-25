@@ -30,8 +30,5 @@ export default StyleSheet.create({
   },
   footer: {
     borderTopWidth: 0
-  },
-  formItem: {
-    height: 120
   }
 });

@@ -15,7 +15,7 @@ const UserDetailsEdit = props => {
       </Header>
       <Content style={styles.contentContainer}>
         <Form>
-          <Item stackedLabel style={styles.formItem}>
+          <Item stackedLabel>
             <Label style={textStyles.textStyle5}>{ label }</Label>
             <Input style={[textStyles.textStyle15, styles.input]} value={value} multiline={multiline} />
           </Item>

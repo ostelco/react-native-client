@@ -7,8 +7,50 @@ import {textStyles} from "../../config/fonts";
 import PropTypes from 'prop-types';
 import {TouchableOpacity} from "react-native";
 
+const renderField = (key, label, value, onClick) => (
+  <View key={key} style={styles.itemContainer}>
+    <View>
+      <Text style={textStyles.textStyle5}>{ label }</Text>
+      <Text style={textStyles.textStyle15}>{ value }</Text>
+    </View>
+    <TouchableOpacity style={styles.editButtonContainer} onPress={onClick}>
+      <View style={styles.editButton}>
+        <Text style={textStyles.textStyle8}>Edit</Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+);
+
+const renderSeparator = key => <ListItem key={key} noBorder></ListItem>;
+
 const UserDetails = props => {
     const { goBack, profile, goEdit } = props;
+    const items = [{
+      label: 'Name',
+      key: 'name'
+    }, {
+      label: 'Email',
+      key: 'email'
+    }, {
+      label: 'Address',
+      key: 'street'
+    }, {
+      label: 'Postal Code',
+      key: 'postalCode'
+    }, {
+      label: 'City',
+      key: 'city'
+    }, {
+      label: 'Country',
+      key: 'country'
+    }];
+
+    const fields = [];
+    for (let i = 0; i < items.length; ++i) {
+      const { label, key } = items[i];
+      fields.push(renderField(`${i}-item`, label, profile[key], () => goEdit(label, profile[key])))
+      fields.push(renderSeparator(`${i}-separator`));
+    };
     return (
       <Container style={styles.container}>
         <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
@@ -26,43 +68,7 @@ const UserDetails = props => {
         </Header>
         <RoundedBorder />
         <Content style={styles.contentContainer}>
-          <View style={styles.itemContainer}>
-            <View>
-              <Text style={textStyles.textStyle5}>Name</Text>
-              <Text style={textStyles.textStyle15}>{ profile.name }</Text>
-            </View>
-            <TouchableOpacity style={styles.editButtonContainer} onPress={() => goEdit('Name', profile.name)}>
-              <View style={styles.editButton}>
-                <Text style={textStyles.textStyle8}>Edit</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <ListItem noBorder></ListItem>
-          <View style={styles.itemContainer}>
-            <View>
-              <Text style={textStyles.textStyle5}>Email</Text>
-              <Text style={textStyles.textStyle15}>{ profile.email }</Text>
-            </View>
-            <TouchableOpacity style={styles.editButtonContainer} onPress={() => goEdit('Email', profile.email)}>
-              <View style={styles.editButton}>
-                <Text style={textStyles.textStyle8}>Edit</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <ListItem noBorder></ListItem>
-          <View style={styles.itemContainer}>
-            <View>
-              <Text style={textStyles.textStyle5}>Address</Text>
-              <Text style={textStyles.textStyle15}>{ profile.street }</Text>
-              <Text style={textStyles.textStyle15}>{ profile.postalCode } { profile.city }</Text>
-              <Text style={textStyles.textStyle15}>{ profile.country }</Text>
-            </View>
-            <TouchableOpacity style={styles.editButtonContainer} onPress={() => goEdit('Address', `${profile.street}\n${profile.postalCode} ${profile.city}\n${profile.country}`, true)}>
-              <View style={styles.editButton}>
-                <Text style={textStyles.textStyle8}>Edit</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          { fields }
         </Content>
     </Container>
     );

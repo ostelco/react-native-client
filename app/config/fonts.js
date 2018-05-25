@@ -205,7 +205,7 @@ export const textStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
-    lineHeight: 28,
+    lineHeight: 20,
     letterSpacing: 0,
     // textAlign: "left",
     color: colors.brownishGrey

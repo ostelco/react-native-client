@@ -17,7 +17,7 @@ fastlane_version '2.53.1'
 default_platform(:android)
 
 before_all do
-  ensure_git_branch(branch: 'feature')
+  ensure_git_branch(branch: 'release')
   ensure_git_status_clean
 end
 

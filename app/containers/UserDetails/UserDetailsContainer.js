@@ -4,7 +4,7 @@ import UserDetails from "./UserDetails";
 class UserDetailsContainer extends React.Component {
 
     _goBack = () => {
-        this.props.navigation.goBack()
+        this.props.navigation.pop()
     };
 
     _goEdit = (label, value, multiline = false) => {

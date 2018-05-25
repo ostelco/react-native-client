@@ -1,5 +1,6 @@
 import React from "react";
 import UserDetails from "./UserDetails";
+import { connect } from 'react-redux';
 
 class UserDetailsContainer extends React.Component {
 
@@ -7,27 +8,28 @@ class UserDetailsContainer extends React.Component {
         this.props.navigation.pop()
     };
 
-    _goEdit = (label, value, multiline = false) => {
+    _goEdit = (label, profileKey, multiline = false) => {
       this.props.navigation.push('Edit', {
         label,
-        value,
+        profileKey,
+        profile: this.props.profile,
         multiline
       })
     };
 
     render() {
-        const profile = {
-          name: 'Kerstin Kaspersen',
-          email: 'kerstin@mail.com',
-          street: 'Kongsvejen 17',
-          postalCode: '1177',
-          city: 'Oslo',
-          country: 'Norway'
-        };
         return (
-          <UserDetails goBack={this._goBack} profile={profile} goEdit={this._goEdit} />
+          <UserDetails goBack={this._goBack} profile={this.props.profile} goEdit={this._goEdit} />
         )
     }
 }
-  
-export default UserDetailsContainer;
+
+const mapStateToProps = (state) => {
+  const { error, profile } = state;
+  return {
+    error,
+    profile: profile.data
+  };
+};
+
+export default connect(mapStateToProps)(UserDetailsContainer);

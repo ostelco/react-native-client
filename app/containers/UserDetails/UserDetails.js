@@ -36,7 +36,7 @@ const UserDetails = props => {
       key: 'street'
     }, {
       label: 'Postal Code',
-      key: 'postalCode'
+      key: 'postCode'
     }, {
       label: 'City',
       key: 'city'
@@ -48,7 +48,7 @@ const UserDetails = props => {
     const fields = [];
     for (let i = 0; i < items.length; ++i) {
       const { label, key } = items[i];
-      fields.push(renderField(`${i}-item`, label, profile[key], () => goEdit(label, profile[key])))
+      fields.push(renderField(`${i}-item`, label, profile[key], () => goEdit(label, key)))
       fields.push(renderSeparator(`${i}-separator`));
     };
     return (

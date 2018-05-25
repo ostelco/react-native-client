@@ -5,7 +5,7 @@ import {textStyles} from "../../config/fonts";
 import PropTypes from 'prop-types';
 
 const UserDetailsEdit = props => {
-  const { label, value, onCancel, onSubmit, multiline } = props;
+  const { label, value, onCancel, onSubmit, onChangeText, multiline } = props;
   return (
     <Container style={styles.container}>
       <Header style={styles.header}>
@@ -17,7 +17,12 @@ const UserDetailsEdit = props => {
         <Form>
           <Item stackedLabel>
             <Label style={textStyles.textStyle5}>{ label }</Label>
-            <Input style={[textStyles.textStyle15, styles.input]} value={value} multiline={multiline} />
+            <Input
+             style={[textStyles.textStyle15, styles.input]}
+             value={value}
+             multiline={multiline}
+             onChangeText={onChangeText}
+             />
           </Item>
         </Form>
       </Content>

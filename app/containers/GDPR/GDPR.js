@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 });
 
 const GDPR = props => {
-  const { style, cancel, confirm} = props;
+  const { style, confirm, consent} = props;
   return (
     <Container style={{ position: 'relative', backgroundColor: colors.whiteTwo }}>
       <View style={style.roundedBox} />
@@ -52,8 +52,8 @@ const GDPR = props => {
       <Content contentContainerStyle={style.content}>
         <List style={{ flex: 1 }}>
           <ListItem noBorder>
-            <Text style={textStyles.textStyle7}>
-              In order to give you offers that fit your needs, you need to agree to let us:
+          <Text style={textStyles.textStyle7}>
+              In order to give you offers that fit your needs, you need to agree to let us: { consent ? ' ' + consent.description : ''}
             </Text>
           </ListItem>
           <ListItem noBorder>
@@ -68,7 +68,7 @@ const GDPR = props => {
           </ListItem>
         </List>
         <List style={{ flex: -1, width: '100%' }}>
-          <ListItem noBorder button onPress={cancel}>
+          <ListItem noBorder button onPress={() => confirm(consent.consentId, false)}>
             <Body style={{
               flex: 1,
               justifyContent: 'center',
@@ -78,7 +78,7 @@ const GDPR = props => {
               <Text style={textStyles.textStyle8}>No thanks</Text>
             </Body>
           </ListItem>
-          <ListItem noBorder button onPress={confirm}>
+          <ListItem noBorder button onPress={() => confirm(consent.consentId, true)}>
             <Body style={{
               flex: 1,
               justifyContent: 'center',
@@ -106,7 +106,7 @@ const GDPR = props => {
 
 GDPR.propTypes = {
   style: PropTypes.object,
-  cancel: PropTypes.func.isRequired,
+  consent: PropTypes.object,
   confirm: PropTypes.func.isRequired
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import {createStackNavigator, createSwitchNavigator } from "react-navigation";
 import { Root, Text} from "native-base";
-import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer, PurchaseHistoryContainer, UserDetailsContainer, PrivacyPolicyContainer, DeleteAccountContainer, SettingsContainer, PrivacyContainer } from "./app/containers";
+import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer, PurchaseHistoryContainer, UserDetailsContainer, PrivacyPolicyContainer, DeleteAccountContainer, SettingsContainer, PrivacyContainer, UserDetailsEditContainer } from "./app/containers";
 import { RNConfetti } from "./app/components";
 import { Provider } from 'react-redux';
 import configureStore from './app/store/configureStore'
 
-const store = configureStore()
+const store = configureStore();
 
 const AppStack = createStackNavigator({
   Home: {
@@ -26,9 +26,14 @@ const AppStack = createStackNavigator({
       Settings: {
         screen: SettingsContainer
       },
-      UserDetails: {
-        screen: UserDetailsContainer
-      },
+      UserDetails: createStackNavigator({
+        Home: UserDetailsContainer,
+        Edit: UserDetailsEditContainer
+      }, {
+        initialRouteName: 'Home',
+        headerMode: 'none',
+        mode: 'modal'
+      }),
       Privacy: {
         screen: createStackNavigator({
           Home: {

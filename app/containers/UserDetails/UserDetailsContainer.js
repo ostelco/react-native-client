@@ -7,6 +7,14 @@ class UserDetailsContainer extends React.Component {
         this.props.navigation.goBack()
     };
 
+    _goEdit = (label, value, multiline = false) => {
+      this.props.navigation.push('Edit', {
+        label,
+        value,
+        multiline
+      })
+    };
+
     render() {
         const profile = {
           name: 'Kerstin Kaspersen',
@@ -17,7 +25,7 @@ class UserDetailsContainer extends React.Component {
           country: 'Norway'
         };
         return (
-          <UserDetails goBack={this._goBack} profile={profile} />
+          <UserDetails goBack={this._goBack} profile={profile} goEdit={this._goEdit} />
         )
     }
 }

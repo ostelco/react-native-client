@@ -23,10 +23,16 @@ The project was initially created with CRNA (create-react-native-app) before we 
 
 ## Creating a release
 
+- Add required ios certificates in your keychain
+- Install fastlane [click for instructions](https://docs.fastlane.tools/#getting-started)
 - git flow release start x.x.x
-- Update the version with `npm version ...` [All possible commands](https://docs.npmjs.com/cli/version)
-- archive project with xcode and upload ios version
+- Update the version for android and ios also create a git tag which then is committed to git with the following command: `npm version ...` [Possible commands](https://docs.npmjs.com/cli/version)
+- Build a new ios version: `APPLE_ID="yourappledeveloperuserid@telenordigital.com" fastlane ios beta`
+    - you will be prompted to supply your password for your apple developer user id
+    - the new build will be available in the archive section of xcode and can be uploded from there
+    - every time you run the command above, the ios build number will be increased
 - android TODO
+
 
 - `brew cask install fastlane`
 - ~~Deploy android beta:~~ `npm run android: beta`

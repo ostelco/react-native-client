@@ -23,7 +23,7 @@ class PrivacyContainer extends React.Component {
         goBack={this._goBack}
         consent={this.props.privacy}
         setConsent={this.props.setConsent}
-        consentshowPrivacyPolicy={this._showPrivacyPolicy}
+        showPrivacyPolicy={this._showPrivacyPolicy}
         showTermsAndConditions={this._showTermsAndConditions}
       />
     )
@@ -33,7 +33,7 @@ class PrivacyContainer extends React.Component {
 const mapStateToProps = (state) => {
   const { consents, error } = state;
   return {
-    privacy: consents.privacy,
+    privacy: consents.privacy || { accepted: true },
     error
   };
 };

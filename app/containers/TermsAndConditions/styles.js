@@ -9,7 +9,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     borderBottomWidth: 0
   },
-  headerLeftButton: {
+  headerButton: {
     color: colors.brownishGrey
   },
   headerTitleContainer: {

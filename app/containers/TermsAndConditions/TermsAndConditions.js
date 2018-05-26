@@ -7,21 +7,29 @@ import {RoundedBorder} from "../../components";
 
 
 const TermsAndConditions = props => {
-  const { goBack } = props;
+  const { goBack, isModal } = props;
   return (
     <Container style={styles.container}>
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Left>
-          <Button transparent onPress={goBack}>
-            <Icon name="arrow-back" style={styles.headerLeftButton} />
-          </Button>
+          {isModal ? null : (
+            <Button transparent onPress={goBack}>
+              <Icon name="arrow-back" style={styles.headerButton}/>
+            </Button>
+          )}
         </Left>
         <Body style={styles.headerTitleContainer}>
           <Title style={textStyles.textStyle19}>
             Terms & Conditions
           </Title>
         </Body>
-        <Right></Right>
+        <Right>
+          {isModal ? (
+            <Button transparent onPress={goBack}>
+              <Icon name="close" style={styles.headerButton}/>
+            </Button>
+          ) : null}
+        </Right>
       </Header>
       <RoundedBorder />
       <Content contentContainerStyle={styles.content}>
@@ -46,7 +54,12 @@ const TermsAndConditions = props => {
 };
 
 TermsAndConditions.propTypes = {
-  goBack: PropTypes.func.isRequired
+  goBack: PropTypes.func.isRequired,
+  isModal: PropTypes.bool
 };
+
+TermsAndConditions.defaultProps = {
+  isModal: true
+}
 
 export default TermsAndConditions;

@@ -14,7 +14,7 @@ class PrivacyContainer extends React.Component {
   };
 
   _showTermsAndConditions = () => {
-    this.props.navigation.navigate('TermsAndConditions')
+    this.props.navigation.navigate('TermsAndConditions', { isModal: true })
   };
 
   render() {

@@ -8,8 +8,21 @@ class PurchaseHistoryContainer extends React.Component {
     };
 
     render() {
+      const data = [{
+        title: "2018-04-12",
+        description: "1 GB",
+        priceLabel: "25 NOK"
+      }, {
+        title: "2018-04-12",
+        description: "1 GB",
+        priceLabel: "25 NOK"
+      }, {
+        title: "2018-04-12",
+        description: "1 GB",
+        priceLabel: "25 NOK"
+      }];
         return (
-          <PurchaseHistory goBack={this._goBack} />
+          <PurchaseHistory goBack={this._goBack} data={data} />
         )
     }
 }

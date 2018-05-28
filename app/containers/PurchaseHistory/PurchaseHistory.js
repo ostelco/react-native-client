@@ -1,9 +1,27 @@
 import React from "react";
 
 import {Container, Body, Left, Title, List, ListItem, Right, Text, Button, Icon, Content, Header} from "native-base";
+const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+const renderRecord = (purchaseRecord) => (
+  <ListItem key={purchaseRecord.product.sku}>
+  <Body>
+    <Text>{(new Date(purchaseRecord.timestamp)).toLocaleDateString("no", dateFormatOptions)}</Text>
+    <Text note>{purchaseRecord.product.presentation.productLabel}</Text>
+  </Body>
+  <Right>
+    <Text note>{purchaseRecord.product.presentation.priceLabel}</Text>
+  </Right>
+</ListItem>);
 
 const PurchaseHistory = props => {
-    const { goBack } = props;
+    const { purchaseRecords, goBack } = props;
+    const fields = [];
+    if (Array.isArray(purchaseRecords)) {
+      for (let i = 0; i < purchaseRecords.length; ++i) {
+        fields.push(renderRecord(purchaseRecords[i]));
+      }
+    }
     return (
       <Container>
         <Header>
@@ -18,33 +36,7 @@ const PurchaseHistory = props => {
         </Header>
         <Content padder>
           <List>
-            <ListItem>
-              <Body>
-                <Text>2018-04-12</Text>
-                <Text note>1 GB</Text>
-              </Body>
-              <Right>
-                <Text note>25 NOK</Text>
-              </Right>
-            </ListItem>
-            <ListItem>
-              <Body>
-                <Text>2018-03-25</Text>
-                <Text note>1 GB</Text>
-              </Body>
-              <Right>
-                <Text note>25 NOK</Text>
-              </Right>
-            </ListItem>
-            <ListItem>
-              <Body>
-                <Text>2018-03-01</Text>
-                <Text note>1 GB</Text>
-              </Body>
-              <Right>
-                <Text note>25 NOK</Text>
-              </Right>
-            </ListItem>
+            {fields}
           </List>
         </Content>
       </Container>

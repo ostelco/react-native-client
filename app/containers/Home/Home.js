@@ -13,6 +13,7 @@ import {
   Right, Spinner
 } from "native-base";
 import PropTypes from 'prop-types';
+import * as _ from "lodash";
 import {textStyles} from "../../config/fonts";
 import {colors} from "../../config/colors";
 import {StyleSheet, TouchableHighlight } from "react-native";
@@ -86,8 +87,8 @@ const Home = props => {
                 justifyContent: 'space-evenly',
                 alignItems: 'center'
               }}>
-                  <Text style={[textStyles.textStyle14, { textAlign: 'center' }]}>{defaultOffer ? defaultOffer.sku : ''}</Text>
-                  <Text style={[textStyles.textStyle15, { textAlign: 'center' }]}>40 NOK</Text>
+                  <Text style={[textStyles.textStyle14, { textAlign: 'center' }]}>{_.get(defaultOffer, "presentation.productLabel")}</Text>
+                  <Text style={[textStyles.textStyle15, { textAlign: 'center' }]}>{_.get(defaultOffer, "presentation.priceLabel")}</Text>
               </View>
             </Body>
           </ListItem>
@@ -110,7 +111,7 @@ const Home = props => {
               alignItems: 'center'
             }}>
               <Text style={textStyles.textStyle8}>
-                Monday Special!
+              {_.get(specialOffer, "presentation.offerLabel")}
               </Text>
               <TouchableHighlight onPress={() => showPayment(specialOffer)}>
                 <View style={{
@@ -123,10 +124,10 @@ const Home = props => {
                   justifyContent: 'center'
                 }}>
                   <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>{specialOffer ? specialOffer.sku : ''}</Text>
+                    <Text style={[textStyles.textStyle16, { textAlign: 'center' }]}>{_.get(specialOffer, "presentation.productLabel")}</Text>
                   </View>
                   <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>{specialOffer.price.amount} {specialOffer.price.currency}</Text>
+                    <Text style={[textStyles.textStyle17, { textAlign: 'center' }]}>{_.get(specialOffer, "presentation.priceLabel")}</Text>
                   </View>
                 </View>
               </TouchableHighlight>

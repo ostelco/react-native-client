@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 });
 
 const Payment = props => {
-  const { style, goBack, confirm, isDialogVisible, price , itemDescription} = props;
+  const { style, goBack, confirm, isDialogVisible, priceLabel , productLabel} = props;
   return (
     <Container style={{ position: 'relative', backgroundColor: colors.whiteTwo, overflow: 'hidden' }}>
       <View style={style.roundedBox}>
@@ -101,7 +101,7 @@ const Payment = props => {
             <View style={{ height: 10 }} />
             <Text style={textStyles.textStyle23}>Enjoy your new</Text>
             <View style={{ padding: 50 }}>
-              <Text style={textStyles.textStyle24}>{itemDescription}</Text>
+              <Text style={textStyles.textStyle24}>{productLabel}</Text>
             </View>
             <TouchableHighlight style={{
               height: 60,
@@ -134,8 +134,8 @@ const Payment = props => {
       </Header>
       <Content contentContainerStyle={style.content} bounces={false}>
         <View style={{ padding: 30 }}>
-          <Text style={textStyles.textStyle20}>{itemDescription}</Text>
-          <Text style={textStyles.textStyle7}>{price.amount} {price.currency}</Text>
+          <Text style={textStyles.textStyle20}>{productLabel}</Text>
+          <Text style={textStyles.textStyle7}>{priceLabel}</Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'flex-start', paddingHorizontal: 45, paddingTop: 75 }}>
           <View style={{ flexDirection: 'row', marginBottom: 15 }}>
@@ -184,7 +184,7 @@ const Payment = props => {
             justifyContent: 'center'
           }}>
             <TouchableHighlight onPress={confirm}>
-              <Text style={textStyles.textStyle6}>{price.amount} {price.currency}</Text>
+              <Text style={textStyles.textStyle6}>{priceLabel}</Text>
             </TouchableHighlight>
           </View>
         </View>

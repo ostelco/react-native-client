@@ -1,5 +1,6 @@
 import React from "react";
 import PurchaseHistory from "./PurchaseHistory";
+import { connect } from 'react-redux';
 
 class PurchaseHistoryContainer extends React.Component {
 
@@ -8,23 +9,20 @@ class PurchaseHistoryContainer extends React.Component {
     };
 
     render() {
-      const data = [{
-        title: "2018-04-12",
-        description: "1 GB",
-        priceLabel: "25 NOK"
-      }, {
-        title: "2018-04-12",
-        description: "1 GB",
-        priceLabel: "25 NOK"
-      }, {
-        title: "2018-04-12",
-        description: "1 GB",
-        priceLabel: "25 NOK"
-      }];
-        return (
-          <PurchaseHistory goBack={this._goBack} data={data} />
-        )
+      return (
+        <PurchaseHistory
+          purchaseRecords={this.props.purchaseRecords}
+          goBack={this._goBack}
+        />);
     }
 }
 
-export default PurchaseHistoryContainer;
+const mapStateToProps = (state) => {
+    const { subscription, error } = state;
+    return {
+        purchaseRecords: subscription.status.purchaseRecords,
+      error
+    };
+  };
+
+export default connect(mapStateToProps)(PurchaseHistoryContainer);

@@ -21,10 +21,10 @@ import styles from "./styles";
 import {PaymentSuccessModal} from "./components";
 
 const Payment = props => {
-  const { goBack, confirm, isDialogVisible, price , itemDescription} = props;
+  const { goBack, confirm, isDialogVisible, priceLabel , productLabel} = props;
   return (
     <Container style={styles.container}>
-      <PaymentSuccessModal isDialogVisible={isDialogVisible} goBack={goBack} itemDescription={itemDescription} />
+      <PaymentSuccessModal isDialogVisible={isDialogVisible} goBack={goBack} itemDescription={productLabel} />
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Left>
           <Icon name="arrow-back" style={styles.headerLeftButton} onPress={goBack} />
@@ -38,8 +38,8 @@ const Payment = props => {
       </Header>
       <Content contentContainerStyle={styles.content} bounces={false}>
         <View style={styles.productDescriptionContainer}>
-          <Text style={textStyles.textStyle20}>{itemDescription}</Text>
-          <Text style={textStyles.textStyle7}>{price.amount} {price.currency}</Text>
+          <Text style={textStyles.textStyle20}>{productLabel}</Text>
+          <Text style={textStyles.textStyle7}>{priceLabel}</Text>
         </View>
         <RoundedBorder />
         <View style={styles.paymentFormContainer}>
@@ -84,7 +84,7 @@ const Payment = props => {
         <View style={styles.footer}>
           <View style={styles.submitButtonContainer}>
             <TouchableHighlight onPress={confirm}>
-              <Text style={textStyles.textStyle6}>{price.amount} {price.currency}</Text>
+              <Text style={textStyles.textStyle6}>{priceLabel}</Text>
             </TouchableHighlight>
           </View>
         </View>

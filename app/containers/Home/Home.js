@@ -15,6 +15,7 @@ import {
   Left
 } from "native-base";
 import PropTypes from 'prop-types';
+import * as _ from "lodash";
 import {textStyles} from "../../config/fonts";
 import {colors} from "../../config/colors";
 import { TouchableHighlight } from "react-native";
@@ -51,8 +52,8 @@ const Home = props => {
           <ListItem noBorder onPress={() => showPayment(defaultOffer)}>
             <Body style={styles.staticOfferContainer}>
               <View style={styles.staticOfferButtonContainer}>
-                  <Text style={[textStyles.textStyle14, styles.offerButton]}>{defaultOffer ? defaultOffer.sku : ''}</Text>
-                  <Text style={[textStyles.textStyle15, styles.offerButton]}>40 NOK</Text>
+                  <Text style={[textStyles.textStyle14, styles.offerButton]}>{_.get(defaultOffer, "presentation.productLabel")}</Text>
+                  <Text style={[textStyles.textStyle15, styles.offerButton]}>{_.get(defaultOffer, "presentation.priceLabel")}</Text>
               </View>
             </Body>
           </ListItem>
@@ -62,15 +63,15 @@ const Home = props => {
           <View style={styles.specialOfferContainer}>
             <View style={styles.specialOffer}>
               <Text style={textStyles.textStyle8}>
-                Monday Special!
+              {_.get(specialOffer, "presentation.offerLabel")}
               </Text>
               <TouchableHighlight onPress={() => showPayment(specialOffer)}>
                 <View style={styles.specialOfferButtonContainer}>
                   <View style={styles.specialOfferButtonTextContainer}>
-                    <Text style={[textStyles.textStyle16, styles.offerButton]}>{specialOffer ? specialOffer.sku : ''}</Text>
+                    <Text style={[textStyles.textStyle16, styles.offerButton]}>{_.get(specialOffer, "presentation.productLabel")}</Text>
                   </View>
                   <View style={styles.specialOfferButtonTextContainer}>
-                    <Text style={[textStyles.textStyle17, styles.offerButton]}>{specialOffer.price.amount} {specialOffer.price.currency}</Text>
+                    <Text style={[textStyles.textStyle17, styles.offerButton]}>{_.get(specialOffer, "presentation.priceLabel")}</Text>
                   </View>
                 </View>
               </TouchableHighlight>

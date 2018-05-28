@@ -1,6 +1,7 @@
 import React from "react";
 import prettyBytes from "pretty-bytes";
 import Home from "./Home";
+import * as _ from "lodash";
 import { connect } from 'react-redux';
 import { loadSubscription, loadProducts, selectProduct } from "../../actions";
 
@@ -22,21 +23,6 @@ class HomeContainer extends React.Component {
     return null;
   }
 
-  formatDefaultProduct(products) {
-    if (products.list) {
-      return products.list[0];
-    }
-    return null;
-  }
-
-  formatSpecialProducts(products) {
-    if (products.list) {
-      if (Array.isArray(products.list) && products.list.length > 1)
-      return products.list[1];
-    }
-    return this.formatDefaultProduct(products);
-  }
-
   _showMenu = () => {
     this.props.navigation.navigate('Menu');
   };
@@ -47,13 +33,42 @@ class HomeContainer extends React.Component {
   };
 
   render() {
-
-    const dataLeft = this.formatDataLeft(this.props.subscription)
-    const specialOffer = this.formatSpecialProducts(this.props.products)
-    const defaultOffer = this.formatDefaultProduct(this.props.products)
+    console.log(this.props.defaultOffer);
+    console.log(this.props.specialOffer);
+    const dataLeft = this.formatDataLeft(this.props.subscription);
     return (
-      <Home showMenu={this._showMenu} showPayment={this._showPayment} dataLeft={dataLeft} defaultOffer={defaultOffer} specialOffer={specialOffer}/>
-    )
+      <Home
+        showMenu={this._showMenu}
+        showPayment={this._showPayment}
+        dataLeft={dataLeft}
+        defaultOffer={this.props.defaultOffer}
+        specialOffer={this.props.specialOffer}
+      />
+    );
+  }
+}
+
+function defaultProduct(products) {
+  if (Array.isArray(products)) {
+    const result = products.filter(product => _.get(product, "presentation.isDefault", "false") !== "false");
+    if (result && result.length > 0) {
+      // We only use 1 default product
+      return result[0];
+    }
+    console.log("Cannot find any default products");
+    return null;
+  }
+}
+
+function customProduct(products) {
+  if (Array.isArray(products)) {
+    const result = products.filter(product => _.get(product, "presentation.isDefault", "false") === "false");
+    if (result && result.length > 0) {
+      // We only use 1 special product
+      return result[0];
+    }
+    console.log("Cannot find any custom products");
+    return null;
   }
 }
 
@@ -61,7 +76,8 @@ const mapStateToProps = (state) => {
   const { subscription, products, error } = state;
   return {
     subscription,
-    products,
+    defaultOffer: defaultProduct(products.list),
+    specialOffer: customProduct(products.list),
     error
   };
 };

@@ -5,14 +5,19 @@ import {textStyles} from "../../config/fonts";
 import {RoundedBorder} from "../../components";
 import { PurchaseRecord } from "./components";
 import PropTypes from 'prop-types';
+import * as _ from "lodash";
 
+const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 const PurchaseHistory = props => {
-    const { goBack, data } = props;
-    const purchaseRecords = [];
+    const { goBack, purchaseRecords } = props;
+    const listItems = [];
 
-    for (let i = 0; i < data.length; ++i) {
-      const { title, description, priceLabel } = data[i];
-      purchaseRecords.push(<PurchaseRecord key={i} title={title} description={description} priceLabel={priceLabel} containerStyle={{ marginVertical: 15}} />)
+    for (let i = 0; i < purchaseRecords.length; ++i) {
+      const { timestamp, product } = purchaseRecords[i];
+      const productLabel = _.get(product, "presentation.productLabel");
+      const priceLabel = _.get(product, "presentation.priceLabel");
+      const dateLabel = (new Date(timestamp)).toLocaleDateString("no", dateFormatOptions)
+      listItems.push(<PurchaseRecord key={i} title={dateLabel} description={productLabel} priceLabel={priceLabel} containerStyle={{ marginVertical: 15}} />)
     }
 
     return (
@@ -30,7 +35,7 @@ const PurchaseHistory = props => {
         </Header>
         <RoundedBorder/>
         <Content style={styles.content}>
-          { purchaseRecords }
+          { listItems }
         </Content>
       </Container>
     );

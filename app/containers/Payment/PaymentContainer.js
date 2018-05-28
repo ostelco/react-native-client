@@ -2,6 +2,7 @@ import React from "react";
 import Payment from "./Payment";
 import { buyProduct } from "../../actions";
 import { connect } from 'react-redux';
+import * as _ from "lodash";
 
 class PaymentContainer extends React.Component {
 
@@ -25,14 +26,21 @@ class PaymentContainer extends React.Component {
   };
 
   render() {
+    const productLabel = _.get(this.props.selectedProduct, "presentation.productLabel", "");
+    const priceLabel = _.get(this.props.selectedProduct, "presentation.priceLabel", "");
     return (
-      <Payment goBack={this._goBack} confirm={this._handlePayment} isDialogVisible={this.state.isDialogVisible} price={this.props.selectedProduct.price} itemDescription={this.props.selectedProduct.sku}/>
+      <Payment
+        goBack={this._goBack}
+        confirm={this._handlePayment}
+        isDialogVisible={this.state.isDialogVisible}
+        priceLabel={priceLabel}
+        productLabel={productLabel}
+      />
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("mapStateToProps", state);
   const { error, selectedProduct } = state;
   return {
     error,

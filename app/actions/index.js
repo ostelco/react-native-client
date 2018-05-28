@@ -63,7 +63,12 @@ const purchaseProduct = sku => ({
 
 export const buyProduct = (sku) => (dispatch, getState) => {
   console.log("buyProduct =", sku);
-  return dispatch(purchaseProduct(sku));
+  return dispatch(purchaseProduct(sku))
+    .then(() => {
+      // Since the subscription has changed, lets reload.
+      console.log("Refreshing subscription");
+      return dispatch(fetchSubscription());
+    });
 }
 
 export const CONSENTS_REQUEST = 'CONSENTS_REQUEST';

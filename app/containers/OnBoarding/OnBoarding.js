@@ -1,68 +1,39 @@
-import {Body, Container, Content, List, ListItem, Text, Button, View, Icon, Header} from "native-base";
+import {Body, Container, Content, List, ListItem, Text, Button, View, Icon, Header, Title} from "native-base";
 import React from "react";
-import {AppTitle, AppHeader} from '../../components';
 import {colors} from "../..//config/colors";
 import PropTypes from 'prop-types';
 import {Image} from "react-native";
-
-// TODO: Move styles to stylesheet
+import styles from './styles';
+import {textStyles} from "../../config/fonts";
 
 const OnBoarding = (props) => {
   const { showTermsAndConditions, signIn } = props;
   return (
     <Container>
-      <Image source={require('../../../assets/sweets.jpg')} style={{ flex: 1, resizeMode: 'cover', width: '100%', height: '100%', position: 'absolute' }} />
-      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={{ backgroundColor: 'transparent' }} noShadow>
-        <Body style={{ alignItems: 'center'}}>
-          <AppTitle text={'pi'} />
+      <Image source={require('../../../assets/sweets.jpg')} style={styles.containerImage} />
+      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
+        <Body style={{ alignItems: 'center' }}>
+          <Title style={textStyles.textStyle11}>pi</Title>
         </Body>
       </Header>
-      <Content contentContainerStyle={{ flex: 1, alignItems: 'center', paddingTop: 80, paddingBottom: 30, paddingHorizontal: 30, justifyContent: 'space-between' }}>
+      <Content contentContainerStyle={styles.contentContainer}>
 
-        <Text style={{
-          width: 210,
-          height: 72,
-          //fontFamily: "Nudista",
-          fontSize: 20,
-          fontWeight: "normal",
-          fontStyle: "normal",
-          letterSpacing: 0.21,
-          textAlign: "center",
-          color: colors.white
-        }}>If you think data is the most important, Pi is the carrier for you.</Text>
+        <View style={styles.textContainer}>
+          <Text style={textStyles.textStyle}>If you think data is the most important, Pi is the carrier for you.</Text>
+        </View>
 
-        <List style={{ flex: -1, width: '100%' }}>
+        <List style={styles.footerContainer}>
           <ListItem noBorder>
             <Body>
-              <Button block onPress={signIn} style={{
-                height: 61,
-                borderRadius: 4,
-                backgroundColor: colors.white,
-                shadowColor: "rgba(0, 0, 0, 0.24)",
-                shadowOffset: {
-                  width: 0,
-                  height: 1
-                },
-                shadowRadius: 2,
-                shadowOpacity: 1,
-                position: 'relative'
-              }}>
-                <Icon name='home' style={{ color: colors.warmGrey, position: 'absolute', left: 0 }} />
-                <Text style={{ color: colors.warmGrey }}>Sign in with Google</Text>
+              <Button block onPress={signIn} style={styles.signInButton}>
+                <Icon name="logo-google" style={styles.signInButtonIcon} />
+                <Text style={styles.signInButtonText}>Sign in with Google</Text>
               </Button>
             </Body>
           </ListItem>
           <ListItem noBorder button onPress={showTermsAndConditions}>
             <Body>
-              <Text style={{
-                //fontFamily: "Nudista",
-                fontSize: 14,
-                fontWeight: "normal",
-                fontStyle: "normal",
-                letterSpacing: 0.15,
-                textAlign: "center",
-                color: colors.white
-              }}>By using Pi you agree to the terms & conditions</Text>
+              <Text style={textStyles.textStyle2}>By using Pi you agree to the terms & conditions</Text>
             </Body>
           </ListItem>
         </List>

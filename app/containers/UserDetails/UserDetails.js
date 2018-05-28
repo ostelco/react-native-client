@@ -33,7 +33,7 @@ const UserDetails = props => {
       key: 'email'
     }, {
       label: 'Address',
-      key: 'street'
+      key: 'address'
     }, {
       label: 'Postal Code',
       key: 'postCode'

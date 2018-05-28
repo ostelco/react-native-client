@@ -1,46 +1,53 @@
 import React from "react";
+import {Container, Body, Left, Title, Right, Button, Icon, Content, Header} from "native-base";
+import styles from './styles';
+import {textStyles} from "../../config/fonts";
+import {RoundedBorder} from "../../components";
+import { PurchaseRecord } from "./components";
+import PropTypes from 'prop-types';
+import * as _ from "lodash";
 
-import {Container, Body, Left, Title, List, ListItem, Right, Text, Button, Icon, Content, Header} from "native-base";
 const dateFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-
-const renderRecord = (purchaseRecord) => (
-  <ListItem key={purchaseRecord.product.sku}>
-  <Body>
-    <Text>{(new Date(purchaseRecord.timestamp)).toLocaleDateString("no", dateFormatOptions)}</Text>
-    <Text note>{purchaseRecord.product.presentation.productLabel}</Text>
-  </Body>
-  <Right>
-    <Text note>{purchaseRecord.product.presentation.priceLabel}</Text>
-  </Right>
-</ListItem>);
-
 const PurchaseHistory = props => {
-    const { purchaseRecords, goBack } = props;
-    const fields = [];
-    if (Array.isArray(purchaseRecords)) {
-      for (let i = 0; i < purchaseRecords.length; ++i) {
-        fields.push(renderRecord(purchaseRecords[i]));
-      }
+    const { goBack, purchaseRecords } = props;
+    const listItems = [];
+
+    for (let i = 0; i < purchaseRecords.length; ++i) {
+      const { timestamp, product } = purchaseRecords[i];
+      const productLabel = _.get(product, "presentation.productLabel");
+      const priceLabel = _.get(product, "presentation.priceLabel");
+      const dateLabel = (new Date(timestamp)).toLocaleDateString("no", dateFormatOptions)
+      listItems.push(<PurchaseRecord key={i} title={dateLabel} description={productLabel} priceLabel={priceLabel} containerStyle={{ marginVertical: 15}} />)
     }
+
     return (
-      <Container>
-        <Header>
+      <Container style={styles.container}>
+        <Header style={styles.header}>
           <Left>
             <Button transparent onPress={goBack}>
-              <Icon name="arrow-back" />
+              <Icon name="arrow-back" style={styles.headerLeftButton} />
             </Button>
           </Left>
-          <Body>
-          <Title>What you bought</Title>
+          <Body style={styles.headerTitleContainer}>
+            <Title style={textStyles.textStyle19}>What you bought</Title>
           </Body>
+          <Right></Right>
         </Header>
-        <Content padder>
-          <List>
-            {fields}
-          </List>
+        <RoundedBorder/>
+        <Content style={styles.content}>
+          { listItems }
         </Content>
       </Container>
     );
-}
+};
+
+PurchaseHistory.propTypes = {
+  goBack: PropTypes.func.isRequired,
+  data: PropTypes.array
+};
+
+PurchaseHistory.defaultProps = {
+  data: []
+};
 
 export default PurchaseHistory;

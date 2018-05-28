@@ -10,12 +10,21 @@ class SignupContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      /*
       profile: {
         name: this.props.auth.name,
         address: '',
         postCode: '',
         city: '',
         email: this.props.auth.email
+      },
+      */
+      profile: {
+        name: 'David Berg',
+        address: 'Storvej 10',
+        postCode: '132 23',
+        city: 'Oslo',
+        // email: this.props.auth.email
       }
     };
   }

@@ -9,9 +9,11 @@ class PurchaseHistoryContainer extends React.Component {
     };
 
     render() {
-        return (
-          <PurchaseHistory purchaseRecords={this.props.purchaseRecords} goBack={this._goBack} />
-        )
+      return (
+        <PurchaseHistory
+          purchaseRecords={this.props.purchaseRecords}
+          goBack={this._goBack}
+        />);
     }
 }
 
@@ -23,4 +25,4 @@ const mapStateToProps = (state) => {
     };
   };
 
-  export default connect(mapStateToProps)(PurchaseHistoryContainer);
+export default connect(mapStateToProps)(PurchaseHistoryContainer);

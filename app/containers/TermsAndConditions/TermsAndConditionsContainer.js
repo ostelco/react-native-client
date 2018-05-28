@@ -8,8 +8,10 @@ class TermsAndConditionsContainer extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const isModal = navigation.getParam('isModal', false);
     return (
-      <TermsAndConditions goBack={this._goBack} />
+      <TermsAndConditions goBack={this._goBack} isModal={isModal} />
     )
   }
 }

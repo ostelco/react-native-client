@@ -4,3 +4,10 @@ export {TermsAndConditionsContainer} from './TermsAndConditions';
 export {GDPRContainer} from "./GDPR";
 export {HomeContainer} from "./Home";
 export {PaymentContainer} from "./Payment";
+export {PurchaseHistoryContainer} from "./PurchaseHistory"
+export {UserDetailsContainer} from "./UserDetails"
+export {PrivacyPolicyContainer} from "./PrivacyPolicy"
+export {DeleteAccountContainer} from "./DeleteAccount"
+export {SettingsContainer} from "./Settings"
+export {PrivacyContainer} from "./Privacy"
+export {UserDetailsEditContainer} from "./UserDetailsEdit"

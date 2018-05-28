@@ -20,7 +20,7 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane ios beta
 ```
-Ship to testflight
+Increase build number and build new ios version available in archive section of xcode
 
 ----
 
@@ -30,11 +30,6 @@ Ship to testflight
 fastlane android beta
 ```
 Ship to Playstore Beta.
-### android alpha
-```
-fastlane android alpha
-```
-Deploy a new alpha version to the Google Play Store
 
 ----
 

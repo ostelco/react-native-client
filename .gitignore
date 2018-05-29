@@ -25,6 +25,7 @@ fastlane/report.xml
 ios/Pods
 android/maven
 panacea-360f19*.json
+*.cer
 
 # From .gitignore created by react-native init command
 

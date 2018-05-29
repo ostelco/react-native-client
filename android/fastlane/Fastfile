@@ -1,0 +1,43 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+fastlane_version '2.53.1'
+default_platform(:android)
+
+before_all do
+  ensure_git_branch(branch: 'release')
+  ensure_git_status_clean
+end
+
+platform :android do
+  desc "Deploy a new alpha version to the Google Play Store"
+        lane :alpha do
+          gradle(
+            task: "assemble",
+            build_type: "Release"
+          )
+          # Requires Play Store API access to allow fastlane to upload build for us
+          #supply(
+          #  track: "alpha",
+          #  apk: "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+          #)
+          upload_to_google_drive(
+            drive_keyfile: '../panacea-360f19c53f06.json',
+            service_account: true,
+            folder_id: '1tfdsd12w9cRvIBX4TVx5PTLAhC9vfM5h',
+            upload_files: ['app/build/outputs/apk/app-release.apk']
+          )
+        end
+end

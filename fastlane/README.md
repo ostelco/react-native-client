@@ -15,12 +15,26 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+## iOS
+### ios beta
+```
+fastlane ios beta
+```
+Ship to testflight
+
+----
+
 ## Android
 ### android beta
 ```
 fastlane android beta
 ```
 Ship to Playstore Beta.
+### android alpha
+```
+fastlane android alpha
+```
+Deploy a new alpha version to the Google Play Store
 
 ----
 

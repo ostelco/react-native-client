@@ -11,7 +11,7 @@ const Settings = props => {
   const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory } = props;
   return (
     <Container style={styles.container}>
-      <Header style={styles.header} androidStatusBarColor={'rgba(0,0,0,0.5)'}>
+      <Header style={styles.header} androidStatusBarColor={'rgba(0,0,0,0.5)'} noShadow>
         <Left>
           <Button transparent onPress={goBack}>
             <Icon name="arrow-back" style={styles.headerLeftButton} />

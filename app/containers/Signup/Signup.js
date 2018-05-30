@@ -42,7 +42,7 @@ const Signup = props => {
   return (
     <Container>
       <BackgroundImage />
-      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
+      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
         <Left>
           <Button transparent onPress={goBack}>
             <Icon style={styles.headerLeftButton} name="arrow-back" />

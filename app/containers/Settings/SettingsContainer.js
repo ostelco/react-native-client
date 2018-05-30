@@ -4,6 +4,7 @@ import { auth0 } from '../../helper/auth';
 import { userLogout } from "../../actions";
 import { AsyncStorage } from "react-native";
 import { connect } from 'react-redux';
+import screens from "../../helper/screens";
 
 class SettingsContainer extends React.Component {
 
@@ -12,19 +13,19 @@ class SettingsContainer extends React.Component {
   };
 
   _showUserDetails = () => {
-    this.props.navigation.navigate('UserDetails');
+    this.props.navigation.navigate(screens.UserDetails);
   };
 
   _showPrivacy = () => {
-    this.props.navigation.navigate('Privacy');
+    this.props.navigation.navigate(screens.Privacy);
   };
 
   _showPurchaseHistory = () => {
-    this.props.navigation.navigate('PurchaseHistory');
+    this.props.navigation.navigate(screens.PurchaseHistory);
   };
 
   _showDeleteAccount = () => {
-    this.props.navigation.navigate('DeleteAccount');
+    this.props.navigation.navigate(screens.DeleteAccount);
   };
 
   _handleLogout = () => {
@@ -34,7 +35,7 @@ class SettingsContainer extends React.Component {
       .then(() => {
         return auth0.webAuth.clearSession()
           .finally(() => {
-            this.props.navigation.navigate('OnBoarding');
+            this.props.navigation.navigate(screens.OnBoarding);
           });
       });
   };

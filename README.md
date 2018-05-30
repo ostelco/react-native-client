@@ -1,5 +1,7 @@
 # Developer Notes
 
+- The initial screen view reported to firebase analytics is hardcoded until we find a better way to report the initial screen
+
 ## Intro
 
 The project was initially created with CRNA (create-react-native-app) before we [ejected](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md) because we needed native libraries like auth0 and firebase.  
@@ -15,6 +17,7 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - [React Native](https://github.com/facebook/react-native)
 - [React Native Firebase](https://rnfirebase.io/) native firebase sdk for react native [example usage](https://rnfirebase.io/docs/v4.2.x/installation/initial-setup#Example-Usage)
 - [Firebase Analytics](https://console.firebase.google.com/project/panacea-39e5a/analytics/app/ios:digital.telenor.panacea/overview%3Ft=2&cs=app.m.dashboard.overview&g=1) link to firebase analytics dashboard
+  - [Screen Tracking with React Navigation](https://reactnavigation.org/docs/en/screen-tracking.html)
 
 ## Developer setup
 

@@ -9,91 +9,76 @@ import configureStore from './app/store/configureStore'
 const store = configureStore();
 
 const AppStack = createStackNavigator({
-  Home: {
-    screen: HomeContainer
-  },
-  Payment: {
-    screen: createSwitchNavigator({
-      PaymentForm: PaymentContainer,
-      PaymentComplete: RNConfetti
-    }, {
-      initialRouteName: 'PaymentForm',
+  Home: HomeContainer,
+  PaymentStack: createSwitchNavigator({
+    Payment: PaymentContainer,
+    PaymentComplete: RNConfetti
+  }, {
+      initialRouteName: 'Payment',
       headerMode: 'none'
-    })
-  },
-  Menu: {
-    screen: createStackNavigator({
-      Settings: {
-        screen: SettingsContainer
-      },
-      UserDetails: createStackNavigator({
-        Home: UserDetailsContainer,
-        Edit: UserDetailsEditContainer
+  }),
+  MenuStack: createStackNavigator({
+      Settings: SettingsContainer,
+      UserDetailsStack: createStackNavigator({
+        UserDetails: UserDetailsContainer,
+        UserDetailsEdit: UserDetailsEditContainer
       }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'UserDetails',
         headerMode: 'none',
         mode: 'modal'
       }),
-      Privacy: {
-        screen: createStackNavigator({
-          Home: {
-            screen: PrivacyContainer
-          },
-          PrivacyPolicy: {
-            screen: PrivacyPolicyContainer
-          },
-          TermsAndConditions: {
-            screen: TermsAndConditionsContainer
-          }
+      PrivacyStack: createStackNavigator({
+          Privacy: PrivacyContainer,
+          PrivacyPolicy: PrivacyPolicyContainer,
+          TermsAndConditions: TermsAndConditionsContainer
         }, {
-          initialRouteName: 'Home',
+          initialRouteName: 'Privacy',
           headerMode: 'none'
-        })
-      },
-      PurchaseHistory: {
-        screen: PurchaseHistoryContainer
-      },
-      DeleteAccount: {
-        screen: DeleteAccountContainer,
-      }
+      }),
+      PurchaseHistory: PurchaseHistoryContainer,
+      DeleteAccount: DeleteAccountContainer,
     }, {
       initialRouteName: 'Settings',
       headerMode: 'none'
-    })
-  },
+    }),
 }, {
   headerMode: 'none',
   initialRouteName: 'Home',
 });
 
 const RootStack = createSwitchNavigator({
-  OnBoarding: createStackNavigator({
-    Home: {
-      screen: OnBoardingContainer
-    },
-    TermsAndConditions: {
-      screen: TermsAndConditionsContainer
-    },
-    Signup: {
-      screen: SignupContainer
-    }
+  OnBoardingStack: createStackNavigator({
+    OnBoarding: OnBoardingContainer,
+    TermsAndConditions: TermsAndConditionsContainer,
+    SignUp: SignupContainer
   }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'OnBoarding',
     headerMode: 'none'
   }),
   GDPR: GDPRContainer,
-  App: {
-    screen: AppStack
-  }
+  AppStack: AppStack
 }, {
-  initialRouteName: 'OnBoarding'
+  initialRouteName: 'OnBoardingStack'
 });
 
+// gets the current screen from navigation state
+function getActiveRouteName(navigationState) {
+  if (!navigationState) {
+    return null;
+  }
+  const route = navigationState.routes[navigationState.index];
+  // dive into nested navigators
+  if (route.routes) {
+    return getActiveRouteName(route);
+  }
+  return route.routeName;
+}
 
 const AppLoading = () => (
   <Text>Loading...</Text>
 );
 
+import analytics from "./app/helper/analytics";
 
 export default class App extends React.Component {
 
@@ -103,13 +88,10 @@ export default class App extends React.Component {
   }
 
   async componentWillMount() {
-    /*
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
-    });
-    */
     this.setState({ loading: false });
+
+    // TODO: Hardcoded value until better approach is implemented since onNavigationStateChange does not capture initial screen view
+    analytics.setCurrentScreen('OnBoarding');
   }
 
   render() {
@@ -125,7 +107,19 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <Root>
-          <RootStack />
+          <RootStack
+            onNavigationStateChange={(prevState, currentState) => {
+              const currentScreen = getActiveRouteName(currentState);
+              const prevScreen = getActiveRouteName(prevState);
+              if (prevScreen !== currentScreen) {
+                // the line below uses the Google Analytics tracker
+                // change the tracker here to use other Mobile analytics SDK.
+                console.log('Current:', currentScreen, currentState);
+                console.log('Prev:', prevScreen, prevState);
+                analytics.setCurrentScreen(currentScreen)
+              }
+            }}
+          />
         </Root>
       </Provider>
     );

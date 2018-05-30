@@ -12,10 +12,6 @@ class HomeContainer extends React.Component {
     this.state = {}
   }
 
-  getDataLeft(remaining) {
-    return `${prettyBytes(remaining)}`;
-  }
-
   formatDataLeft(subscription) {
     if (subscription.status) {
       return `${prettyBytes(subscription.status.remaining)}`;

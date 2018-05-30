@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteAccount from "./DeleteAccount";
+import screens from "../../helper/screens";
 
 class DeleteAccountContainer extends React.Component {
 
@@ -8,7 +9,7 @@ class DeleteAccountContainer extends React.Component {
   };
 
   _showLogin = () => {
-    this.props.navigation.navigate('Login');
+    this.props.navigation.navigate(screens.Login);
   };
 
   render() {

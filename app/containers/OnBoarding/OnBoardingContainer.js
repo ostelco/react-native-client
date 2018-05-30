@@ -10,6 +10,7 @@ import {
   setAuthentication
 } from "../../actions";
 import { auth0 } from '../../helper/auth';
+import screens from "../../helper/screens";
 
 class OnBoardingContainer extends React.Component {
 
@@ -55,7 +56,7 @@ class OnBoardingContainer extends React.Component {
   };
 
   _showTermsAndConditions = async () => {
-    this.props.navigation.navigate('TermsAndConditions');
+    this.props.navigation.navigate(screens.TermsAndConditions);
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -63,10 +64,10 @@ class OnBoardingContainer extends React.Component {
       // We have finished the getProfile query.
       // if the profile is missing we go to Signup.
       if (!this.props.profile.data) {
-        this.props.navigation.navigate('Signup');
+        this.props.navigation.navigate(screens.SignUp);
       } else {
         // Otherwise go to home page
-        this.props.navigation.navigate('App');
+        this.props.navigation.navigate(screens.Home);
       }
     }
   }

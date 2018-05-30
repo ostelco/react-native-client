@@ -2,6 +2,7 @@ import React from "react";
 import Privacy from "./Privacy";
 import { connect } from 'react-redux';
 import { setConsent } from "../../actions";
+import screens from "../../helper/screens";
 
 class PrivacyContainer extends React.Component {
 
@@ -10,11 +11,11 @@ class PrivacyContainer extends React.Component {
   };
 
   _showPrivacyPolicy = () => {
-    this.props.navigation.navigate('PrivacyPolicy');
+    this.props.navigation.navigate(screens.PrivacyPolicy);
   };
 
   _showTermsAndConditions = () => {
-    this.props.navigation.navigate('TermsAndConditions', { isModal: true })
+    this.props.navigation.navigate(screens.TermsAndConditions, { isModal: true })
   };
 
   render() {

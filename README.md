@@ -13,6 +13,7 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - [Link to design](https://app.zeplin.io/project/5ad46cf612304dbd7b7690d0)
 - [Yarn](https://yarnpkg.com/) We use yarn instead of NPM
 - [React Native](https://github.com/facebook/react-native)
+- [React Native Firebase](https://rnfirebase.io/) native firebase sdk for react native [example usage](https://rnfirebase.io/docs/v4.2.x/installation/initial-setup#Example-Usage)
 
 ## Developer setup
 

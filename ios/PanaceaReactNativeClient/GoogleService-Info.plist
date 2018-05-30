@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>141232844658-nen9a0cq45q2m9i9tn60kasda1q32jrg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.141232844658-nen9a0cq45q2m9i9tn60kasda1q32jrg</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>141232844658-fd0jrig8hiorgipkd72ig34geg1tuj49.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCFBn7bgd1mvOTl_suG_LPg8DXZNd1KbFM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>141232844658</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>digital.telenor.panacea</string>
+	<key>PROJECT_ID</key>
+	<string>panacea-39e5a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>panacea-39e5a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:141232844658:ios:623a4f7bb5cf26cd</string>
+	<key>DATABASE_URL</key>
+	<string>https://panacea-39e5a.firebaseio.com</string>
+</dict>
+</plist>

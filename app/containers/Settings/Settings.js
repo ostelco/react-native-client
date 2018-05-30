@@ -8,7 +8,7 @@ import {TouchableHighlight} from "react-native";
 import { IconButton } from './components';
 
 const Settings = props => {
-  const { goBack, showUserDetails, showOnBoarding, showPrivacy, showPurchaseHistory } = props;
+  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory } = props;
   return (
     <Container style={styles.container}>
       <Header style={styles.header} androidStatusBarColor={'rgba(0,0,0,0.5)'}>
@@ -38,7 +38,7 @@ const Settings = props => {
               <Text style={textStyles.textStyle8}>What You Bought</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight onPress={showOnBoarding}>
+          <TouchableHighlight onPress={handleLogout}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Logout</Text>
             </View>

@@ -1,7 +1,6 @@
 import React from "react";
 import OnBoarding from "./OnBoarding";
 import { AsyncStorage } from "react-native";
-import Auth0 from 'react-native-auth0';
 import { connect } from 'react-redux';
 import {
   loadSubscription,
@@ -10,14 +9,7 @@ import {
   getProfile,
   setAuthentication
  } from "../../actions";
-
-// TODO: Move to configuration file or variables.js
-const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
-const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
-
-// TODO: Move to utils file
-const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: auth0ClientId });
-
+import { auth0 } from '../../helper/auth';
 
 class OnBoardingContainer extends React.Component {
 
@@ -25,7 +17,7 @@ class OnBoardingContainer extends React.Component {
     console.log('signIn');
     await auth0
       .webAuth
-      .authorize({scope: 'openid profile email', audience: 'http://google_api', connection: 'google-oauth2', response_type: 'token'})
+      .authorize({scope: 'openid profile email', audience: 'http://google_api', connection: 'google-oauth2', response_type: 'token',  prompt: 'login'})
       .then(credentials => {
         console.log("credentials", credentials);
         return auth0

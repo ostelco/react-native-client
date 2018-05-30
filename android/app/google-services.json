@@ -1,0 +1,156 @@
+{
+  "project_info": {
+    "project_number": "141232844658",
+    "firebase_url": "https://panacea-39e5a.firebaseio.com",
+    "project_id": "panacea-39e5a",
+    "storage_bucket": "panacea-39e5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141232844658:android:623a4f7bb5cf26cd",
+        "android_client_info": {
+          "package_name": "digital.telenor.panacea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfhX_e0ktOSxEMdP79Rk2T14FoJM9se5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141232844658:android:f37c72166b2d983b",
+        "android_client_info": {
+          "package_name": "digital.telenor.panacea2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141232844658-e7hj0bct376fuhrma5sljpr5piuqfq5t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea2",
+            "certificate_hash": "7464545b0578ba2a336064063ad36b5f433155cd"
+          }
+        },
+        {
+          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfhX_e0ktOSxEMdP79Rk2T14FoJM9se5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141232844658-nn2v36gsk2nm4e6k23ircq0gvjmterd1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            },
+            {
+              "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141232844658:android:f968efbb41d1fa7a",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141232844658-fd0jrig8hiorgipkd72ig34geg1tuj49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "host.exp.exponent",
+            "certificate_hash": "8ec186f6dbbde7358da8507bc109dc9fee2f9985"
+          }
+        },
+        {
+          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfhX_e0ktOSxEMdP79Rk2T14FoJM9se5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141232844658-nn2v36gsk2nm4e6k23ircq0gvjmterd1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            },
+            {
+              "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

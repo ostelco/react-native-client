@@ -7,7 +7,8 @@ export default StyleSheet.create({
   },
   header: {
     backgroundColor: colors.white,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    zIndex: 1
   },
   headerLeftButton: {
     color: colors.brownishGrey
@@ -26,7 +27,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.white,
     paddingVertical: 30,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    zIndex: 1
   },
   flex: {
     flex: 1

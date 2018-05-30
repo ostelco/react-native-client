@@ -4,7 +4,8 @@ import {colors} from "../../config/colors";
 export default StyleSheet.create({
   header: {
     backgroundColor: colors.white,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    zIndex: 1
   },
   headerIcon: {
     color: 'black'

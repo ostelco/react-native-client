@@ -14,6 +14,7 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - [Yarn](https://yarnpkg.com/) We use yarn instead of NPM
 - [React Native](https://github.com/facebook/react-native)
 - [React Native Firebase](https://rnfirebase.io/) native firebase sdk for react native [example usage](https://rnfirebase.io/docs/v4.2.x/installation/initial-setup#Example-Usage)
+- [Firebase Analytics](https://console.firebase.google.com/project/panacea-39e5a/analytics/app/ios:digital.telenor.panacea/overview%3Ft=2&cs=app.m.dashboard.overview&g=1) link to firebase analytics dashboard
 
 ## Developer setup
 

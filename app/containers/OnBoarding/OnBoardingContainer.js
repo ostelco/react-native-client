@@ -8,21 +8,31 @@ import {
   loadConsents,
   getProfile,
   setAuthentication
- } from "../../actions";
+} from "../../actions";
 import { auth0 } from '../../helper/auth';
 
 class OnBoardingContainer extends React.Component {
 
   _signIn = async () => {
     console.log('signIn');
+    const token = await AsyncStorage.getItem('@app:session');
+    let authOptions = {
+      scope: 'openid profile email',
+      audience: 'http://google_api',
+      connection: 'google-oauth2',
+      response_type: 'token'
+    };
+    if (!token) {
+      authOptions.prompt = 'login';
+    }
     await auth0
       .webAuth
-      .authorize({scope: 'openid profile email', audience: 'http://google_api', connection: 'google-oauth2', response_type: 'token',  prompt: 'login'})
+      .authorize(authOptions)
       .then(credentials => {
         console.log("credentials", credentials);
         return auth0
           .auth
-          .userInfo({token: credentials.accessToken})
+          .userInfo({ token: credentials.accessToken })
           .then(userinfo => {
             const auth = {
               accessToken: credentials.accessToken,
@@ -32,14 +42,14 @@ class OnBoardingContainer extends React.Component {
             this.props.setAuthentication(auth)
             AsyncStorage.setItem('@app:email', auth.email)
             return AsyncStorage.setItem('@app:session', credentials.accessToken)
-            .then(() => {
-              console.log("Load subscription & products");
-              this.props.getProfile();
-              this.props.loadSubscription();
-              this.props.loadProducts();
-              this.props.loadConsents();
-            });
-        });
+              .then(() => {
+                console.log("Load subscription & products");
+                this.props.getProfile();
+                this.props.loadSubscription();
+                this.props.loadProducts();
+                this.props.loadConsents();
+              });
+          });
       })
       .catch(error => console.log(error));
   };

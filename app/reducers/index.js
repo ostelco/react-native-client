@@ -92,7 +92,7 @@ const error = (state = null, action) => {
   return state;
 }
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth,
   subscription,
   products,
@@ -101,5 +101,12 @@ const rootReducer = combineReducers({
   selectedProduct,
   error,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === ActionTypes.USER_LOGOUT) {
+    state = undefined
+  }
+  return appReducer(state, action);
+};
 
 export default rootReducer;

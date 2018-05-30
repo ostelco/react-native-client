@@ -37,7 +37,7 @@ platform :android do
             drive_keyfile: '../panacea-360f19c53f06.json',
             service_account: true,
             folder_id: '1tfdsd12w9cRvIBX4TVx5PTLAhC9vfM5h',
-            upload_files: ['app/build/outputs/apk/app-release.apk']
+            upload_files: ['app/build/outputs/apk/release/app-release.apk']
           )
         end
 end

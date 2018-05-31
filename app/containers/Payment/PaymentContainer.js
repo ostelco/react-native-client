@@ -3,6 +3,7 @@ import Payment from "./Payment";
 import { buyProduct } from "../../actions";
 import { connect } from 'react-redux';
 import * as _ from "lodash";
+import {logECommercePurchaseEvent} from "../../helper/analytics";
 
 class PaymentContainer extends React.Component {
 
@@ -15,6 +16,7 @@ class PaymentContainer extends React.Component {
 
   _goBack = () => {
     this.setState({ isDialogVisible: false });
+    logECommercePurchaseEvent(this.props.selectedProduct);
     this.props.navigation.pop();
   };
 

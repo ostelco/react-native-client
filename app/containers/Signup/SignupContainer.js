@@ -5,6 +5,7 @@ import {
   createProfile,
  } from "../../actions";
 import screens from "../../helper/screens";
+import {logSignUpEvent} from "../../helper/analytics";
 
 class SignupContainer extends React.Component {
 
@@ -27,8 +28,12 @@ class SignupContainer extends React.Component {
   };
 
   _showGDPR = () => {
+
     this.props.createProfile(this.state.profile)
-    .then(() => this.props.navigation.navigate(screens.GDPR));
+    .then(() => {
+      logSignUpEvent();
+      this.props.navigation.navigate(screens.GDPR)
+    });
   };
 
   _handleNameChanged = (text) => {

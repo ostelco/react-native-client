@@ -61,7 +61,7 @@ DEPENDENCIES:
   - Firebase/Performance
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Crashlytics
     - Fabric
     - Firebase
@@ -93,4 +93,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: bc714983a0e0b4430f66d7a12ed2232ae8dd35eb
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.0

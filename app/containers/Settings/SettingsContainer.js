@@ -31,6 +31,7 @@ class SettingsContainer extends React.Component {
   _handleLogout = () => {
     this.props.userLogout();
     AsyncStorage.removeItem('@app:email');
+    AsyncStorage.removeItem('@app:session-refresh');
     return AsyncStorage.removeItem('@app:session')
       .then(() => {
         return auth0.webAuth.clearSession()

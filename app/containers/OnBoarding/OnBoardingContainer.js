@@ -85,8 +85,7 @@ class OnBoardingContainer extends React.Component {
         this.props.navigation.navigate(screens.SignUp);
       } else {
         // Otherwise go to home page
-        this.props.navigation.navigate(screens.SignUp);
-        // this.props.navigation.navigate(screens.Home);
+        this.props.navigation.navigate(screens.Home);
       }
     }
   }

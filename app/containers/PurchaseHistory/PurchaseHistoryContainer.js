@@ -20,7 +20,7 @@ class PurchaseHistoryContainer extends React.Component {
 const mapStateToProps = (state) => {
     const { subscription, error } = state;
     return {
-        purchaseRecords: subscription.status.purchaseRecords,
+        purchaseRecords: subscription.status !== null ? subscription.status.purchaseRecords : [],
       error
     };
   };

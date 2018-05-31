@@ -4,7 +4,11 @@ import {colors} from "../../config/colors";
 export default StyleSheet.create({
   header: {
     backgroundColor: 'transparent',
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    zIndex: 1,
+  },
+  headerTitleContainer: {
+    flex: 2
   },
   container: {
     backgroundColor: colors.whiteTwo

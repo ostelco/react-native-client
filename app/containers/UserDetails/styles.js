@@ -7,8 +7,8 @@ export default StyleSheet.create({
     borderBottomWidth: 0,
     zIndex: 1
   },
-  headerIcon: {
-    color: 'black'
+  headerLeftButton: {
+    color: colors.brownishGrey
   },
   headerTitleContainer: {
     flex: 2

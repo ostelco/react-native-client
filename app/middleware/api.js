@@ -1,19 +1,25 @@
 import { AsyncStorage } from "react-native";
+let reduxStore = null;
 
-async function getAuthHeader() {
-    const value = await AsyncStorage.getItem('@app:session');
-    if (value !== null) {
-      return `Bearer ${value}`;
-    } else {
-      return null;
-    }
+export function setStore(store) {
+  reduxStore = store;
+}
+
+function getAuthHeader() {
+  console.log("getAuthHeader", reduxStore);
+  const value = _.get(reduxStore.getState(), "auth.accessToken", null);
+  if (value !== null) {
+    return `Bearer ${value}`;
+  } else {
+    return null;
+  }
 }
 
 const API_ROOT = 'https://api.ostelco.org/'
 
 const callApi = async (endpoint, method, body, allowEmptyResponse) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
-  const authHeader = await getAuthHeader();
+  const authHeader = getAuthHeader();
   let options = {
     method,
     headers: {
@@ -25,6 +31,7 @@ const callApi = async (endpoint, method, body, allowEmptyResponse) => {
     options.body = body;
     options.headers['content-type'] = 'application/json';
   }
+  //console.log('Calling', fullUrl, options);
   return fetch(fullUrl, options)
     .then(response => {
       return response.text().then(text => {

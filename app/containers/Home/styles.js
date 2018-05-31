@@ -8,7 +8,8 @@ export default StyleSheet.create({
   header: {
     backgroundColor: colors.rosa,
     borderBottomWidth: 0,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    zIndex: 1
   },
   headerRightButton: {
     color: colors.white
@@ -20,7 +21,8 @@ export default StyleSheet.create({
     flex: 1
   },
   topContentContainer: {
-    backgroundColor: colors.rosa
+    backgroundColor: colors.rosa,
+    zIndex: 1
   },
   staticOfferContainer: {
     justifyContent: 'center',

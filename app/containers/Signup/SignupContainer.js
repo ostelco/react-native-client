@@ -4,27 +4,19 @@ import { connect } from 'react-redux';
 import {
   createProfile,
  } from "../../actions";
+import screens from "../../helper/screens";
 
 class SignupContainer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      /*
       profile: {
         name: this.props.auth.name,
         address: '',
         postCode: '',
         city: '',
         email: this.props.auth.email
-      },
-      */
-      profile: {
-        name: 'David Berg',
-        address: 'Storvej 10',
-        postCode: '132 23',
-        city: 'Oslo',
-        // email: this.props.auth.email
       }
     };
   }
@@ -35,7 +27,7 @@ class SignupContainer extends React.Component {
 
   _showGDPR = () => {
     this.props.createProfile(this.state.profile)
-    .then(() => this.props.navigation.navigate('GDPR'));
+    .then(() => this.props.navigation.navigate(screens.GDPR));
   };
 
   _handleNameChanged = (text) => {

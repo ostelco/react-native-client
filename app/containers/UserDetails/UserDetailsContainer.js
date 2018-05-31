@@ -1,6 +1,7 @@
 import React from "react";
 import UserDetails from "./UserDetails";
 import { connect } from 'react-redux';
+import screens from '../../helper/screens';
 
 class UserDetailsContainer extends React.Component {
 
@@ -9,7 +10,7 @@ class UserDetailsContainer extends React.Component {
     };
 
     _goEdit = (label, profileKey, multiline = false) => {
-      this.props.navigation.push('Edit', {
+      this.props.navigation.push(screens.UserDetailsEdit, {
         label,
         profileKey,
         profile: this.props.profile,

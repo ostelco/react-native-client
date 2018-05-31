@@ -3,11 +3,12 @@ import {colors} from "../../config/colors";
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: colors.whiteTwo
+    backgroundColor: colors.whiteTwo,
   },
   header: {
     backgroundColor: colors.white,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    zIndex: 1
   },
   headerButton: {
     color: colors.brownishGrey

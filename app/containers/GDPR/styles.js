@@ -7,7 +7,8 @@ export default StyleSheet.create({
   },
   header: {
     backgroundColor: colors.white,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    zIndex: 1
   },
   content: {
     flex: 1,

@@ -26,6 +26,7 @@ ios/Pods
 android/maven
 panacea-360f19*.json
 *.cer
+*.app.dSYM.zip
 
 # From .gitignore created by react-native init command
 

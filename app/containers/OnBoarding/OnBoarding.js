@@ -11,7 +11,7 @@ const OnBoarding = (props) => {
   return (
     <Container>
       <Image source={require('../../../assets/sweets.jpg')} style={styles.containerImage} />
-      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
+      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
         <Body style={{ alignItems: 'center' }}>
           <Title style={textStyles.textStyle11}>pi</Title>
         </Body>

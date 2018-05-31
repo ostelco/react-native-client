@@ -3,11 +3,16 @@ package digital.telenor.panacea;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
 import com.auth0.react.A0Auth0Package;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
+import io.invertase.firebase.perf.RNFirebasePerformancePackage;
+import io.invertase.firebase.crash.RNFirebaseCrashPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +28,13 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new A0Auth0Package()
+        new MainReactPackage(),
+        new RNFirebasePackage(),
+        new A0Auth0Package(),
+        new RNFirebaseAnalyticsPackage(),
+        new RNFirebaseCrashlyticsPackage(),
+        new RNFirebasePerformancePackage(),
+        new RNFirebaseCrashPackage()
       );
     }
 

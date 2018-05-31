@@ -8,21 +8,21 @@ const UserDetailsEdit = props => {
   const { label, value, onCancel, onSubmit, onChangeText, multiline } = props;
   return (
     <Container style={styles.container}>
-      <Header style={styles.header}>
+      <Header style={styles.header} noShadow>
         <Body>
         <Title>Edit</Title>
         </Body>
       </Header>
       <Content style={styles.contentContainer}>
         <Form>
-          <Item stackedLabel>
-            <Label style={textStyles.textStyle5}>{ label }</Label>
+          <Label style={textStyles.textStyle5}>{label}</Label>
+          <Item rounded>
             <Input
-             style={[textStyles.textStyle15, styles.input]}
-             value={value}
-             multiline={multiline}
-             onChangeText={onChangeText}
-             />
+              style={textStyles.textStyle15}
+              value={value}
+              multiline={multiline}
+              onChangeText={onChangeText}
+            />
           </Item>
         </Form>
       </Content>

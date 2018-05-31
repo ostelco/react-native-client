@@ -4,16 +4,13 @@ import Home from "./Home";
 import * as _ from "lodash";
 import { connect } from 'react-redux';
 import { loadSubscription, loadProducts, selectProduct } from "../../actions";
+import screens from "../../helper/screens";
 
 class HomeContainer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {}
-  }
-
-  getDataLeft(remaining) {
-    return `${prettyBytes(remaining)}`;
   }
 
   formatDataLeft(subscription) {
@@ -24,12 +21,12 @@ class HomeContainer extends React.Component {
   }
 
   _showMenu = () => {
-    this.props.navigation.navigate('Menu');
+    this.props.navigation.navigate(screens.Menu);
   };
 
   _showPayment = product => {
     this.props.selectProduct(product);
-    this.props.navigation.navigate('Payment');
+    this.props.navigation.navigate(screens.Payment);
   };
 
   render() {
@@ -43,6 +40,7 @@ class HomeContainer extends React.Component {
         dataLeft={dataLeft}
         defaultOffer={this.props.defaultOffer}
         specialOffer={this.props.specialOffer}
+        doUpdate={this.props.loadSubscription}
       />
     );
   }

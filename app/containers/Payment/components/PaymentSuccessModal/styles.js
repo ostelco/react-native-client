@@ -7,7 +7,8 @@ export default StyleSheet.create({
   },
   contentContainer: {
     width: '100%',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: 1
   },
   content: {
     backgroundColor: colors.white,

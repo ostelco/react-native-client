@@ -196,3 +196,9 @@ export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 export const resetErrorMessage = () => ({
     type: RESET_ERROR_MESSAGE
 });
+
+export const USER_LOGOUT = 'USER_LOGOUT';
+
+export const userLogout = () => ({
+  type: USER_LOGOUT
+});

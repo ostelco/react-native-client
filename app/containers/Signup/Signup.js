@@ -33,10 +33,11 @@ const Signup = props => {
     goBack,
     showNext,
     profile,
-    handleNameChange,
-    handleAddressChange,
-    handlePostCodeChange,
-    handleCityChange,
+    handleNameChanged,
+    handleAddressChanged,
+    handlePostCodeChanged,
+    handleCityChanged,
+    handleCountryChanged
   } = props;
 
   return (
@@ -57,19 +58,23 @@ const Signup = props => {
         <Form>
           <FormItem fixedLabel>
             <AppLabel>Full Name</AppLabel>
-            <AppInput value={profile.name} onChangeText={handleNameChange} />
+            <AppInput value={profile.name} onChangeText={handleNameChanged} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>Address</AppLabel>
-            <AppInput value={profile.address} onChangeText={handleAddressChange} />
+            <AppInput value={profile.address} onChangeText={handleAddressChanged} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>Postal Code</AppLabel>
-            <AppInput value={profile.postCode} onChangeText={handlePostCodeChange} />
+            <AppInput value={profile.postCode} onChangeText={handlePostCodeChanged} />
           </FormItem>
           <FormItem fixedLabel>
             <AppLabel>City</AppLabel>
-            <AppInput value={profile.city}  onChangeText={handleCityChange} />
+            <AppInput value={profile.city}  onChangeText={handleCityChanged} />
+          </FormItem>
+          <FormItem fixedLabel>
+            <AppLabel>Country</AppLabel>
+            <AppInput value={profile.country}  onChangeText={handleCountryChanged} />
           </FormItem>
           <View style={styles.doneButtonContainer}>
             <Button onPress={showNext} style={styles.doneButton} block><Text style={textStyles.textStyle6}>Done</Text></Button>
@@ -86,12 +91,6 @@ Signup.propTypes = {
   goBack: PropTypes.func,
   showNext: PropTypes.func,
   profile: PropTypes.object
-};
-
-Signup.defaultProps = {
-  profile: {
-    name: 'David Berg'
-  }
 };
 
 export default Signup;

@@ -5,6 +5,7 @@ import * as _ from "lodash";
 import { connect } from 'react-redux';
 import { loadSubscription, loadProducts, selectProduct } from "../../actions";
 import screens from "../../helper/screens";
+import {logAddToCartEvent} from "../../helper/analytics";
 
 class HomeContainer extends React.Component {
 
@@ -26,6 +27,7 @@ class HomeContainer extends React.Component {
 
   _showPayment = product => {
     this.props.selectProduct(product);
+    logAddToCartEvent(product);
     this.props.navigation.navigate(screens.Payment);
   };
 

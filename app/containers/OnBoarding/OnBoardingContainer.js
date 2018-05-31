@@ -11,6 +11,7 @@ import {
 } from "../../actions";
 import { auth0 } from '../../helper/auth';
 import screens from "../../helper/screens";
+import {logLoginEvent} from '../../helper/analytics';
 
 class OnBoardingContainer extends React.Component {
 
@@ -40,10 +41,12 @@ class OnBoardingContainer extends React.Component {
               email: userinfo.email,
               name: userinfo.name
             };
-            this.props.setAuthentication(auth)
+            this.props.setAuthentication(auth);
+            logLoginEvent();
             AsyncStorage.setItem('@app:email', auth.email)
             return AsyncStorage.setItem('@app:session', credentials.accessToken)
               .then(() => {
+
                 console.log("Load subscription & products");
                 this.props.getProfile();
                 this.props.loadSubscription();
@@ -67,7 +70,8 @@ class OnBoardingContainer extends React.Component {
         this.props.navigation.navigate(screens.SignUp);
       } else {
         // Otherwise go to home page
-        this.props.navigation.navigate(screens.Home);
+        this.props.navigation.navigate(screens.SignUp);
+        // this.props.navigation.navigate(screens.Home);
       }
     }
   }

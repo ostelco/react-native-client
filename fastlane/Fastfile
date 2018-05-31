@@ -26,7 +26,7 @@ platform :ios do
       gym(
         scheme: 'PanaceaReactNativeClient',
         xcargs: "PROVISIONING_PROFILE_SPECIFIER='#{profile}' DEVELOPMENT_TEAM='#{team_id}'",
-        project: "ios/PanaceaReactNativeClient.xcodeproj"
+        workspace: "ios/PanaceaReactNativeClient.xcworkspace"
       )
   end
 end

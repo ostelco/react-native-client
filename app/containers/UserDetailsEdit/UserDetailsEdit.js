@@ -8,7 +8,7 @@ const UserDetailsEdit = props => {
   const { label, value, onCancel, onSubmit, onChangeText, multiline } = props;
   return (
     <Container style={styles.container}>
-      <Header style={styles.header}>
+      <Header style={styles.header} noShadow>
         <Body>
         <Title>Edit</Title>
         </Body>

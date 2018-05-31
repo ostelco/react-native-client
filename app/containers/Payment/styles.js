@@ -7,7 +7,8 @@ export default StyleSheet.create({
   },
   header: {
     backgroundColor: colors.white,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    zIndex: 1
   },
   headerLeftButton: {
     color: colors.brownishGrey
@@ -20,7 +21,8 @@ export default StyleSheet.create({
   },
   productDescriptionContainer: {
     padding: 30,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    zIndex: 1
   },
   paymentFormContainer: {
     flex: 1,
@@ -52,7 +54,7 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     paddingHorizontal: 45,
     width: '100%',
-    paddingBottom: 75
+    paddingBottom: 25
   },
   submitButtonContainer: {
     width: '100%',

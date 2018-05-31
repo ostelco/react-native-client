@@ -10,7 +10,7 @@ const Privacy = props => {
     const { goBack,  showPrivacyPolicy, showTermsAndConditions, consent, setConsent} = props;
     return (
       <Container style={styles.container}>
-        <Header style={styles.header}>
+        <Header style={styles.header} noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'}>
           <Left>
             <Button transparent onPress={goBack}>
               <Icon name="arrow-back" style={styles.headerLeftButton} />

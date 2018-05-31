@@ -40,6 +40,7 @@ class HomeContainer extends React.Component {
         dataLeft={dataLeft}
         defaultOffer={this.props.defaultOffer}
         specialOffer={this.props.specialOffer}
+        doUpdate={this.props.loadSubscription}
       />
     );
   }

@@ -40,7 +40,9 @@ class OnBoardingContainer extends React.Component {
               accessToken: credentials.accessToken,
               refreshToken: credentials.refreshToken,
               email: userinfo.email,
-              name: userinfo.name
+              name: userinfo.name,
+              expiresAt: Date.now() + (30*1000)
+              // expiresAt: Date.now()+ (credentials.expiresIn*1000)
             };
             this.props.setAuthentication(auth);
             logLoginEvent();

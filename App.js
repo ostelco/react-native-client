@@ -5,12 +5,12 @@ import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPR
 import { RNConfetti } from "./app/components";
 import { Provider } from 'react-redux';
 import configureStore from './app/store/configureStore'
-import { autoLogin } from './app/helper/auth'
-import { setStore } from './app/middleware/api'
+import { setStore, autoLogin } from './app/helper/auth'
+import NavigationService from './NavigationService';
 
 const store = configureStore();
 setStore(store); // For auth related properties
-autoLogin(store); // Try automatic login
+autoLogin(); // Try automatic login
 
 const AppStack = createStackNavigator({
   Home: HomeContainer,
@@ -112,6 +112,9 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Root>
           <RootStack
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
             onNavigationStateChange={(prevState, currentState) => {
               const currentScreen = getActiveRouteName(currentState);
               const prevScreen = getActiveRouteName(prevState);

@@ -2,16 +2,16 @@ import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux';
 import firebase from "react-native-firebase";
 
-const subscription = (state = { isFetching: false, status: null }, action) => {
+const subscription = (state = { isFetching: false, status: null, queried: false }, action) => {
   console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.SUBSCRIPTION_REQUEST:
-      return {...state, isFetching: true};
+      return {...state, isFetching: true, queried: true};
     case ActionTypes.SUBSCRIPTION_FAILURE:
-      return {isFetching: false, status:null};
+      return {isFetching: false, status:null, queried: true};
     case ActionTypes.SUBSCRIPTION_SUCCESS:
-      return {isFetching: false, status:response};
+      return {isFetching: false, status:response, queried: true};
   }
   return state;
 }

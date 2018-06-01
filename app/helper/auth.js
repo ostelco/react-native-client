@@ -16,17 +16,59 @@ export function setStore(store) {
   _store = store;
 }
 
-export async function autoLogin(fail) {
+function setAuthParams(credentials, userInfo) {
+  const auth = {
+    accessToken: credentials.accessToken,
+    refreshToken: credentials.refreshToken,
+    email: userinfo.email,
+    name: userinfo.name,
+    expiresAt: Date.now()+ (credentials.expiresIn*1000)
+  };
+  _store.dispatch(setAuthentication(auth));
+  AsyncStorage.setItem('@app:email', auth.email);
+  AsyncStorage.setItem('@app:session-refresh', credentials.refreshToken);
+  AsyncStorage.setItem('@app:session', credentials.accessToken);
+}
+
+export async function login() {
+  console.log('login');
+  const token = await AsyncStorage.getItem('@app:session');
+  let authOptions = {
+    scope: 'openid profile email offline_access',
+    audience: 'http://google_api',
+    connection: 'google-oauth2',
+    response_type: 'token'
+  };
+  if (!token) {
+    authOptions.prompt = 'login';
+  }
+  const loginStatus = await auth0
+    .webAuth
+    .authorize(authOptions)
+    .then(credentials => {
+      console.log("credentials", credentials);
+      return auth0
+        .auth
+        .userInfo({ token: credentials.accessToken })
+        .then(userinfo => {
+          setAuthParams(credentials, userinfo);
+          return true;
+        });
+    })
+    .catch(error => {
+      console.log(error);
+      return false;
+    });
+    return loginStatus;
+}
+
+export async function autoLogin() {
   console.log('autoLogin');
   const refreshToken = await AsyncStorage.getItem('@app:session-refresh');
   let authOptions = {
     scope: 'openid profile email',
     refreshToken
   };
-  if (fail) {
-    cleanup();
-    return Promise.reject(false);
-  }
   if (!refreshToken) {
     console.log("No refresh Token, go to login");
     return false;
@@ -40,17 +82,7 @@ export async function autoLogin(fail) {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          const auth = {
-            accessToken: credentials.accessToken,
-            refreshToken,
-            email: userinfo.email,
-            name: userinfo.name,
-            //expiresAt: Date.now()+ (credentails.expiresIn*1000)
-            expiresAt: Date.now() + (30*1000)
-          };
-          store.dispatch(setAuthentication(auth));
-          AsyncStorage.setItem('@app:email', auth.email);
-          AsyncStorage.setItem('@app:session', credentials.accessToken);
+          setAuthParams(credentials, userinfo);
           return true;
         });
     })

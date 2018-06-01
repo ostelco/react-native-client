@@ -9,58 +9,25 @@ import {
   getProfile,
   setAuthentication
 } from "../../actions";
-import { auth0 } from '../../helper/auth';
+import { login } from '../../helper/auth';
 import screens from "../../helper/screens";
 import {logLoginEvent} from '../../helper/analytics';
 
 class OnBoardingContainer extends React.Component {
 
   _signIn = async () => {
-    console.log('signIn');
-    const token = await AsyncStorage.getItem('@app:session');
-    let authOptions = {
-      scope: 'openid profile email offline_access',
-      audience: 'http://google_api',
-      connection: 'google-oauth2',
-      response_type: 'token'
-    };
-    if (!token) {
-      authOptions.prompt = 'login';
+    const loginStatus = await login();
+    if (loginStatus ===  true) {
+      console.log("Load subscription & products");
+      logLoginEvent();
+      this.props.getProfile();
+      this.props.loadSubscription();
+      this.props.loadProducts();
+      this.props.loadConsents();
+    } else {
+      console.log("Login failed.");
     }
-    await auth0
-      .webAuth
-      .authorize(authOptions)
-      .then(credentials => {
-        console.log("credentials", credentials);
-        return auth0
-          .auth
-          .userInfo({ token: credentials.accessToken })
-          .then(userinfo => {
-            const auth = {
-              accessToken: credentials.accessToken,
-              refreshToken: credentials.refreshToken,
-              email: userinfo.email,
-              name: userinfo.name,
-              expiresAt: Date.now() + (30*1000)
-              // expiresAt: Date.now()+ (credentials.expiresIn*1000)
-            };
-            this.props.setAuthentication(auth);
-            logLoginEvent();
-            AsyncStorage.setItem('@app:email', auth.email);
-            AsyncStorage.setItem('@app:session-refresh', credentials.refreshToken);
-            return AsyncStorage.setItem('@app:session', credentials.accessToken)
-              .then(() => {
-
-                console.log("Load subscription & products");
-                this.props.getProfile();
-                this.props.loadSubscription();
-                this.props.loadProducts();
-                this.props.loadConsents();
-              });
-          });
-      })
-      .catch(error => console.log(error));
-  };
+  }
 
   _showTermsAndConditions = async () => {
     this.props.navigation.navigate(screens.TermsAndConditions);

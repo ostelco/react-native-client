@@ -33,7 +33,7 @@ class HomeContainer extends React.Component {
   };
 
   render() {
-    if (this.props.subscription.isFetching === false && this.props.subscription.status === null) {
+    if (this.props.subscription.queried === true && this.props.subscription.isFetching === false && this.props.subscription.status === null) {
       Alert.alert('We would not find your subscription:-(', 'The app will not work as expected. Please contact one of the friendly developers, we can fix it for you!');
     }
 

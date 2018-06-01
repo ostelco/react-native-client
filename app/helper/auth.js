@@ -16,17 +16,17 @@ export function setStore(store) {
   _store = store;
 }
 
-function setAuthParams(credentials, userInfo) {
+function setAuthParams(credentials, userInfo, refreshToken) {
   const auth = {
     accessToken: credentials.accessToken,
-    refreshToken: credentials.refreshToken,
-    email: userinfo.email,
-    name: userinfo.name,
+    refreshToken,
+    email: userInfo.email,
+    name: userInfo.name,
     expiresAt: Date.now()+ (credentials.expiresIn*1000)
   };
   _store.dispatch(setAuthentication(auth));
   AsyncStorage.setItem('@app:email', auth.email);
-  AsyncStorage.setItem('@app:session-refresh', credentials.refreshToken);
+  AsyncStorage.setItem('@app:session-refresh', refreshToken);
   AsyncStorage.setItem('@app:session', credentials.accessToken);
 }
 
@@ -51,7 +51,7 @@ export async function login() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          setAuthParams(credentials, userinfo);
+          setAuthParams(credentials, userinfo, credentials.refreshToken);
           return true;
         });
     })
@@ -82,7 +82,7 @@ export async function autoLogin() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          setAuthParams(credentials, userinfo);
+          setAuthParams(credentials, userinfo, refreshToken);
           return true;
         });
     })

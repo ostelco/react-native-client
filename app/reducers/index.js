@@ -1,5 +1,6 @@
 import * as ActionTypes from '../actions'
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import firebase from "react-native-firebase";
 
 const subscription = (state = { isFetching: false, status: null }, action) => {
   console.log("Action = ", action);
@@ -106,6 +107,19 @@ const rootReducer = (state, action) => {
   if (action.type === ActionTypes.USER_LOGOUT) {
     state = undefined
   }
+
+  console.log(action);
+
+  switch (action.type) {
+    case ActionTypes.SUBSCRIPTION_FAILURE:
+      firebase.crashlytics().log(`User is missing a subscription.`);
+      break;
+    case ActionTypes.PROFILE_SUCCESS:
+    case ActionTypes.PROFILE_CREATE_SUCCESS:
+    case ActionTypes.PROFILE_UPDATE_SUCCESS:
+      firebase.crashlytics().setUserIdentifier(action.response.email);
+  }
+
   return appReducer(state, action);
 };
 

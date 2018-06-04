@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Body, Left, Title, Right, Button, Icon, Content, Header} from "native-base";
+import {Container, Body, Left, Title, Right, Button, Icon, Content, Header, Text} from "native-base";
 import styles from './styles';
 import {textStyles} from "../../config/fonts";
 import {RoundedBorder} from "../../components";
@@ -35,7 +35,7 @@ const PurchaseHistory = props => {
         </Header>
         <RoundedBorder/>
         <Content style={styles.content}>
-          { listItems }
+          { listItems.length > 0 ? listItems : <Text>You don't have any purchases, yet!</Text> }
         </Content>
       </Container>
     );
@@ -47,7 +47,7 @@ PurchaseHistory.propTypes = {
 };
 
 PurchaseHistory.defaultProps = {
-  data: []
+  purchaseRecords: []
 };
 
 export default PurchaseHistory;

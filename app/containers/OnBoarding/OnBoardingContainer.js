@@ -11,6 +11,7 @@ import {
 } from "../../actions";
 import { auth0 } from '../../helper/auth';
 import screens from "../../helper/screens";
+import {logLoginEvent} from '../../helper/analytics';
 
 class OnBoardingContainer extends React.Component {
 
@@ -18,7 +19,7 @@ class OnBoardingContainer extends React.Component {
     console.log('signIn');
     const token = await AsyncStorage.getItem('@app:session');
     let authOptions = {
-      scope: 'openid profile email',
+      scope: 'openid profile email offline_access',
       audience: 'http://google_api',
       connection: 'google-oauth2',
       response_type: 'token'
@@ -37,13 +38,17 @@ class OnBoardingContainer extends React.Component {
           .then(userinfo => {
             const auth = {
               accessToken: credentials.accessToken,
+              refreshToken: credentials.refreshToken,
               email: userinfo.email,
               name: userinfo.name
             };
-            this.props.setAuthentication(auth)
-            AsyncStorage.setItem('@app:email', auth.email)
+            this.props.setAuthentication(auth);
+            logLoginEvent();
+            AsyncStorage.setItem('@app:email', auth.email);
+            AsyncStorage.setItem('@app:session-refresh', credentials.refreshToken);
             return AsyncStorage.setItem('@app:session', credentials.accessToken)
               .then(() => {
+
                 console.log("Load subscription & products");
                 this.props.getProfile();
                 this.props.loadSubscription();
@@ -59,8 +64,21 @@ class OnBoardingContainer extends React.Component {
     this.props.navigation.navigate(screens.TermsAndConditions);
   };
 
+  checkForAutoLogin = async () => {
+    console.log('checkForAutoLogin');
+    if (this.props.auth) {
+      console.log('We have logged in already, do startup');
+      this.props.getProfile();
+      this.props.loadSubscription();
+      this.props.loadProducts();
+      this.props.loadConsents();
+    }
+  };
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.profile.queried === true && prevProps.profile.queried === false) {
+    if (this.props.auth && prevProps.auth === null) {
+      this.checkForAutoLogin();
+    } else if (this.props.profile.queried === true && prevProps.profile.queried === false) {
       // We have finished the getProfile query.
       // if the profile is missing we go to Signup.
       if (!this.props.profile.data) {
@@ -80,10 +98,11 @@ class OnBoardingContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { error, profile } = state;
+  const { error, profile, auth } = state;
   return {
     error,
-    profile
+    profile,
+    auth
   };
 };
 

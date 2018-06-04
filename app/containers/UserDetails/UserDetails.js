@@ -54,13 +54,13 @@ const UserDetails = props => {
     return (
       <Container style={styles.container}>
         <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
-          <Left style={styles.headerLeft}>
+          <Left>
             <Button transparent onPress={goBack}>
-              <Icon name="arrow-back" style={styles.headerIcon} />
+              <Icon name="arrow-back" style={styles.headerLeftButton} />
             </Button>
           </Left>
           <Body style={styles.headerTitleContainer}>
-            <Title>Personal Details</Title>
+            <Title style={textStyles.textStyle19}>Personal Details</Title>
           </Body>
           <Right>
 

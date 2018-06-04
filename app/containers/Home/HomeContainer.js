@@ -5,6 +5,8 @@ import * as _ from "lodash";
 import { connect } from 'react-redux';
 import { loadSubscription, loadProducts, selectProduct } from "../../actions";
 import screens from "../../helper/screens";
+import {logAddToCartEvent} from "../../helper/analytics";
+import { Alert } from "react-native";
 
 class HomeContainer extends React.Component {
 
@@ -26,12 +28,19 @@ class HomeContainer extends React.Component {
 
   _showPayment = product => {
     this.props.selectProduct(product);
+    logAddToCartEvent(product);
     this.props.navigation.navigate(screens.Payment);
   };
 
   render() {
     console.log(this.props.defaultOffer);
     console.log(this.props.specialOffer);
+    console.log('Subscription:', this.props.subscription);
+
+    if (this.props.subscription.isFetching === false && this.props.subscription.status === null) {
+      Alert.alert('We would not find your subscription:-(', 'The app will not work as expected. Please contact one of the friendly developers, we can fix it for you!');
+    }
+
     const dataLeft = this.formatDataLeft(this.props.subscription);
     return (
       <Home

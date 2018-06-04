@@ -8,9 +8,9 @@ const UserDetailsEdit = props => {
   const { label, value, onCancel, onSubmit, onChangeText, multiline } = props;
   return (
     <Container style={styles.container}>
-      <Header style={styles.header} noShadow>
+      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
         <Body>
-        <Title>Edit</Title>
+          <Title style={textStyles.textStyle19}>Edit</Title>
         </Body>
       </Header>
       <Content style={styles.contentContainer}>

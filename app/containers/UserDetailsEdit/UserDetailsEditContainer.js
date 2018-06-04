@@ -25,7 +25,7 @@ class UserDetailsEditContainer extends React.Component {
     .then(() => this.props.navigation.pop());
   };
   _onChangeText = (text) => {
-    this.state.profile[this.state.profileKey] = text;
+    this.setState({ profile: { ...this.state.profile, [this.state.profileKey]: text }});
   }
   render() {
     const { navigation } = this.props;

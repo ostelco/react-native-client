@@ -5,6 +5,7 @@ import {
   createProfile,
  } from "../../actions";
 import screens from "../../helper/screens";
+import {logSignUpEvent} from "../../helper/analytics";
 
 class SignupContainer extends React.Component {
 
@@ -16,6 +17,7 @@ class SignupContainer extends React.Component {
         address: '',
         postCode: '',
         city: '',
+        country: '',
         email: this.props.auth.email
       }
     };
@@ -26,8 +28,12 @@ class SignupContainer extends React.Component {
   };
 
   _showGDPR = () => {
+
     this.props.createProfile(this.state.profile)
-    .then(() => this.props.navigation.navigate(screens.GDPR));
+    .then(() => {
+      logSignUpEvent();
+      this.props.navigation.navigate(screens.GDPR)
+    });
   };
 
   _handleNameChanged = (text) => {
@@ -51,6 +57,12 @@ class SignupContainer extends React.Component {
     this.setState({profile});
   };
 
+  _handleCountryChanged = (text) => {
+    let { profile } = this.state;
+    profile.country = text;
+    this.setState({profile});
+  };
+
   render() {
     return (
       <Signup
@@ -61,6 +73,7 @@ class SignupContainer extends React.Component {
         handleAddressChanged={this._handleAddressChanged}
         handlePostCodeChanged={this._handlePostCodeChanged}
         handleCityChanged={this._handleCityChanged}
+        handleCountryChanged={this._handleCountryChanged}
       />
     )
   }

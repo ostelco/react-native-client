@@ -27,7 +27,7 @@ const PaymentSuccessModal = props => {
 
       <RoundedBorder />
 
-      <RNConfetti />
+      <RNConfetti style={{ zIndex: 999 }} />
     </Modal>
   )
 };

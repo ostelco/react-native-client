@@ -32,16 +32,13 @@ function setAuthParams(credentials, userInfo, refreshToken) {
 
 export async function login() {
   console.log('login');
-  const token = await AsyncStorage.getItem('@app:session');
   let authOptions = {
     scope: 'openid profile email offline_access',
     audience: 'http://google_api',
     connection: 'google-oauth2',
-    response_type: 'token'
+    response_type: 'token',
+    prompt: 'login'
   };
-  if (!token) {
-    authOptions.prompt = 'login';
-  }
   const loginStatus = await auth0
     .webAuth
     .authorize(authOptions)

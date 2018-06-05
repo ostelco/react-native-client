@@ -18,6 +18,19 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - [React Native Firebase](https://rnfirebase.io/) native firebase sdk for react native [example usage](https://rnfirebase.io/docs/v4.2.x/installation/initial-setup#Example-Usage)
 - [Firebase Analytics](https://console.firebase.google.com/project/panacea-39e5a/analytics/app/ios:digital.telenor.panacea/overview%3Ft=2&cs=app.m.dashboard.overview&g=1) link to firebase analytics dashboard
   - [Screen Tracking with React Navigation](https://reactnavigation.org/docs/en/screen-tracking.html)
+- [Remote Config](https://console.firebase.google.com/project/panacea-39e5a/config) used to send global configuration to clients or to run experiments where client can get different configurations
+
+## Remote Config
+
+Remote config is a key / value in firebase. You can add parameters (keys) and a subsequent value, then you have to publish the changes before they take effect.
+The key / value you see in the firebase console is available to all clients.
+
+If you want to experiment by sending different values for different keys to different client, you can create an experiment under A/B testing using remote config.
+
+The client fetches the remote config everytime the app starts up and when it enters the foreground.
+The remote config is cached and in production the client can max fetch the remote config 5 times per hour.
+
+We can specify how long the config should be cached inside the client, right now it's not cached in development mode and in production it's set to 60 * 60 / 5 seconds, which should be 5 times per hour. 
 
 ## Developer setup
 

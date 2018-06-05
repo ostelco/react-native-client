@@ -9,13 +9,16 @@ import { setStore, autoLogin } from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
+import { setRemoteConfig } from './app/actions';
 
 // Fetch remote config on startup
-getRemoteConfig();
 
 const store = configureStore();
 setStore(store); // For auth related properties
 autoLogin(); // Try automatic login
+
+const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));
+getRemoteConfig(_getRemoteConfigCallback);
 
 const AppStack = createStackNavigator({
   Home: HomeContainer,
@@ -114,7 +117,7 @@ export default class App extends React.Component {
     // Get remote config when app enters foreground
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground!');
-      getRemoteConfig();
+      getRemoteConfig(_getRemoteConfigCallback);
     }
     this.setState({appState: nextAppState});
   }

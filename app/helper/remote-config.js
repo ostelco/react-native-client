@@ -6,10 +6,10 @@ if (__DEV__) {
 
 // Set default values
 firebase.config().setDefaults({
-  hasExperimentalFeature: false,
+  productSku: false
 });
 
-export const getRemoteConfig = () => {
+export const getRemoteConfig = (callback) => {
 
   // Parameter to fetch is how many seconds the config should be cached locally
   // In dev we disable cache to enable instant testing
@@ -21,9 +21,13 @@ export const getRemoteConfig = () => {
     })
     .then((activated) => {
       console.log('Fetched data is activated');
-      return firebase.config().getValue('hasExperimentalFeature');
+      return firebase.config().getValue('productSku');
     })
     .then((snapshot) => {
+
+      if (callback) {
+        callback({ productSku: snapshot.val() });
+      }
 
       const hasExperimentalFeature = snapshot.val();
       if(hasExperimentalFeature) {

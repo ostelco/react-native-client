@@ -202,3 +202,12 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const userLogout = () => ({
   type: USER_LOGOUT
 });
+
+export const SET_REMOTE_CONFIG = 'SET_REMOTE_CONFIG';
+
+export const setRemoteConfig = ({ productSku }) => ({
+  type: SET_REMOTE_CONFIG,
+  data: {
+    productSku
+  }
+});

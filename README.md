@@ -30,7 +30,8 @@ If you want to experiment by sending different values for different keys to diff
 The client fetches the remote config everytime the app starts up and when it enters the foreground.
 The remote config is cached and in production the client can max fetch the remote config 5 times per hour.
 
-We can specify how long the config should be cached inside the client, right now it's not cached in development mode and in production it's set to 60 * 60 / 5 seconds, which should be 5 times per hour. 
+We can specify how long the config should be cached inside the client, right now it's not cached in development mode and in production it's set to 60 * 60 / 5 seconds, which should be 5 times per hour.
+
 
 ## Developer setup
 

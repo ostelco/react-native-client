@@ -93,6 +93,16 @@ const error = (state = null, action) => {
   return state;
 }
 
+const remoteConfig = (state = {}, action) => {
+  const { type, data } = action;
+  switch (type) {
+    case ActionTypes.SET_REMOTE_CONFIG:
+      return { ...data };
+    default:
+      return state;
+  }
+};
+
 const appReducer = combineReducers({
   auth,
   subscription,
@@ -101,6 +111,7 @@ const appReducer = combineReducers({
   profile,
   selectedProduct,
   error,
+  remoteConfig
 });
 
 const rootReducer = (state, action) => {

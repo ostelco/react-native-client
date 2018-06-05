@@ -7,6 +7,11 @@ import { Provider } from 'react-redux';
 import configureStore from './app/store/configureStore'
 import { setStore, autoLogin } from './app/helper/auth'
 import NavigationService from './NavigationService';
+import { getRemoteConfig } from './app/helper/remote-config';
+import { AppState } from 'react-native';
+
+// Fetch remote config on startup
+getRemoteConfig();
 
 const store = configureStore();
 setStore(store); // For auth related properties
@@ -88,14 +93,30 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = { loading: true, appState: AppState.currentState };
   }
 
   async componentWillMount() {
     this.setState({ loading: false });
-
     // TODO: Hardcoded value until better approach is implemented since onNavigationStateChange does not capture initial screen view
     analytics.setCurrentScreen('OnBoarding');
+  }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = (nextAppState) => {
+    // Get remote config when app enters foreground
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('App has come to the foreground!');
+      getRemoteConfig();
+    }
+    this.setState({appState: nextAppState});
   }
 
   render() {

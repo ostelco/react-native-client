@@ -63,8 +63,15 @@ function defaultProduct(products) {
   }
 }
 
-function customProduct(products) {
+function customProduct(products, productSku) {
   if (Array.isArray(products)) {
+
+    if (productSku) {
+      const tmp = products.find(product => product.sku === productSku);
+      if (tmp) {
+        return tmp;
+      }
+    }
     const result = products.filter(product => _.get(product, "presentation.isDefault", "false") === "false");
     if (result && result.length > 0) {
       // We only use 1 special product
@@ -76,11 +83,11 @@ function customProduct(products) {
 }
 
 const mapStateToProps = (state) => {
-  const { subscription, products, error } = state;
+  const { subscription, products, error, remoteConfig } = state;
   return {
     subscription,
     defaultOffer: defaultProduct(products.list),
-    specialOffer: customProduct(products.list),
+    specialOffer: customProduct(products.list, remoteConfig.productSku),
     error
   };
 };

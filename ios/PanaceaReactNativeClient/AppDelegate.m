@@ -15,17 +15,14 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-  return [RCTLinkingManager application:application openURL:url
-                      sourceApplication:sourceApplication annotation:annotation];
-}
-
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *, id> *)options {
-    return [[RNFirebaseLinks instance] application:application openURL:url options:options];
+    BOOL handled = [RCTLinkingManager application:application openURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    if (!handled) {
+        handled = [[RNFirebaseLinks instance] application:application openURL:url options:options];
+    }
+    return handled;
 }
 
 - (BOOL)application:(UIApplication *)application

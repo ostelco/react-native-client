@@ -17,6 +17,7 @@ import io.invertase.firebase.crash.RNFirebaseCrashPackage;
 import java.util.Arrays;
 import java.util.List;
 import io.invertase.firebase.config.RNFirebaseRemoteConfigPackage;
+import io.invertase.firebase.links.RNFirebaseLinksPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -36,7 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
         new RNFirebaseCrashlyticsPackage(),
         new RNFirebasePerformancePackage(),
         new RNFirebaseCrashPackage(),
-        new RNFirebaseRemoteConfigPackage()
+        new RNFirebaseRemoteConfigPackage(),
+        new RNFirebaseLinksPackage()
       );
     }
 

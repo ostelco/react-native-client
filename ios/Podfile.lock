@@ -10,6 +10,9 @@ PODS:
   - Firebase/Crash (5.1.0):
     - Firebase/Core
     - FirebaseCrash (= 3.0.0)
+  - Firebase/DynamicLinks (5.1.0):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 3.0.1)
   - Firebase/Performance (5.1.0):
     - Firebase/Core
     - FirebasePerformance (= 2.0.0)
@@ -32,6 +35,8 @@ PODS:
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - Protobuf (~> 3.5)
+  - FirebaseDynamicLinks (3.0.1):
+    - FirebaseAnalytics (~> 5.0)
   - FirebaseInstanceID (3.0.0):
     - FirebaseCore (~> 5.0)
   - FirebasePerformance (2.0.0):
@@ -71,6 +76,7 @@ DEPENDENCIES:
   - Fabric (~> 1.7.5)
   - Firebase/Core
   - Firebase/Crash
+  - Firebase/DynamicLinks
   - Firebase/Performance
   - Firebase/RemoteConfig
 
@@ -83,6 +89,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCrash
+    - FirebaseDynamicLinks
     - FirebaseInstanceID
     - FirebasePerformance
     - FirebaseRemoteConfig
@@ -100,6 +107,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseCore: b81044df1044c0857a0737c6324678b72d4f7f00
   FirebaseCrash: 8900571fd763fd5bdda04522ec53da979456e3ce
+  FirebaseDynamicLinks: d624a7adc81a8fd70d52be5a6a47a2bc0644b923
   FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
   FirebasePerformance: 1ec6c40e5dad2543ca4c4f25d15168bde6322c2c
   FirebaseRemoteConfig: 3c57e4644bd6976b671ae0b725cd709f198bd1f5
@@ -109,6 +117,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
-PODFILE CHECKSUM: c824a7e5afca43c8d42f8a941a8959014e236c05
+PODFILE CHECKSUM: e97ecd2098b21379bf696ac660391e374faace8b
 
 COCOAPODS: 1.5.0

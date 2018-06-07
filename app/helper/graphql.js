@@ -35,3 +35,22 @@ export const getSignUp = gql`
     }
   }
 `;
+
+export const getTermsAndConditions = gql`
+  query {
+    TermsAndConditions(id: "cji4qhb278rcw0141s9ol51jy") {
+      translations {
+        title
+        subTitle
+      }
+      listOfTexts {
+        multiLineText {
+          id
+          translations {
+            value
+          }
+        }
+      }
+    }
+  }
+`;

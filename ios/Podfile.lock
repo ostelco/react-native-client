@@ -13,6 +13,12 @@ PODS:
   - Firebase/Performance (5.1.0):
     - Firebase/Core
     - FirebasePerformance (= 2.0.0)
+  - Firebase/RemoteConfig (5.1.0):
+    - Firebase/Core
+    - FirebaseRemoteConfig (= 3.0.0)
+  - FirebaseABTesting (2.0.0):
+    - FirebaseCore (~> 5.0)
+    - Protobuf (~> 3.5)
   - FirebaseAnalytics (5.0.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
@@ -37,6 +43,13 @@ PODS:
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.5)
+  - FirebaseRemoteConfig (3.0.0):
+    - FirebaseABTesting (~> 2.0)
+    - FirebaseAnalytics (~> 5.0)
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - Protobuf (~> 3.5)
   - FirebaseSwizzlingUtilities/ISASwizzling (2.0.0)
   - FirebaseSwizzlingUtilities/MethodSwizzling (2.0.0):
     - FirebaseCore (~> 5.0)
@@ -59,17 +72,20 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crash
   - Firebase/Performance
+  - Firebase/RemoteConfig
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Crashlytics
     - Fabric
     - Firebase
+    - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCrash
     - FirebaseInstanceID
     - FirebasePerformance
+    - FirebaseRemoteConfig
     - FirebaseSwizzlingUtilities
     - GoogleToolboxForMac
     - GTMSessionFetcher
@@ -80,17 +96,19 @@ SPEC CHECKSUMS:
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   Firebase: e08fb0795f35707aeb1d8a715c731c45bdf6fd56
+  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseCore: b81044df1044c0857a0737c6324678b72d4f7f00
   FirebaseCrash: 8900571fd763fd5bdda04522ec53da979456e3ce
   FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
   FirebasePerformance: 1ec6c40e5dad2543ca4c4f25d15168bde6322c2c
+  FirebaseRemoteConfig: 3c57e4644bd6976b671ae0b725cd709f198bd1f5
   FirebaseSwizzlingUtilities: 6c22677c50d0b6f5f0dc637c1233f13694a3003f
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
-PODFILE CHECKSUM: bc714983a0e0b4430f66d7a12ed2232ae8dd35eb
+PODFILE CHECKSUM: c824a7e5afca43c8d42f8a941a8959014e236c05
 
 COCOAPODS: 1.5.0

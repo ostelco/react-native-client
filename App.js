@@ -5,12 +5,20 @@ import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPR
 import { RNConfetti } from "./app/components";
 import { Provider } from 'react-redux';
 import configureStore from './app/store/configureStore'
-import { autoLogin } from './app/helper/auth'
-import { setStore } from './app/middleware/api'
+import { setStore, autoLogin } from './app/helper/auth'
+import NavigationService from './NavigationService';
+import { getRemoteConfig } from './app/helper/remote-config';
+import { AppState } from 'react-native';
+import { setRemoteConfig } from './app/actions';
+
+// Fetch remote config on startup
 
 const store = configureStore();
 setStore(store); // For auth related properties
-autoLogin(store); // Try automatic login
+autoLogin(); // Try automatic login
+
+const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));
+getRemoteConfig(_getRemoteConfigCallback);
 
 const AppStack = createStackNavigator({
   Home: HomeContainer,
@@ -88,14 +96,30 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = { loading: true, appState: AppState.currentState };
   }
 
   async componentWillMount() {
     this.setState({ loading: false });
-
     // TODO: Hardcoded value until better approach is implemented since onNavigationStateChange does not capture initial screen view
     analytics.setCurrentScreen('OnBoarding');
+  }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = (nextAppState) => {
+    // Get remote config when app enters foreground
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('App has come to the foreground!');
+      getRemoteConfig(_getRemoteConfigCallback);
+    }
+    this.setState({appState: nextAppState});
   }
 
   render() {
@@ -112,6 +136,9 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Root>
           <RootStack
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
             onNavigationStateChange={(prevState, currentState) => {
               const currentScreen = getActiveRouteName(currentState);
               const prevScreen = getActiveRouteName(prevState);

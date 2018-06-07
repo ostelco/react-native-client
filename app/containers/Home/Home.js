@@ -108,7 +108,7 @@ Home.propTypes = {
   dataLeft: PropTypes.string,
   defaultOffer: PropTypes.object,
   specialOffer: PropTypes.object,
-  doUpdate: PropTypes.object
+  doUpdate: PropTypes.func.isRequired
 };
 
 export default Home;

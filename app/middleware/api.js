@@ -1,25 +1,14 @@
 import { AsyncStorage } from "react-native";
-let reduxStore = null;
-
-export function setStore(store) {
-  reduxStore = store;
-}
-
-function getAuthHeader() {
-  console.log("getAuthHeader", reduxStore);
-  const value = _.get(reduxStore.getState(), "auth.accessToken", null);
-  if (value !== null) {
-    return `Bearer ${value}`;
-  } else {
-    return null;
-  }
-}
+import { autoLogin, getAuthHeader } from '../helper/auth'
 
 const API_ROOT = 'https://api.ostelco.org/'
 
 const callApi = async (endpoint, method, body, allowEmptyResponse) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
-  const authHeader = getAuthHeader();
+  const authHeader = await getAuthHeader();
+  if (!authHeader) {
+    return Promise.reject("Authentication failed");
+  }
   let options = {
     method,
     headers: {

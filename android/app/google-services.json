@@ -1,31 +1,86 @@
 {
   "project_info": {
-    "project_number": "141232844658",
-    "firebase_url": "https://panacea-39e5a.firebaseio.com",
-    "project_id": "panacea-39e5a",
-    "storage_bucket": "panacea-39e5a.appspot.com"
+    "project_number": "1032906769274",
+    "firebase_url": "https://pantel-2decb.firebaseio.com",
+    "project_id": "pantel-2decb",
+    "storage_bucket": "pantel-2decb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:141232844658:android:623a4f7bb5cf26cd",
+        "mobilesdk_app_id": "1:1032906769274:android:623a4f7bb5cf26cd",
         "android_client_info": {
           "package_name": "digital.telenor.panacea"
         }
       },
       "oauth_client": [
         {
-          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBfhX_e0ktOSxEMdP79Rk2T14FoJM9se5w"
+          "current_key": "AIzaSyAQKBaMZvEHSbSyHVKWb0pFKdhCCkL5eP4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032906769274-p6dg2alc49jqdl3hmld01bf1vsp6lib8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032906769274:android:625487c1e04e0526",
+        "android_client_info": {
+          "package_name": "digital.telenor.pantel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQKBaMZvEHSbSyHVKWb0pFKdhCCkL5eP4"
         }
       ],
       "services": {
@@ -43,32 +98,36 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:141232844658:android:f37c72166b2d983b",
+        "mobilesdk_app_id": "1:1032906769274:android:15c764bf2116021c",
         "android_client_info": {
-          "package_name": "digital.telenor.panacea2"
+          "package_name": "org.ostelco.ostelco"
         }
       },
       "oauth_client": [
         {
-          "client_id": "141232844658-e7hj0bct376fuhrma5sljpr5piuqfq5t.apps.googleusercontent.com",
+          "client_id": "1032906769274-79gj55e6rmqug8v9lkvt64057k6cpvm3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "digital.telenor.panacea2",
-            "certificate_hash": "7464545b0578ba2a336064063ad36b5f433155cd"
+            "package_name": "org.ostelco.ostelco",
+            "certificate_hash": "c715bb3bb938fbd57f58a2aa29c990a9ec34af29"
           }
         },
         {
-          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBfhX_e0ktOSxEMdP79Rk2T14FoJM9se5w"
+          "current_key": "AIzaSyAQKBaMZvEHSbSyHVKWb0pFKdhCCkL5eP4"
         }
       ],
       "services": {
@@ -79,70 +138,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "141232844658-nn2v36gsk2nm4e6k23ircq0gvjmterd1.apps.googleusercontent.com",
+              "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032906769274-p6dg2alc49jqdl3hmld01bf1vsp6lib8.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "host.exp.exponent"
               }
-            },
-            {
-              "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:141232844658:android:f968efbb41d1fa7a",
-        "android_client_info": {
-          "package_name": "host.exp.exponent"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "141232844658-fd0jrig8hiorgipkd72ig34geg1tuj49.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "host.exp.exponent",
-            "certificate_hash": "8ec186f6dbbde7358da8507bc109dc9fee2f9985"
-          }
-        },
-        {
-          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBfhX_e0ktOSxEMdP79Rk2T14FoJM9se5w"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "141232844658-nn2v36gsk2nm4e6k23ircq0gvjmterd1.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "host.exp.exponent"
-              }
-            },
-            {
-              "client_id": "141232844658-d269isv7teuaugbb1id83444m3mpladu.apps.googleusercontent.com",
-              "client_type": 3
             }
           ]
         },

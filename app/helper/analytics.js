@@ -1,4 +1,5 @@
 import firebase from 'react-native-firebase'
+import { getCurrentPseudonym } from './auth';
 
 const analytics = firebase.analytics();
 

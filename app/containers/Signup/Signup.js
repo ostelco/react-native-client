@@ -33,13 +33,21 @@ const Signup = props => {
     goBack,
     showNext,
     profile,
-    handleNameChanged,
-    handleAddressChanged,
-    handlePostCodeChanged,
-    handleCityChanged,
-    handleCountryChanged
+    handleChange,
+    presentationData
   } = props;
 
+  const fields = [];
+  const { title, doneButton } = presentationData;
+  for (let i = 0; i < presentationData.fields.length; ++i) {
+    const { label, key } = presentationData.fields[i];
+    fields.push((
+      <FormItem fixedLabel>
+        <AppLabel>{ label }</AppLabel>
+        <AppInput value={profile[key]} onChangeText={handleChange(key)} />
+      </FormItem>
+    ))
+  }
   return (
     <Container>
       <BackgroundImage />
@@ -50,34 +58,15 @@ const Signup = props => {
           </Button>
         </Left>
         <Body style={styles.headerTitleContainer}>
-          <Title style={textStyles.textStyle3}>Personal details</Title>
+          <Title style={textStyles.textStyle3}>{ title }</Title>
         </Body>
         <Right></Right>
       </Header>
       <Content contentContainerStyle={styles.content}>
         <Form>
-          <FormItem fixedLabel>
-            <AppLabel>Full Name</AppLabel>
-            <AppInput value={profile.name} onChangeText={handleNameChanged} />
-          </FormItem>
-          <FormItem fixedLabel>
-            <AppLabel>Address</AppLabel>
-            <AppInput value={profile.address} onChangeText={handleAddressChanged} />
-          </FormItem>
-          <FormItem fixedLabel>
-            <AppLabel>Postal Code</AppLabel>
-            <AppInput value={profile.postCode} onChangeText={handlePostCodeChanged} />
-          </FormItem>
-          <FormItem fixedLabel>
-            <AppLabel>City</AppLabel>
-            <AppInput value={profile.city}  onChangeText={handleCityChanged} />
-          </FormItem>
-          <FormItem fixedLabel>
-            <AppLabel>Country</AppLabel>
-            <AppInput value={profile.country}  onChangeText={handleCountryChanged} />
-          </FormItem>
+          { fields }
           <View style={styles.doneButtonContainer}>
-            <Button onPress={showNext} style={styles.doneButton} block><Text style={textStyles.textStyle6}>Done</Text></Button>
+            <Button onPress={showNext} style={styles.doneButton} block><Text style={textStyles.textStyle6}>{ doneButton }</Text></Button>
           </View>
 
         </Form>

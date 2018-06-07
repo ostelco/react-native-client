@@ -15,3 +15,23 @@ export const getOnBoarding = gql`
     }
   }
 `;
+
+export const getSignUp = gql`
+  query {
+    SignUp(id: "cji4nc7qy564301264y8swwir") {
+      translations {
+        title
+        doneButton
+        language
+      }
+      textInputField {
+        key
+        translations {
+          label
+          placeholder
+          language
+        }
+      }
+    }
+  }
+`;

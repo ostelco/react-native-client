@@ -36,32 +36,11 @@ class SignupContainer extends React.Component {
     });
   };
 
-  _handleNameChanged = (text) => {
+  _handleChange = key => text => {
     let { profile } = this.state;
-    profile.name = text;
-    this.setState({profile});
-  };
-  _handleAddressChanged = (text) => {
-    let { profile } = this.state;
-    profile.address = text;
-    this.setState({profile});
-  };
-  _handlePostCodeChanged = (text) => {
-    let { profile } = this.state;
-    profile.postCode = text;
-    this.setState({profile});
-  };
-  _handleCityChanged = (text) => {
-    let { profile } = this.state;
-    profile.city = text;
-    this.setState({profile});
-  };
-
-  _handleCountryChanged = (text) => {
-    let { profile } = this.state;
-    profile.country = text;
-    this.setState({profile});
-  };
+    profile[key] = text;
+    this.setState({ profile })
+  }
 
   render() {
     return (
@@ -69,11 +48,8 @@ class SignupContainer extends React.Component {
         goBack={this._goBack}
         showNext={this._showGDPR}
         profile={this.state.profile}
-        handleNameChanged={this._handleNameChanged}
-        handleAddressChanged={this._handleAddressChanged}
-        handlePostCodeChanged={this._handlePostCodeChanged}
-        handleCityChanged={this._handleCityChanged}
-        handleCountryChanged={this._handleCountryChanged}
+        presentationData={this.props.presentationData}
+        handleChange={this._handleChange}
       />
     )
   }
@@ -89,6 +65,23 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  createProfile
-})(SignupContainer);
+import { graphql, compose } from 'react-apollo'
+import { LoadingPlaceholder } from "../../components";
+import { renderWhileLoading } from "../../helper/enhancers";
+import { getSignUp } from "../../helper/graphql";
+import { withProps } from 'recompose';
+
+export default compose(
+  connect(mapStateToProps, { createProfile }),
+  graphql(getSignUp),
+  renderWhileLoading(LoadingPlaceholder),
+  withProps(({ data }) => {
+    return ({ presentationData: {
+      ...data['SignUp'].translations.find(y => y.language === 'EN_US'),
+      fields: data['SignUp']['textInputField'].map(x => ({
+          key: x.key,
+          ...x.translations.find(y => y.language === 'EN_US')
+        }))
+      }})
+  })
+)(SignupContainer);

@@ -21,7 +21,7 @@ class OnBoardingContainer extends React.Component {
 
   _showTermsAndConditions = async () => {
     this.props.navigation.navigate(screens.TermsAndConditions);
-  }
+  };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.profile.queried === true && prevProps.profile.queried === false) {
@@ -38,7 +38,7 @@ class OnBoardingContainer extends React.Component {
 
   render() {
     return (
-      <OnBoarding signIn={this._signIn} showTermsAndConditions={this._showTermsAndConditions} />
+      <OnBoarding signIn={this._signIn} showTermsAndConditions={this._showTermsAndConditions} presentationData={this.props.presentationData} />
     )
   }
 }
@@ -52,4 +52,17 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(OnBoardingContainer);
+import { graphql, compose } from 'react-apollo'
+
+
+import { BackgroundImagePlaceholder } from "../../components";
+import { renderWhileLoading, getTranslation } from "../../helper/enhancers";
+import { getOnBoarding } from "../../helper/graphql";
+
+export default compose(
+  connect(mapStateToProps),
+  graphql(getOnBoarding),
+  renderWhileLoading(BackgroundImagePlaceholder),
+  getTranslation('OnBoarding'),
+)
+(OnBoardingContainer)

@@ -5,6 +5,7 @@ export const getOnBoarding = gql`
     OnBoarding(
       id: "cji4g67oj2ai70126wwllnhcf"
     ) {
+      id
       translations {
         title,
         description,
@@ -19,12 +20,14 @@ export const getOnBoarding = gql`
 export const getSignUp = gql`
   query {
     SignUp(id: "cji4nc7qy564301264y8swwir") {
+      id
       translations {
         title
         doneButton
         language
       }
       textInputField {
+        id
         key
         translations {
           label
@@ -39,11 +42,13 @@ export const getSignUp = gql`
 export const getTermsAndConditions = gql`
   query {
     TermsAndConditions(id: "cji4qhb278rcw0141s9ol51jy") {
+      id
       translations {
         title
         subTitle
       }
       listOfTexts {
+        id
         multiLineText {
           id
           translations {
@@ -58,6 +63,7 @@ export const getTermsAndConditions = gql`
 export const getGDPR = gql`
   query {
     GDPR(id: "cji4rtv2s97bp0141rzp4onr2") {
+      id
       translations {
         title
         description

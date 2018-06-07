@@ -16,6 +16,20 @@ const subscription = (state = { isFetching: false, status: null, queried: false 
   return state;
 }
 
+const pseudonyms = (state = { isFetching: false}, action) => {
+  console.log("Action = ", action);
+  const  { type, response } = action;
+  switch(type) {
+    case ActionTypes.PSEUDONYM_REQUEST:
+      return {...state, isFetching: true};
+    case ActionTypes.PSEUDONYM_SUCCESS:
+      return {...response, isFetching: false };
+    case ActionTypes.PSEUDONYM_FAILURE:
+      return {isFetching: false};
+  }
+  return state;
+}
+
 const products = (state = { isFetching: false, list: null }, action) => {
   const  { type, response } = action;
   switch(type) {
@@ -106,6 +120,7 @@ const remoteConfig = (state = {}, action) => {
 const appReducer = combineReducers({
   auth,
   subscription,
+  pseudonyms,
   products,
   consents,
   profile,

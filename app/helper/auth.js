@@ -3,7 +3,7 @@ import Auth0 from "react-native-auth0";
 import { AsyncStorage } from "react-native";
 import NavigationService from '../../NavigationService';
 import screens from "./screens";
-import { setAuthentication, userLogout } from "../actions";
+import { setAuthentication, userLogout, loadPseudonyms } from "../actions";
 
 const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
 const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
@@ -120,3 +120,20 @@ export async function getAuthHeader() {
   }
 }
 
+export function getCurrentPseudonym() {
+  const { pseudonyms } = _store.getState();
+  let pseudonym = null;
+  if (pseudonyms && pseudonyms.current && pseudonyms.next) {
+    const now = Date.now();
+    if (pseudonyms.current.start <= now && now <= pseudonyms.current.end) {
+      pseudonym = pseudonyms.current.pseudonym;
+    } else {
+      if (pseudonyms.next.start <= now && now <= pseudonyms.next.end) {
+        pseudonym = pseudonyms.next.pseudonym;
+      }
+      // We crossed the time period, refresh pseudonyms
+      loadPseudonyms()(_store.dispatch, _store.getState);
+    }
+  }
+  return pseudonym;
+}

@@ -4,6 +4,7 @@ import { AsyncStorage } from "react-native";
 import { connect } from 'react-redux';
 import {
   loadSubscription,
+  loadPseudonyms,
   loadProducts,
   loadConsents,
   getProfile,
@@ -22,6 +23,7 @@ class OnBoardingContainer extends React.Component {
       logLoginEvent();
       this.props.getProfile();
       this.props.loadSubscription();
+      this.props.loadPseudonyms();
       this.props.loadProducts();
       this.props.loadConsents();
     } else {
@@ -39,6 +41,7 @@ class OnBoardingContainer extends React.Component {
       console.log('We have logged in already, do startup');
       this.props.getProfile();
       this.props.loadSubscription();
+      this.props.loadPseudonyms();
       this.props.loadProducts();
       this.props.loadConsents();
     }
@@ -78,6 +81,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   setAuthentication,
   loadSubscription,
+  loadPseudonyms,
   loadProducts,
   loadConsents,
   getProfile

@@ -18,7 +18,7 @@ class GDPRContainer extends React.Component {
 
   render() {
     return (
-      <GDPR confirm={this._showHome} consent={this.props.privacy}/>
+      <GDPR confirm={this._showHome} consent={this.props.privacy} presentationData={this.props.presentationData} />
     )
   }
 }
@@ -31,6 +31,26 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  setConsent
-})(GDPRContainer);
+import { graphql, compose } from 'react-apollo'
+import { LoadingPlaceholder } from "../../components";
+import { renderWhileLoading } from "../../helper/enhancers";
+import { getGDPR } from "../../helper/graphql";
+import { withProps } from 'recompose';
+
+export default compose(
+  connect(mapStateToProps, { setConsent }),
+  graphql(getGDPR),
+  renderWhileLoading(LoadingPlaceholder),
+  withProps(({ data }) => {
+    return ({
+      presentationData: {
+        ...data['GDPR'].translations[0],
+        consents: data['GDPR'].gDPRFields.map(x => ({
+          icon: x.icon,
+          id: x.id,
+          description: x.translations[0].description
+        }))
+      }
+    })
+  })
+)(GDPRContainer);

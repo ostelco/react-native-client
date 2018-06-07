@@ -54,3 +54,26 @@ export const getTermsAndConditions = gql`
     }
   }
 `;
+
+export const getGDPR = gql`
+  query {
+    GDPR(id: "cji4rtv2s97bp0141rzp4onr2") {
+      translations {
+        title
+        description
+        denyButtonText
+        privacyText
+        confirmButtonText
+      }
+      gDPRFields {
+        icon
+        id
+        translations {
+          description
+          language
+        }
+      }
+    }
+  }
+
+`;

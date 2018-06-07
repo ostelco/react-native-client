@@ -1,5 +1,5 @@
 import ApolloClient from 'apollo-boost';
-import {getOnBoarding, getSignUp} from "./graphql";
+import {getGDPR, getOnBoarding, getSignUp, getTermsAndConditions} from "./graphql";
 
 const GRAPHCMS_API = 'https://api.graphcms.com/simple/v1/cji4bob2x6zsr01910ioet78h';
 
@@ -16,14 +16,26 @@ const client = new ApolloClient({
 // Prefetch data
 client.query({
   query: getOnBoarding
-}).then(() => {
-  console.log('Prefetched OnBoarding');
+}).then(data => {
+  console.log('Prefetched OnBoarding', data);
 }).catch(err => console.error(err));
 
 client.query({
   query: getSignUp
-}).then(() => {
-  console.log('Prefetched SignUp');
+}).then(data => {
+  console.log('Prefetched SignUp', data);
+}).catch(err => console.error(err));
+
+client.query({
+  query: getTermsAndConditions
+}).then(data => {
+  console.log('Prefetched TermsAndConditions', data);
+}).catch(err => console.error(err));
+
+client.query({
+  query: getGDPR
+}).then(data => {
+  console.log('Prefetched GDPR', data);
 }).catch(err => console.error(err));
 
 export default client;

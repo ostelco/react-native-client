@@ -221,6 +221,12 @@ export const resetErrorMessage = () => ({
     type: RESET_ERROR_MESSAGE
 });
 
+export const USER_LOGIN = 'USER_LOGIN';
+
+export const userLoggedIn = () => ({
+  type: USER_LOGIN
+});
+
 export const USER_LOGOUT = 'USER_LOGOUT';
 
 export const userLogout = () => ({

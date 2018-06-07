@@ -3,7 +3,7 @@ import Auth0 from "react-native-auth0";
 import { AsyncStorage } from "react-native";
 import NavigationService from '../../NavigationService';
 import screens from "./screens";
-import { setAuthentication, userLogout, loadPseudonyms } from "../actions";
+import * as actions from "../actions";
 
 const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
 const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
@@ -24,10 +24,23 @@ function setAuthParams(credentials, userInfo, refreshToken) {
     name: userInfo.name,
     expiresAt: Date.now()+ (credentials.expiresIn*1000)
   };
-  _store.dispatch(setAuthentication(auth));
-  AsyncStorage.setItem('@app:email', auth.email);
-  AsyncStorage.setItem('@app:session-refresh', refreshToken);
-  AsyncStorage.setItem('@app:session', credentials.accessToken);
+  _store.dispatch(actions.setAuthentication(auth));
+}
+
+function resetAuthParams() {
+  _store.dispatch(actions.setAuthentication(null));
+}
+
+function setUserLoggedIn() {
+  _store.dispatch(actions.userLoggedIn());
+}
+
+function queryCurrentState() {
+  actions.getProfile()(_store.dispatch, _store.getState);
+  actions.loadSubscription()(_store.dispatch, _store.getState);
+  actions.loadPseudonyms()(_store.dispatch, _store.getState);
+  actions.loadProducts()(_store.dispatch, _store.getState);
+  actions.loadConsents()(_store.dispatch, _store.getState);
 }
 
 export async function login() {
@@ -48,7 +61,9 @@ export async function login() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
+          setUserLoggedIn();
           setAuthParams(credentials, userinfo, credentials.refreshToken);
+          queryCurrentState();
           return true;
         });
     })
@@ -59,9 +74,11 @@ export async function login() {
     return loginStatus;
 }
 
+
 export async function autoLogin() {
-  console.log('autoLogin');
-  const refreshToken = await AsyncStorage.getItem('@app:session-refresh');
+  console.log('autoLogin', _store.getState());
+  const { auth } = _store.getState();
+  const refreshToken = _.get(auth, 'refreshToken');
   let authOptions = {
     scope: 'openid profile email',
     refreshToken
@@ -79,7 +96,9 @@ export async function autoLogin() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
+          setUserLoggedIn();
           setAuthParams(credentials, userinfo, refreshToken);
+          queryCurrentState();
           return true;
         });
     })
@@ -94,9 +113,6 @@ export async function autoLogin() {
 function cleanup() {
   NavigationService.navigate(screens.OnBoarding);
   _store.dispatch(userLogout());
-  AsyncStorage.removeItem('@app:email');
-  AsyncStorage.removeItem('@app:session-refresh');
-  AsyncStorage.removeItem('@app:session');
 }
 
 export async function getAuthHeader() {

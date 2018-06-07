@@ -117,8 +117,18 @@ const remoteConfig = (state = {}, action) => {
   }
 };
 
+const login = (state = false, action) => {
+  switch (action.type) {
+    case ActionTypes.USER_LOGIN:
+      return true;
+    default:
+      return state;
+  }
+}
+
 const appReducer = combineReducers({
   auth,
+  login,
   subscription,
   pseudonyms,
   products,

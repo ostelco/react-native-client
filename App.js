@@ -10,6 +10,7 @@ import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
 import { setRemoteConfig } from './app/actions';
+import { initReferral } from "./app/helper/referral";
 
 // Fetch remote config on startup
 
@@ -17,6 +18,7 @@ const store = configureStore();
 setStore(store); // For auth related properties
 autoLogin(); // Try automatic login
 
+initReferral();
 const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));
 getRemoteConfig(_getRemoteConfigCallback);
 

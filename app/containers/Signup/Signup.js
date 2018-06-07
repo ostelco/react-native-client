@@ -37,7 +37,8 @@ const Signup = props => {
     handleAddressChanged,
     handlePostCodeChanged,
     handleCityChanged,
-    handleCountryChanged
+    handleCountryChanged,
+    invitedBy
   } = props;
 
   return (
@@ -55,6 +56,7 @@ const Signup = props => {
         <Right></Right>
       </Header>
       <Content contentContainerStyle={styles.content}>
+        {invitedBy ? <Text>Invited by: { invitedBy }</Text> : null}
         <Form>
           <FormItem fixedLabel>
             <AppLabel>Full Name</AppLabel>
@@ -90,7 +92,8 @@ Signup.propTypes = {
   style: PropTypes.object,
   goBack: PropTypes.func,
   showNext: PropTypes.func,
-  profile: PropTypes.object
+  profile: PropTypes.object,
+  invitedBy: PropTypes.string
 };
 
 export default Signup;

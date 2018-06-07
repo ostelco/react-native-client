@@ -6,6 +6,7 @@ import {
  } from "../../actions";
 import screens from "../../helper/screens";
 import {logSignUpEvent} from "../../helper/analytics";
+import { AsyncStorage } from "react-native";
 
 class SignupContainer extends React.Component {
 
@@ -21,6 +22,16 @@ class SignupContainer extends React.Component {
         email: this.props.auth.email
       }
     };
+  }
+
+  async componentDidMount() {
+    const invitedBy = await AsyncStorage.getItem('@app:invited-by');
+
+    console.log('//////////////////////');
+    console.log('thoetuhoetuheot', invitedBy);
+    if (invitedBy) {
+      this.setState({ invitedBy });
+    }
   }
 
   _goBack = () => {
@@ -69,6 +80,7 @@ class SignupContainer extends React.Component {
         goBack={this._goBack}
         showNext={this._showGDPR}
         profile={this.state.profile}
+        invitedBy={this.state.invitedBy}
         handleNameChanged={this._handleNameChanged}
         handleAddressChanged={this._handleAddressChanged}
         handlePostCodeChanged={this._handlePostCodeChanged}

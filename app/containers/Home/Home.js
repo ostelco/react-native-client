@@ -12,7 +12,7 @@ import {
   View,
   Right,
   Spinner,
-  Left
+  Left, Footer
 } from "native-base";
 import PropTypes from 'prop-types';
 import * as _ from "lodash";
@@ -21,6 +21,7 @@ import {colors} from "../../config/colors";
 import { TouchableHighlight } from "react-native";
 import styles from './styles';
 import {RoundedBorder} from "../../components";
+import Referral from "./Referral";
 
 const Home = props => {
   const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate } = props;
@@ -97,6 +98,9 @@ const Home = props => {
           </View>
         )}
       </Content>
+      <Footer style={{ padding: 0 }}>
+        <Referral />
+      </Footer>
     </Container>
   )
 };

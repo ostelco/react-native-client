@@ -11,13 +11,12 @@ import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
 import { setRemoteConfig } from './app/actions';
 import { PersistGate } from 'redux-persist/integration/react'
-
-// Fetch remote config on startup
+import analytics from "./app/helper/analytics";
 
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
-//autoLogin(); // Try automatic login
 
+// Fetch remote config on startup
 const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));
 getRemoteConfig(_getRemoteConfigCallback);
 
@@ -91,9 +90,8 @@ const AppLoading = () => (
   <Text>Loading...</Text>
 );
 
-import analytics from "./app/helper/analytics";
+// Callback after redux store is loaded from persistant store
 const onBeforeLift = () => {
-  console.log('App has hydrated from storage');
   autoLogin(); // Try automatic login
 }
 

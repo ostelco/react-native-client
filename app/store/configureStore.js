@@ -12,8 +12,6 @@ const configureStore = preloadedState => createStore(
   applyMiddleware(thunk, api)
 )
 
-//export default configureStore
-
 const persistConfig = {
   key: 'root',
   storage: storage,

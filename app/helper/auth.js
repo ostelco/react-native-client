@@ -38,7 +38,7 @@ function loadStateFromServer(credentials, userInfo, refreshToken) {
 
 function cleanup() {
   NavigationService.navigate(screens.OnBoarding);
-  _store.dispatch(userLogout());
+  _store.dispatch(actions.userLogout());
 }
 
 export async function login() {
@@ -137,7 +137,7 @@ export function getCurrentPseudonym() {
         pseudonym = pseudonyms.next.pseudonym;
       }
       // We crossed the time period, refresh pseudonyms
-      loadPseudonyms()(_store.dispatch, _store.getState);
+      actions.loadPseudonyms()(_store.dispatch, _store.getState);
     }
   }
   return pseudonym;

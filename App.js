@@ -9,7 +9,7 @@ import { setStore, autoLogin } from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
-import { setRemoteConfig } from './app/actions';
+import { setRemoteConfig, loadSubscription } from './app/actions';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
 
@@ -110,6 +110,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
+    this._setSubscriptionTimer();
   }
 
   componentWillUnmount() {
@@ -121,8 +122,28 @@ export default class App extends React.Component {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground!');
       getRemoteConfig(_getRemoteConfigCallback);
+      this._setSubscriptionTimer();
+    } else {
+      this._removeSubscriptionTimer();
     }
     this.setState({appState: nextAppState});
+  }
+
+  _reloadSubscription() {
+    store.dispatch(loadSubscription());
+  }
+
+  _setSubscriptionTimer() {
+    if (typeof this.interval === 'undefined' || this.interval === 0) {
+      this.interval = setInterval(() => this._reloadSubscription() , 10000);
+    }
+  }
+
+  _removeSubscriptionTimer() {
+    if (this.interval !== 0) {
+      clearInterval(this.interval);
+      this.interval = 0;
+    }
   }
 
   render() {

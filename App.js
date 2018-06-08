@@ -130,7 +130,10 @@ export default class App extends React.Component {
   }
 
   _reloadSubscription() {
-    store.dispatch(loadSubscription());
+    const { login } = store.getState();
+    if (login) {
+      store.dispatch(loadSubscription());
+    }
   }
 
   _setSubscriptionTimer() {

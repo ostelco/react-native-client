@@ -11,7 +11,6 @@ import {
   ListItem,
   View,
   Right,
-  Spinner,
   Left
 } from "native-base";
 import PropTypes from 'prop-types';
@@ -21,9 +20,23 @@ import {colors} from "../../config/colors";
 import { TouchableHighlight } from "react-native";
 import styles from './styles';
 import {RoundedBorder} from "../../components";
+import DataLeftContainer from './DataLeftContainer';
+import OfferContainer from './OfferContainer';
+
+const DisplayList = ({ list, noBorder=false, listStyles={} }) => (
+  <List style={listStyles}>
+    {list.map(component => {
+      return (
+        <ListItem noBorder={noBorder}>
+          {component}
+        </ListItem>
+      )
+    })}
+  </List>
+);
 
 const Home = props => {
-  const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate } = props;
+  const { showMenu, showPayment, specialOffer } = props;
   return (
     <Container style={styles.container}>
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
@@ -38,30 +51,14 @@ const Home = props => {
         </Right>
       </Header>
       <Content contentContainerStyle={styles.content} bounces={false}>
-        <List style={styles.topContentContainer}>
-          <ListItem noBorder>
-            { dataLeft ? (
-              <Body>
-                <TouchableHighlight onPress={doUpdate}>
-                  <View>
-                    <Text style={textStyles.textStyle12}>
-                      { dataLeft }
-                    </Text>
-                    <Text style={textStyles.textStyle13}>Left</Text>
-                  </View>
-                </TouchableHighlight>
-              </Body>
-              ) : <Body><Spinner color="white" /></Body>}
-          </ListItem>
-          <ListItem noBorder onPress={() => showPayment(defaultOffer)}>
-            <Body style={styles.staticOfferContainer}>
-              <View style={styles.staticOfferButtonContainer}>
-                <Text style={[textStyles.textStyle14, styles.offerButton]}>{_.get(defaultOffer, "presentation.productLabel")}</Text>
-                <Text style={[textStyles.textStyle15, styles.offerButton]}>{_.get(defaultOffer, "presentation.priceLabel")}</Text>
-              </View>
-            </Body>
-          </ListItem>
-        </List>
+        <DisplayList
+          noBorder={true}
+          list={[
+            <DataLeftContainer />,
+            <OfferContainer />
+          ]}
+          listStyles={styles.topContentContainer}
+        />
         <RoundedBorder color={colors.rosa} />
         { specialOffer ? (
           <View style={styles.specialOfferContainer}>
@@ -105,10 +102,7 @@ Home.propTypes = {
   style: PropTypes.object,
   showMenu: PropTypes.func.isRequired,
   showPayment: PropTypes.func.isRequired,
-  dataLeft: PropTypes.string,
-  defaultOffer: PropTypes.object,
   specialOffer: PropTypes.object,
-  doUpdate: PropTypes.func.isRequired
 };
 
 export default Home;

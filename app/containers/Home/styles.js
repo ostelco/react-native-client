@@ -24,21 +24,6 @@ export default StyleSheet.create({
     backgroundColor: colors.rosa,
     zIndex: 1
   },
-  staticOfferContainer: {
-    justifyContent: 'center',
-    flex: 1,
-    alignItems: 'center'
-  },
-  staticOfferButtonContainer: {
-    width: 220,
-    height: 60,
-    borderRadius: 5,
-    paddingHorizontal: 40,
-    backgroundColor: colors.white,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
-  },
   offerButton: {
     textAlign: 'center'
   },

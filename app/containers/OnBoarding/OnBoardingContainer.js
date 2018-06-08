@@ -1,6 +1,5 @@
 import React from "react";
 import OnBoarding from "./OnBoarding";
-import { AsyncStorage } from "react-native";
 import { connect } from 'react-redux';
 import { login } from '../../helper/auth';
 import screens from "../../helper/screens";

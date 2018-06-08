@@ -1,6 +1,5 @@
 // TODO: Move to configuration file or variables.js
 import Auth0 from "react-native-auth0";
-import { AsyncStorage } from "react-native";
 import NavigationService from '../../NavigationService';
 import screens from "./screens";
 import * as actions from "../actions";
@@ -12,11 +11,13 @@ const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
 export const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: auth0ClientId });
 
 let _store = null;
+
 export function setStore(store) {
   _store = store;
 }
 
-function setAuthParams(credentials, userInfo, refreshToken) {
+function loadStateFromServer(credentials, userInfo, refreshToken) {
+  // Save authentication details to store
   const auth = {
     accessToken: credentials.accessToken,
     refreshToken,
@@ -25,22 +26,19 @@ function setAuthParams(credentials, userInfo, refreshToken) {
     expiresAt: Date.now()+ (credentials.expiresIn*1000)
   };
   _store.dispatch(actions.setAuthentication(auth));
-}
-
-function resetAuthParams() {
-  _store.dispatch(actions.setAuthentication(null));
-}
-
-function setUserLoggedIn() {
+  // Set user logged in status to true
   _store.dispatch(actions.userLoggedIn());
-}
-
-function queryCurrentState() {
+  // Fetch default state from the server.
   actions.getProfile()(_store.dispatch, _store.getState);
   actions.loadSubscription()(_store.dispatch, _store.getState);
   actions.loadPseudonyms()(_store.dispatch, _store.getState);
   actions.loadProducts()(_store.dispatch, _store.getState);
   actions.loadConsents()(_store.dispatch, _store.getState);
+}
+
+function cleanup() {
+  NavigationService.navigate(screens.OnBoarding);
+  _store.dispatch(userLogout());
 }
 
 export async function login() {
@@ -61,9 +59,7 @@ export async function login() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          setUserLoggedIn();
-          setAuthParams(credentials, userinfo, credentials.refreshToken);
-          queryCurrentState();
+          loadStateFromServer(credentials, userinfo, credentials.refreshToken);
           return true;
         });
     })
@@ -96,9 +92,7 @@ export async function autoLogin() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          setUserLoggedIn();
-          setAuthParams(credentials, userinfo, refreshToken);
-          queryCurrentState();
+          loadStateFromServer(credentials, userinfo, refreshToken);
           return true;
         });
     })
@@ -108,11 +102,6 @@ export async function autoLogin() {
       return false;
     });
     return loginStatus;
-}
-
-function cleanup() {
-  NavigationService.navigate(screens.OnBoarding);
-  _store.dispatch(userLogout());
 }
 
 export async function getAuthHeader() {

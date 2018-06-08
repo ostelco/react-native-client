@@ -1,12 +1,8 @@
 import React from "react";
-import prettyBytes from "pretty-bytes";
-import Home from "./Home";
-import * as _ from "lodash";
-import { connect } from 'react-redux';
-import { loadProducts, selectProduct } from "../../actions";
+import Home, { HomeWithoutSubscription } from "./Home";
 import screens from "../../helper/screens";
-import {logAddToCartEvent} from "../../helper/analytics";
-import { Alert } from "react-native";
+import {withSubscription} from "../../helper/enhancers";
+import {compose, branch, renderComponent} from 'recompose';
 
 class HomeContainer extends React.Component {
 
@@ -20,10 +16,6 @@ class HomeContainer extends React.Component {
   };
 
   render() {
-    if (this.props.subscription.queried === true && this.props.subscription.isFetching === false && this.props.subscription.status === null) {
-      Alert.alert('We would not find your subscription:-(', 'The app will not work as expected. Please contact one of the friendly developers, we can fix it for you!');
-    }
-
     return (
       <Home
         showMenu={this._showMenu}
@@ -32,13 +24,7 @@ class HomeContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { subscription } = state;
-  return {
-    subscription,
-  };
-};
-
-export default connect(mapStateToProps, {
-
-})(HomeContainer);
+export default compose(
+  withSubscription,
+  branch(({ subscription }) => !subscription, renderComponent(HomeWithoutSubscription))
+)(HomeContainer);

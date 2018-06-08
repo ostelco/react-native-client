@@ -23,5 +23,16 @@ export default StyleSheet.create({
   topContentContainer: {
     backgroundColor: colors.rosa,
     zIndex: 1
+  },
+  topContentEmptyContainer: {
+    padding: 20
+  },
+  descriptionContainer: {
+    padding: 30
+  },
+  emptyContainerIcon: {
+    fontSize: 160,
+    color: 'white',
+    textAlign: 'center'
   }
 });

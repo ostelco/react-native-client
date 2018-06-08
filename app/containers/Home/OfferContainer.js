@@ -2,7 +2,6 @@ import React from 'react';
 import { compose, withProps, branch, renderNothing } from 'recompose';
 import Offer from './Offer';
 
-import PropTypes from 'prop-types';
 import {withNavigation} from "react-navigation";
 import {logAddToCartEvent} from "../../helper/analytics";
 import { selectProduct } from "../../actions";
@@ -28,9 +27,5 @@ const OfferContainer = compose(
     }
   }))
 )(Offer);
-
-OfferContainer.propTypes = {
-  sku: PropTypes.string.isRequired
-};
 
 export default OfferContainer;

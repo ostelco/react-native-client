@@ -1,9 +1,8 @@
 // TODO: Move to configuration file or variables.js
 import Auth0 from "react-native-auth0";
-import { AsyncStorage } from "react-native";
 import NavigationService from '../../NavigationService';
 import screens from "./screens";
-import { setAuthentication, userLogout } from "../actions";
+import * as actions from "../actions";
 
 const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
 const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
@@ -12,11 +11,13 @@ const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';
 export const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: auth0ClientId });
 
 let _store = null;
+
 export function setStore(store) {
   _store = store;
 }
 
-function setAuthParams(credentials, userInfo, refreshToken) {
+function loadStateFromServer(credentials, userInfo, refreshToken) {
+  // Save authentication details to store
   const auth = {
     accessToken: credentials.accessToken,
     refreshToken,
@@ -24,10 +25,20 @@ function setAuthParams(credentials, userInfo, refreshToken) {
     name: userInfo.name,
     expiresAt: Date.now()+ (credentials.expiresIn*1000)
   };
-  _store.dispatch(setAuthentication(auth));
-  AsyncStorage.setItem('@app:email', auth.email);
-  AsyncStorage.setItem('@app:session-refresh', refreshToken);
-  AsyncStorage.setItem('@app:session', credentials.accessToken);
+  _store.dispatch(actions.setAuthentication(auth));
+  // Set user logged in status to true
+  _store.dispatch(actions.userLoggedIn());
+  // Fetch default state from the server.
+  actions.getProfile()(_store.dispatch, _store.getState);
+  actions.loadSubscription()(_store.dispatch, _store.getState);
+  actions.loadPseudonyms()(_store.dispatch, _store.getState);
+  actions.loadProducts()(_store.dispatch, _store.getState);
+  actions.loadConsents()(_store.dispatch, _store.getState);
+}
+
+function cleanup() {
+  NavigationService.navigate(screens.OnBoarding);
+  _store.dispatch(actions.userLogout());
 }
 
 export async function login() {
@@ -48,7 +59,7 @@ export async function login() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          setAuthParams(credentials, userinfo, credentials.refreshToken);
+          loadStateFromServer(credentials, userinfo, credentials.refreshToken);
           return true;
         });
     })
@@ -59,9 +70,11 @@ export async function login() {
     return loginStatus;
 }
 
+
 export async function autoLogin() {
-  console.log('autoLogin');
-  const refreshToken = await AsyncStorage.getItem('@app:session-refresh');
+  console.log('autoLogin', _store.getState());
+  const { auth } = _store.getState();
+  const refreshToken = _.get(auth, 'refreshToken');
   let authOptions = {
     scope: 'openid profile email',
     refreshToken
@@ -79,7 +92,7 @@ export async function autoLogin() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          setAuthParams(credentials, userinfo, refreshToken);
+          loadStateFromServer(credentials, userinfo, refreshToken);
           return true;
         });
     })
@@ -89,14 +102,6 @@ export async function autoLogin() {
       return false;
     });
     return loginStatus;
-}
-
-function cleanup() {
-  NavigationService.navigate(screens.OnBoarding);
-  _store.dispatch(userLogout());
-  AsyncStorage.removeItem('@app:email');
-  AsyncStorage.removeItem('@app:session-refresh');
-  AsyncStorage.removeItem('@app:session');
 }
 
 export async function getAuthHeader() {
@@ -120,3 +125,20 @@ export async function getAuthHeader() {
   }
 }
 
+export function getCurrentPseudonym() {
+  const { pseudonyms } = _store.getState();
+  let pseudonym = null;
+  if (pseudonyms && pseudonyms.current && pseudonyms.next) {
+    const now = Date.now();
+    if (pseudonyms.current.start <= now && now <= pseudonyms.current.end) {
+      pseudonym = pseudonyms.current.pseudonym;
+    } else {
+      if (pseudonyms.next.start <= now && now <= pseudonyms.next.end) {
+        pseudonym = pseudonyms.next.pseudonym;
+      }
+      // We crossed the time period, refresh pseudonyms
+      actions.loadPseudonyms()(_store.dispatch, _store.getState);
+    }
+  }
+  return pseudonym;
+}

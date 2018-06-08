@@ -10,13 +10,13 @@ import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
 import { setRemoteConfig, loadSubscription } from './app/actions';
+import { PersistGate } from 'redux-persist/integration/react'
+import analytics from "./app/helper/analytics";
+
+const { store, persistor } = configureStore();
+setStore(store); // For auth related properties
 
 // Fetch remote config on startup
-
-const store = configureStore();
-setStore(store); // For auth related properties
-autoLogin(); // Try automatic login
-
 const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));
 getRemoteConfig(_getRemoteConfigCallback);
 
@@ -90,7 +90,10 @@ const AppLoading = () => (
   <Text>Loading...</Text>
 );
 
-import analytics from "./app/helper/analytics";
+// Callback after redux store is loaded from persistant store
+const onBeforeLift = () => {
+  autoLogin(); // Try automatic login
+}
 
 export default class App extends React.Component {
 
@@ -127,7 +130,10 @@ export default class App extends React.Component {
   }
 
   _reloadSubscription() {
-    store.dispatch(loadSubscription());
+    const { login } = store.getState();
+    if (login) {
+      store.dispatch(loadSubscription());
+    }
   }
 
   _setSubscriptionTimer() {
@@ -155,24 +161,29 @@ export default class App extends React.Component {
     }
     return (
       <Provider store={store}>
-        <Root>
-          <RootStack
-            ref={navigatorRef => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-            onNavigationStateChange={(prevState, currentState) => {
-              const currentScreen = getActiveRouteName(currentState);
-              const prevScreen = getActiveRouteName(prevState);
-              if (prevScreen !== currentScreen) {
-                // the line below uses the Google Analytics tracker
-                // change the tracker here to use other Mobile analytics SDK.
-                console.log('Current:', currentScreen, currentState);
-                console.log('Prev:', prevScreen, prevState);
-                analytics.setCurrentScreen(currentScreen)
-              }
-            }}
-          />
-        </Root>
+        <PersistGate
+          loading={null}
+          persistor={persistor}
+          onBeforeLift={onBeforeLift}>
+          <Root>
+            <RootStack
+              ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }}
+              onNavigationStateChange={(prevState, currentState) => {
+                const currentScreen = getActiveRouteName(currentState);
+                const prevScreen = getActiveRouteName(prevState);
+                if (prevScreen !== currentScreen) {
+                  // the line below uses the Google Analytics tracker
+                  // change the tracker here to use other Mobile analytics SDK.
+                  console.log('Current:', currentScreen, currentState);
+                  console.log('Prev:', prevScreen, prevState);
+                  analytics.setCurrentScreen(currentScreen)
+                }
+              }}
+            />
+          </Root>
+        </PersistGate>
       </Provider>
     );
   }

@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.rosa,
     paddingHorizontal: 40,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
   },
   specialOfferButtonTextContainer: {
     flex: 1,
@@ -46,12 +47,8 @@ const SpecialOffer = props => {
         </Text>
         <TouchableOpacity onPress={handlePress}>
           <View style={styles.specialOfferButtonContainer}>
-            <View style={styles.specialOfferButtonTextContainer}>
-              <Text style={[textStyles.textStyle16, styles.offerButton]}>{ productLabel }</Text>
-            </View>
-            <View style={styles.specialOfferButtonTextContainer}>
-              <Text style={[textStyles.textStyle17, styles.offerButton]}>{ priceLabel }</Text>
-            </View>
+            <Text style={[textStyles.textStyle16, styles.offerButton]}>{productLabel}</Text>
+            <Text style={[textStyles.textStyle17, styles.offerButton]}>{priceLabel}</Text>
           </View>
         </TouchableOpacity>
         <Text style={textStyles.textStyle18}>

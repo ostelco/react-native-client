@@ -6,7 +6,8 @@ const analytics = firebase.analytics();
 export const globalParams = {};
 
 const _logEvent = (name, params) => {
-  analytics.logEvent(name, { ...params, ...globalParams });
+  const pseudonym = getCurrentPseudonym();
+  analytics.logEvent(name, { ...params, ...globalParams, pseudonym });
 }
 
 export const setCurrentScreen = (screenName) => {

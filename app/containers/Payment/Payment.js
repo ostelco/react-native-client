@@ -21,7 +21,9 @@ import styles from "./styles";
 import {PaymentSuccessModal} from "./components";
 
 const Payment = props => {
-  const { goBack, confirm, isDialogVisible, priceLabel , productLabel} = props;
+  const { goBack, confirm, isDialogVisible, priceLabel , productLabel } = props;
+  const { title, creditCardNumberLabel, creditCardExpiresLabel, creditCardNameLabel, creditCardCVVLabel } = props;
+  const { creditCardNumberPlaceholder, creditCardExpiresPlaceholder, creditCardCVVPlaceholder } = props;
   return (
     <Container style={styles.container}>
       <PaymentSuccessModal isDialogVisible={isDialogVisible} goBack={goBack} itemDescription={productLabel} />
@@ -31,7 +33,7 @@ const Payment = props => {
         </Left>
         <Body style={styles.headerTitleContainer}>
           <Title style={textStyles.textStyle19}>
-            Purchase
+            { title }
           </Title>
         </Body>
         <Right></Right>
@@ -46,18 +48,18 @@ const Payment = props => {
           <View style={styles.row}>
             <View style={styles.firstColumn}>
               <View style={styles.firstColumnTextContainer}>
-                <Text style={textStyles.textStyle5}>Credit Card Number</Text>
+                <Text style={textStyles.textStyle5}>{ creditCardNumberLabel }</Text>
               </View>
               <View style={[styles.secondColumnTextContainer, styles.leftPadding]}>
-                <Input placeholder="**** **** **** ****" style={textStyles.textStyle15} />
+                <Input placeholder={creditCardNumberPlaceholder} style={textStyles.textStyle15} />
               </View>
             </View>
             <View style={styles.secondColumn}>
               <View style={styles.firstColumn}>
-                <Text style={textStyles.textStyle5}>Expires</Text>
+                <Text style={textStyles.textStyle5}>{ creditCardExpiresLabel }</Text>
               </View>
               <View style={styles.secondColumnTextContainer}>
-                <Input placeholder="MM YY" style={textStyles.textStyle21} />
+                <Input placeholder={ creditCardExpiresPlaceholder } style={textStyles.textStyle21} />
               </View>
             </View>
           </View>
@@ -65,7 +67,7 @@ const Payment = props => {
           <View style={styles.row}>
             <View style={styles.firstColumn}>
               <View style={styles.firstColumnTextContainer}>
-                <Text style={textStyles.textStyle5}>Name on Card</Text>
+                <Text style={textStyles.textStyle5}>{ creditCardNameLabel }</Text>
               </View>
               <View style={[styles.secondColumnTextContainer, styles.leftPadding]}>
                 <Input style={textStyles.textStyle15} />
@@ -73,10 +75,10 @@ const Payment = props => {
             </View>
             <View style={styles.secondColumn}>
               <View style={styles.firstColumnTextContainer}>
-                <Text style={textStyles.textStyle5}>CVV</Text>
+                <Text style={textStyles.textStyle5}>{ creditCardCVVLabel }</Text>
               </View>
               <View style={styles.secondColumnTextContainer}>
-                <Input placeholder="***" style={textStyles.textStyle21} />
+                <Input placeholder={ creditCardCVVPlaceholder } style={textStyles.textStyle21} />
               </View>
             </View>
           </View>
@@ -97,7 +99,27 @@ Payment.propTypes = {
   style: PropTypes.object,
   goBack: PropTypes.func,
   confirm: PropTypes.func,
-  isDialogVisible: PropTypes.bool
+  isDialogVisible: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  creditCardNumberLabel: PropTypes.string.isRequired,
+  creditCardNumberPlaceholder: PropTypes.string.isRequired,
+  creditCardExpiresLabel: PropTypes.string.isRequired,
+  creditCardExpiresPlaceholder: PropTypes.string.isRequired,
+  creditCardNameLabel: PropTypes.string.isRequired,
+  creditCardCVVLabel: PropTypes.string.isRequired,
+  creditCardCVVPlaceholder: PropTypes.string.isRequired,
+
 };
+
+Payment.defaultProps = {
+  title: 'Purchase',
+  creditCardNumberLabel: 'Credit Card Number',
+  creditCardNumberPlaceholder: '**** **** **** ****',
+  creditCardExpiresLabel: 'Expires',
+  creditCardExpiresPlaceholder: 'MM YY',
+  creditCardNameLabel: 'Name on Card',
+  creditCardCVVLabel: 'CVV',
+  creditCardCVVPlaceholder: '***',
+}
 
 export default Payment;

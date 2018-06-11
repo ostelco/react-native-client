@@ -21,14 +21,6 @@ export default compose(
     price: getProductPrice(product),
     currency: getProductCurrency(product)
   })),
-  withNavigation,
-  withProps(({ navigation, product, selectProduct }) => ({
-    handlePress: () => {
-      selectProduct(product);
-      logAddToCartEvent(product);
-      navigation.navigate(screens.Payment)
-    }
-  })),
   withApollo,
   graphql(getOfferProductBySKU, {
     options: ({ sku }) => {
@@ -50,5 +42,13 @@ export default compose(
       priceLabel: formatPriceByPriceLabel(priceLabel, price, currency),
       productDescription: description,
     })
-  })
+  }),
+  withNavigation,
+  withProps(({ navigation, product, selectProduct, data }) => ({
+    handlePress: () => {
+      selectProduct(product);
+      logAddToCartEvent(product);
+      navigation.navigate(screens.Payment, { id: data.OfferProduct.id })
+    }
+  })),
 )(SpecialOffer);

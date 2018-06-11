@@ -120,11 +120,31 @@ export const getOfferProductBySKU = gql`
     OfferProduct(sku: $sku) {
       id
       priceLabel
+      sku
       translations {
-        productLabel
         offerLabel
+        productLabel
         description
       }
     }
   }
 `;
+
+export const getProduct = gql`
+  query ($id: ID!) {
+    OfferProduct(id: $id) {
+      id
+      priceLabel
+      translations {
+        productLabel
+      }
+    }
+    DefaultProduct(id: $id) {
+      id
+      priceLabel
+      translations {
+        productLabel
+      }
+    }
+  }
+`

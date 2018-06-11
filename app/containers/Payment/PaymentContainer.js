@@ -4,54 +4,53 @@ import { buyProduct } from "../../actions";
 import { connect } from 'react-redux';
 import * as _ from "lodash";
 import {logECommercePurchaseEvent} from "../../helper/analytics";
+import {compose, renderNothing, branch, withState, withProps} from 'recompose';
+import { withActions } from '../../helper/enhancers';
+import {withNavigation} from "react-navigation";
+import { graphql } from 'react-apollo';
+import { getProduct } from '../../helper/graphql';
+import {formatPriceByPriceLabel} from "../../helper/price";
 
-class PaymentContainer extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDialogVisible: false,
+export default compose(
+  withActions({ buyProduct }),
+  connect(({ selectedProduct }) => ({ selectedProduct })),
+  withNavigation,
+  graphql(getProduct, {
+    options: ({ navigation }) => {
+      return ({
+        variables: {
+          id: navigation.getParam('id')
+        }
+      })
     }
-  }
-
-  _goBack = () => {
-    this.setState({ isDialogVisible: false });
-    logECommercePurchaseEvent(this.props.selectedProduct);
-    this.props.navigation.pop();
-  };
-
-  _handlePayment = () => {
-    this.setState({ isDialogVisible: true });
-
-    console.log('Buying sku', this.props.selectedProduct.sku)
-    this.props.buyProduct(this.props.selectedProduct.sku)
-  };
-
-  render() {
-    const productLabel = _.get(this.props.selectedProduct, "presentation.productLabel", "");
-    const priceLabel = _.get(this.props.selectedProduct, "presentation.priceLabel", "");
-    return (
-      <Payment
-        goBack={this._goBack}
-        confirm={this._handlePayment}
-        isDialogVisible={this.state.isDialogVisible}
-        priceLabel={priceLabel}
-        productLabel={productLabel}
-      />
-    )
-  }
-}
-
-const mapStateToProps = (state) => {
-  const { error, selectedProduct } = state;
-  return {
-    error,
-    selectedProduct
-  };
-};
-
-export default connect(mapStateToProps, {
-  buyProduct
-})(PaymentContainer);
-
-
+  }),
+  branch(({ data: { loading } }) => loading, renderNothing),
+  branch(({ data: { error } }) => error, renderNothing),
+  withState('isDialogVisible', 'setIsDialogVisible', false),
+  withProps((
+    {
+      data: { OfferProduct, DefaultProduct },
+      selectedProduct,
+      navigation,
+      setIsDialogVisible,
+      buyProduct,
+    }) => {
+    const product = OfferProduct || DefaultProduct;
+    const { productLabel } = product.translations[0];
+    const { priceLabel } = product;
+    const { price: { currency, amount }} = selectedProduct;
+    return {
+      productLabel,
+      priceLabel: formatPriceByPriceLabel(priceLabel, amount, currency),
+      goBack: () => {
+        setIsDialogVisible(false);
+        navigation.pop()
+      },
+      confirm: () => {
+        setIsDialogVisible(true);
+        logECommercePurchaseEvent(selectedProduct);
+        buyProduct(selectedProduct.sku);
+      }
+    };
+  }),
+)(Payment);

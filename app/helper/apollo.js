@@ -11,6 +11,12 @@ const cache = new InMemoryCache();
 persistCache({
   cache,
   storage: AsyncStorage,
+  cacheRedirects: {
+    Query: {
+      OfferProduct: (_, args, { getCacheKey }) => getCacheKey({ __typename: 'OfferProduct', sku: args.sku }),
+      DefaultProduct: (_, args, { getCacheKey }) => getCacheKey({ __typename: 'DefaultProduct', sku: args.sku }),
+    }
+  }
 });
 
 const client = new ApolloClient({

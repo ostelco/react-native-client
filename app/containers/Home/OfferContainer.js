@@ -9,7 +9,7 @@ import screens from "../../helper/screens";
 import { withActions, withDefaultProduct, getProductSKU, getProductPrice, getProductCurrency } from '../../helper/enhancers';
 import {getDefaultProductBySKU} from "../../helper/graphql";
 import {formatPriceByPriceLabel} from "../../helper/price";
-import {Query, withApollo, graphql} from "react-apollo";
+import {graphql} from "react-apollo";
 import {Body, Text} from "native-base";
 
 const OfferContainer = compose(
@@ -23,15 +23,6 @@ const OfferContainer = compose(
       currency: getProductCurrency(product)
     })
   }),
-  withNavigation,
-  withProps(({ navigation, product, selectProduct }) => ({
-    handlePress: () => {
-      selectProduct(product);
-      logAddToCartEvent(product);
-      navigation.navigate(screens.Payment);
-    }
-  })),
-  withApollo,
   graphql(getDefaultProductBySKU, {
     options: ({ sku }) => {
       return ({
@@ -50,7 +41,15 @@ const OfferContainer = compose(
       productLabel,
       priceLabel: formatPriceByPriceLabel(priceLabel, price, currency),
     })
-  })
+  }),
+  withNavigation,
+  withProps(({ navigation, product, selectProduct, data }) => ({
+    handlePress: () => {
+      selectProduct(product);
+      logAddToCartEvent(product);
+      navigation.navigate(screens.Payment, { id: data.DefaultProduct.id });
+    }
+  })),
 )(Offer);
 
 export default OfferContainer;

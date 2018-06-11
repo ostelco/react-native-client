@@ -15,9 +15,9 @@ export const getTranslation = (propName, lang = 'EN_US') =>
 const _getProduct = (products, testFn) => Array.isArray(products.list) ? products.list.find(testFn) : undefined
 
 export const getIsDefault = obj => _.get(obj, ['presentation', 'isDefault'], 'false');
-export const getProductLabel = obj => _.get(obj, ['presentation', 'productLabel']);
-export const getPriceLabel = obj => _.get(obj, ['presentation', 'priceLabel'])
-export const getOfferLabel = obj => _.get(obj, ['presentation', 'offerLabel']);
+export const getProductSKU = obj => _.get(obj, ['sku']);
+export const getProductPrice = obj => _.get(obj, ['price', 'amount']);
+export const getProductCurrency = obj => _.get(obj, ['price', 'currency']);
 
 export const getDataLeft = obj => _.get(obj, ['status', 'remaining']);
 export const formatBytes = bytes => isNaN(Number(bytes)) ? null : prettyBytes(bytes);

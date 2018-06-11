@@ -97,7 +97,6 @@ SpecialOffer.propTypes = {
 };
 
 SpecialOffer.defaultProps = {
-  productDescription: 'Lorem ipsum dolor sit amet, consec tetur dipiscing elit lorum ipsum…',
   style: styles
 };
 

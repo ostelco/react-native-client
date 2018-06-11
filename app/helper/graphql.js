@@ -81,5 +81,50 @@ export const getGDPR = gql`
       }
     }
   }
+`;
 
+export const getAllProducts = gql`
+  query {
+    allDefaultProducts {
+      id
+      priceLabel
+      translations {
+        productLabel
+      }
+    }
+    allOfferProducts {
+      id
+      priceLabel
+      translations {
+        offerLabel
+        productLabel
+      }
+    }
+  }
+`;
+
+export const getDefaultProductBySKU = gql`
+  query DefaultProduct($sku: String!) {
+    DefaultProduct(sku: $sku) {
+      id
+      priceLabel
+      translations {
+        productLabel
+      }
+    }
+  }
+`;
+
+export const getOfferProductBySKU = gql`
+  query OfferProduct($sku: String!) {
+    OfferProduct(sku: $sku) {
+      id
+      priceLabel
+      translations {
+        productLabel
+        offerLabel
+        description
+      }
+    }
+  }
 `;

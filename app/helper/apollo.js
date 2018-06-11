@@ -1,5 +1,5 @@
 import ApolloClient from 'apollo-boost';
-import {getGDPR, getOnBoarding, getSignUp, getTermsAndConditions} from "./graphql";
+import {getGDPR, getOnBoarding, getAllProducts, getSignUp, getTermsAndConditions} from "./graphql";
 import { AsyncStorage } from 'react-native';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
@@ -41,6 +41,12 @@ client.query({
   query: getGDPR
 }).then(data => {
   console.log('Prefetched GDPR', data);
+}).catch(err => console.error(err));
+
+client.query({
+  query: getAllProducts
+}).then(data => {
+  console.log('Prefetched Products', data);
 }).catch(err => console.error(err));
 
 export default client;

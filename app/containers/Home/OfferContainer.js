@@ -43,7 +43,7 @@ const OfferContainer = compose(
   }),
   branch(({ data }) => data.loading, renderNothing),
   branch(({ data }) => data.error, renderComponent(({ error }) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error}</Text></Body>)),
-  mapProps(({ data, price, currency }) => {
+  withProps(({ data, price, currency }) => {
     const { productLabel } = data.DefaultProduct.translations[0];
     const { priceLabel } = data.DefaultProduct;
     return ({

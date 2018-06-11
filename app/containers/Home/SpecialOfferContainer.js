@@ -41,7 +41,7 @@ export default compose(
   }),
   branch(({ data: { loading } }) => loading, renderComponent(EmptySpecialOffer)),
   branch(({ data: { error } }) => error, renderComponent(({ error }) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error}</Text></Body>)),
-  mapProps(({ data, price, currency }) => {
+  withProps(({ data, price, currency }) => {
     const { offerLabel, productLabel, description } = data.OfferProduct.translations[0];
     const { priceLabel } = data.OfferProduct;
     return ({

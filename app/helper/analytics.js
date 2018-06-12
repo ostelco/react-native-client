@@ -1,5 +1,6 @@
 import firebase from 'react-native-firebase'
 import { getCurrentPseudonym } from './auth';
+import {formatIntegerPrice} from "./price";
 
 const analytics = firebase.analytics();
 
@@ -18,27 +19,27 @@ export const logGDPRPermissionEvent = params => {
   _logEvent('gdpr_permission', params);
 };
 
-export const logAddToCartEvent = product => {
+export const logAddToCartEvent = ({ amount, currency, sku, productLabel, itemCategory }) => {
   _logEvent('add_to_cart', {
     quantity: 1,
-    price: (product.price.amount / 100.0).toFixed(2),
-    value: (product.price.amount / 100.0).toFixed(2),
-    currency: product.price.currency,
-    item_id: product.sku,
-    item_name: product.presentation.offerLabel,
-    item_category: product.presentation.isDefault === "true" ? "default" : "special"
+    price: Number(formatIntegerPrice(amount)),
+    value: Number(formatIntegerPrice(amount)),
+    currency,
+    item_id: sku,
+    item_name: productLabel,
+    item_category: itemCategory,
   });
 };
 
-export const logECommercePurchaseEvent = product => {
+export const logECommercePurchaseEvent = ({ amount, currency, sku, label, itemCategory }) => {
   _logEvent('ecommerce_purchase', {
     quantity: 1,
-    price: (product.price.amount / 100.0).toFixed(2),
-    value: (product.price.amount / 100.0).toFixed(2),
-    currency: product.price.currency,
-    item_id: product.sku,
-    item_name: product.presentation.offerLabel,
-    item_category: product.presentation.isDefault === "true" ? "default" : "special"
+    price: Number(formatIntegerPrice(amount)),
+    value: Number(formatIntegerPrice(amount)),
+    currency,
+    item_id: sku,
+    item_name: label,
+    item_category: itemCategory,
   });
 };
 

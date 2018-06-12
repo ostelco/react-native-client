@@ -1,8 +1,6 @@
 import React from "react";
 import Payment from "./Payment";
 import { buyProduct } from "../../actions";
-import { connect } from 'react-redux';
-import * as _ from "lodash";
 import {logECommercePurchaseEvent} from "../../helper/analytics";
 import {compose, renderNothing, branch, withState, withProps} from 'recompose';
 import { withActions } from '../../helper/enhancers';
@@ -13,13 +11,13 @@ import {formatPriceByPriceLabel} from "../../helper/price";
 
 export default compose(
   withActions({ buyProduct }),
-  connect(({ selectedProduct }) => ({ selectedProduct })),
   withNavigation,
   graphql(getProduct, {
     options: ({ navigation }) => {
       return ({
         variables: {
-          id: navigation.getParam('id')
+          sku: navigation.getParam('sku'),
+          itemCategory: navigation.getParam('itemCategory'),
         }
       })
     }
@@ -30,15 +28,14 @@ export default compose(
   withProps((
     {
       data: { OfferProduct, DefaultProduct },
-      selectedProduct,
       navigation,
       setIsDialogVisible,
       buyProduct,
+      itemCategory,
     }) => {
     const product = OfferProduct || DefaultProduct;
     const { productLabel } = product.translations[0];
-    const { priceLabel } = product;
-    const { price: { currency, amount }} = selectedProduct;
+    const { priceLabel, currency, amount, sku } = product;
     return {
       productLabel,
       priceLabel: formatPriceByPriceLabel(priceLabel, amount, currency),
@@ -48,8 +45,8 @@ export default compose(
       },
       confirm: () => {
         setIsDialogVisible(true);
-        logECommercePurchaseEvent(selectedProduct);
-        buyProduct(selectedProduct.sku);
+        logECommercePurchaseEvent({ amount, currency, sku, productLabel, itemCategory });
+        buyProduct(sku);
       }
     };
   }),

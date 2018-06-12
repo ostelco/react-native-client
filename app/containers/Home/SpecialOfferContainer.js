@@ -1,27 +1,19 @@
 import React from 'react';
-import {compose, branch, renderComponent, withProps, mapProps} from 'recompose';
+import {compose, branch, renderComponent, withProps} from 'recompose';
 import SpecialOffer from "./SpecialOffer";
-import {withActions, getProductCurrency, getProductPrice, getProductSKU, withCustomProduct} from "../../helper/enhancers";
 import {withNavigation} from "react-navigation";
 import {logAddToCartEvent} from "../../helper/analytics";
-import { selectProduct } from '../../actions';
 import screens from "../../helper/screens";
 import { EmptySpecialOffer } from './SpecialOffer';
 import {formatPriceByPriceLabel} from "../../helper/price";
 import {getOfferProductBySKU} from "../../helper/graphql";
-import {Query, withApollo, graphql} from "react-apollo";
+import {graphql} from "react-apollo";
 import {Body, Text} from "native-base";
 
 export default compose(
-  withActions({ selectProduct }),
-  withCustomProduct,
-  branch(({ product }) => product === undefined, renderComponent(EmptySpecialOffer)),
-  withProps(({ product }) => ({
-    sku: getProductSKU(product),
-    price: getProductPrice(product),
-    currency: getProductCurrency(product)
+  withProps(() => ({
+    sku: "2GB_299NOK", // TODO: Get this from somewhere else
   })),
-  withApollo,
   graphql(getOfferProductBySKU, {
     options: ({ sku }) => {
       return ({
@@ -33,22 +25,23 @@ export default compose(
   }),
   branch(({ data: { loading } }) => loading, renderComponent(EmptySpecialOffer)),
   branch(({ data: { error } }) => error, renderComponent(({ error }) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error}</Text></Body>)),
-  withProps(({ data, price, currency }) => {
+  withProps(({ data }) => {
     const { offerLabel, productLabel, description } = data.OfferProduct.translations[0];
-    const { priceLabel } = data.OfferProduct;
+    const { priceLabel, amount, currency } = data.OfferProduct;
     return ({
       offerLabel,
       productLabel,
-      priceLabel: formatPriceByPriceLabel(priceLabel, price, currency),
+      priceLabel: formatPriceByPriceLabel(priceLabel, amount, currency),
       productDescription: description,
+      amount,
+      currency
     })
   }),
   withNavigation,
-  withProps(({ navigation, product, selectProduct, data }) => ({
+  withProps(({ navigation, sku, amount, currency, offerLabel }) => ({
     handlePress: () => {
-      selectProduct(product);
-      logAddToCartEvent(product);
-      navigation.navigate(screens.Payment, { id: data.OfferProduct.id })
+      logAddToCartEvent({ amount, currency, sku, label: offerLabel, itemCategory: "special" });
+      navigation.navigate(screens.Payment, { sku, itemCategory: "special" })
     }
   })),
 )(SpecialOffer);

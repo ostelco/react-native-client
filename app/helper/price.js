@@ -5,11 +5,11 @@
  * @returns {string}
  * @private
  */
-const _formatIntegerPrice = value => {
+export const formatIntegerPrice = value => {
   const tmp = value.toString();
   const label = `${tmp.substring(0, tmp.length - 2)}.${tmp.substring(tmp.length - 2)}`;
   return label.endsWith('00') ? label.substring(0, label.length - 3) : label;
 };
 
 export const formatPriceByPriceLabel = (label, price, currency) =>
-  label.replace('P', _formatIntegerPrice(price)).replace('C', currency);
+  label.replace('P', formatIntegerPrice(price)).replace('C', currency);

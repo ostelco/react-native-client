@@ -107,7 +107,10 @@ export const getDefaultProductBySKU = gql`
   query DefaultProduct($sku: String!) {
     DefaultProduct(sku: $sku) {
       id
+      sku
       priceLabel
+      amount @client
+      currency @client
       translations {
         productLabel
       }
@@ -121,6 +124,8 @@ export const getOfferProductBySKU = gql`
       id
       priceLabel
       sku
+      amount @client
+      currency @client
       translations {
         offerLabel
         productLabel
@@ -131,17 +136,23 @@ export const getOfferProductBySKU = gql`
 `;
 
 export const getProduct = gql`
-  query ($id: ID!) {
-    OfferProduct(id: $id) {
+  query ($sku: String!) {
+    OfferProduct(sku: $sku) {
       id
+      sku
       priceLabel
+      amount @client
+      currency @client
       translations {
         productLabel
       }
     }
-    DefaultProduct(id: $id) {
+    DefaultProduct(sku: $sku) {
       id
+      sku
       priceLabel
+      amount @client
+      currency @client
       translations {
         productLabel
       }

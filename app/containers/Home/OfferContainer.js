@@ -20,6 +20,7 @@ const OfferContainer = compose(
   }),
   */
   withDefaultProduct,
+  branch(({ product }) => !product, renderNothing),
   graphql(getDefaultProductBySKU, {
     options: ({ product: { sku }}) => {
       return ({

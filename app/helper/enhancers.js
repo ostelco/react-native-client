@@ -18,6 +18,13 @@ export const getIsDefault = obj => _.get(obj, ['presentation', 'isDefault'], 'fa
 export const getProductSKU = obj => _.get(obj, ['sku']);
 export const getProductPrice = obj => _.get(obj, ['price', 'amount']);
 export const getProductCurrency = obj => _.get(obj, ['price', 'currency']);
+export const withProductBySKU = connect(
+  ({ products }, { sku }) => {
+    return ({
+      product: _getProduct(products, p => p.sku === sku)
+    })
+  }
+);
 
 export const getDataLeft = obj => _.get(obj, ['status', 'remaining']);
 export const formatBytes = bytes => isNaN(Number(bytes)) ? null : prettyBytes(bytes);

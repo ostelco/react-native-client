@@ -40,10 +40,6 @@ const products = (state = { isFetching: false, list: null }, action) => {
     case ActionTypes.PRODUCTS_FAILURE:
       return {isFetching: false, list:null};
     case ActionTypes.PRODUCTS_SUCCESS:
-      response.forEach(product => {
-        let typename = product.presentation.isDefault === "true" ? 'DefaultProduct' : 'OfferProduct';
-        client.writeData({ id: `${typename}:${product.sku}`, data: { amount: product.price.amount, currency: product.price.currency } });
-      });
       return {isFetching: false, list:response};
   }
   return state;

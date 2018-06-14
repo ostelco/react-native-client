@@ -9,15 +9,19 @@ import {getDefaultProductBySKU} from "../../helper/graphql";
 import {formatPriceByPriceLabel} from "../../helper/price";
 import {graphql} from "react-apollo";
 import {Body, Text} from "native-base";
+import {withDefaultProduct} from "../../helper/enhancers";
 
 const OfferContainer = compose(
+  /*
   withProps(() => {
     return ({
       sku: "1GB_249NOK" // TODO: Get this from somewhere else
     })
   }),
+  */
+  withDefaultProduct,
   graphql(getDefaultProductBySKU, {
-    options: ({ sku }) => {
+    options: ({ product: { sku }}) => {
       return ({
         variables: {
           sku
@@ -25,16 +29,18 @@ const OfferContainer = compose(
       })
     }
   }),
-  branch(({ data }) => data.loading, renderNothing),
-  branch(({ data }) => data.error, renderComponent(({ error }) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error}</Text></Body>)),
-  withProps(({ data }) => {
+  branch(({ data: { loading } }) => loading, renderNothing),
+  branch(({ data: { error } }) => error, renderComponent(({ data: { error }}) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error.message}</Text></Body>)),
+  withProps(({ data, product: { price, sku } }) => {
     const { productLabel } = data.DefaultProduct.translations[0];
-    const { priceLabel, amount, currency } = data.DefaultProduct;
+    const { priceLabel } = data.DefaultProduct;
+    const { amount, currency } = price;
     return ({
       productLabel,
       priceLabel: formatPriceByPriceLabel(priceLabel, amount, currency),
       amount,
-      currency
+      currency,
+      sku,
     })
   }),
   withNavigation,

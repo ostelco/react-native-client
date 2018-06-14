@@ -1,5 +1,5 @@
 import React from 'react';
-import {compose, branch, renderComponent, withProps} from 'recompose';
+import {compose, branch, renderComponent, withProps, renderNothing} from 'recompose';
 import SpecialOffer from "./SpecialOffer";
 import {withNavigation} from "react-navigation";
 import {logAddToCartEvent} from "../../helper/analytics";
@@ -9,32 +9,39 @@ import {formatPriceByPriceLabel} from "../../helper/price";
 import {getOfferProductBySKU} from "../../helper/graphql";
 import {graphql} from "react-apollo";
 import {Body, Text} from "native-base";
+import {withCustomProduct, withDefaultProduct} from "../../helper/enhancers";
 
 export default compose(
+  /*
   withProps(() => ({
     sku: "2GB_299NOK", // TODO: Get this from somewhere else
   })),
+  */
+  withCustomProduct,
+  branch(({ product }) => !product, renderNothing),
   graphql(getOfferProductBySKU, {
-    options: ({ sku }) => {
+    options: ({ product: { sku } }) => {
       return ({
         variables: {
-          sku
+          sku,
         }
       })
     }
   }),
   branch(({ data: { loading } }) => loading, renderComponent(EmptySpecialOffer)),
-  branch(({ data: { error } }) => error, renderComponent(({ error }) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error}</Text></Body>)),
-  withProps(({ data }) => {
+  branch(({ data: { error } }) => error, renderComponent(({ data: { error }}) => <Body style={{ alignItems: 'center' }}><Text>ERROR! {error.message}</Text></Body>)),
+  withProps(({ data, product: { price, sku } }) => {
     const { offerLabel, productLabel, description } = data.OfferProduct.translations[0];
-    const { priceLabel, amount, currency } = data.OfferProduct;
+    const { priceLabel } = data.OfferProduct;
+    const { amount, currency } = price;
     return ({
       offerLabel,
       productLabel,
       priceLabel: formatPriceByPriceLabel(priceLabel, amount, currency),
       productDescription: description,
       amount,
-      currency
+      currency,
+      sku,
     })
   }),
   withNavigation,

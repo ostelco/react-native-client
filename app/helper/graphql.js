@@ -7,6 +7,7 @@ export const getOnBoarding = gql`
     ) {
       id
       translations {
+        id
         title,
         description,
         signInButton,
@@ -22,6 +23,7 @@ export const getSignUp = gql`
     SignUp(id: "cji4nc7qy564301264y8swwir") {
       id
       translations {
+        id
         title
         doneButton
         language
@@ -30,6 +32,7 @@ export const getSignUp = gql`
         id
         key
         translations {
+          id
           label
           placeholder
           language
@@ -44,6 +47,7 @@ export const getTermsAndConditions = gql`
     TermsAndConditions(id: "cji4qhb278rcw0141s9ol51jy") {
       id
       translations {
+        id
         title
         subTitle
       }
@@ -52,6 +56,7 @@ export const getTermsAndConditions = gql`
         multiLineText {
           id
           translations {
+            id
             value
           }
         }
@@ -65,6 +70,7 @@ export const getGDPR = gql`
     GDPR(id: "cji4rtv2s97bp0141rzp4onr2") {
       id
       translations {
+        id
         title
         description
         denyButtonText
@@ -75,6 +81,7 @@ export const getGDPR = gql`
         icon
         id
         translations {
+          id
           description
           language
         }
@@ -88,14 +95,18 @@ export const getAllProducts = gql`
     allDefaultProducts {
       id
       priceLabel
+      sku
       translations {
+        id
         productLabel
       }
     }
     allOfferProducts {
       id
       priceLabel
+      sku
       translations {
+        id
         offerLabel
         productLabel
       }
@@ -109,9 +120,8 @@ export const getDefaultProductBySKU = gql`
       id
       sku
       priceLabel
-      amount @client
-      currency @client
       translations {
+        id
         productLabel
       }
     }
@@ -124,9 +134,8 @@ export const getOfferProductBySKU = gql`
       id
       priceLabel
       sku
-      amount @client
-      currency @client
       translations {
+        id
         offerLabel
         productLabel
         description
@@ -141,9 +150,8 @@ export const getProduct = gql`
       id
       sku
       priceLabel
-      amount @client
-      currency @client
       translations {
+        id
         productLabel
       }
     }
@@ -151,11 +159,10 @@ export const getProduct = gql`
       id
       sku
       priceLabel
-      amount @client
-      currency @client
       translations {
+        id
         productLabel
       }
     }
   }
-`
+`;

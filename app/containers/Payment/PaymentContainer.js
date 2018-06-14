@@ -3,7 +3,7 @@ import Payment from "./Payment";
 import { buyProduct } from "../../actions";
 import {logECommercePurchaseEvent} from "../../helper/analytics";
 import {compose, renderNothing, branch, withState, withProps} from 'recompose';
-import { withActions } from '../../helper/enhancers';
+import {withActions, withDefaultProduct, withProductBySKU} from '../../helper/enhancers';
 import {withNavigation} from "react-navigation";
 import { graphql } from 'react-apollo';
 import { getProduct } from '../../helper/graphql';
@@ -12,12 +12,20 @@ import {formatPriceByPriceLabel} from "../../helper/price";
 export default compose(
   withActions({ buyProduct }),
   withNavigation,
+  withProps(({ navigation }) => {
+    return ({
+      sku: navigation.getParam('sku'),
+      itemCategory: navigation.getParam('itemCategory'),
+    })
+  }),
+  withProductBySKU,
+  branch(({ product }) => !product, renderNothing),
   graphql(getProduct, {
-    options: ({ navigation }) => {
+    options: ({ product: { sku }, navigation, itemCategory }) => {
       return ({
         variables: {
-          sku: navigation.getParam('sku'),
-          itemCategory: navigation.getParam('itemCategory'),
+          sku,
+          itemCategory,
         }
       })
     }
@@ -32,10 +40,11 @@ export default compose(
       setIsDialogVisible,
       buyProduct,
       itemCategory,
+      product: { sku, price: { amount, currency }},
     }) => {
-    const product = OfferProduct || DefaultProduct;
-    const { productLabel } = product.translations[0];
-    const { priceLabel, currency, amount, sku } = product;
+    const p = OfferProduct || DefaultProduct;
+    const { productLabel } = p.translations[0];
+    const { priceLabel } = p;
     return {
       productLabel,
       priceLabel: formatPriceByPriceLabel(priceLabel, amount, currency),

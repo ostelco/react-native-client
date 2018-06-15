@@ -24,6 +24,30 @@ export const loadSubscription = () => (dispatch, getState) => {
   return dispatch(fetchSubscription());
 }
 
+export const PSEUDONYM_REQUEST = 'PSEUDONYM_REQUEST';
+export const PSEUDONYM_SUCCESS = 'PSEUDONYM_SUCCESS';
+export const PSEUDONYM_FAILURE = 'PSEUDONYM_FAILURE';
+
+const fetchPseudonyms = () => ({
+  [CALL_API]: {
+    types: [ PSEUDONYM_REQUEST, PSEUDONYM_SUCCESS, PSEUDONYM_FAILURE ],
+    endpoint: 'subscription/activePseudonyms',
+    method: 'GET'
+  }
+});
+
+export const loadPseudonyms = () => (dispatch, getState) => {
+  const pseudonyms = getState().pseudonyms;
+  if (pseudonyms && pseudonyms.isFetching) {
+    // We are curently fetching the pseudonyms,
+    // wait before sending a new request
+    console.log("In the middle of fetching pseudonyms")
+    return null;
+  }
+  console.log("Fetching pseudonyms")
+  return dispatch(fetchPseudonyms());
+}
+
 export const PRODUCTS_REQUEST = 'PRODUCTS_REQUEST';
 export const PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS';
 export const PRODUCTS_FAILURE = 'PRODUCTS_FAILURE';
@@ -195,6 +219,12 @@ export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 // Resets the currently visible error message.
 export const resetErrorMessage = () => ({
     type: RESET_ERROR_MESSAGE
+});
+
+export const USER_LOGIN = 'USER_LOGIN';
+
+export const userLoggedIn = () => ({
+  type: USER_LOGIN
 });
 
 export const USER_LOGOUT = 'USER_LOGOUT';

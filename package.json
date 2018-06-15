@@ -26,6 +26,7 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "instabug-reactnative": "^2.13.2",
     "jwt-decode": "^2.2.0",
     "loadash": "^1.0.0",
     "native-base": "^2.4.3",

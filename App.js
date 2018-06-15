@@ -15,7 +15,7 @@ import { setRemoteConfig, loadSubscription } from './app/actions';
 import Instabug from 'instabug-reactnative';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
-import { initFCM } from './app/helper/firebaseCloudMessaging';
+import { initFCM, storeFcmToken } from './app/helper/firebaseCloudMessaging';
 
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
@@ -97,8 +97,11 @@ const AppLoading = () => (
 );
 
 // Callback after redux store is loaded from persistant store
-const onBeforeLift = () => {
-  autoLogin(); // Try automatic login
+const onBeforeLift = async () => {
+  const loggedIn = await autoLogin(); // Try automatic login
+  if (loggedIn) {
+    storeFcmToken();
+  }
 }
 
 export default class App extends React.Component {

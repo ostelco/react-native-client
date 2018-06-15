@@ -111,8 +111,8 @@ def enableProguardInReleaseBuilds = false
 def pass = getPassword("mac","android_keystore")
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "digital.telenor.panacea"

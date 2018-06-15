@@ -10,8 +10,10 @@ import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
 import { setRemoteConfig, loadSubscription } from './app/actions';
+import Instabug from 'instabug-reactnative';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
+
 
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
@@ -103,6 +105,11 @@ export default class App extends React.Component {
   }
 
   async componentWillMount() {
+    Instabug.startWithToken('d50e4b80d80701c04553b97dbf6a318b', Instabug.invocationEvent.shake);
+    Instabug.setColorTheme(Instabug.colorTheme.dark);
+    Instabug.setExtendedBugReportMode(Instabug.extendedBugReportMode.enabledWithRequiredFields);
+    Instabug.setAutoScreenRecordingEnabled(true);
+
     this.setState({ loading: false });
     // TODO: Hardcoded value until better approach is implemented since onNavigationStateChange does not capture initial screen view
     analytics.setCurrentScreen('OnBoarding');

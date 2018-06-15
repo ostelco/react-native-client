@@ -165,6 +165,7 @@ android {
 }
 
 dependencies {
+    compile project(':instabug-reactnative')
     compile(project(':react-native-firebase')) {
         transitive = false
     }

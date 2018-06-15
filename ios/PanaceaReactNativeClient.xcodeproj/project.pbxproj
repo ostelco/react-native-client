@@ -14,6 +14,7 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* PanaceaReactNativeClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PanaceaReactNativeClientTests.m */; };
 		043968F420C927A200CE61C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043968F320C927A200CE61C4 /* GoogleService-Info.plist */; };
+		07DE163FCD9D4EA88777739C /* libRNInstabug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E310D3C56DD4314BC06BAF6 /* libRNInstabug.a */; };
 		0E00BC70DF8844D4BDD220BD /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3E2817A342E459C98BD49A2 /* EvilIcons.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -39,11 +40,14 @@
 		2DCD954D1E0B4F2C00145EB5 /* PanaceaReactNativeClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PanaceaReactNativeClientTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2F82945CC3854E979FC7989B /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F934064E3144E218B54D4B8 /* Roboto.ttf */; };
+		35A572C6D6F9635ED551ACEC /* InstabugCore.framework in Embed Instabug Framework */ = {isa = PBXBuildFile; fileRef = 8B3DC4AF0040C234D819E713 /* InstabugCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4152E4B9640D79CBD4CE4B48 /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCDB2017A3E9D47C80A62CA /* Instabug.framework */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6206A6ACD0FB4081A44CA56B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A088EDD04B943C8B90213C7 /* Ionicons.ttf */; };
 		63E78A89BEC24E0A8D7EC808 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A469378E32C40A1973EC3CC /* Octicons.ttf */; };
 		643E32A7A7044703AF902F3B /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DA9C30E5C14B0CB024E6EC /* MaterialIcons.ttf */; };
 		6B65AF8A3D5E4DD1AA5A507A /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9928FFE2A5E499DBB0E8993 /* libRNFirebase.a */; };
+		76AAA784816C789A56A9A2A8 /* Instabug.framework in Embed Instabug Framework */ = {isa = PBXBuildFile; fileRef = 5DCDB2017A3E9D47C80A62CA /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77142A3B1FBC66E867D68F7C /* libPods-PanaceaReactNativeClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A80FDF6FC5DC4F484B5394 /* libPods-PanaceaReactNativeClient.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AB60009749A94CD99592D51C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCFF5277E5A74CD7ADC1D206 /* SimpleLineIcons.ttf */; };
@@ -55,6 +59,7 @@
 		D164AF4C6DD74CC1A2C71994 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78967B1173DE4CF18501C562 /* Entypo.ttf */; };
 		E4FEE4D8FC3E4E65B07F8586 /* libA0Auth0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5A9E2B4CAB483FA86E959C /* libA0Auth0.a */; };
 		E5AC09F0611F2D7A41604F4A /* libPods-PanaceaReactNativeClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE2BFD7F508D00812BEC032 /* libPods-PanaceaReactNativeClientTests.a */; };
+		E5EBA39EF7EDB1909C131FE2 /* InstabugCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3DC4AF0040C234D819E713 /* InstabugCore.framework */; };
 		FAE7B20C56B64E4EB4518FE7 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB809426CAB74C82B37E3816 /* Foundation.ttf */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +112,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = A0Auth0;
+		};
+		044283B220D394D70033EAEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2735D6FA31C34314AF6A8115 /* RNInstabug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 24DF11ED1DA3A2B90056F77C;
+			remoteInfo = RNInstabug;
 		};
 		04B6AFDC20BE80930048750D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -348,6 +360,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		65E1955C281B378FFE57307B /* Embed Instabug Framework */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				76AAA784816C789A56A9A2A8 /* Instabug.framework in Embed Instabug Framework */,
+				35A572C6D6F9635ED551ACEC /* InstabugCore.framework in Embed Instabug Framework */,
+			);
+			name = "Embed Instabug Framework";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -359,6 +386,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PanaceaReactNativeClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PanaceaReactNativeClientTests.m; sourceTree = "<group>"; };
 		043968F320C927A200CE61C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0E310D3C56DD4314BC06BAF6 /* libRNInstabug.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNInstabug.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PanaceaReactNativeClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanaceaReactNativeClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,6 +398,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PanaceaReactNativeClient/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1A24740B416564DFAE40A11B /* Pods-PanaceaReactNativeClient-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PanaceaReactNativeClient-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PanaceaReactNativeClient-tvOS/Pods-PanaceaReactNativeClient-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		2735D6FA31C34314AF6A8115 /* RNInstabug.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNInstabug.xcodeproj; path = "../node_modules/instabug-reactnative/ios/RNInstabug.xcodeproj"; sourceTree = "<group>"; };
 		2BAEEB1E8309789DAAF054B9 /* Pods-PanaceaReactNativeClient-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PanaceaReactNativeClient-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-PanaceaReactNativeClient-tvOS/Pods-PanaceaReactNativeClient-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* PanaceaReactNativeClient-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PanaceaReactNativeClient-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* PanaceaReactNativeClient-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PanaceaReactNativeClient-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,12 +408,14 @@
 		4807D80550AA474D990139AE /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		54FF116588563E7CD61DE90B /* libPods-PanaceaReactNativeClient-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PanaceaReactNativeClient-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A469378E32C40A1973EC3CC /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		5DCDB2017A3E9D47C80A62CA /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = "../node_modules/instabug-reactnative/ios/Instabug.framework"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		71A80FDF6FC5DC4F484B5394 /* libPods-PanaceaReactNativeClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PanaceaReactNativeClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78967B1173DE4CF18501C562 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A088EDD04B943C8B90213C7 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		8B3DC4AF0040C234D819E713 /* InstabugCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstabugCore.framework; path = "../node_modules/instabug-reactnative/ios/InstabugCore.framework"; sourceTree = "<group>"; };
 		8BADFF82C77919FF721FE3EC /* Pods-PanaceaReactNativeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PanaceaReactNativeClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-PanaceaReactNativeClient/Pods-PanaceaReactNativeClient.release.xcconfig"; sourceTree = "<group>"; };
 		9E53362DAEF00A7008A75500 /* Pods-PanaceaReactNativeClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PanaceaReactNativeClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PanaceaReactNativeClientTests/Pods-PanaceaReactNativeClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E73DF00686A45211A65BE58 /* libPods-PanaceaReactNativeClient-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PanaceaReactNativeClient-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,6 +466,9 @@
 				E4FEE4D8FC3E4E65B07F8586 /* libA0Auth0.a in Frameworks */,
 				6B65AF8A3D5E4DD1AA5A507A /* libRNFirebase.a in Frameworks */,
 				77142A3B1FBC66E867D68F7C /* libPods-PanaceaReactNativeClient.a in Frameworks */,
+				07DE163FCD9D4EA88777739C /* libRNInstabug.a in Frameworks */,
+				4152E4B9640D79CBD4CE4B48 /* Instabug.framework in Frameworks */,
+				E5EBA39EF7EDB1909C131FE2 /* InstabugCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +564,7 @@
 			children = (
 				BB5A9E2B4CAB483FA86E959C /* libA0Auth0.a */,
 				C9928FFE2A5E499DBB0E8993 /* libRNFirebase.a */,
+				0E310D3C56DD4314BC06BAF6 /* libRNInstabug.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -538,6 +573,14 @@
 			isa = PBXGroup;
 			children = (
 				040C9F8320B56E42008CFDA5 /* libA0Auth0.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		044283AF20D394D70033EAEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				044283B320D394D70033EAEB /* libRNInstabug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -616,6 +659,8 @@
 				9E73DF00686A45211A65BE58 /* libPods-PanaceaReactNativeClient-tvOS.a */,
 				54FF116588563E7CD61DE90B /* libPods-PanaceaReactNativeClient-tvOSTests.a */,
 				AAE2BFD7F508D00812BEC032 /* libPods-PanaceaReactNativeClientTests.a */,
+				5DCDB2017A3E9D47C80A62CA /* Instabug.framework */,
+				8B3DC4AF0040C234D819E713 /* InstabugCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -655,6 +700,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				AD618FAFB2A542BBA65E8E2C /* A0Auth0.xcodeproj */,
 				4807D80550AA474D990139AE /* RNFirebase.xcodeproj */,
+				2735D6FA31C34314AF6A8115 /* RNInstabug.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -770,6 +816,8 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				0408383020BE8F1D005FAF11 /* ShellScript */,
+				65E1955C281B378FFE57307B /* Embed Instabug Framework */,
+				A5068B5C5164EFFC32BDF96B /* Strip Frameworks */,
 			);
 			buildRules = (
 			);
@@ -917,6 +965,10 @@
 					ProductGroup = 04B6AFD920BE80930048750D /* Products */;
 					ProjectRef = 4807D80550AA474D990139AE /* RNFirebase.xcodeproj */;
 				},
+				{
+					ProductGroup = 044283AF20D394D70033EAEB /* Products */;
+					ProjectRef = 2735D6FA31C34314AF6A8115 /* RNInstabug.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -969,6 +1021,13 @@
 			fileType = archive.ar;
 			path = libA0Auth0.a;
 			remoteRef = 040C9F8220B56E42008CFDA5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		044283B320D394D70033EAEB /* libRNInstabug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNInstabug.a;
+			remoteRef = 044283B220D394D70033EAEB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		04B6AFDD20BE80930048750D /* libRNFirebase.a */ = {
@@ -1346,6 +1405,20 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A5068B5C5164EFFC32BDF96B /* Strip Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/InstabugCore.framework/strip-frameworks.sh\"\n";
+		};
 		F004430565AA223B4DBD6608 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1442,12 +1515,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = PanaceaReactNativeClientTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1470,12 +1545,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = PanaceaReactNativeClientTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1499,10 +1576,15 @@
 				CURRENT_PROJECT_VERSION = 22;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = G4VMYY2CK5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../node_modules/instabug-reactnative/ios",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = PanaceaReactNativeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1529,10 +1611,15 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = G4VMYY2CK5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../node_modules/instabug-reactnative/ios",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = PanaceaReactNativeClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1566,11 +1653,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = "PanaceaReactNativeClient-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1603,11 +1692,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = "PanaceaReactNativeClient-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1639,11 +1730,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = "PanaceaReactNativeClient-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1675,11 +1768,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 				);
 				INFOPLIST_FILE = "PanaceaReactNativeClient-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

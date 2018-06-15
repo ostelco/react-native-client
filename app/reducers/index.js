@@ -1,6 +1,7 @@
 import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux';
 import firebase from "react-native-firebase";
+import Instabug from 'instabug-reactnative';
 
 const subscription = (state = { isFetching: false, status: null, queried: false }, action) => {
   console.log("Action = ", action);
@@ -153,6 +154,7 @@ const rootReducer = (state, action) => {
     case ActionTypes.PROFILE_SUCCESS:
     case ActionTypes.PROFILE_CREATE_SUCCESS:
     case ActionTypes.PROFILE_UPDATE_SUCCESS:
+      Instabug.identifyUserWithEmail(action.response.email, action.response.name);
       firebase.crashlytics().setUserIdentifier(action.response.email);
   }
 

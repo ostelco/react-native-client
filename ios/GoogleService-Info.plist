@@ -7,23 +7,23 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>141232844658-nen9a0cq45q2m9i9tn60kasda1q32jrg.apps.googleusercontent.com</string>
+	<string>1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.141232844658-nen9a0cq45q2m9i9tn60kasda1q32jrg</string>
+	<string>com.googleusercontent.apps.1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>141232844658-fd0jrig8hiorgipkd72ig34geg1tuj49.apps.googleusercontent.com</string>
+	<string>1032906769274-79gj55e6rmqug8v9lkvt64057k6cpvm3.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCFBn7bgd1mvOTl_suG_LPg8DXZNd1KbFM</string>
+	<string>AIzaSyCgaSeywU2H3QYwonFe-O2EP4VruTrTbt0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>141232844658</string>
+	<string>1032906769274</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>digital.telenor.panacea</string>
 	<key>PROJECT_ID</key>
-	<string>panacea-39e5a</string>
+	<string>pantel-2decb</string>
 	<key>STORAGE_BUCKET</key>
-	<string>panacea-39e5a.appspot.com</string>
+	<string>pantel-2decb.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,8 +35,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:141232844658:ios:623a4f7bb5cf26cd</string>
+	<string>1:1032906769274:ios:623a4f7bb5cf26cd</string>
 	<key>DATABASE_URL</key>
-	<string>https://panacea-39e5a.firebaseio.com</string>
+	<string>https://pantel-2decb.firebaseio.com</string>
 </dict>
 </plist>

@@ -9,7 +9,6 @@ import { setStore, autoLogin } from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
-import { setRemoteConfig } from './app/actions';
 import client from './app/helper/apollo';
 import {ApolloProvider} from "react-apollo";
 import { setRemoteConfig, loadSubscription } from './app/actions';

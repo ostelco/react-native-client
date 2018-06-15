@@ -174,6 +174,10 @@ export const PROFILE_UPDATE_REQUEST = 'PROFILE_UPDATE_REQUEST';
 export const PROFILE_UPDATE_SUCCESS = 'PROFILE_UPDATE_SUCCESS';
 export const PROFILE_UPDATE_FAILURE = 'PROFILE_UPDATE_FAILURE';
 
+export const APPLICATION_TOKEN_CREATE_REQUEST = 'APPLICATION_TOKEN_CREATE_REQUEST';
+export const APPLICATION_TOKEN_CREATE_SUCCESS = 'APPLICATION_TOKEN_CREATE_SUCCESS';
+export const APPLICATION_TOKEN_CREATE_FAILURE = 'APPLICATION_TOKEN_CREATE_FAILURE';
+
 const postProfile = profile => ({
   [CALL_API]: {
     types: [ PROFILE_CREATE_REQUEST, PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_FAILURE ],
@@ -191,6 +195,15 @@ const putProfile = profile => ({
   }
 });
 
+const postApplicationToken = applicationToken => ({
+  [CALL_API]: {
+    types: [ APPLICATION_TOKEN_CREATE_REQUEST, APPLICATION_TOKEN_CREATE_SUCCESS, APPLICATION_TOKEN_CREATE_FAILURE ],
+    endpoint: 'applicationtoken',
+    method: 'POST',
+    body: JSON.stringify(applicationToken)
+  }
+});
+
 export const createProfile = profile => (dispatch) => {
   console.log("Creating profile");
   return dispatch(postProfile(profile));
@@ -198,6 +211,11 @@ export const createProfile = profile => (dispatch) => {
 export const updateProfile = profile => (dispatch) => {
   console.log("Updating profile");
   return dispatch(putProfile(profile));
+}
+
+export const storeApplicationToken = applicationToken => (dispatch) => {
+  console.log("Storing application token : ", applicationToken);
+  return dispatch(postApplicationToken(applicationToken));
 }
 
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { login } from '../../helper/auth';
 import screens from "../../helper/screens";
 import {logLoginEvent} from '../../helper/analytics';
+import { storeFcmToken } from '../../helper/firebaseCloudMessaging';
 
 class OnBoardingContainer extends React.Component {
 
@@ -12,6 +13,7 @@ class OnBoardingContainer extends React.Component {
     if (loginStatus ===  true) {
       console.log("Load subscription & products");
       logLoginEvent();
+      storeFcmToken();
     } else {
       console.log("Login failed.");
     }

@@ -7,6 +7,7 @@ pod 'Crashlytics', '~> 3.10.1'
 pod 'Firebase/Performance'
 pod 'Firebase/Crash'
 pod 'Firebase/RemoteConfig'
+pod 'Firebase/Messaging'
 
 target 'PanaceaReactNativeClient' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks

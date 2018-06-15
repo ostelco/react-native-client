@@ -19,7 +19,7 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - [Firebase Analytics](https://console.firebase.google.com/project/panacea-39e5a/analytics/app/ios:digital.telenor.panacea/overview%3Ft=2&cs=app.m.dashboard.overview&g=1) link to firebase analytics dashboard
   - [Screen Tracking with React Navigation](https://reactnavigation.org/docs/en/screen-tracking.html)
 - [Remote Config](https://console.firebase.google.com/project/panacea-39e5a/config) used to send global configuration to clients or to run experiments where client can get different configurations
-- [Bug Reporting](https://instabug.com/) we use instabug for bug reporting
+- [Bug Reporting](https://instabug.com/) we use instabug for bug reporting. Requires micro phone and photo permissions
 
 ## Remote Config
 

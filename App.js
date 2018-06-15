@@ -108,6 +108,7 @@ export default class App extends React.Component {
     Instabug.startWithToken('d50e4b80d80701c04553b97dbf6a318b', Instabug.invocationEvent.shake);
     Instabug.setColorTheme(Instabug.colorTheme.dark);
     Instabug.setExtendedBugReportMode(Instabug.extendedBugReportMode.enabledWithRequiredFields);
+    Instabug.setAutoScreenRecordingEnabled(true);
 
     this.setState({ loading: false });
     // TODO: Hardcoded value until better approach is implemented since onNavigationStateChange does not capture initial screen view

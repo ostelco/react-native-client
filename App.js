@@ -13,8 +13,11 @@ import { setRemoteConfig, loadSubscription } from './app/actions';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
 
+import { initFCM } from './app/helper/firebaseCloudMessaging';
+
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
+initFCM(store);
 
 // Fetch remote config on startup
 const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));

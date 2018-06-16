@@ -4,6 +4,7 @@ import { auth0 } from '../../helper/auth';
 import { userLogout } from "../../actions";
 import { connect } from 'react-redux';
 import screens from "../../helper/screens";
+import Instabug from 'instabug-reactnative';
 
 class SettingsContainer extends React.Component {
 
@@ -31,6 +32,7 @@ class SettingsContainer extends React.Component {
     this.props.userLogout();
     return auth0.webAuth.clearSession()
       .finally(() => {
+        Instabug.logOut();
         this.props.navigation.navigate(screens.OnBoarding);
       });
   };

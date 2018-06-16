@@ -13,6 +13,7 @@ import { setRemoteConfig, loadSubscription } from './app/actions';
 import Instabug from 'instabug-reactnative';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
+import {initInstabug} from "./app/helper/instabug";
 
 
 const { store, persistor } = configureStore();
@@ -105,10 +106,7 @@ export default class App extends React.Component {
   }
 
   async componentWillMount() {
-    Instabug.startWithToken('d50e4b80d80701c04553b97dbf6a318b', Instabug.invocationEvent.shake);
-    Instabug.setColorTheme(Instabug.colorTheme.dark);
-    Instabug.setExtendedBugReportMode(Instabug.extendedBugReportMode.enabledWithRequiredFields);
-    Instabug.setAutoScreenRecordingEnabled(true);
+    initInstabug();
 
     this.setState({ loading: false });
     // TODO: Hardcoded value until better approach is implemented since onNavigationStateChange does not capture initial screen view

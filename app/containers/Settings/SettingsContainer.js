@@ -4,6 +4,7 @@ import { auth0 } from '../../helper/auth';
 import { userLogout } from "../../actions";
 import { connect } from 'react-redux';
 import screens from "../../helper/screens";
+import Instabug from 'instabug-reactnative';
 
 class SettingsContainer extends React.Component {
 
@@ -35,6 +36,10 @@ class SettingsContainer extends React.Component {
       });
   };
 
+  _handleFeedback = () => {
+    Instabug.invoke();
+  };
+
   render() {
     return (
       <Settings
@@ -44,6 +49,7 @@ class SettingsContainer extends React.Component {
         showPurchaseHistory={this._showPurchaseHistory}
         showDeleteAccount={this._showDeleteAccount}
         handleLogout={this._handleLogout}
+        handleFeedback={this._handleFeedback}
       />
     )
   }

@@ -6,9 +6,10 @@ import {colors} from "../../config/colors";
 import { RoundedBorder } from "../../components";
 import {TouchableHighlight} from "react-native";
 import { IconButton } from './components';
+import { version } from '../../../package';
 
 const Settings = props => {
-  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory } = props;
+  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory, handleFeedback } = props;
   return (
     <Container style={styles.container}>
       <Header style={styles.header} androidStatusBarColor={'rgba(0,0,0,0.5)'} noShadow>
@@ -41,6 +42,11 @@ const Settings = props => {
           <TouchableHighlight onPress={handleLogout}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Logout</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={handleFeedback}>
+            <View style={styles.bottomButton}>
+              <Text style={textStyles.textStyle8}>Report a problem</Text>
             </View>
           </TouchableHighlight>
         </View>

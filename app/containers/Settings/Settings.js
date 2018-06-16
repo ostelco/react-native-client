@@ -1,11 +1,12 @@
 import React from "react";
-import {Container, Body, Left, Title, Text, Button, Icon, Content, Header, Right, View} from "native-base";
+import {Container, Body, Left, Title, Text, Button, Icon, Content, Header, Right, View, Footer} from "native-base";
 import {textStyles} from "../../config/fonts";
 import styles from "./styles";
 import {colors} from "../../config/colors";
 import { RoundedBorder } from "../../components";
 import {TouchableHighlight} from "react-native";
 import { IconButton } from './components';
+import { version } from '../../../package';
 
 const Settings = props => {
   const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory } = props;
@@ -45,6 +46,9 @@ const Settings = props => {
           </TouchableHighlight>
         </View>
       </Content>
+      <Footer style={styles.footer}>
+        <Text style={styles.footerText}>version: {version}</Text>
+      </Footer>
     </Container>
   );
 }

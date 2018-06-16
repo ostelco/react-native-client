@@ -9,7 +9,7 @@ import { IconButton } from './components';
 import { version } from '../../../package';
 
 const Settings = props => {
-  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory } = props;
+  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory, handleShowSignUp } = props;
   return (
     <Container style={styles.container}>
       <Header style={styles.header} androidStatusBarColor={'rgba(0,0,0,0.5)'} noShadow>
@@ -42,6 +42,11 @@ const Settings = props => {
           <TouchableHighlight onPress={handleLogout}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Logout</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={handleShowSignUp}>
+            <View style={styles.bottomButton}>
+              <Text style={textStyles.textStyle8}>Sign Up Flow</Text>
             </View>
           </TouchableHighlight>
         </View>

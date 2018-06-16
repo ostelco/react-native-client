@@ -37,6 +37,12 @@ class SettingsContainer extends React.Component {
       });
   };
 
+  _handleShowSignUp = () => {
+    this.props.navigation.navigate(screens.OnBoarding, {
+      forceSignUp: true
+    });
+  };
+
   render() {
     return (
       <Settings
@@ -46,6 +52,7 @@ class SettingsContainer extends React.Component {
         showPurchaseHistory={this._showPurchaseHistory}
         showDeleteAccount={this._showDeleteAccount}
         handleLogout={this._handleLogout}
+        handleShowSignUp={this._handleShowSignUp}
       />
     )
   }

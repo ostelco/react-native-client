@@ -10,7 +10,26 @@ var _tokenType = "FCM"
 export function initFCM(store) {
     _store = store;
     getFirebaseInstanceID();
+    checkPermissions();
     getFcmToken();
+}
+
+async function checkPermissions() {
+    const enabled = await firebase.messaging().hasPermission();
+    if (enabled) {
+        console.log('User has permissions')
+    } else {
+        console.log('User does not have permission')
+    }
+}
+
+async function requestPermissions() {
+    try {
+        await firebase.messaging().requestPermission();
+        console.log('User has authorised')
+    } catch (error) {
+        console.log('User has rejected permissions')
+    }
 }
 
 async function getFcmToken() {

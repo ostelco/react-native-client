@@ -10,6 +10,9 @@ const PaymentSuccessModal = props => {
   const { isDialogVisible, itemDescription, goBack, style } = props;
   return (
     <Modal isVisible={isDialogVisible} style={styles.modal}>
+
+      <RNConfetti style={{ zIndex: 999 }} />
+
       <RoundedBorder reversed={true} />
       <View style={style.contentContainer}>
         <View style={style.content}>
@@ -26,8 +29,6 @@ const PaymentSuccessModal = props => {
       </View>
 
       <RoundedBorder />
-
-      <RNConfetti style={{ zIndex: 999 }} />
     </Modal>
   )
 };

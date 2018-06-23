@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -1606,8 +1605,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = digital.telenor.panacea;
 				PRODUCT_NAME = PanaceaReactNativeClient;
-				PROVISIONING_PROFILE = "47950ac1-8403-4710-8ce2-1538f5ab0f96";
-				PROVISIONING_PROFILE_SPECIFIER = "Wildcard development profile";
+				PROVISIONING_PROFILE = "19bf6156-32c8-48e1-9941-03334bb71520";
+				PROVISIONING_PROFILE_SPECIFIER = "Panacea Development";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;

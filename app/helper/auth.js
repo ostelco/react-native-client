@@ -42,7 +42,7 @@ function cleanup() {
 }
 
 export async function login() {
-  console.log('login');
+  // console.log('login');
   let authOptions = {
     scope: 'openid profile email offline_access',
     audience: 'http://google_api',
@@ -54,7 +54,7 @@ export async function login() {
     .webAuth
     .authorize(authOptions)
     .then(credentials => {
-      console.log("credentials", credentials);
+      // console.log("credentials", credentials);
       return auth0
         .auth
         .userInfo({ token: credentials.accessToken })
@@ -72,7 +72,7 @@ export async function login() {
 
 
 export async function autoLogin() {
-  console.log('autoLogin', _store.getState());
+  // console.log('autoLogin', _store.getState());
   const { auth } = _store.getState();
   const refreshToken = _.get(auth, 'refreshToken');
   let authOptions = {
@@ -80,14 +80,14 @@ export async function autoLogin() {
     refreshToken
   };
   if (!refreshToken) {
-    console.log("No refresh Token, go to login");
+    // console.log("No refresh Token, go to login");
     return false;
   }
   const loginStatus = await auth0
     .auth
     .refreshToken(authOptions)
     .then(credentials => {
-      console.log("Refreshed credentials", credentials);
+      // console.log("Refreshed credentials", credentials);
       return auth0
         .auth
         .userInfo({ token: credentials.accessToken })
@@ -109,11 +109,11 @@ export async function getAuthHeader() {
   const expiresAt = _.get(state, "auth.expiresAt", null);
   if (Date.now() >= expiresAt) {
     // Re login
-    console.log("Auth token expired, relogin");
+    // console.log("Auth token expired, relogin");
     const status = await autoLogin(true);
     if (status == false) {
       // relogin failed.
-      console.log("Re-login failed");
+      // console.log("Re-login failed");
       return null;
     }
   }

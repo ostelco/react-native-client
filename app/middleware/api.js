@@ -2,7 +2,7 @@ import { autoLogin, getAuthHeader } from '../helper/auth'
 
 const API_ROOT = 'https://api.ostelco.org/'
 
-const callApi = async (endpoint, method, body, allowEmptyResponse) => {
+export const callApi = async (endpoint, method, body, allowEmptyResponse) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
   const authHeader = await getAuthHeader();
   if (!authHeader) {
@@ -23,7 +23,7 @@ const callApi = async (endpoint, method, body, allowEmptyResponse) => {
   return fetch(fullUrl, options)
     .then(response => {
       return response.text().then(text => {
-        console.log(`Response text for -> ${fullUrl} ==> [${text}]`);
+        // console.log(`Response text for -> ${fullUrl} ==> [${text}]`);
         let json = null;
         let exception = null;
         // Capture any JSON parse exception.

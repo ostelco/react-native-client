@@ -8,9 +8,9 @@ var _fcmToken = null;
 var _tokenType = "FCM"
 
 export function initFCM(store) {
-    _store = store;
-    getFirebaseInstanceID();
-    getFcmToken();
+    // _store = store;
+    // getFirebaseInstanceID();
+    // getFcmToken();
 }
 
 async function getFcmToken() {

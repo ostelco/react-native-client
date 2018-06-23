@@ -5,7 +5,7 @@ import client from '../helper/apollo';
 import Instabug from 'instabug-reactnative';
 
 const subscription = (state = { isFetching: false, status: null, queried: false }, action) => {
-  console.log("Action = ", action);
+  // console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.SUBSCRIPTION_REQUEST:
@@ -19,7 +19,7 @@ const subscription = (state = { isFetching: false, status: null, queried: false 
 }
 
 const pseudonyms = (state = { isFetching: false}, action) => {
-  console.log("Action = ", action);
+  // console.log("Action = ", action);
   const  { type, response } = action;
   switch(type) {
     case ActionTypes.PSEUDONYM_REQUEST:
@@ -146,7 +146,7 @@ const rootReducer = (state, action) => {
     state = undefined
   }
 
-  console.log(action);
+  // console.log(action);
 
   switch (action.type) {
     case ActionTypes.SUBSCRIPTION_FAILURE:

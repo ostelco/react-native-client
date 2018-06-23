@@ -17,10 +17,10 @@ export const loadSubscription = () => (dispatch, getState) => {
   if (subscription && subscription.isFetching) {
     // We are curently fetching the subscription,
     // wait before sending a new request
-    console.log("In the middle of fetching subscription")
+    // console.log("In the middle of fetching subscription")
     return null;
   }
-  console.log("Fetching subscription")
+  // console.log("Fetching subscription")
   return dispatch(fetchSubscription());
 }
 
@@ -41,10 +41,10 @@ export const loadPseudonyms = () => (dispatch, getState) => {
   if (pseudonyms && pseudonyms.isFetching) {
     // We are curently fetching the pseudonyms,
     // wait before sending a new request
-    console.log("In the middle of fetching pseudonyms")
+    // console.log("In the middle of fetching pseudonyms")
     return null;
   }
-  console.log("Fetching pseudonyms")
+  // console.log("Fetching pseudonyms")
   return dispatch(fetchPseudonyms());
 }
 
@@ -65,10 +65,10 @@ export const loadProducts = () => (dispatch, getState) => {
   if (products && products.isFetching) {
     // We are curently fetching the product list,
     // wait before sending a new request
-    console.log("In the middle of fetching products")
+    // console.log("In the middle of fetching products")
     return null;
   }
-  console.log("Fetching products");
+  // console.log("Fetching products");
   return dispatch(fetchProducts());
 }
 
@@ -86,11 +86,11 @@ const purchaseProduct = sku => ({
 });
 
 export const buyProduct = (sku) => (dispatch, getState) => {
-  console.log("buyProduct =", sku);
+  // console.log("buyProduct =", sku);
   return dispatch(purchaseProduct(sku))
     .then(() => {
       // Since the subscription has changed, lets reload.
-      console.log("Refreshing subscription");
+      // console.log("Refreshing subscription");
       return dispatch(fetchSubscription());
     });
 }
@@ -112,10 +112,10 @@ export const loadConsents = () => (dispatch, getState) => {
   if (consents && consents.isFetching) {
     // We are curently fetching the consents list,
     // wait before sending a new request
-    console.log("In the middle of fetching consents")
+    // console.log("In the middle of fetching consents")
     return null;
   }
-  console.log("Fetching consents");
+  // console.log("Fetching consents");
   return dispatch(fetchConsents());
 }
 
@@ -133,11 +133,11 @@ const putConsent = (consentId, accepted) => ({
 });
 
 export const setConsent = (consentId, accepted) => (dispatch, getState) => {
-  console.log("Setting consent for ", consentId, accepted);
+  // console.log("Setting consent for ", consentId, accepted);
   return dispatch(putConsent(consentId, accepted))
     .then(() => {
       // Since the consents have changed, lets reload.
-      console.log("Fetching consents");
+      // console.log("Fetching consents");
       return dispatch(fetchConsents());
     });
 }
@@ -159,10 +159,10 @@ export const getProfile = () => (dispatch, getState) => {
   if (profile && profile.isFetching) {
     // We are curently fetching the profile,
     // wait before sending a new request
-    console.log("In the middle of fetching profile")
+    // console.log("In the middle of fetching profile")
     return null;
   }
-  console.log("Fetching profile");
+  // console.log("Fetching profile");
   return dispatch(fetchProfile());
 }
 
@@ -205,16 +205,16 @@ const postApplicationToken = applicationToken => ({
 });
 
 export const createProfile = profile => (dispatch) => {
-  console.log("Creating profile");
+  // console.log("Creating profile");
   return dispatch(postProfile(profile));
 }
 export const updateProfile = profile => (dispatch) => {
-  console.log("Updating profile");
+  // console.log("Updating profile");
   return dispatch(putProfile(profile));
 }
 
 export const storeApplicationToken = applicationToken => (dispatch) => {
-  console.log("Storing application token : ", applicationToken);
+  // console.log("Storing application token : ", applicationToken);
   return dispatch(postApplicationToken(applicationToken));
 }
 

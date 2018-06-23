@@ -21,6 +21,7 @@ import {RoundedBorder} from "../../components";
 import DataLeftContainer from './DataLeftContainer';
 import OfferContainer from './OfferContainer';
 import SpecialOfferContainer from "./SpecialOfferContainer";
+import PushNotificationContainer from "./PushNotificationContainer";
 
 const DisplayList = ({ list, noBorder=false, listStyles={} }) => (
   <List style={listStyles}>
@@ -60,6 +61,7 @@ const Home = props => {
         />
         <RoundedBorder color={colors.rosa} />
         <SpecialOfferContainer />
+        <PushNotificationContainer />
       </Content>
     </Container>
   )

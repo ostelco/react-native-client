@@ -25,7 +25,9 @@ persistCache({
   storage: AsyncStorage,
   debug: true // TODO: Set false in production mode
 })
-  .then(() => console.log(JSON.stringify(client.cache.data, null)));
+  .then(() => {
+    // console.log(JSON.stringify(client.cache.data, null))
+  });
 
 const stateLink = withClientState({
   cache,
@@ -64,6 +66,8 @@ client.query({
   query: getAllProducts,
   fetchPolicy: 'network-only'
 })
-  .then(() => console.log('prefetch all products'));
+  .then(() => {
+    // console.log('prefetch all products')
+  });
 
 export default client;

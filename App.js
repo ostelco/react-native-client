@@ -115,6 +115,7 @@ export default class App extends React.Component {
     Instabug.startWithToken('d50e4b80d80701c04553b97dbf6a318b', Instabug.invocationEvent.shake);
     Instabug.setColorTheme(Instabug.colorTheme.dark);
     Instabug.setExtendedBugReportMode(Instabug.extendedBugReportMode.enabledWithRequiredFields);
+    // TODO: Make optional
     Instabug.setAutoScreenRecordingEnabled(true);
 
     this.setState({ loading: false });
@@ -134,7 +135,7 @@ export default class App extends React.Component {
   _handleAppStateChange = (nextAppState) => {
     // Get remote config when app enters foreground
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('App has come to the foreground!');
+      // console.log('App has come to the foreground!');
       getRemoteConfig(_getRemoteConfigCallback);
       this._setSubscriptionTimer();
     } else {
@@ -191,8 +192,8 @@ export default class App extends React.Component {
                   if (prevScreen !== currentScreen) {
                     // the line below uses the Google Analytics tracker
                     // change the tracker here to use other Mobile analytics SDK.
-                    console.log('Current:', currentScreen, currentState);
-                    console.log('Prev:', prevScreen, prevState);
+                    // console.log('Current:', currentScreen, currentState);
+                    // console.log('Prev:', prevScreen, prevState);
                     analytics.setCurrentScreen(currentScreen)
                   }
                 }}

@@ -20,7 +20,7 @@ export const getRemoteConfig = (callback) => {
       return firebase.config().activateFetched();
     })
     .then((activated) => {
-      console.log('Fetched data is activated');
+      // console.log('Fetched data is activated');
       return firebase.config().getValue('productSku');
     })
     .then((snapshot) => {
@@ -31,10 +31,10 @@ export const getRemoteConfig = (callback) => {
 
       const hasExperimentalFeature = snapshot.val();
       if(hasExperimentalFeature) {
-        console.log('experimental feature is enabled');
+        // console.log('experimental feature is enabled');
         //enableSuperCoolFeature();
       } else {
-        console.log('experimental feature is disabled');
+        // console.log('experimental feature is disabled');
       }
 
       // continue booting app

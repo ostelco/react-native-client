@@ -1,40 +1,38 @@
 import {Body, Container, Content, List, ListItem, Text, Button, View, Icon, Header, Title} from "native-base";
 import React from "react";
-import {colors} from "../..//config/colors";
 import PropTypes from 'prop-types';
 import {Image} from "react-native";
 import styles from './styles';
 import {textStyles} from "../../config/fonts";
-import { version } from '../../../package.json';
+import { AppVersion } from "../../components";
 
 const OnBoarding = (props) => {
-  const { showTermsAndConditions, signIn, version } = props;
+  console.log('render onboarding');
+  const { showTermsAndConditions, signIn, style, textStyles, androidStatusBarColor, loginButtonLabel, termsAndConditionsLabel, onBoardingDescriptionLabel, loginButtonIconName, title } = props;
   return (
     <Container>
-      <Image source={require('../../../assets/sweets.jpg')} style={styles.containerImage} />
-      <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
-        <Body style={{ alignItems: 'center' }}>
-          <Title style={textStyles.textStyle11}>pi <Text style={{ color: 'white' }}>({ version })</Text> </Title>
+      <Image source={require('../../../assets/sweets.jpg')} style={style.containerImage} />
+      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow>
+        <Body style={style.headerContent}>
+          <Title style={textStyles.textStyle11}>{title} <AppVersion /> </Title>
         </Body>
       </Header>
-      <Content contentContainerStyle={styles.contentContainer}>
-
-        <View style={styles.textContainer}>
-          <Text style={textStyles.textStyle}>If you think data is the most important, Pi is the carrier for you.</Text>
+      <Content contentContainerStyle={style.contentContainer}>
+        <View style={style.textContainer}>
+          <Text style={textStyles.textStyle}>{onBoardingDescriptionLabel}</Text>
         </View>
-
-        <List style={styles.footerContainer}>
+        <List style={style.footerContainer}>
           <ListItem noBorder>
             <Body>
-              <Button block onPress={signIn} style={styles.signInButton}>
-                <Icon name="logo-google" style={styles.signInButtonIcon} />
-                <Text style={styles.signInButtonText}>Sign in with Google</Text>
+              <Button block onPress={signIn} style={style.signInButton}>
+                <Icon name={loginButtonIconName} style={style.signInButtonIcon} />
+                <Text style={style.signInButtonText}>{loginButtonLabel}</Text>
               </Button>
             </Body>
           </ListItem>
           <ListItem noBorder button onPress={showTermsAndConditions}>
             <Body>
-              <Text style={textStyles.textStyle2}>By using Pi you agree to the terms & conditions</Text>
+              <Text style={textStyles.textStyle2}>{termsAndConditionsLabel}</Text>
             </Body>
           </ListItem>
         </List>
@@ -44,13 +42,22 @@ const OnBoarding = (props) => {
 };
 
 OnBoarding.propTypes = {
-  showTermsAndConditions: PropTypes.func,
-  signIn: PropTypes.func,
-  version: PropTypes.string.isRequired
+  androidStatusBarColor: PropTypes.string.isRequired,
+  loginButtonIconName: PropTypes.string.isRequired,
+  loginButtonLabel: PropTypes.string.isRequired,
+  onBoardingDescriptionLabel: PropTypes.string.isRequired,
+  showTermsAndConditions: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+  style: PropTypes.any.isRequired,
+  termsAndConditionsLabel: PropTypes.string.isRequired,
+  textStyles: PropTypes.any.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 OnBoarding.defaultProps = {
-  version
+  androidStatusBarColor: 'rgba(0,0,0,0.5)',
+  style: styles,
+  textStyles,
 };
 
 export default OnBoarding;

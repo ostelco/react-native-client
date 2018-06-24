@@ -1,17 +1,10 @@
 import React from "react";
 import OnBoarding from "./OnBoarding";
-import { AsyncStorage } from "react-native";
 import { connect } from 'react-redux';
-import {
-  loadSubscription,
-  loadProducts,
-  loadConsents,
-  getProfile,
-  setAuthentication
-} from "../../actions";
 import { login } from '../../helper/auth';
 import screens from "../../helper/screens";
 import {logLoginEvent} from '../../helper/analytics';
+import { storeFcmToken } from '../../helper/firebaseCloudMessaging';
 
 class OnBoardingContainer extends React.Component {
 
@@ -20,10 +13,7 @@ class OnBoardingContainer extends React.Component {
     if (loginStatus ===  true) {
       console.log("Load subscription & products");
       logLoginEvent();
-      this.props.getProfile();
-      this.props.loadSubscription();
-      this.props.loadProducts();
-      this.props.loadConsents();
+      storeFcmToken();
     } else {
       console.log("Login failed.");
     }
@@ -31,26 +21,14 @@ class OnBoardingContainer extends React.Component {
 
   _showTermsAndConditions = async () => {
     this.props.navigation.navigate(screens.TermsAndConditions);
-  };
-
-  checkForAutoLogin = async () => {
-    console.log('checkForAutoLogin');
-    if (this.props.auth) {
-      console.log('We have logged in already, do startup');
-      this.props.getProfile();
-      this.props.loadSubscription();
-      this.props.loadProducts();
-      this.props.loadConsents();
-    }
-  };
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.auth && prevProps.auth === null) {
-      this.checkForAutoLogin();
-    } else if (this.props.profile.queried === true && prevProps.profile.queried === false) {
+    const forceSignUp = this.props.navigation.getParam('forceSignUp', false);
+    if (this.props.profile.queried === true && prevProps.profile.queried === false) {
       // We have finished the getProfile query.
       // if the profile is missing we go to Signup.
-      if (!this.props.profile.data) {
+      if (forceSignUp || !this.props.profile.data) {
         this.props.navigation.navigate(screens.SignUp);
       } else {
         // Otherwise go to home page
@@ -75,10 +53,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  setAuthentication,
-  loadSubscription,
-  loadProducts,
-  loadConsents,
-  getProfile
-})(OnBoardingContainer);
+export default connect(mapStateToProps)(OnBoardingContainer);

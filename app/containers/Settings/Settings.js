@@ -1,14 +1,15 @@
 import React from "react";
-import {Container, Body, Left, Title, Text, Button, Icon, Content, Header, Right, View} from "native-base";
+import {Container, Body, Left, Title, Text, Button, Icon, Content, Header, Right, View, Footer} from "native-base";
 import {textStyles} from "../../config/fonts";
 import styles from "./styles";
 import {colors} from "../../config/colors";
 import { RoundedBorder } from "../../components";
 import {TouchableHighlight} from "react-native";
 import { IconButton } from './components';
+import { version } from '../../../package';
 
 const Settings = props => {
-  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory } = props;
+  const { goBack, showUserDetails, handleLogout, showPrivacy, showPurchaseHistory, handleShowSignUp, handleFeedback } = props;
   return (
     <Container style={styles.container}>
       <Header style={styles.header} androidStatusBarColor={'rgba(0,0,0,0.5)'} noShadow>
@@ -43,8 +44,21 @@ const Settings = props => {
               <Text style={textStyles.textStyle8}>Logout</Text>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight onPress={handleShowSignUp}>
+            <View style={styles.bottomButton}>
+              <Text style={textStyles.textStyle8}>Sign Up Flow</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={handleFeedback}>
+            <View style={styles.bottomButton}>
+              <Text style={textStyles.textStyle8}>Report a problem</Text>
+            </View>
+          </TouchableHighlight>
         </View>
       </Content>
+      <Footer style={styles.footer}>
+        <Text style={styles.footerText}>version: {version}</Text>
+      </Footer>
     </Container>
   );
 }

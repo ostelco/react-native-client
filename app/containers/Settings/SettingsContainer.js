@@ -2,9 +2,9 @@ import React from "react";
 import Settings from "./Settings";
 import { auth0 } from '../../helper/auth';
 import { userLogout } from "../../actions";
-import { AsyncStorage } from "react-native";
 import { connect } from 'react-redux';
 import screens from "../../helper/screens";
+import Instabug from 'instabug-reactnative';
 
 class SettingsContainer extends React.Component {
 
@@ -30,20 +30,34 @@ class SettingsContainer extends React.Component {
 
   _handleLogout = () => {
     this.props.userLogout();
-    AsyncStorage.removeItem('@app:email');
-    AsyncStorage.removeItem('@app:session-refresh');
-    return AsyncStorage.removeItem('@app:session')
-      .then(() => {
-        return auth0.webAuth.clearSession()
-          .finally(() => {
-            this.props.navigation.navigate(screens.OnBoarding);
-          });
+    return auth0.webAuth.clearSession()
+      .finally(() => {
+        Instabug.logOut();
+        this.props.navigation.navigate(screens.OnBoarding);
       });
+  };
+
+  _handleShowSignUp = () => {
+    this.props.navigation.navigate(screens.OnBoarding, {
+      forceSignUp: true
+    });
+
+  _handleFeedback = () => {
+    Instabug.invoke();
   };
 
   render() {
     return (
-      <Settings goBack={this._goBack} showUserDetails={this._showUserDetails} showPrivacy={this._showPrivacy} showPurchaseHistory={this._showPurchaseHistory} showDeleteAccount={this._showDeleteAccount} handleLogout={this._handleLogout} />
+      <Settings
+        goBack={this._goBack}
+        showUserDetails={this._showUserDetails}
+        showPrivacy={this._showPrivacy}
+        showPurchaseHistory={this._showPurchaseHistory}
+        showDeleteAccount={this._showDeleteAccount}
+        handleLogout={this._handleLogout}
+        handleShowSignUp={this._handleShowSignUp}
+        handleFeedback={this._handleFeedback}
+      />
     )
   }
 }

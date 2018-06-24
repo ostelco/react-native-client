@@ -24,6 +24,30 @@ export const loadSubscription = () => (dispatch, getState) => {
   return dispatch(fetchSubscription());
 }
 
+export const PSEUDONYM_REQUEST = 'PSEUDONYM_REQUEST';
+export const PSEUDONYM_SUCCESS = 'PSEUDONYM_SUCCESS';
+export const PSEUDONYM_FAILURE = 'PSEUDONYM_FAILURE';
+
+const fetchPseudonyms = () => ({
+  [CALL_API]: {
+    types: [ PSEUDONYM_REQUEST, PSEUDONYM_SUCCESS, PSEUDONYM_FAILURE ],
+    endpoint: 'subscription/activePseudonyms',
+    method: 'GET'
+  }
+});
+
+export const loadPseudonyms = () => (dispatch, getState) => {
+  const pseudonyms = getState().pseudonyms;
+  if (pseudonyms && pseudonyms.isFetching) {
+    // We are curently fetching the pseudonyms,
+    // wait before sending a new request
+    console.log("In the middle of fetching pseudonyms")
+    return null;
+  }
+  console.log("Fetching pseudonyms")
+  return dispatch(fetchPseudonyms());
+}
+
 export const PRODUCTS_REQUEST = 'PRODUCTS_REQUEST';
 export const PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS';
 export const PRODUCTS_FAILURE = 'PRODUCTS_FAILURE';
@@ -150,6 +174,10 @@ export const PROFILE_UPDATE_REQUEST = 'PROFILE_UPDATE_REQUEST';
 export const PROFILE_UPDATE_SUCCESS = 'PROFILE_UPDATE_SUCCESS';
 export const PROFILE_UPDATE_FAILURE = 'PROFILE_UPDATE_FAILURE';
 
+export const APPLICATION_TOKEN_CREATE_REQUEST = 'APPLICATION_TOKEN_CREATE_REQUEST';
+export const APPLICATION_TOKEN_CREATE_SUCCESS = 'APPLICATION_TOKEN_CREATE_SUCCESS';
+export const APPLICATION_TOKEN_CREATE_FAILURE = 'APPLICATION_TOKEN_CREATE_FAILURE';
+
 const postProfile = profile => ({
   [CALL_API]: {
     types: [ PROFILE_CREATE_REQUEST, PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_FAILURE ],
@@ -167,6 +195,15 @@ const putProfile = profile => ({
   }
 });
 
+const postApplicationToken = applicationToken => ({
+  [CALL_API]: {
+    types: [ APPLICATION_TOKEN_CREATE_REQUEST, APPLICATION_TOKEN_CREATE_SUCCESS, APPLICATION_TOKEN_CREATE_FAILURE ],
+    endpoint: 'applicationtoken',
+    method: 'POST',
+    body: JSON.stringify(applicationToken)
+  }
+});
+
 export const createProfile = profile => (dispatch) => {
   console.log("Creating profile");
   return dispatch(postProfile(profile));
@@ -174,6 +211,11 @@ export const createProfile = profile => (dispatch) => {
 export const updateProfile = profile => (dispatch) => {
   console.log("Updating profile");
   return dispatch(putProfile(profile));
+}
+
+export const storeApplicationToken = applicationToken => (dispatch) => {
+  console.log("Storing application token : ", applicationToken);
+  return dispatch(postApplicationToken(applicationToken));
 }
 
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';
@@ -195,6 +237,12 @@ export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 // Resets the currently visible error message.
 export const resetErrorMessage = () => ({
     type: RESET_ERROR_MESSAGE
+});
+
+export const USER_LOGIN = 'USER_LOGIN';
+
+export const userLoggedIn = () => ({
+  type: USER_LOGIN
 });
 
 export const USER_LOGOUT = 'USER_LOGOUT';

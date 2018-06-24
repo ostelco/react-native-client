@@ -1,4 +1,3 @@
-import { AsyncStorage } from "react-native";
 import { autoLogin, getAuthHeader } from '../helper/auth'
 
 const API_ROOT = 'https://api.ostelco.org/'

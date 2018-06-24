@@ -1,6 +1,7 @@
 import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux';
 import firebase from "react-native-firebase";
+import Instabug from 'instabug-reactnative';
 
 const subscription = (state = { isFetching: false, status: null, queried: false }, action) => {
   console.log("Action = ", action);
@@ -12,6 +13,20 @@ const subscription = (state = { isFetching: false, status: null, queried: false 
       return {isFetching: false, status:null, queried: true};
     case ActionTypes.SUBSCRIPTION_SUCCESS:
       return {isFetching: false, status:response, queried: true};
+  }
+  return state;
+}
+
+const pseudonyms = (state = { isFetching: false}, action) => {
+  console.log("Action = ", action);
+  const  { type, response } = action;
+  switch(type) {
+    case ActionTypes.PSEUDONYM_REQUEST:
+      return {...state, isFetching: true};
+    case ActionTypes.PSEUDONYM_SUCCESS:
+      return {...response, isFetching: false };
+    case ActionTypes.PSEUDONYM_FAILURE:
+      return {isFetching: false};
   }
   return state;
 }
@@ -103,9 +118,20 @@ const remoteConfig = (state = {}, action) => {
   }
 };
 
+const login = (state = false, action) => {
+  switch (action.type) {
+    case ActionTypes.USER_LOGIN:
+      return true;
+    default:
+      return state;
+  }
+}
+
 const appReducer = combineReducers({
   auth,
+  login,
   subscription,
+  pseudonyms,
   products,
   consents,
   profile,
@@ -128,6 +154,7 @@ const rootReducer = (state, action) => {
     case ActionTypes.PROFILE_SUCCESS:
     case ActionTypes.PROFILE_CREATE_SUCCESS:
     case ActionTypes.PROFILE_UPDATE_SUCCESS:
+      Instabug.identifyUserWithEmail(action.response.email, action.response.name);
       firebase.crashlytics().setUserIdentifier(action.response.email);
   }
 

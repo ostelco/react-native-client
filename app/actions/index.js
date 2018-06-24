@@ -145,6 +145,7 @@ export const setConsent = (consentId, accepted) => (dispatch, getState) => {
 export const PROFILE_REQUEST = 'PROFILE_REQUEST';
 export const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
 export const PROFILE_FAILURE = 'PROFILE_FAILURE';
+export const PROFILE_REMOVE = 'PROFILE_REMOVE';
 
 const fetchProfile = () => ({
   [CALL_API]: {
@@ -164,7 +165,11 @@ export const getProfile = () => (dispatch, getState) => {
   }
   console.log("Fetching profile");
   return dispatch(fetchProfile());
-}
+};
+
+export const removeProfile = () => ({
+  type: PROFILE_REMOVE,
+});
 
 export const PROFILE_CREATE_REQUEST = 'PROFILE_CREATE_REQUEST';
 export const PROFILE_CREATE_SUCCESS = 'PROFILE_CREATE_SUCCESS';
@@ -218,12 +223,18 @@ export const storeApplicationToken = applicationToken => (dispatch) => {
   return dispatch(postApplicationToken(applicationToken));
 }
 
-export const SELECT_PRODUCT = 'SELECT_PRODUCT';
+export const PRODUCTS_REMOVE = 'PRODUCTS_REMOVE';
+
+export const removeProducts = () => ({
+  type: PRODUCTS_REMOVE
+});
 
 export const selectProduct = product => ({
   type: SELECT_PRODUCT,
   product
 });
+
+// export const REMOVE_PRODUCTS = 'PRODUCTS_REMOVE'
 
 export const SET_AUTH = 'SET_AUTH';
 

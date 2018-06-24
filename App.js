@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator, createSwitchNavigator } from "react-navigation";
 import { Root, Text} from "native-base";
-import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer, PurchaseHistoryContainer, UserDetailsContainer, PrivacyPolicyContainer, DeleteAccountContainer, SettingsContainer, PrivacyContainer, UserDetailsEditContainer } from "./app/containers";
+import { OnBoardingContainer, SignupContainer, TermsAndConditionsContainer, GDPRContainer, HomeContainer, PaymentContainer, PurchaseHistoryContainer, UserDetailsContainer, PrivacyPolicyContainer, DeleteAccountContainer, SettingsContainer, PrivacyContainer, UserDetailsEditContainer, AppLoadingContainer } from "./app/containers";
 import { RNConfetti } from "./app/components";
 import { Provider } from 'react-redux';
 import configureStore from './app/store/configureStore'
@@ -72,9 +72,10 @@ const RootStack = createSwitchNavigator({
     headerMode: 'none'
   }),
   GDPR: GDPRContainer,
-  AppStack: AppStack
+  AppStack: AppStack,
+  AppLoading: AppLoadingContainer,
 }, {
-  initialRouteName: 'OnBoardingStack'
+  initialRouteName: 'AppLoading'
 });
 
 // gets the current screen from navigation state
@@ -93,11 +94,6 @@ function getActiveRouteName(navigationState) {
 const AppLoading = () => (
   <Text>Loading...</Text>
 );
-
-// Callback after redux store is loaded from persistant store
-const onBeforeLift = () => {
-  autoLogin(); // Try automatic login
-}
 
 export default class App extends React.Component {
 
@@ -169,8 +165,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <PersistGate
           loading={null}
-          persistor={persistor}
-          onBeforeLift={onBeforeLift}>
+          persistor={persistor}>
           <Root>
             <RootStack
               ref={navigatorRef => {
@@ -182,8 +177,6 @@ export default class App extends React.Component {
                 if (prevScreen !== currentScreen) {
                   // the line below uses the Google Analytics tracker
                   // change the tracker here to use other Mobile analytics SDK.
-                  console.log('Current:', currentScreen, currentState);
-                  console.log('Prev:', prevScreen, prevState);
                   analytics.setCurrentScreen(currentScreen)
                 }
               }}

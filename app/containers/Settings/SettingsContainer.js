@@ -32,9 +32,15 @@ class SettingsContainer extends React.Component {
     this.props.userLogout();
     return auth0.webAuth.clearSession()
       .finally(() => {
+        Instabug.logOut();
         this.props.navigation.navigate(screens.OnBoarding);
       });
   };
+
+  _handleShowSignUp = () => {
+    this.props.navigation.navigate(screens.OnBoarding, {
+      forceSignUp: true
+    });
 
   _handleFeedback = () => {
     Instabug.invoke();
@@ -49,6 +55,7 @@ class SettingsContainer extends React.Component {
         showPurchaseHistory={this._showPurchaseHistory}
         showDeleteAccount={this._showDeleteAccount}
         handleLogout={this._handleLogout}
+        handleShowSignUp={this._handleShowSignUp}
         handleFeedback={this._handleFeedback}
       />
     )

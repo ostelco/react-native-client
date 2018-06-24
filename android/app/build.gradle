@@ -111,18 +111,20 @@ def enableProguardInReleaseBuilds = false
 def pass = getPassword("mac","android_keystore")
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "digital.telenor.panacea"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 15
-        versionName "2.7.0"
+        versionCode 17
+        versionName "2.8.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        // Enabling multidex support.
+        multiDexEnabled true
     }
     signingConfigs {
         release {

@@ -5,15 +5,16 @@ import PropTypes from 'prop-types';
 import {Image} from "react-native";
 import styles from './styles';
 import {textStyles} from "../../config/fonts";
+import { version } from '../../../package.json';
 
 const OnBoarding = (props) => {
-  const { showTermsAndConditions, signIn } = props;
+  const { showTermsAndConditions, signIn, version } = props;
   return (
     <Container>
       <Image source={require('../../../assets/sweets.jpg')} style={styles.containerImage} />
       <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
         <Body style={{ alignItems: 'center' }}>
-          <Title style={textStyles.textStyle11}>pi</Title>
+          <Title style={textStyles.textStyle11}>pi <Text style={{ color: 'white' }}>({ version })</Text> </Title>
         </Body>
       </Header>
       <Content contentContainerStyle={styles.contentContainer}>
@@ -44,7 +45,12 @@ const OnBoarding = (props) => {
 
 OnBoarding.propTypes = {
   showTermsAndConditions: PropTypes.func,
-  signIn: PropTypes.func
+  signIn: PropTypes.func,
+  version: PropTypes.string.isRequired
+};
+
+OnBoarding.defaultProps = {
+  version
 };
 
 export default OnBoarding;

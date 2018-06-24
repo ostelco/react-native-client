@@ -44,5 +44,13 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     padding: 15,
     marginVertical: 8
+  },
+  footer: {
+    backgroundColor: colors.whiteTwo,
+    alignItems: 'center',
+    borderTopWidth: 0
+  },
+  footerText: {
+    color: colors.brownishGrey
   }
 });

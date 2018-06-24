@@ -24,10 +24,11 @@ class OnBoardingContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    const forceSignUp = this.props.navigation.getParam('forceSignUp', false);
     if (this.props.profile.queried === true && prevProps.profile.queried === false) {
       // We have finished the getProfile query.
       // if the profile is missing we go to Signup.
-      if (!this.props.profile.data) {
+      if (forceSignUp || !this.props.profile.data) {
         this.props.navigation.navigate(screens.SignUp);
       } else {
         // Otherwise go to home page

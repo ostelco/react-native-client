@@ -41,6 +41,9 @@ class SettingsContainer extends React.Component {
     this.props.navigation.navigate(screens.OnBoarding, {
       forceSignUp: true
     });
+
+  _handleFeedback = () => {
+    Instabug.invoke();
   };
 
   render() {
@@ -53,6 +56,7 @@ class SettingsContainer extends React.Component {
         showDeleteAccount={this._showDeleteAccount}
         handleLogout={this._handleLogout}
         handleShowSignUp={this._handleShowSignUp}
+        handleFeedback={this._handleFeedback}
       />
     )
   }

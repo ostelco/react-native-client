@@ -21,6 +21,18 @@ The project was initially created with CRNA (create-react-native-app) before we 
 - [Remote Config](https://console.firebase.google.com/project/panacea-39e5a/config) used to send global configuration to clients or to run experiments where client can get different configurations
 - [Bug Reporting](https://instabug.com/) we use instabug for bug reporting. Requires micro phone and photo permissions
 
+## Firebase
+
+The app uses one firebase project but has two different apps, a release app and a debug app. The debug app has the same package name / bundle id with a .debug prefix.
+
+### IOS
+If you don't do anything, you are running the debug app.
+To run the release app in the simulator or an attached device, you need to edit schemes and change the build configuration from debug to release for the run command. You also need to uncheck the `Debug executable`, it's not supposed to be checked together with release build.
+
+### Android
+To run the debug app you need to add the .debug prefix with the run command: `react-native run-android --appIdSuffix "debug"`
+To run the release app, you use the regular react native command: `react-native run-android --variant=release`
+
 ## Remote Config
 
 Remote config is a key / value in firebase. You can add parameters (keys) and a subsequent value, then you have to publish the changes before they take effect.

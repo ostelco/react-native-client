@@ -18,17 +18,9 @@ export const initInstabug = async () => {
       Instabug.startWithToken(Config.INSTABUG_TOKEN, Instabug.invocationEvent.shake);
     }
   });
-
-  const hasShownWelcomeMessage = await AsyncStorage.getItem('@Panacea:hasShownInstabugWelcomeMessage');
-  if (hasShownWelcomeMessage !== "yes") {
-    showWelcomeMessage();
-    AsyncStorage.setItem('@Panacea:hasShownInstabugWelcomeMessage', "yes");
-  }
-
-
 };
 
-const showWelcomeMessage = () => {
+export const showWelcomeMessage = () => {
   Instabug.isRunningLive(isLive => {
     if (isLive) {
       Instabug.showWelcomeMessage(Instabug.welcomeMessageMode.live);

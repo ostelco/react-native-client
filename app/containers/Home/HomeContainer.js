@@ -7,6 +7,8 @@ import { loadSubscription, loadProducts, selectProduct } from "../../actions";
 import screens from "../../helper/screens";
 import {logAddToCartEvent} from "../../helper/analytics";
 import { Alert } from "react-native";
+import { compose } from 'recompose';
+import { withInstabugWelcomeMessage } from '../../helper/enhancers';
 
 class HomeContainer extends React.Component {
 
@@ -92,8 +94,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  loadSubscription,
-  loadProducts,
-  selectProduct
-})(HomeContainer);
+export default compose(
+  connect(mapStateToProps, {
+    loadSubscription,
+    loadProducts,
+    selectProduct
+  }),
+  withInstabugWelcomeMessage,
+)(HomeContainer);

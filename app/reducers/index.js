@@ -5,12 +5,15 @@ import Instabug from 'instabug-reactnative';
 
 const subscription = (state = { isFetching: false, status: null, queried: false }, action) => {
   console.log("Action = ", action);
-  const  { type, response } = action;
+  const { type, response } = action;
+  // Keep the old status, while we renew tokens
+  // or when network is refreshed.
+  const { status } = state;
   switch(type) {
     case ActionTypes.SUBSCRIPTION_REQUEST:
       return {...state, isFetching: true, queried: true};
     case ActionTypes.SUBSCRIPTION_FAILURE:
-      return {isFetching: false, status:null, queried: true};
+      return {isFetching: false, status, queried: true};
     case ActionTypes.SUBSCRIPTION_SUCCESS:
       return {isFetching: false, status:response, queried: true};
   }

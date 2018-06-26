@@ -113,6 +113,7 @@ export async function getAuthHeader() {
     const status = await autoLogin(true);
     if (status == false) {
       // relogin failed.
+      _store.dispatch(actions.userLogout());
       console.log("Re-login failed");
       return null;
     }

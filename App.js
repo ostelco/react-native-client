@@ -140,7 +140,7 @@ export default class App extends React.Component {
 
   _setSubscriptionTimer() {
     if (typeof this.interval === 'undefined' || this.interval === 0) {
-      this.interval = setInterval(() => this._reloadSubscription() , 10000);
+      // this.interval = setInterval(() => this._reloadSubscription() , 10000);
     }
   }
 

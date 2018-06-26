@@ -20,6 +20,19 @@ The project was initially created with CRNA (create-react-native-app) before we 
   - [Screen Tracking with React Navigation](https://reactnavigation.org/docs/en/screen-tracking.html)
 - [Remote Config](https://console.firebase.google.com/project/panacea-39e5a/config) used to send global configuration to clients or to run experiments where client can get different configurations
 - [Bug Reporting](https://instabug.com/) we use instabug for bug reporting. Requires micro phone and photo permissions
+- [React Native Config](https://github.com/luggit/react-native-config) build specific variables
+
+## Environment
+
+there are two environments:
+- .env.development
+- .env.production
+
+The environment files should NOT contain any secrets.
+
+Please read [React Native Config](https://github.com/luggit/react-native-config) for more about how and where its possible to use env variables 
+NOTE: When changing the env files for ios, you need to `clean` and rebuild for them to take effect
+
 
 ## Firebase
 

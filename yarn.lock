@@ -4658,6 +4658,10 @@ react-native-confetti@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-confetti/-/react-native-confetti-0.0.6.tgz#a505e4e5a23bcb2cf554ba51362dfaf3ac17a100"
 
+react-native-config@^0.11.5:
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.11.5.tgz#516cb7b6ec437c7739236ca075971db3aabdcb95"
+
 react-native-credit-card-input@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/react-native-credit-card-input/-/react-native-credit-card-input-0.4.1.tgz#e62dd1a9beeab6787e5373ba23b93831cbf5f3de"

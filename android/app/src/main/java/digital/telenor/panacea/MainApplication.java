@@ -3,6 +3,7 @@ package digital.telenor.panacea;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.instabug.reactlibrary.RNInstabugReactnativePackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.auth0.react.A0Auth0Package;
@@ -33,8 +34,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-            		new RNInstabugReactnativePackage.Builder("d50e4b80d80701c04553b97dbf6a318b",MainApplication.this)
-							.setInvocationEvent("shake")
+            new ReactNativeConfigPackage(),
+            		new RNInstabugReactnativePackage.Builder(BuildConfig.INSTABUG_TOKEN, MainApplication.this)
+							.setInvocationEvent(BuildConfig.INSTABUG_INVOCATION_EVENT)
 							.setPrimaryColor("#1D82DC")
 							.setFloatingEdge("left")
 							.setFloatingButtonOffsetFromTop(250)

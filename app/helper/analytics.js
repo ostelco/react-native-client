@@ -7,6 +7,7 @@ export const globalParams = {};
 
 const _logEvent = (name, params) => {
   const pseudonym = getCurrentPseudonym();
+  firebase.analytics().setUserId(pseudonym);
   analytics.logEvent(name, { ...params, ...globalParams, pseudonym });
 }
 

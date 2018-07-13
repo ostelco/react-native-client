@@ -13,6 +13,9 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     borderBottomWidth: 0
   },
+  headerContent: {
+    alignItems: 'center'
+  },
   contentContainer: {
     flex: 1,
     alignItems: 'center',

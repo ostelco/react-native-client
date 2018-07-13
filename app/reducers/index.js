@@ -43,6 +43,8 @@ const products = (state = { isFetching: false, list: null }, action) => {
       return {isFetching: false, list:null};
     case ActionTypes.PRODUCTS_SUCCESS:
       return {isFetching: false, list:response};
+    case ActionTypes.PRODUCTS_REMOVE:
+      return {isFetching: false, list: null};
   }
   return state;
 }
@@ -60,7 +62,7 @@ const consents = (state = { isFetching: false, list: null, privacy: null }, acti
     case ActionTypes.CONSENTS_REQUEST:
       return {...state, isFetching: true};
     case ActionTypes.CONSENTS_FAILURE:
-      return {isFetching: false, list: null, privacy: null};
+      return {isFetching: false, list, privacy: null};
     case ActionTypes.CONSENTS_SUCCESS:
       return {isFetching: false, list: response, privacy: getPrivacyConsent(response)};
   }
@@ -73,11 +75,13 @@ const profile = (state = { isFetching: false, data: null, queried: false }, acti
     case ActionTypes.PROFILE_REQUEST:
       return {...state, isFetching: true, queried: false};
     case ActionTypes.PROFILE_FAILURE:
-       return {isFetching: false, data: null, queried: true};
+       return {isFetching: false, data, queried: true};
     case ActionTypes.PROFILE_SUCCESS:
     case ActionTypes.PROFILE_CREATE_SUCCESS:
     case ActionTypes.PROFILE_UPDATE_SUCCESS:
        return {isFetching: false, data: response, queried: true};
+    case ActionTypes.PROFILE_REMOVE:
+      return {isFetching: false, queried: false, data: null}
   }
   return state;
 }

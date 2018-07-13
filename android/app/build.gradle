@@ -80,6 +80,13 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
+project.ext.envConfigFiles = [
+        debug: ".env.development",
+        release: ".env.production",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 def getPassword(String currentUser, String keyChain) {
     def stdout = new ByteArrayOutputStream()
     def stderr = new ByteArrayOutputStream()
@@ -145,6 +152,11 @@ android {
         }
     }
     buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+        }
+
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -167,6 +179,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-config')
     compile project(':instabug-reactnative')
     compile(project(':react-native-firebase')) {
         transitive = false

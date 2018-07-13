@@ -5,6 +5,7 @@ import { userLogout } from "../../actions";
 import { connect } from 'react-redux';
 import screens from "../../helper/screens";
 import Instabug from 'instabug-reactnative';
+import { AsyncStorage } from 'react-native';
 
 class SettingsContainer extends React.Component {
 
@@ -33,6 +34,8 @@ class SettingsContainer extends React.Component {
     return auth0.webAuth.clearSession()
       .finally(() => {
         Instabug.logOut();
+        // Show instabug welcome message next time user signs in
+        AsyncStorage.removeItem('@Panacea:hasShownInstabugWelcomeMessage');
         this.props.navigation.navigate(screens.OnBoarding);
       });
   };

@@ -16,7 +16,7 @@ export default compose(
     async componentWillMount() {
       const { refreshToken, navigation } = this.props;
       if (refreshToken) {
-      navigation.navigate(screens.Home);
+        navigation.navigate(screens.Home);
         const loginStatus = await autoLogin();
         if (loginStatus !== true) {
           navigation.navigate(screens.OnBoarding);

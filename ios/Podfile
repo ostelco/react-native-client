@@ -15,8 +15,6 @@ target 'PanaceaReactNativeClient' do
 
   # Pods for PanaceaReactNativeClient
 
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
-
   target 'PanaceaReactNativeClientTests' do
     inherit! :search_paths
     # Pods for testing

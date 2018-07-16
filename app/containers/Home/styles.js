@@ -8,7 +8,6 @@ export default StyleSheet.create({
   header: {
     backgroundColor: colors.rosa,
     borderBottomWidth: 0,
-    justifyContent: 'space-evenly',
     zIndex: 1
   },
   headerRightButton: {
@@ -27,7 +26,7 @@ export default StyleSheet.create({
   staticOfferContainer: {
     justifyContent: 'center',
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   staticOfferButtonContainer: {
     width: 220,
@@ -36,7 +35,7 @@ export default StyleSheet.create({
     paddingHorizontal: 40,
     backgroundColor: colors.white,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center'
   },
   offerButton: {
@@ -51,8 +50,9 @@ export default StyleSheet.create({
     borderRadius: 5,
     backgroundColor: colors.white,
     paddingHorizontal: 30,
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 20
   },
   specialOfferButtonContainer: {
     width: 220,

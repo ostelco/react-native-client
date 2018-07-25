@@ -41,6 +41,7 @@ class SettingsContainer extends React.Component {
     this.props.navigation.navigate(screens.OnBoarding, {
       forceSignUp: true
     });
+  }
 
   _handleFeedback = () => {
     Instabug.invoke();

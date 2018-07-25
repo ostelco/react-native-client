@@ -219,6 +219,11 @@ export const storeApplicationToken = applicationToken => (dispatch) => {
 }
 
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';
+export const PRODUCTS_REMOVE = 'PRODUCTS_REMOVE';
+
+export const removeProducts = () => ({
+  type: PRODUCTS_REMOVE
+});
 
 export const selectProduct = product => ({
   type: SELECT_PRODUCT,

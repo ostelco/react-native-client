@@ -69,5 +69,8 @@ export default StyleSheet.create({
   },
   emptyOfferIcon: {
     color: colors.rosa
+  },
+  footer: {
+    padding: 0
   }
 });

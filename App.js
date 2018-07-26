@@ -12,10 +12,12 @@ import analytics from "./app/helper/analytics";
 import { initInstabug } from "./app/helper/instabug";
 import { initFCM } from './app/helper/firebaseCloudMessaging';
 import { RootStack } from './app/config/routes';
+import { initReferral } from "./app/helper/referral";
 
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
 initFCM(store);
+initReferral();
 
 // Fetch remote config on startup
 const _getRemoteConfigCallback = data => store.dispatch(setRemoteConfig(data));

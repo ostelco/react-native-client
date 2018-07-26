@@ -11,3 +11,4 @@ export {DeleteAccountContainer} from "./DeleteAccount"
 export {SettingsContainer} from "./Settings"
 export {PrivacyContainer} from "./Privacy"
 export {UserDetailsEditContainer} from "./UserDetailsEdit"
+export {AppLoadingContainer} from './AppLoading';

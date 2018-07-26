@@ -15,12 +15,28 @@
       },
       "oauth_client": [
         {
-          "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "1032906769274-e1v6msbnfrggqm5fu9k2h1gvq1fpctmn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea",
+            "certificate_hash": "7464545b0578ba2a336064063ad36b5f433155cd"
+          }
         },
         {
-          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "1032906769274-05l9scgrag5t4ae7fss8rtaaa68sgu7e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea",
+            "certificate_hash": "bd4b00e52dd86571297966185f92c3376eaeb2b9"
+          }
+        },
+        {
+          "client_id": "1032906769274-io6mhkfe56es0bgn9dhjc5kv2f6it2tm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea",
+            "certificate_hash": "c149e04748eb16d47b6d67867e3abec9647f2cad"
+          }
         },
         {
           "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
@@ -44,10 +60,11 @@
               "client_type": 3
             },
             {
-              "client_id": "1032906769274-p6dg2alc49jqdl3hmld01bf1vsp6lib8.apps.googleusercontent.com",
+              "client_id": "1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "host.exp.exponent"
+                "bundle_id": "digital.telenor.panacea",
+                "app_store_id": "1369918482"
               }
             }
           ]
@@ -59,19 +76,19 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1032906769274:android:625487c1e04e0526",
+        "mobilesdk_app_id": "1:1032906769274:android:e080dd3f35342682",
         "android_client_info": {
-          "package_name": "digital.telenor.pantel"
+          "package_name": "digital.telenor.panacea.debug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "1032906769274-nlllghurpo1rri1r5q50gs03unu2ojds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea.debug",
+            "certificate_hash": "7464545b0578ba2a336064063ad36b5f433155cd"
+          }
         },
         {
           "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
@@ -88,8 +105,21 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "digital.telenor.panacea",
+                "app_store_id": "1369918482"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -113,14 +143,6 @@
           }
         },
         {
-          "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
           "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -142,10 +164,11 @@
               "client_type": 3
             },
             {
-              "client_id": "1032906769274-p6dg2alc49jqdl3hmld01bf1vsp6lib8.apps.googleusercontent.com",
+              "client_id": "1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "host.exp.exponent"
+                "bundle_id": "digital.telenor.panacea",
+                "app_store_id": "1369918482"
               }
             }
           ]

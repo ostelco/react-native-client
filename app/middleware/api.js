@@ -1,4 +1,4 @@
-import { autoLogin, getAuthHeader } from '../helper/auth'
+import { getAuthHeader } from '../helper/auth'
 
 const API_ROOT = 'https://api.ostelco.org/'
 

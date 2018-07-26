@@ -1,56 +1,49 @@
 import React from "react";
 import OnBoarding from "./OnBoarding";
-import { connect } from 'react-redux';
 import { login } from '../../helper/auth';
 import screens from "../../helper/screens";
 import {logLoginEvent} from '../../helper/analytics';
 import { storeFcmToken } from '../../helper/firebaseCloudMessaging';
+import { compose, lifecycle, withProps } from 'recompose';
+import { withProfileFromState } from '../../helper/enhancers';
+import {withNavigation} from "react-navigation";
 
-class OnBoardingContainer extends React.Component {
-
-  _signIn = async () => {
-    const loginStatus = await login();
-    if (loginStatus ===  true) {
-      console.log("Load subscription & products");
-      logLoginEvent();
-      storeFcmToken();
-    } else {
-      console.log("Login failed.");
-    }
-  }
-
-  _showTermsAndConditions = async () => {
-    this.props.navigation.navigate(screens.TermsAndConditions);
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const forceSignUp = this.props.navigation.getParam('forceSignUp', false);
-    if (this.props.profile.queried === true && prevProps.profile.queried === false) {
-      // We have finished the getProfile query.
-      // if the profile is missing we go to Signup.
-      if (forceSignUp || !this.props.profile.data) {
-        this.props.navigation.navigate(screens.SignUp);
-      } else {
-        // Otherwise go to home page
-        this.props.navigation.navigate(screens.Home);
+export default compose(
+  withProfileFromState,
+  withNavigation,
+  lifecycle({
+    componentDidUpdate(prevProps, prevState, snapshot) {
+      const forceSignUp = this.props.navigation.getParam('forceSignUp', false);
+      if (this.props.profile.queried === true && prevProps.profile.queried === false) {
+        // We have finished the getProfile query.
+        // if the profile is missing we go to Signup.
+        if (forceSignUp || !this.props.profile.data) {
+          this.props.navigation.navigate(screens.SignUp);
+        } else {
+          // Otherwise go to home page
+          this.props.navigation.navigate(screens.Home);
+        }
       }
     }
-  }
-
-  render() {
-    return (
-      <OnBoarding signIn={this._signIn} showTermsAndConditions={this._showTermsAndConditions} />
-    )
-  }
-}
-
-const mapStateToProps = (state) => {
-  const { error, profile, auth } = state;
-  return {
-    error,
-    profile,
-    auth
-  };
-};
-
-export default connect(mapStateToProps)(OnBoardingContainer);
+  }),
+  withProps(({ navigation }) => ({
+    signIn: async () => {
+      const loginStatus = await login();
+      if (loginStatus ===  true) {
+        console.debug("Load subscription & products");
+        logLoginEvent();
+        storeFcmToken();
+      } else {
+        console.debug("Login failed.");
+      }
+    },
+    showTermsAndConditions: () => {
+      navigation.navigate(screens.TermsAndConditions);
+    },
+    onBoardingDescriptionLabel: 'If you think data is the most important, Pi is the carrier for you.',
+    loginButtonLabel: 'Sign in with Google',
+    loginButtonIconName: 'logo-google',
+    termsAndConditionsLabel: 'By using Pi you agree to the terms & conditions',
+    title: 'pi',
+  }))
+)(OnBoarding);

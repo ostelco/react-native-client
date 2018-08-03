@@ -49,8 +49,9 @@ export const initReferral = () => {
       console.log('*************************************');
       console.log('app opened from url while app is open', url);
       if (url.hasQuery('uid') === true) {
-        const uid = url.search(true)['uid']
+        const uid = url.search(true)['uid'];
         AsyncStorage.setItem('@app:invited-by', uid);
+        alert(`invited by: ${uid}`);
       }
     }
   });

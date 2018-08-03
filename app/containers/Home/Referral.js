@@ -1,20 +1,16 @@
 import React from 'react';
-import {Body, Icon, Text} from "native-base";
+import {Icon, Text} from "native-base";
 import {colors} from "../../config/colors";
 import { Share, TouchableOpacity } from 'react-native';
-import { getReferralLink } from '../../helper/referral';
 
-let link = '';
 
-getReferralLink('1234').then(url => link = url);
-
-const Referral = () => {
+const Referral = (props) => {
+  const { referralLink } = props;
   return (
     <TouchableOpacity style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 30, paddingVertical: 12, backgroundColor: colors.rosa }} onPress={() => {
-      console.log('I clicked share', link);
       Share.share({
         title: 'Title',
-        message: `Content: ${link}`,
+        message: `Content: ${referralLink}`,
         url: link
       })
     }}>
@@ -23,6 +19,10 @@ const Referral = () => {
       <Text style={{ fontWeight: 'bold', color: colors.white }}>1GB</Text>
     </TouchableOpacity>
   )
+};
+
+Referral.propTypes = {
+  referralLink: PropTypes.string.isRequired
 };
 
 export default Referral;

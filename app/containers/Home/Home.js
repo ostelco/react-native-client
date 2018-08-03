@@ -22,7 +22,10 @@ import {colors} from "../../config/colors";
 import { TouchableHighlight } from "react-native";
 import styles from './styles';
 import {RoundedBorder} from "../../components";
-import Referral from "./Referral";
+import ReferralContainer from "./ReferralContainer";
+import {withReferralIdFromState} from "../../helper/enhancers";
+import {branch, lifecycle, renderNothing, withState} from "recompose";
+import {getReferralLink} from "../../helper/referral";
 
 const Home = props => {
   const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate } = props;
@@ -99,12 +102,36 @@ const Home = props => {
           </View>
         )}
       </Content>
-      <Footer style={ styles.footer }>
-        <Referral />
-      </Footer>
+      <ReferralFooterContainer />
     </Container>
   )
 };
+
+import { compose } from 'recompose';
+
+const ReferralFooter = () => {
+  return (
+    <Footer style={ styles.footer }>
+      <ReferralContainer />
+    </Footer>
+  );
+}
+
+const ReferralFooterContainer = compose(
+  withReferralIdFromState,
+  branch(({ referralId }) => !referralId, renderNothing),
+  withState('referralLink', 'setReferralLink', ''),
+  lifecycle({
+    async componentDidMount() {
+      const { referralId, setReferralLink } = this.props;
+      const referralLink = await getReferralLink(referralId)
+      console.log('share url:', referralLink, 'referralId:', referralId);
+      setReferralLink(referralLink);
+    }
+  }),
+  branch(({ referralLink}) => referralLink === '', renderNothing)
+)(ReferralFooter);
+
 
 Home.propTypes = {
   style: PropTypes.object,

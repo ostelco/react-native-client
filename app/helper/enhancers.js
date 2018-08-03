@@ -3,8 +3,14 @@ import {compose, lifecycle, withState, branch, renderNothing} from "recompose";
 import {showWelcomeMessage} from "./instabug";
 import {AsyncStorage} from "react-native";
 
-export const withProfileFromState = connect(({ profile }) => ({ profile }));
+export const withProfileFromState = connect(({ profile }) => {
+  return ({ profile })
+});
 export const withRefreshTokenFromState = connect(({ auth }) => ({ refreshToken: auth && auth.refreshToken }));
+export const withReferralIdFromState = connect(({ profile }) => {
+  return {referralId: 'havard.noren@telenordigital.com'} // All referrals belong to havard, until GET profile API returns non empty referral id
+});
+
 
 export const withInstabugWelcomeMessage = compose(
   withState('hasShownWelcomeMessage', 'setHasShownWelcomeMessage', null),

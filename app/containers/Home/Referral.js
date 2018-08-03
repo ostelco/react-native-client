@@ -2,7 +2,7 @@ import React from 'react';
 import {Icon, Text} from "native-base";
 import {colors} from "../../config/colors";
 import { Share, TouchableOpacity } from 'react-native';
-
+import PropTypes from 'prop-types';
 
 const Referral = (props) => {
   const { referralLink } = props;

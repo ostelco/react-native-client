@@ -21,38 +21,37 @@ export const initReferral = () => {
       if (urlStr) {
         const url = new URI(urlStr);
 
-        if (url.path() === '//invite') {
+        // Handle invite urls
+        if (url.path() === '/invite') {
           console.log('*************************************');
           console.log('app opened from url', url);
 
+          // Fetch referrer from invite url
           if (url.hasQuery('uid') === true) {
-            AsyncStorage.setItem('@app:invited-by', url.search(true)['uid']);
+            const uid = url.search(true)['uid']
+            AsyncStorage.setItem('@app:invited-by', uid);
+            alert(`invited by: ${uid}`)
           } else {
-            console.log('invite url does not contain uid');
+            // Invite url is missing referral id, silently ignore
           }
         } else {
-          console.log('unknown deeplink', url.path(), url.pathname(), url);
+          // Unknown deeplink, silently ignore
         }
       } else {
-        console.log('*************************************');
-        console.log('app not opened from url');
+        // App not opened with deeplink
       }
     });
 
-  // subscribe
+  // Listen for deeplinks while app is open
   const unsubscribe = firebase.links().onLink((urlStr) => {
     const url = new URI(urlStr);
-
     if (url.path() === '/invite') {
       console.log('*************************************');
       console.log('app opened from url while app is open', url);
       if (url.hasQuery('uid') === true) {
-        AsyncStorage.setItem('@app:invited-by', url.search(true)['uid']);
-      } else {
-        console.log('invite url does not contain uid');
+        const uid = url.search(true)['uid']
+        AsyncStorage.setItem('@app:invited-by', uid);
       }
-    } else {
-      console.log('unknown deeplink', url)
     }
   });
 }

@@ -183,12 +183,13 @@ export const APPLICATION_TOKEN_CREATE_REQUEST = 'APPLICATION_TOKEN_CREATE_REQUES
 export const APPLICATION_TOKEN_CREATE_SUCCESS = 'APPLICATION_TOKEN_CREATE_SUCCESS';
 export const APPLICATION_TOKEN_CREATE_FAILURE = 'APPLICATION_TOKEN_CREATE_FAILURE';
 
-const postProfile = profile => ({
+const postProfile = (profile, referredBy) => ({
   [CALL_API]: {
     types: [ PROFILE_CREATE_REQUEST, PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_FAILURE ],
     endpoint: 'profile',
     method: 'POST',
-    body: JSON.stringify(profile)
+    body: JSON.stringify(profile),
+    params: referredBy ? [`referred_by=${referredBy}`] : []
   }
 });
 const putProfile = profile => ({
@@ -209,9 +210,9 @@ const postApplicationToken = applicationToken => ({
   }
 });
 
-export const createProfile = profile => (dispatch) => {
+export const createProfile = (profile, referredBy) => (dispatch) => {
   console.log("Creating profile");
-  return dispatch(postProfile(profile));
+  return dispatch(postProfile(profile, referredBy));
 }
 export const updateProfile = profile => (dispatch) => {
   console.log("Updating profile");

@@ -4,7 +4,7 @@ import {textStyles} from "../../config/fonts";
 import styles from "./styles";
 import {colors} from "../../config/colors";
 import { RoundedBorder } from "../../components";
-import {TouchableHighlight} from "react-native";
+import {TouchableOpacity} from "react-native";
 import { IconButton } from './components';
 import { version } from '../../../package';
 
@@ -25,35 +25,35 @@ const Settings = props => {
       </Header>
       <Content>
         <View style={styles.topButtonContainer}>
-          <TouchableHighlight onPress={showUserDetails} style={styles.flex}>
+          <TouchableOpacity onPress={showUserDetails} style={styles.flex}>
             <IconButton iconName="person" label="Personal details" color={colors.rosa} />
-          </TouchableHighlight>
-          <TouchableHighlight onPress={showPrivacy} style={styles.flex}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={showPrivacy} style={styles.flex}>
             <IconButton iconName="shirt" label="Privacy" color={colors.duskBlue} />
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <RoundedBorder />
         <View style={styles.bottomButtonContainer}>
-          <TouchableHighlight onPress={showPurchaseHistory}>
+          <TouchableOpacity onPress={showPurchaseHistory}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>What You Bought</Text>
             </View>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={handleLogout}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleLogout}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Logout</Text>
             </View>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={handleShowSignUp}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleShowSignUp}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Sign Up Flow</Text>
             </View>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={handleFeedback}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleFeedback}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Report a problem</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </Content>
       <Footer style={styles.footer}>

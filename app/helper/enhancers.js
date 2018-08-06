@@ -8,7 +8,7 @@ export const withProfileFromState = connect(({ profile }) => {
 });
 export const withRefreshTokenFromState = connect(({ auth }) => ({ refreshToken: auth && auth.refreshToken }));
 export const withReferralIdFromState = connect(({ profile }) => {
-  return {referralId: 'havard.noren@telenordigital.com'} // All referrals belong to havard, until GET profile API returns non empty referral id
+  return {referralId: profile.data ? profile.data.referralId : null}
 });
 
 

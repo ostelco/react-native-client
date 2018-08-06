@@ -85,8 +85,7 @@ const mapStateToProps = (state) => {
   return {
     error,
     profile,
-    auth,
-    referredBy: 'havard.noren@telenordigital.com'
+    auth
   };
 };
 

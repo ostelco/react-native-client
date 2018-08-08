@@ -1,9 +1,14 @@
 import { getAuthHeader } from '../helper/auth'
 
-const API_ROOT = 'https://api.ostelco.org/'
+const API_ROOT = 'https://api.ostelco.org/';
 
-const callApi = async (endpoint, method, body, allowEmptyResponse) => {
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+const callApi = async (endpoint, method, body, allowEmptyResponse, params = []) => {
+  let fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+
+  // TODO: Params can contain invalid characters and should be url encoded
+  if (params.length > 0) {
+    fullUrl += `?${params.join('&')}`;
+  }
   const authHeader = await getAuthHeader();
   if (!authHeader) {
     return Promise.reject("Authentication failed");
@@ -60,7 +65,7 @@ export default store => next => action => {
   }
 
   let { endpoint } = callAPI;
-  const { types, method, body, allowEmptyResponse } = callAPI;
+  const { types, method, body, allowEmptyResponse, params = [] } = callAPI;
 
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState());
@@ -85,7 +90,7 @@ export default store => next => action => {
   const [ requestType, successType, failureType ] = types;
   next(actionWith({ type: requestType }));
 
-  return callApi(endpoint, method, body, allowEmptyResponse).then(
+  return callApi(endpoint, method, body, allowEmptyResponse, params).then(
     response => next(actionWith({
       response,
       type: successType

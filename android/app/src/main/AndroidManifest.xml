@@ -31,6 +31,13 @@
             android:pathPrefix="/android/${applicationId}/callback"
             android:scheme="${applicationId}" />
         </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:host="wm3db.app.goo.gl" android:scheme="http"/>
+            <data android:host="wm3db.app.goo.gl" android:scheme="https"/>
+        </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
       <service android:name="io.invertase.firebase.messaging.RNFirebaseMessagingService">

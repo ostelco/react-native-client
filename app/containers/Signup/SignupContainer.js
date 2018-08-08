@@ -29,7 +29,7 @@ class SignupContainer extends React.Component {
 
   _showGDPR = () => {
 
-    this.props.createProfile(this.state.profile)
+    this.props.createProfile(this.state.profile, this.props.referredBy)
     .then(() => {
       logSignUpEvent();
       this.props.navigation.navigate(screens.GDPR)

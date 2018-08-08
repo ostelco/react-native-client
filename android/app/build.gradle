@@ -125,8 +125,8 @@ android {
         applicationId "digital.telenor.panacea"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 17
-        versionName "2.8.1"
+        versionCode 18
+        versionName "2.9.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -196,6 +196,8 @@ dependencies {
     implementation "com.google.firebase:firebase-crash:15.0.2"
     implementation "com.google.firebase:firebase-config:15.0.2"
     implementation "com.google.firebase:firebase-messaging:15.0.2"
+    implementation "com.google.firebase:firebase-invites:15.0.1"
+
 }
 
 // Run this once to be able to run the application with BUCK

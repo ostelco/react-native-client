@@ -12,7 +12,8 @@ import {
   View,
   Right,
   Spinner,
-  Left
+  Left,
+  Footer
 } from "native-base";
 import PropTypes from 'prop-types';
 import * as _ from "lodash";
@@ -21,6 +22,10 @@ import {colors} from "../../config/colors";
 import { TouchableHighlight } from "react-native";
 import styles from './styles';
 import {RoundedBorder} from "../../components";
+import Referral from "./Referral";
+import {withProfileFromState, withReferralIdFromState} from "../../helper/enhancers";
+import {branch, lifecycle, renderNothing, withState} from "recompose";
+import {getReferralLink} from "../../helper/referral";
 
 const Home = props => {
   const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate } = props;
@@ -97,9 +102,37 @@ const Home = props => {
           </View>
         )}
       </Content>
+      <ReferralFooterContainer />
     </Container>
   )
 };
+
+import { compose } from 'recompose';
+
+const ReferralFooter = (props) => {
+  const { referralLink, profile } = props;
+  return (
+    <Footer style={ styles.footer }>
+      <Referral referralLink={referralLink} name={profile.data.name} />
+    </Footer>
+  );
+}
+
+const ReferralFooterContainer = compose(
+  withReferralIdFromState,
+  withProfileFromState,
+  branch(({ referralId, profile }) => !referralId || profile.isFetching || !profile.queried, renderNothing),
+  withState('referralLink', 'setReferralLink', ''),
+  lifecycle({
+    async componentDidMount() {
+      const { referralId, setReferralLink, profile } = this.props;
+      const referralLink = await getReferralLink(referralId, profile.data.name)
+      setReferralLink(referralLink);
+    }
+  }),
+  branch(({ referralLink}) => referralLink === '', renderNothing)
+)(ReferralFooter);
+
 
 Home.propTypes = {
   style: PropTypes.object,

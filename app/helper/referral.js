@@ -9,16 +9,15 @@ export const getReferralLink = async (uid, name) => {
     shareLink += `&name=${encodeURI(name)}`
   }
 
-  const link = new firebase.links.DynamicLink(shareLink, 'wm3db.app.goo.gl');
-  link.ios.setBundleId('digital.telenor.panacea');
-  link.ios.setMinimumVersion('2.8.1');
-  link.ios.setAppStoreId('1369918482');
+  const link = new firebase.links.DynamicLink(shareLink, 'wm3db.app.goo.gl')
+  .ios.setBundleId('digital.telenor.panacea')
+  .ios.setMinimumVersion('2.8.1')
+  .ios.setAppStoreId('1369918482')
+  .android.setPackageName('digital.telenor.panacea')
+  .social.setImageUrl('https://picsum.photos/400/300?image=0')
+  .social.setTitle('FREE DATA!!!')
+  .social.setDescriptionText('Join our service and get 1 GB free data on signup.');
 
-  link.android.setPackageName('digital.telenor.panacea');
-
-  link.social.setImageUrl('https://picsum.photos/300/200?image=0')
-  link.social.setTitle('FREE DATA!!!');
-  link.social.setDescriptionText('Join our service and get 1 GB free data on signup.');
   // link.android.setMinimumVersion(14);
 
   return firebase.links().createShortDynamicLink(link, 'UNGUESSABLE')

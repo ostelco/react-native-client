@@ -28,9 +28,10 @@ import {branch, lifecycle, renderNothing, withState} from "recompose";
 import {getReferralLink} from "../../helper/referral";
 
 const Home = props => {
-  const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate } = props;
+  const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate, showReferralMessage, closeReferralMessage } = props;
   return (
     <Container style={styles.container}>
+      <ReferralMessageModal isDialogVisible={showReferralMessage} goBack={closeReferralMessage} itemDescription={'1 GB'} closeButtonLabel={'Much Appreciated!'} />
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Left></Left>
         <Body>
@@ -108,6 +109,7 @@ const Home = props => {
 };
 
 import { compose } from 'recompose';
+import { ReferralMessageModal } from "./components";
 
 const ReferralFooter = (props) => {
   const { referralLink, profile } = props;

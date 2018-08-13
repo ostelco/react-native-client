@@ -14,7 +14,9 @@ class HomeContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      showReferralMessage: !!props.navigation.getParam('showReferralMessage', false)
+    }
   }
 
   formatDataLeft(subscription) {
@@ -48,6 +50,8 @@ class HomeContainer extends React.Component {
         defaultOffer={this.props.defaultOffer}
         specialOffer={this.props.specialOffer}
         doUpdate={this.props.loadSubscription}
+        showReferralMessage={this.state.showReferralMessage}
+        closeReferralMessage={() => this.setState({ showReferralMessage: false })}
       />
     );
   }

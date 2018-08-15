@@ -20,7 +20,7 @@ export default StyleSheet.create({
     flex: 1
   },
   productDescriptionContainer: {
-    padding: 30,
+    padding: 0,
     backgroundColor: colors.white,
     zIndex: 1
   },
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     paddingHorizontal: 45,
-    paddingTop: 75
+    paddingTop: 35
   },
   row: {
     flexDirection: 'row'

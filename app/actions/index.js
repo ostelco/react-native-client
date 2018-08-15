@@ -272,3 +272,37 @@ export const setRemoteConfig = ({ productSku }) => ({
     productSku
   }
 });
+
+export const CARD_ADD = 'CARD_ADD';
+export const CARD_SET = 'CARD_SET';
+export const CARD_REMOVE = 'CARD_REMOVE';
+export const CARD_SET_DEFAULT = 'CARD_SET_DEFAULT';
+
+export const cardAdd = card => ({
+  type: CARD_ADD,
+  data: {
+    card
+  }
+});
+
+export const cardSet = (id, card) => ({
+  type: CARD_SET,
+  data: {
+    id,
+    card
+  }
+});
+
+export const cardRemove = id => ({
+  type: CARD_REMOVE,
+  data: {
+    id
+  }
+});
+
+export const cardSetDefault = id => ({
+  type: CARD_SET_DEFAULT,
+  data: {
+    id
+  }
+});

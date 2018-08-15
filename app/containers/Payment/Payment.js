@@ -9,19 +9,49 @@ import {
   Header,
   Content,
   View,
-  Input,
   Right,
-  ListItem
+  ListItem,
+  Spinner,
+  CheckBox,
+  Switch
 } from "native-base";
 import PropTypes from 'prop-types';
 import {textStyles} from "../../config/fonts";
-import {TouchableHighlight} from "react-native";
+import {TouchableOpacity} from "react-native";
 import {RoundedBorder} from "../../components";
 import styles from "./styles";
 import {PaymentSuccessModal} from "./components";
+import { CreditCardInput } from "react-native-credit-card-input";
+import {List} from "react-native-elements";
+import {colors} from "../../config/colors";
+
+const CardList = props => {
+  const { cards, onAddClick, onItemClick } = props;
+  const items = cards.map(card => (
+    <ListItem onPress={() => onItemClick(card)} key={card.id}>
+      <Left>
+        <Text>{card.brand.toUpperCase() } { card.last4 }, { card.exp_month }/{ (card.exp_year + '').substring(2) }</Text>
+      </Left>
+      <CheckBox checked={card.isDefault} onPress={() => onItemClick(card)} />
+    </ListItem>
+  ))
+  return (
+    <List containerStyle={{ backgroundColor: colors.whiteTwo }}>
+      {items}
+      <ListItem onPress={onAddClick}>
+        <Left>
+          <Text>Add</Text>
+        </Left>
+        <Right>
+          <Icon name="add" type="MaterialIcons"></Icon>
+        </Right>
+      </ListItem>
+    </List>
+  )
+};
 
 const Payment = props => {
-  const { goBack, confirm, isDialogVisible, priceLabel , productLabel} = props;
+  const { goBack, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault } = props;
   return (
     <Container style={styles.container}>
       <PaymentSuccessModal isDialogVisible={isDialogVisible} goBack={goBack} itemDescription={productLabel} />
@@ -42,52 +72,44 @@ const Payment = props => {
           <Text style={textStyles.textStyle7}>{priceLabel}</Text>
         </View>
         <RoundedBorder />
-        <View style={styles.paymentFormContainer}>
-          <View style={styles.row}>
-            <View style={styles.firstColumn}>
-              <View style={styles.firstColumnTextContainer}>
-                <Text style={textStyles.textStyle5}>Credit Card Number</Text>
-              </View>
-              <View style={[styles.secondColumnTextContainer, styles.leftPadding]}>
-                <Input placeholder="**** **** **** ****" style={textStyles.textStyle15} />
-              </View>
-            </View>
-            <View style={styles.secondColumn}>
-              <View style={styles.firstColumn}>
-                <Text style={textStyles.textStyle5}>Expires</Text>
-              </View>
-              <View style={styles.secondColumnTextContainer}>
-                <Input placeholder="MM YY" style={textStyles.textStyle21} />
-              </View>
+        { !addNewCard && showCardList ? (
+          <View>
+            <CardList cards={cards} onAddClick={showAddNewCard} onItemClick={card => cardSetDefault(card.id)} />
+            <View style={[styles.submitButtonContainer]}>
+              { isLoading ? <Spinner color="white" /> : (
+                <TouchableOpacity onPress={() => onSubmit(true)}>
+                  <Text style={textStyles.textStyle6}>Purchase</Text>
+                </TouchableOpacity>
+              )
+              }
             </View>
           </View>
-          <ListItem noBorder />
-          <View style={styles.row}>
-            <View style={styles.firstColumn}>
-              <View style={styles.firstColumnTextContainer}>
-                <Text style={textStyles.textStyle5}>Name on Card</Text>
-              </View>
-              <View style={[styles.secondColumnTextContainer, styles.leftPadding]}>
-                <Input style={textStyles.textStyle15} />
-              </View>
-            </View>
-            <View style={styles.secondColumn}>
-              <View style={styles.firstColumnTextContainer}>
-                <Text style={textStyles.textStyle5}>CVV</Text>
-              </View>
-              <View style={styles.secondColumnTextContainer}>
-                <Input placeholder="***" style={textStyles.textStyle21} />
-              </View>
+        ) : (
+          <View style={styles.paymentFormContainer}>
+            <CreditCardInput onChange={onChange} />
+
+            <ListItem noBorder />
+
+            <ListItem>
+              <Switch value={saveCard} onValueChange={value => setSaveCard(value)} />
+              <Body>
+              <Text>Save card for later</Text>
+              </Body>
+            </ListItem>
+
+            <ListItem noBorder />
+
+            <View style={[styles.submitButtonContainer, isValid ? {} : {opacity: 0.5}]}>
+              { isLoading ? <Spinner color="white" /> : (
+                <TouchableOpacity onPress={() => { isValid ? onSubmit() : null}}>
+                  <Text style={textStyles.textStyle6}>Purchase</Text>
+                </TouchableOpacity>
+              )
+              }
             </View>
           </View>
-        </View>
-        <View style={styles.footer}>
-          <View style={styles.submitButtonContainer}>
-            <TouchableHighlight onPress={confirm}>
-              <Text style={textStyles.textStyle6}>{priceLabel}</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
+        )
+        }
       </Content>
     </Container>
   )

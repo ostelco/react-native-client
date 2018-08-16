@@ -4,19 +4,21 @@ import PropTypes from 'prop-types';
 import {Image} from "react-native";
 import styles from './styles';
 import {textStyles} from "../../config/fonts";
-import { AppVersion } from "../../components";
+import { AppVersion, AppHeader } from "../../components";
 
 const OnBoarding = (props) => {
-  console.log('render onboarding');
-  const { showTermsAndConditions, signIn, style, textStyles, androidStatusBarColor, loginButtonLabel, termsAndConditionsLabel, onBoardingDescriptionLabel, loginButtonIconName, title } = props;
+  const { showTermsAndConditions, signIn, style, textStyles, loginButtonLabel, termsAndConditionsLabel, onBoardingDescriptionLabel, loginButtonIconName, title } = props;
   return (
     <Container>
       <Image source={require('../../../assets/sweets.jpg')} style={style.containerImage} />
-      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow>
+      <View style={{ position: 'absolute', bottom: 5, right: 5 }}>
+        <AppVersion />
+      </View>
+      <AppHeader>
         <Body style={style.headerContent}>
-          <Title style={textStyles.textStyle11}>{title} <AppVersion /> </Title>
+          <Title style={textStyles.textStyle11}>{title} </Title>
         </Body>
-      </Header>
+      </AppHeader>
       <Content contentContainerStyle={style.contentContainer}>
         <View style={style.textContainer}>
           <Text style={textStyles.textStyle}>{onBoardingDescriptionLabel}</Text>
@@ -42,7 +44,6 @@ const OnBoarding = (props) => {
 };
 
 OnBoarding.propTypes = {
-  androidStatusBarColor: PropTypes.string.isRequired,
   loginButtonIconName: PropTypes.string.isRequired,
   loginButtonLabel: PropTypes.string.isRequired,
   onBoardingDescriptionLabel: PropTypes.string.isRequired,
@@ -55,7 +56,6 @@ OnBoarding.propTypes = {
 };
 
 OnBoarding.defaultProps = {
-  androidStatusBarColor: 'rgba(0,0,0,0.5)',
   style: styles,
   textStyles,
 };

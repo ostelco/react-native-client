@@ -9,10 +9,6 @@ export default StyleSheet.create({
     height: '100%',
     position: 'absolute'
   },
-  header: {
-    backgroundColor: 'transparent',
-    borderBottomWidth: 0
-  },
   headerContent: {
     alignItems: 'center'
   },

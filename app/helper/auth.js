@@ -3,6 +3,7 @@ import Auth0 from "react-native-auth0";
 import NavigationService from '../../NavigationService';
 import screens from "./screens";
 import * as actions from "../actions";
+import * as _ from "lodash";
 
 const auth0ClientId = 'VI2jUFFEUMyOz1ZoWALu0UwKK9D2uHa7';
 const AUTH0_DOMAIN = 'ostelco.eu.auth0.com';

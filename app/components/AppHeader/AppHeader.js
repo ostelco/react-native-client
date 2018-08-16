@@ -5,22 +5,33 @@ import PropTypes from 'prop-types';
 import {colors} from "../../config/colors";
 
 const AppHeader = props => {
-  const { children } = props;
+  const { children, backgroundColor, style } = props;
   return (
-    <Header style={props.style} noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'}>
+    <Header style={[style, { backgroundColor }]} noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'}>
       {children}
     </Header>
   )
 };
 
+export const AppHeaderWhite = props => {
+  const { children } = props;
+  return (
+    <AppHeader backgroundColor={colors.white}>
+      {children}
+    </AppHeader>
+  )
+}
+
 AppHeader.propTypes = {
   style: PropTypes.number,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  color: PropTypes.string
+  color: PropTypes.string,
+  backgroundColor: PropTypes.string.isRequired
 };
 
 AppHeader.defaultProps = {
   style: styles.header,
+  backgroundColor: 'transparent'
 };
 
 export default AppHeader;

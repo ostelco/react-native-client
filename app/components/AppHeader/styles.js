@@ -3,6 +3,7 @@ import {colors} from "../../config/colors";
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: colors.rosa
+    borderBottomWidth: 0,
+    backgroundColor: colors.white
   }
 });

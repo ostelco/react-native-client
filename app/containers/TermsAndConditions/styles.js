@@ -5,21 +5,15 @@ export default StyleSheet.create({
   container: {
     backgroundColor: colors.whiteTwo,
   },
-  header: {
-    backgroundColor: colors.white,
-    borderBottomWidth: 0,
-    zIndex: 1
-  },
   headerButton: {
     color: colors.brownishGrey
   },
   headerTitleContainer: {
-    flex: 4
+    alignItems: "center"
   },
   content: {
     flex: 1,
     padding: 15,
     paddingRight: 30,
-    marginTop: 30
   }
 });

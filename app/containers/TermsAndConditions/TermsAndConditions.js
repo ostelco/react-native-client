@@ -3,15 +3,15 @@ import {Container, Left, Button, Icon, Body, Title, Text, Header, Content, List,
 import PropTypes from 'prop-types';
 import {textStyles} from "../../config/fonts";
 import styles from './styles';
-import {RoundedBorder} from "../../components";
+import {RoundedBorder, AppHeaderWhite} from "../../components";
 
 
 const TermsAndConditions = props => {
   const { goBack, isModal } = props;
   return (
     <Container style={styles.container}>
-      <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
-        <Left>
+      <AppHeaderWhite>
+        <Left style={{ flex: 1, alignItems: 'stretch' }}>
           {isModal ? null : (
             <Button transparent onPress={goBack}>
               <Icon name="arrow-back" style={styles.headerButton}/>
@@ -20,7 +20,7 @@ const TermsAndConditions = props => {
         </Left>
         <Body style={styles.headerTitleContainer}>
           <Title style={textStyles.textStyle19}>
-            Terms & Conditions
+            Terms
           </Title>
         </Body>
         <Right>
@@ -30,9 +30,9 @@ const TermsAndConditions = props => {
             </Button>
           ) : null}
         </Right>
-      </Header>
-      <RoundedBorder />
+      </AppHeaderWhite>
       <Content contentContainerStyle={styles.content}>
+        <RoundedBorder />
         <List>
           <ListItem noBorder>
             <Text style={textStyles.textStyle5}>5 May 2018</Text>

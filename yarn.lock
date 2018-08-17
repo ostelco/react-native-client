@@ -2820,9 +2820,9 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-instabug-reactnative@^2.13.2:
-  version "2.13.2"
-  resolved "https://registry.yarnpkg.com/instabug-reactnative/-/instabug-reactnative-2.13.2.tgz#e7312d2f2a2b9fe363a3053e52c970573f29b800"
+instabug-reactnative@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/instabug-reactnative/-/instabug-reactnative-8.0.0.tgz#31692d5398658d21e95099b07028aaf94e828457"
 
 invariant@^2.0.0, invariant@^2.2.2:
   version "2.2.4"

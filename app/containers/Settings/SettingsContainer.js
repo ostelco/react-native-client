@@ -4,7 +4,7 @@ import { auth0 } from '../../helper/auth';
 import { userLogout } from "../../actions";
 import { connect } from 'react-redux';
 import screens from "../../helper/screens";
-import { BugReporting } from 'instabug-reactnative';
+import Instabug, { BugReporting } from 'instabug-reactnative';
 import { AsyncStorage } from 'react-native';
 
 class SettingsContainer extends React.Component {

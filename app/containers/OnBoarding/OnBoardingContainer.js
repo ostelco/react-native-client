@@ -41,10 +41,10 @@ export default compose(
     showTermsAndConditions: () => {
       navigation.navigate(screens.TermsAndConditions);
     },
-    onBoardingDescriptionLabel: 'If you think data is the most important, Pi is the carrier for you.',
+    onBoardingDescriptionLabel: 'If you think data is the most important, Red Otter is the carrier for you.',
     loginButtonLabel: 'Sign in with Google',
     loginButtonIconName: 'logo-google',
-    termsAndConditionsLabel: 'By using Pi you agree to the terms & conditions',
-    title: 'pi',
+    termsAndConditionsLabel: 'By using Red Otter you agree to the terms & conditions',
+    title: 'Red Otter',
   }))
 )(OnBoarding);

@@ -5,7 +5,6 @@ import {
   Body,
   Title,
   Text,
-  Header,
   Content,
   List,
   ListItem,
@@ -19,9 +18,9 @@ import PropTypes from 'prop-types';
 import * as _ from "lodash";
 import {textStyles} from "../../config/fonts";
 import {colors} from "../../config/colors";
-import { TouchableHighlight } from "react-native";
+import { TouchableHighlight, TouchableOpacity } from "react-native";
 import styles from './styles';
-import {RoundedBorder} from "../../components";
+import {RoundedBorder, AppHeaderRosa} from "../../components";
 import Referral from "./Referral";
 import {withProfileFromState, withReferralIdFromState} from "../../helper/enhancers";
 import {branch, lifecycle, renderNothing, withState} from "recompose";
@@ -32,9 +31,9 @@ const Home = props => {
   return (
     <Container style={styles.container}>
       <ReferralMessageModal isDialogVisible={showReferralMessage} goBack={closeReferralMessage} itemDescription={'1 GB'} closeButtonLabel={'Much Appreciated!'} />
-      <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
-        <Left></Left>
-        <Body>
+      <AppHeaderRosa>
+        <Left style={{ flex: 1 }}></Left>
+        <Body style={{ alignItems: "center" }}>
           <Title style={textStyles.textStyle11}>
             pi
           </Title>
@@ -42,20 +41,20 @@ const Home = props => {
         <Right>
           <Icon name="menu" style={styles.headerRightButton} onPress={showMenu} />
         </Right>
-      </Header>
+      </AppHeaderRosa>
       <Content contentContainerStyle={styles.content} bounces={false}>
         <List style={styles.topContentContainer}>
           <ListItem noBorder>
             { dataLeft ? (
               <Body>
-                <TouchableHighlight onPress={doUpdate}>
+                <TouchableOpacity >
                   <View>
                     <Text style={textStyles.textStyle12}>
                       { dataLeft }
                     </Text>
                     <Text style={textStyles.textStyle13}>Left</Text>
                   </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
               </Body>
               ) : <Body><Spinner color="white" /></Body>}
           </ListItem>

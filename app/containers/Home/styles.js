@@ -5,11 +5,6 @@ export default StyleSheet.create({
   container: {
     backgroundColor: colors.whiteTwo
   },
-  header: {
-    backgroundColor: colors.rosa,
-    borderBottomWidth: 0,
-    zIndex: 1
-  },
   headerRightButton: {
     color: colors.white
   },

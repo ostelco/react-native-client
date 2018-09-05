@@ -20,7 +20,16 @@ export const AppHeaderWhite = props => {
       {children}
     </AppHeader>
   )
-}
+};
+
+export const AppHeaderRosa = props => {
+  const { children } = props;
+  return (
+    <AppHeader backgroundColor={colors.rosa}>
+      {children}
+    </AppHeader>
+  )
+};
 
 AppHeader.propTypes = {
   style: PropTypes.number,

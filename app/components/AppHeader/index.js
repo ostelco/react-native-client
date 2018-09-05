@@ -1,2 +1,2 @@
 export {default as AppHeader} from './AppHeader';
-export { AppHeaderWhite } from './AppHeader';
+export { AppHeaderWhite, AppHeaderRosa } from './AppHeader';

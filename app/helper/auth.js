@@ -1,5 +1,6 @@
 // TODO: Move to configuration file or variables.js
 import Auth0 from "react-native-auth0";
+import * as _ from "lodash";
 import NavigationService from '../../NavigationService';
 import screens from "./screens";
 import * as actions from "../actions";

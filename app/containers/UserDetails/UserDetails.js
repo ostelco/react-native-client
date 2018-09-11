@@ -48,7 +48,7 @@ const UserDetails = props => {
     };
     return (
       <Container style={styles.container}>
-        <Header androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
+        <AppheaderWhite androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header} noShadow>
           <Left>
             <Button transparent onPress={goBack}>
               <Icon name="arrow-back" style={styles.headerLeftButton} />
@@ -60,9 +60,9 @@ const UserDetails = props => {
           <Right>
 
           </Right>
-        </Header>
-        <RoundedBorder />
+        </AppheaderWhite>
         <Content style={styles.contentContainer}>
+          <RoundedBorder />
           { fields }
         </Content>
     </Container>

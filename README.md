@@ -106,7 +106,7 @@ We can specify how long the config should be cached inside the client, right now
 
 - [install dependencies](https://github.com/bamlab/generator-rn-toolbox/tree/master/generators/assets)
 - Generate icons `yo rn-toolbox:assets --icon path/to/icon/icon.png`
-- Generate splash screen for ios and android `yo rn-toolbox:assets --splash splash.psd --ios` `yo rn-toolbox:assets --splash splash.psd --android
+- Generate splash screen for ios and android `yo rn-toolbox:assets --splash splash.psd --ios` `yo rn-toolbox:assets --splash splash.psd --android`
 
 ## Initial generated README
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).

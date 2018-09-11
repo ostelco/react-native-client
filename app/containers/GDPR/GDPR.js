@@ -12,7 +12,7 @@ const GDPR = props => {
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Body>
           <Title style={textStyles.textStyle10}>
-            pi
+            Red Otter
           </Title>
         </Body>
       </Header>

@@ -13,7 +13,7 @@ const ReferralMessageModal = props => {
       <RoundedBorder reversed={true} />
       <View style={style.contentContainer}>
         <View style={style.content}>
-          <Text style={textStyles.textStyle22}>Welcome to PI</Text>
+          <Text style={textStyles.textStyle22}>Welcome to Red Otter</Text>
           <View style={style.separator} />
           <Text style={textStyles.textStyle23}>Here's a gift for you</Text>
           <View style={style.description}>

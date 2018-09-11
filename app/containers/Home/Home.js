@@ -35,7 +35,7 @@ const Home = props => {
         <Left style={{ flex: 1 }}></Left>
         <Body style={{ alignItems: "center" }}>
           <Title style={textStyles.textStyle11}>
-            pi
+            Red Otter
           </Title>
         </Body>
         <Right>

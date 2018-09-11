@@ -13,11 +13,6 @@ const renderField = (key, label, value, onClick) => (
       <Text style={textStyles.textStyle5}>{ label }</Text>
       <Text style={textStyles.textStyle15}>{ value }</Text>
     </View>
-    <TouchableOpacity style={styles.editButtonContainer} onPress={onClick}>
-      <View style={styles.editButton}>
-        <Text style={textStyles.textStyle8}>Edit</Text>
-      </View>
-    </TouchableOpacity>
   </View>
 );
 
@@ -34,13 +29,13 @@ const UserDetails = props => {
     }, {
       label: 'Address',
       key: 'address'
-    }, {
+    }/*, {
       label: 'Postal Code',
       key: 'postCode'
     }, {
       label: 'City',
       key: 'city'
-    }, {
+    }*/, {
       label: 'Country',
       key: 'country'
     }];

@@ -16,8 +16,8 @@ const Referral = (props) => {
       })
     }}>
       <Icon name="heart" style={{ color: colors.white }} />
-      <Text style={{ color: colors.white }}>Invite a friend and they get</Text>
-      <Text style={{ fontWeight: 'bold', color: colors.white }}>1GB</Text>
+      <Text style={{ color: colors.white }}>Invite a friend</Text>
+      <Text style={{ fontWeight: 'bold', color: colors.white }}></Text>
     </TouchableOpacity>
   )
 };

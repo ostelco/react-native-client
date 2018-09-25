@@ -137,6 +137,8 @@ const login = (state = false, action) => {
 const cards = (state = [], action) => {
   const { type, data } = action;
   switch (type) {
+    case ActionTypes.CARD_SET_ALL:
+      return [...data.cards];
     case ActionTypes.CARD_ADD:
       return [...state, data.card];
     case ActionTypes.CARD_SET:

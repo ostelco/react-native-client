@@ -4,6 +4,9 @@ import {buyProduct, cardAdd, cardRemove, cardSetDefault} from "../../actions";
 import { connect } from 'react-redux';
 import * as _ from "lodash";
 import {logECommercePurchaseEvent} from "../../helper/analytics";
+import {callApi} from "../../middleware/api";
+import Config from 'react-native-config'
+
 
 class PaymentContainer extends React.Component {
 
@@ -15,6 +18,9 @@ class PaymentContainer extends React.Component {
       isLoading: false,
       saveCard: true,
       addNewCard: false,
+      isConfirmDialogVisible: false,
+      selectedCard: null,
+      showFullScreenLoading: false
     }
   }
 
@@ -35,16 +41,30 @@ class PaymentContainer extends React.Component {
     this.setState({ form });
   };
 
-  _cardFormSubmit = (useExisting = false) => {
+  _cardFormSubmit = (source = false) => {
 
-    if (useExisting) {
+    if (source) {
       this.setState({ isLoading: true });
 
-      // TODO: Use purchase API for default card
-
-      this.setState({ isLoading: false, isDialogVisible: true });
-      console.log('Buying sku', this.props.selectedProduct.sku);
-      this.props.buyProduct(this.props.selectedProduct.sku);
+      const cards = this.props.cards.filter(data => data.isDefault);
+      if (cards.length === 0) {
+        alert('Try again later.')
+      } else {
+        const source = cards[0].id;
+        // console.log('Buying sku', this.props.selectedProduct.sku);
+        this.props.buyProduct(this.props.selectedProduct.sku, source)
+          .then(() => {
+            // console.log('Payment success');
+          })
+          .catch(error => {
+            alert('Error: ' + error)
+          })
+          .finally(() => {
+            this.setState({ isLoading: false, isDialogVisible: true });
+            // console.log('Buying sku', this.props.selectedProduct.sku);
+          })
+        // TODO: Use purchase API for default card
+      }
     } else {
       const { form } = this.state;
       if (form.valid) {
@@ -53,31 +73,65 @@ class PaymentContainer extends React.Component {
         console.log(form);
 
         this.setState({ isLoading: true });
-        fetch(`https://api.stripe.com/v1/tokens?card[number]=${number}&card[cvc]=${cvc}&card[exp_month]=${exp_month}&card[exp_year]=${exp_year}`, {
+        fetch(`https://api.stripe.com/v1/sources?card[number]=${number}&card[cvc]=${cvc}&card[exp_month]=${exp_month}&card[exp_year]=${exp_year}&type=card`, {
           method: "post",
           headers: {
-            'Authorization': 'Bearer sk_test_Oqbg97kpc6seWj2GEev6x2qa'
+            'Authorization': `Bearer ${Config.STRIPE_PUBLISHABLE_KEY}`
           }
         })
           .then(data => data.json())
           .then(data => {
             // TODO: Use purchase API with new card and setDefault true
+            // console.log('stripeSource', data);
+            return callApi('paymentSources', 'POST', null, null, [
+              'sourceId=' + data.id
+            ])
+              .then(result => {
+                return callApi('paymentSources', 'PUT', null, null, [
+                  'sourceId=' + data.id
+                ])
+              })
+              .then(result => {
+                // console.log('**********************');
+                // console.log('paymentSourceSuccess', result);
+                return this.props.buyProduct(this.props.selectedProduct.sku, data.id)
+              })
+              .catch(err => {
+                // console.log('----------------------');
+                console.log('paymentSourceFailure', err);
+                throw err
+              });
+            /*
             if (this.state.saveCard) {
               this.props.cardAdd({...data.card });
               this.props.cardSetDefault(data.card.id)
             }
+            */
           })
           .catch(error => {
-            // alert('Error: ' + error)
+            alert('Error: ' + error)
           })
           .finally(() => {
             this.setState({ isLoading: false, isDialogVisible: true });
-            console.log('Buying sku', this.props.selectedProduct.sku);
-            this.props.buyProduct(this.props.selectedProduct.sku);
+            // console.log('Buying sku', this.props.selectedProduct.sku);
           })
       }
     }
   };
+
+  removeCard(id) {
+    this.setState({ showFullScreenLoading: true });
+    callApi('paymentSources', 'DELETE', null, null, [`sourceId=${id}`])
+      .then(() => {
+        this.props.cardRemove(id);
+      })
+      .catch(() => {
+        alert('Something bad happened. Try again later')
+      })
+      .finally(() => {
+        this.setState({ showFullScreenLoading: false });
+      })
+  }
 
   render() {
     const productLabel = _.get(this.props.selectedProduct, "presentation.productLabel", "");
@@ -99,6 +153,12 @@ class PaymentContainer extends React.Component {
         addNewCard={this.state.addNewCard}
         showAddNewCard={() => this.setState({ addNewCard: true })}
         cardSetDefault={this.props.cardSetDefault}
+        cardRemove={(id) => this.removeCard(id)}
+        isConfirmDialogVisible={this.state.isConfirmDialogVisible}
+        setIsConfirmDialogVisible={value => this.setState({ isConfirmDialogVisible: value })}
+        setSelectedCard={card => this.setState({ selectedCard: card })}
+        selectedCard={this.state.selectedCard}
+        showFullScreenLoading={this.state.showFullScreenLoading}
       />
     )
   }
@@ -117,7 +177,7 @@ export default connect(mapStateToProps, {
   buyProduct,
   cardAdd,
   cardRemove,
-  cardSetDefault
+  cardSetDefault,
 })(PaymentContainer);
 
 

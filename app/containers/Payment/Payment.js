@@ -13,47 +13,111 @@ import {
   ListItem,
   Spinner,
   CheckBox,
-  Switch
+  Switch,
+  SwipeRow,
+  Button,
 } from "native-base";
 import PropTypes from 'prop-types';
 import {textStyles} from "../../config/fonts";
-import {TouchableOpacity} from "react-native";
+import {TouchableOpacity, FlatList} from "react-native";
 import {RoundedBorder} from "../../components";
 import styles from "./styles";
 import {PaymentSuccessModal} from "./components";
 import { CreditCardInput } from "react-native-credit-card-input";
-import {List} from "react-native-elements";
 import {colors} from "../../config/colors";
+import {ConfirmDialog} from "react-native-simple-dialogs";
+import {compose} from "recompose";
 
-const CardList = props => {
-  const { cards, onAddClick, onItemClick } = props;
-  const items = cards.map(card => (
-    <ListItem onPress={() => onItemClick(card)} key={card.id}>
-      <Left>
-        <Text>{card.brand.toUpperCase() } { card.last4 }, { card.exp_month }/{ (card.exp_year + '').substring(2) }</Text>
-      </Left>
-      <CheckBox checked={card.isDefault} onPress={() => onItemClick(card)} />
-    </ListItem>
-  ))
+
+const CardList = compose(
+
+  )(props => {
+  const { cards, onAddClick, onItemClick, onRightItemClick } = props;
+  // console.log('cardList', cards);
+
   return (
-    <List containerStyle={{ backgroundColor: colors.whiteTwo }}>
-      {items}
-      <ListItem onPress={onAddClick}>
-        <Left>
-          <Text>Add</Text>
-        </Left>
-        <Right>
-          <Icon name="add" type="MaterialIcons"></Icon>
-        </Right>
-      </ListItem>
-    </List>
+    <FlatList containerStyle={{ backgroundColor: colors.whiteTwo }}
+      data={cards}
+      keyExtractor={item => item.id}
+      ListFooterComponent={() => (
+        <ListItem onPress={onAddClick}>
+          <Left>
+            <Text>Add</Text>
+          </Left>
+          <Right>
+            <Icon name="add" type="MaterialIcons"></Icon>
+          </Right>
+        </ListItem>
+      )}
+
+      renderItem={({ item }) => (
+        <SwipeRow
+          key={item.id}
+          body={
+            <View style={{ flex: 1, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 15 }}>
+              <Text>{item.details.typeData.brand.toUpperCase() } { item.details.typeData.last4 }, { item.details.typeData.exp_month }/{ (item.details.typeData.exp_year + '').substring(2) }</Text>
+              <CheckBox checked={item.isDefault} onPress={() => onItemClick(item)} />
+            </View>
+          }
+          rightOpenValue={-75}
+          right={
+            <Button danger onPress={() => onRightItemClick(item)}>
+              <Icon active name="trash" />
+            </Button>
+          }
+        />
+      )}
+    />
   )
-};
+});
+
+const ConfirmDialogContainer = compose(
+
+)(props => {
+  const { isVisible, handlePositiveButton,  handleNegativeButton} = props;
+  // console.log('ConfirmDialogContainer', props)
+  return (
+    <ConfirmDialog
+      title="Confirm Dialog"
+      message="Are you sure about that?"
+      visible={isVisible}
+      onTouchOutside={handleNegativeButton}
+      positiveButton={{
+        title: "YES",
+        onPress: handlePositiveButton
+      }}
+      negativeButton={{
+        title: "NO",
+        onPress: handleNegativeButton
+      }}
+    />
+  )
+});
 
 const Payment = props => {
-  const { goBack, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault } = props;
+  const { goBack, selectedCard, showFullScreenLoading, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault, cardRemove, isConfirmDialogVisible, setIsConfirmDialogVisible, setSelectedCard } = props;
+  // console.log('Payment', props);
   return (
     <Container style={styles.container}>
+      {showFullScreenLoading ? (
+        <View style={{position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: 999,
+          opacity: 0.75,
+          backgroundColor: 'black',
+          justifyContent: 'center',
+          alignItems: 'center'}}>
+          <Spinner color="white" />
+        </View>
+      ) : null}
+      <ConfirmDialogContainer isVisible={isConfirmDialogVisible} handlePositiveButton={() => {
+        console.log(selectedCard);
+        selectedCard && cardRemove(selectedCard.id)
+        setIsConfirmDialogVisible(false);
+      } } handleNegativeButton={() => setIsConfirmDialogVisible(false)} />
       <PaymentSuccessModal isDialogVisible={isDialogVisible} goBack={goBack} itemDescription={productLabel} />
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Left>
@@ -74,7 +138,10 @@ const Payment = props => {
         <RoundedBorder />
         { !addNewCard && showCardList ? (
           <View>
-            <CardList cards={cards} onAddClick={showAddNewCard} onItemClick={card => cardSetDefault(card.id)} />
+            <CardList cards={cards} onAddClick={showAddNewCard} onItemClick={card => cardSetDefault(card.id)} onRightItemClick={card => {
+              setSelectedCard(card);
+              setIsConfirmDialogVisible(true);
+            }} />
             <View style={[styles.submitButtonContainer]}>
               { isLoading ? <Spinner color="white" /> : (
                 <TouchableOpacity onPress={() => onSubmit(true)}>

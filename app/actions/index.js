@@ -76,18 +76,19 @@ export const PRODUCT_BUY_REQUEST = 'PRODUCT_BUY_REQUEST';
 export const PRODUCT_BUY_SUCCESS = 'PRODUCT_BUY_SUCCESS';
 export const PRODUCT_BUY_FAILURE = 'PRODUCT_BUY_FAILURE';
 
-const purchaseProduct = sku => ({
+const purchaseProduct = (sku, source) => ({
   [CALL_API]: {
     types: [ PRODUCT_BUY_REQUEST, PRODUCT_BUY_SUCCESS, PRODUCT_BUY_FAILURE ],
-    endpoint: `products/${sku}`,
+    endpoint: `products/${sku}/purchase`,
     method: 'POST',
-    allowEmptyResponse: true
+    allowEmptyResponse: true,
+    params: [`sourceId=${source}`, `saveCard=${false}`]
   }
 });
 
-export const buyProduct = (sku) => (dispatch, getState) => {
-  console.log("buyProduct =", sku);
-  return dispatch(purchaseProduct(sku))
+export const buyProduct = (sku, source) => (dispatch, getState) => {
+  console.log("buyProduct =", sku, 'source =', source);
+  return dispatch(purchaseProduct(sku, source))
     .then(() => {
       // Since the subscription has changed, lets reload.
       console.log("Refreshing subscription");
@@ -277,6 +278,7 @@ export const CARD_ADD = 'CARD_ADD';
 export const CARD_SET = 'CARD_SET';
 export const CARD_REMOVE = 'CARD_REMOVE';
 export const CARD_SET_DEFAULT = 'CARD_SET_DEFAULT';
+export const CARD_SET_ALL = 'CARD_SET_ALL';
 
 export const cardAdd = card => ({
   type: CARD_ADD,
@@ -304,5 +306,12 @@ export const cardSetDefault = id => ({
   type: CARD_SET_DEFAULT,
   data: {
     id
+  }
+});
+
+export const cardSetAll = cards => ({
+  type: CARD_SET_ALL,
+  data: {
+    cards
   }
 });

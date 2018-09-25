@@ -41,6 +41,7 @@
     "react-native-firebase": "^4.2.0",
     "react-native-modal": "^6.0.0",
     "react-native-read-more-text": "^1.0.0",
+    "react-native-simple-dialogs": "^0.4.1",
     "react-navigation": "^2.0.0",
     "react-redux": "^5.0.7",
     "recompose": "^0.27.1",

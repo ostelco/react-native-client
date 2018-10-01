@@ -19,7 +19,7 @@ import {
 } from "native-base";
 import PropTypes from 'prop-types';
 import {textStyles} from "../../config/fonts";
-import {TouchableOpacity, FlatList} from "react-native";
+import {TouchableOpacity, FlatList, ScrollView} from "react-native";
 import {RoundedBorder} from "../../components";
 import styles from "./styles";
 import {PaymentSuccessModal} from "./components";
@@ -130,14 +130,14 @@ const Payment = props => {
         </Body>
         <Right></Right>
       </Header>
-      <Content contentContainerStyle={styles.content} bounces={false}>
+      <Content contentContainerStyle={styles.content} scrollEnabled={false}>
         <View style={styles.productDescriptionContainer}>
           <Text style={textStyles.textStyle20}>{productLabel}</Text>
           <Text style={textStyles.textStyle7}>{priceLabel}</Text>
         </View>
         <RoundedBorder />
         { !addNewCard && showCardList ? (
-          <View>
+          <ScrollView>
             <CardList cards={cards} onAddClick={showAddNewCard} onItemClick={card => cardSetDefault(card.id)} onRightItemClick={card => {
               setSelectedCard(card);
               setIsConfirmDialogVisible(true);
@@ -150,7 +150,7 @@ const Payment = props => {
               )
               }
             </View>
-          </View>
+          </ScrollView>
         ) : (
           <View style={styles.paymentFormContainer}>
             <CreditCardInput onChange={onChange} />

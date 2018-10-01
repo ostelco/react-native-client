@@ -58,7 +58,7 @@ export default StyleSheet.create({
   },
   submitButtonContainer: {
     width: '100%',
-      height: 60,
+    height: 60,
     borderRadius: 5,
     backgroundColor: colors.rosa,
     justifyContent: 'center'

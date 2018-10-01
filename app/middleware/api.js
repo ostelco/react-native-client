@@ -54,7 +54,11 @@ export const callApi = async (endpoint, method, body, allowEmptyResponse, params
         // console.log(fullUrl, JSON.stringify(json))
         return json;
       });
-    });
+    })
+    .catch(err => {
+      console.log('---------------------\nRequest failed: ', fullUrl, 'With error: ', err, '\n---------------------------');
+      throw err
+    })
 }
 
 // Action key that carries API call info interpreted by this Redux middleware.

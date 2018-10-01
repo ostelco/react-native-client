@@ -55,12 +55,14 @@ class PaymentContainer extends React.Component {
         this.props.buyProduct(this.props.selectedProduct.sku, source)
           .then(() => {
             // console.log('Payment success');
+            this.setState({ isDialogVisible: true });
           })
           .catch(error => {
-            alert('Error: ' + error)
+            console.log('error payment failed', error);
+            alert('Error: ' + JSON.stringify(error));
           })
           .finally(() => {
-            this.setState({ isLoading: false, isDialogVisible: true });
+            this.setState({ isLoading: false });
             // console.log('Buying sku', this.props.selectedProduct.sku);
           })
         // TODO: Use purchase API for default card
@@ -83,6 +85,9 @@ class PaymentContainer extends React.Component {
           .then(data => {
             // TODO: Use purchase API with new card and setDefault true
             // console.log('stripeSource', data);
+            if (data.error) {
+              throw data.error.message
+            }
             return callApi('paymentSources', 'POST', null, null, [
               'sourceId=' + data.id
             ])
@@ -95,6 +100,9 @@ class PaymentContainer extends React.Component {
                 // console.log('**********************');
                 // console.log('paymentSourceSuccess', result);
                 return this.props.buyProduct(this.props.selectedProduct.sku, data.id)
+              })
+              .then(() => {
+                this.setState({ isDialogVisible: true });
               })
               .catch(err => {
                 // console.log('----------------------');
@@ -109,10 +117,11 @@ class PaymentContainer extends React.Component {
             */
           })
           .catch(error => {
+            console.log(error);
             alert('Error: ' + error)
           })
           .finally(() => {
-            this.setState({ isLoading: false, isDialogVisible: true });
+            this.setState({ isLoading: false });
             // console.log('Buying sku', this.props.selectedProduct.sku);
           })
       }

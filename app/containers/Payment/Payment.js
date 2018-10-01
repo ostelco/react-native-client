@@ -23,7 +23,7 @@ import {TouchableOpacity, FlatList, ScrollView} from "react-native";
 import {RoundedBorder} from "../../components";
 import styles from "./styles";
 import {PaymentSuccessModal} from "./components";
-import { CreditCardInput } from "react-native-credit-card-input";
+import { LiteCreditCardInput } from "react-native-credit-card-input";
 import {colors} from "../../config/colors";
 import {ConfirmDialog} from "react-native-simple-dialogs";
 import {compose} from "recompose";
@@ -153,7 +153,7 @@ const Payment = props => {
           </ScrollView>
         ) : (
           <View style={styles.paymentFormContainer}>
-            <CreditCardInput onChange={onChange} />
+            <LiteCreditCardInput onChange={onChange} />
 
             <ListItem noBorder />
 

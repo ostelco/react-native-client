@@ -134,6 +134,43 @@ const login = (state = false, action) => {
   }
 }
 
+const cards = (state = [], action) => {
+  const { type, data } = action;
+  switch (type) {
+    case ActionTypes.CARD_SET_ALL:
+      return [...data.cards];
+    case ActionTypes.CARD_ADD:
+      return [...state, data.card];
+    case ActionTypes.CARD_SET:
+      return state.map(item => {
+        if (item.id !== data.id) {
+          return item
+        }
+        return {
+          ...item,
+          ...data.card
+        };
+      });
+    case ActionTypes.CARD_REMOVE:
+      return [...state.filter(card => card.id != data.id)]
+    case ActionTypes.CARD_SET_DEFAULT:
+      return state.map(item => {
+        if (item.id !== data.id) {
+          return {
+            ...item,
+            isDefault: false
+          }
+        }
+        return {
+          ...item,
+          isDefault: true
+        };
+      });
+    default:
+      return state
+  }
+}
+
 const appReducer = combineReducers({
   auth,
   login,
@@ -144,7 +181,8 @@ const appReducer = combineReducers({
   profile,
   selectedProduct,
   error,
-  remoteConfig
+  remoteConfig,
+  cards
 });
 
 const rootReducer = (state, action) => {

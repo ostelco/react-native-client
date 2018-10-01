@@ -28,9 +28,24 @@ import {branch, lifecycle, renderNothing, withState} from "recompose";
 import {getReferralLink} from "../../helper/referral";
 
 const Home = props => {
-  const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate } = props;
+  const { showMenu, showPayment, dataLeft, defaultOffer, specialOffer, doUpdate, showReferralMessage, closeReferralMessage, isLoading } = props;
   return (
     <Container style={styles.container}>
+      {isLoading ? (
+        <View style={{position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: 999,
+          opacity: 0.75,
+          backgroundColor: 'black',
+          justifyContent: 'center',
+          alignItems: 'center'}}>
+          <Spinner color="white" />
+        </View>
+      ) : null}
+      <ReferralMessageModal isDialogVisible={showReferralMessage} goBack={closeReferralMessage} itemDescription={'1 GB'} closeButtonLabel={'Much Appreciated!'} />
       <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
         <Left></Left>
         <Body>
@@ -108,6 +123,7 @@ const Home = props => {
 };
 
 import { compose } from 'recompose';
+import { ReferralMessageModal } from "./components";
 
 const ReferralFooter = (props) => {
   const { referralLink, profile } = props;
@@ -141,7 +157,12 @@ Home.propTypes = {
   dataLeft: PropTypes.string,
   defaultOffer: PropTypes.object,
   specialOffer: PropTypes.object,
-  doUpdate: PropTypes.func.isRequired
+  doUpdate: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+
+Home.defaultProps = {
+  isLoading: false,
 };
 
 export default Home;

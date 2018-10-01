@@ -6,6 +6,7 @@ import {
  } from "../../actions";
 import screens from "../../helper/screens";
 import {logSignUpEvent} from "../../helper/analytics";
+import {AsyncStorage} from "react-native";
 
 class SignupContainer extends React.Component {
 
@@ -27,9 +28,10 @@ class SignupContainer extends React.Component {
     this.props.navigation.goBack()
   };
 
-  _showGDPR = () => {
+  _showGDPR = async () => {
 
-    this.props.createProfile(this.state.profile, this.props.referredBy)
+    const invitedBy = await AsyncStorage.getItem('@app:invited-by');
+    this.props.createProfile(this.state.profile, invitedBy)
     .then(() => {
       logSignUpEvent();
       this.props.navigation.navigate(screens.GDPR)

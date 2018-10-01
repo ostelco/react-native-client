@@ -17,7 +17,8 @@ export default compose(
       if (this.props.profile.queried === true && prevProps.profile.queried === false) {
         // We have finished the getProfile query.
         // if the profile is missing we go to Signup.
-        if (forceSignUp || !this.props.profile.data) {
+
+        if (forceSignUp || !(this.props.profile && this.props.profile.data)) {
           this.props.navigation.navigate(screens.SignUp);
         } else {
           // Otherwise go to home page

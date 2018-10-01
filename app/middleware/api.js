@@ -1,8 +1,9 @@
 import { getAuthHeader } from '../helper/auth'
+import Config from 'react-native-config'
 
-const API_ROOT = 'https://api.ostelco.org/';
+const API_ROOT = Config.API_URL;
 
-const callApi = async (endpoint, method, body, allowEmptyResponse, params = []) => {
+export const callApi = async (endpoint, method, body, allowEmptyResponse, params = []) => {
   let fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
 
   // TODO: Params can contain invalid characters and should be url encoded
@@ -24,7 +25,9 @@ const callApi = async (endpoint, method, body, allowEmptyResponse, params = []) 
     options.body = body;
     options.headers['content-type'] = 'application/json';
   }
-  //console.log('Calling', fullUrl, options);
+  // console.log('Calling', fullUrl, options);
+  // console.log('CallingUrl', fullUrl);
+  // console.log('CallingOptions', JSON.stringify(options));
   return fetch(fullUrl, options)
     .then(response => {
       return response.text().then(text => {
@@ -48,9 +51,15 @@ const callApi = async (endpoint, method, body, allowEmptyResponse, params = []) 
         if (!response.ok) {
           return Promise.reject(json);
         }
+
+        // console.log(fullUrl, JSON.stringify(json))
         return json;
       });
-    });
+    })
+    .catch(err => {
+      console.log('---------------------\nRequest failed: ', fullUrl, 'With error: ', err, '\n---------------------------');
+      throw err
+    })
 }
 
 // Action key that carries API call info interpreted by this Redux middleware.

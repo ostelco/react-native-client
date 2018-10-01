@@ -3,12 +3,13 @@ import prettyBytes from "pretty-bytes";
 import Home from "./Home";
 import * as _ from "lodash";
 import { connect } from 'react-redux';
-import { loadSubscription, loadProducts, selectProduct } from "../../actions";
+import {loadSubscription, loadProducts, selectProduct, cardSetAll, cardSetDefault} from "../../actions";
 import screens from "../../helper/screens";
 import {logAddToCartEvent} from "../../helper/analytics";
 import { Alert } from "react-native";
-import { compose } from 'recompose';
+import {compose, withState} from 'recompose';
 import { withInstabugWelcomeMessage } from '../../helper/enhancers';
+import {callApi} from "../../middleware/api";
 
 class HomeContainer extends React.Component {
 
@@ -33,7 +34,34 @@ class HomeContainer extends React.Component {
   _showPayment = product => {
     this.props.selectProduct(product);
     logAddToCartEvent(product);
-    this.props.navigation.navigate(screens.Payment);
+    this.props.setIsLoading(true);
+    callApi('paymentSources', 'GET')
+      .then(result => {
+        if (result.length > 0) {
+          return result;
+        } else {
+          throw "empty card list"
+        }
+      })
+      .then(result => {
+        // console.log('list sources result', result);
+
+        this.props.cardSetAll(result);
+        this.props.cardSetDefault(result[0].id);
+
+        this.props.navigation.navigate(screens.Payment, {
+          hasCards: true
+        })
+      })
+      .catch(err => {
+        console.log('list sources error', err);
+        this.props.navigation.navigate(screens.Payment, {
+          hasCards: false
+        });
+      })
+      .finally(() => {
+        this.props.setIsLoading(false)
+      })
   };
 
   render() {
@@ -47,6 +75,7 @@ class HomeContainer extends React.Component {
         showMenu={this._showMenu}
         showPayment={this._showPayment}
         dataLeft={dataLeft}
+        isLoading={this.props.isLoading}
         defaultOffer={this.props.defaultOffer}
         specialOffer={this.props.specialOffer}
         doUpdate={this.props.loadSubscription}
@@ -102,7 +131,10 @@ export default compose(
   connect(mapStateToProps, {
     loadSubscription,
     loadProducts,
-    selectProduct
+    selectProduct,
+    cardSetAll,
+    cardSetDefault
   }),
   withInstabugWelcomeMessage,
+  withState('isLoading', 'setIsLoading', false),
 )(HomeContainer);

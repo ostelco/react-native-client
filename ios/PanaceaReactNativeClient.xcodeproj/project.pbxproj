@@ -1612,7 +1612,7 @@
 				CODE_SIGN_ENTITLEMENTS = PanaceaReactNativeClient/PanaceaReactNativeClient.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = G4VMYY2CK5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1651,7 +1651,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = G4VMYY2CK5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

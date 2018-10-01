@@ -35,13 +35,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-            new ReactNativeConfigPackage(),
-            		new RNInstabugReactnativePackage.Builder(BuildConfig.INSTABUG_TOKEN, MainApplication.this)
-							.setInvocationEvent(BuildConfig.INSTABUG_INVOCATION_EVENT)
-							.setPrimaryColor("#1D82DC")
-							.setFloatingEdge("left")
-							.setFloatingButtonOffsetFromTop(250)
-							.build(),
+        new ReactNativeConfigPackage(),
+        new RNInstabugReactnativePackage.Builder(BuildConfig.INSTABUG_TOKEN, MainApplication.this)
+                .setInvocationEvent(BuildConfig.INSTABUG_INVOCATION_EVENT)
+                .setPrimaryColor("#1D82DC")
+                .setFloatingEdge("left")
+                .setFloatingButtonOffsetFromTop(250)
+                .build(),
         new RNFirebasePackage(),
         new A0Auth0Package(),
         new RNFirebaseAnalyticsPackage(),

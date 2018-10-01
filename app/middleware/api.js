@@ -1,6 +1,7 @@
 import { getAuthHeader } from '../helper/auth'
+import Config from 'react-native-config'
 
-const API_ROOT = 'https://api.dev.ostelco.org/';
+const API_ROOT = Config.API_URL;
 
 export const callApi = async (endpoint, method, body, allowEmptyResponse, params = []) => {
   let fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint

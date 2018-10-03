@@ -69,7 +69,7 @@ export default class App extends React.Component {
 
   _reloadBundles() {
     store.dispatch(loadBundles());
-    store.dispatch(loadProducts())
+    store.dispatch(loadProducts());
   }
 
   _setBundlesTimer() {

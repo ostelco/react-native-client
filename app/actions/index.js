@@ -48,6 +48,30 @@ export const loadBundles = () => (dispatch, getState) => {
   return dispatch(fetchBundles());
 }
 
+export const PURCHASE_HISTORY_REQUEST = 'PURCHASE_HISTORY_REQUEST';
+export const PURCHASE_HISTORY_SUCCESS = 'PURCHASE_HISTORY_SUCCESS';
+export const PURCHASE_HISTORY_FAILURE = 'PURCHASE_HISTORY_FAILURE';
+
+const fetchPurchaseHistory = () => ({
+  [CALL_API]: {
+    types: [ PURCHASE_HISTORY_REQUEST, PURCHASE_HISTORY_SUCCESS, PURCHASE_HISTORY_FAILURE ],
+    endpoint: 'purchases',
+    method: 'GET'
+  }
+});
+
+export const loadPurchaseHistory = () => (dispatch, getState) => {
+  const purchaseHistory = getState().purchaseHistory;
+  if (purchaseHistory && purchaseHistory.isFetching) {
+    // We are curently fetching the subscription,
+    // wait before sending a new request
+    console.log("In the middle of fetching purchaseHistory");
+    return null;
+  }
+  console.log("Fetching purchaseHistory");
+  return dispatch(fetchPurchaseHistory());
+}
+
 export const PSEUDONYM_REQUEST = 'PSEUDONYM_REQUEST';
 export const PSEUDONYM_SUCCESS = 'PSEUDONYM_SUCCESS';
 export const PSEUDONYM_FAILURE = 'PSEUDONYM_FAILURE';

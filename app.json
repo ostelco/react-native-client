@@ -14,7 +14,7 @@
       "bundleIdentifier": "digital.telenor.panacea"
     },
     "android": {
-      "package": "digital.telenor.panacea"
+      "package": "sg.redotter.otterdelight"
     }
   },
   "name": "PanaceaReactNativeClient",

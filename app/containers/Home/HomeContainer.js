@@ -20,9 +20,9 @@ class HomeContainer extends React.Component {
     }
   }
 
-  formatDataLeft(subscription) {
-    if (subscription.status) {
-      return `${prettyBytes(subscription.status.remaining)}`;
+  formatDataLeft(remaining) {
+    if (remaining) {
+      return `${prettyBytes(remaining)}`;
     }
     return null;
   }
@@ -69,7 +69,7 @@ class HomeContainer extends React.Component {
       Alert.alert('We would not find your subscription:-(', 'The app will not work as expected. Please contact one of the friendly developers, we can fix it for you!');
     }
 
-    const dataLeft = this.formatDataLeft(this.props.subscription);
+    const dataLeft = this.formatDataLeft(this.props.bundles.response && this.props.bundles.response.length > 0 && this.props.bundles.response[0].balance);
     return (
       <Home
         showMenu={this._showMenu}
@@ -118,9 +118,10 @@ function customProduct(products, productSku) {
 }
 
 const mapStateToProps = (state) => {
-  const { subscription, products, error, remoteConfig } = state;
+  const { subscription, products, error, remoteConfig, bundles } = state;
   return {
     subscription,
+    bundles,
     defaultOffer: defaultProduct(products.list),
     specialOffer: customProduct(products.list, remoteConfig.productSku),
     error

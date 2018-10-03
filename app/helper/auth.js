@@ -31,6 +31,8 @@ function loadStateFromServer(credentials, userInfo, refreshToken) {
   _store.dispatch(actions.userLoggedIn());
   // Fetch default state from the server.
   actions.getProfile()(_store.dispatch, _store.getState);
+  actions.loadBundles()(_store.dispatch, _store.getState);
+  actions.loadPurchaseHistory()(_store.dispatch, _store.getState);
   actions.loadSubscription()(_store.dispatch, _store.getState);
   actions.loadPseudonyms()(_store.dispatch, _store.getState);
   actions.loadProducts()(_store.dispatch, _store.getState);

@@ -20,6 +20,19 @@ const subscription = (state = { isFetching: false, status: null, queried: false 
   return state;
 }
 
+const bundles = (state = { isFetching: false, queried: false, error: null, response: null }, action) => {
+  const { type, response, error } = action;
+  switch (type) {
+    case ActionTypes.BUNDLES_REQUEST:
+      return {...state, isFetching: true, queried: true }
+    case ActionTypes.BUNDLES_FAILURE:
+      return {...state, isFetching: false, queried: true, error }
+    case ActionTypes.BUNDLES_SUCCESS:
+      return {...state, isFetching: false, queried: true, error: null, response }
+  }
+  return state;
+}
+
 const pseudonyms = (state = { isFetching: false}, action) => {
   console.log("Action = ", action);
   const  { type, response } = action;
@@ -182,7 +195,8 @@ const appReducer = combineReducers({
   selectedProduct,
   error,
   remoteConfig,
-  cards
+  cards,
+  bundles,
 });
 
 const rootReducer = (state, action) => {
@@ -190,7 +204,7 @@ const rootReducer = (state, action) => {
     state = undefined
   }
 
-  console.log(action);
+  console.log(action, state);
 
   switch (action.type) {
     case ActionTypes.SUBSCRIPTION_FAILURE:

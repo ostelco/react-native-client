@@ -17,11 +17,35 @@ export const loadSubscription = () => (dispatch, getState) => {
   if (subscription && subscription.isFetching) {
     // We are curently fetching the subscription,
     // wait before sending a new request
-    console.log("In the middle of fetching subscription")
+    console.log("In the middle of fetching subscription");
     return null;
   }
-  console.log("Fetching subscription")
+  console.log("Fetching subscription");
   return dispatch(fetchSubscription());
+}
+
+export const BUNDLES_REQUEST = 'BUNDLES_REQUEST';
+export const BUNDLES_SUCCESS = 'BUNDLES_SUCCESS';
+export const BUNDLES_FAILURE = 'BUNDLES_FAILURE';
+
+const fetchBundles = () => ({
+  [CALL_API]: {
+    types: [ BUNDLES_REQUEST, BUNDLES_SUCCESS, BUNDLES_FAILURE ],
+    endpoint: 'bundles',
+    method: 'GET'
+  }
+});
+
+export const loadBundles = () => (dispatch, getState) => {
+  const bundles = getState().bundles;
+  if (bundles && bundles.isFetching) {
+    // We are curently fetching the subscription,
+    // wait before sending a new request
+    console.log("In the middle of fetching bundles");
+    return null;
+  }
+  console.log("Fetching bundles");
+  return dispatch(fetchBundles());
 }
 
 export const PSEUDONYM_REQUEST = 'PSEUDONYM_REQUEST';

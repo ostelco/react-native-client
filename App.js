@@ -6,7 +6,7 @@ import { setStore } from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
-import { setRemoteConfig } from './app/actions';
+import {setRemoteConfig, loadBundles} from './app/actions';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
 import { initInstabug } from "./app/helper/instabug";
@@ -50,6 +50,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    this._setBundlesTimer();
     AppState.addEventListener('change', this._handleAppStateChange);
   }
 
@@ -61,9 +62,20 @@ export default class App extends React.Component {
     // Get remote config when app enters foreground
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       getRemoteConfig(_getRemoteConfigCallback);
+      this._setBundlesTimer();
     }
     this.setState({appState: nextAppState});
   };
+
+  _reloadBundles() {
+    store.dispatch(loadBundles());
+  }
+
+  _setBundlesTimer() {
+    if (typeof this.interval === 'undefined' || this.interval === 0) {
+      this.interval = setInterval(() => this._reloadBundles() , 5000);
+    }
+  }
 
   render() {
     return (

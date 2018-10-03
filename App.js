@@ -6,7 +6,7 @@ import { setStore } from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
-import {setRemoteConfig, loadBundles} from './app/actions';
+import {setRemoteConfig, loadBundles, loadProducts} from './app/actions';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
 import { initInstabug } from "./app/helper/instabug";
@@ -69,6 +69,7 @@ export default class App extends React.Component {
 
   _reloadBundles() {
     store.dispatch(loadBundles());
+    store.dispatch(loadProducts())
   }
 
   _setBundlesTimer() {

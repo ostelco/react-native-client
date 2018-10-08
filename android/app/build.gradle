@@ -115,21 +115,19 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-def pass = getPassword("mac","android_keystore")
-
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "digital.telenor.panacea"
         minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 20
+        targetSdkVersion 22
+        versionCode 22
         versionName "2.11.0"
-        ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        resValue "string", "build_config_package", "digital.telenor.panacea"
         // Enabling multidex support.
         multiDexEnabled true
         resValue "string", "build_config_package", "digital.telenor.panacea"

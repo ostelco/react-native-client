@@ -122,7 +122,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "digital.telenor.panacea"
+        applicationId "sg.redotter.otterdelight"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 18
@@ -132,6 +132,7 @@ android {
         }
         // Enabling multidex support.
         multiDexEnabled true
+        resValue "string", "build_config_package", "sg.redotter.otterdelight"
     }
     signingConfigs {
         release {

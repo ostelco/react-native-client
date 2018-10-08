@@ -88,7 +88,7 @@ const consents = (state = { isFetching: false, list: null, privacy: null }, acti
     case ActionTypes.CONSENTS_REQUEST:
       return {...state, isFetching: true};
     case ActionTypes.CONSENTS_FAILURE:
-      return {isFetching: false, list, privacy: null};
+      return {isFetching: false, list: null, privacy: null};
     case ActionTypes.CONSENTS_SUCCESS:
       return {isFetching: false, list: response, privacy: getPrivacyConsent(response)};
   }

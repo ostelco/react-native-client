@@ -116,15 +116,16 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "digital.telenor.panacea"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 22
         versionName "2.11.0"
+        ndk {
             abiFilters "armeabi-v7a", "x86"
         }
         resValue "string", "build_config_package", "digital.telenor.panacea"

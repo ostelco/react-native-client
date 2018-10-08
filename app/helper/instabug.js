@@ -1,10 +1,10 @@
-import {Platform, AsyncStorage} from 'react-native';
-import Instabug from "instabug-reactnative";
+import {Platform} from 'react-native';
+import Instabug, { BugReporting } from "instabug-reactnative";
 import Config from 'react-native-config'
 
 export const initInstabug = async () => {
   Instabug.setColorTheme(Instabug.colorTheme.dark);
-  Instabug.setExtendedBugReportMode(Instabug.extendedBugReportMode.enabledWithRequiredFields);
+  BugReporting.setExtendedBugReportMode(BugReporting.extendedBugReportMode.enabledWithRequiredFields);
   Instabug.setIntroMessageEnabled(false);
 
   if (Platform.OS === 'ios') {
@@ -13,9 +13,9 @@ export const initInstabug = async () => {
 
   Instabug.isRunningLive(function (isLive) {
     if (isLive) {
-      Instabug.startWithToken(Config.INSTABUG_TOKEN, Instabug.invocationEvent.none);
+      Instabug.startWithToken(Config.INSTABUG_TOKEN, [BugReporting.invocationEvent.shake]);
     } else {
-      Instabug.startWithToken(Config.INSTABUG_TOKEN, Instabug.invocationEvent.shake);
+      Instabug.startWithToken(Config.INSTABUG_TOKEN, [BugReporting.invocationEvent.shake]);
     }
   });
 };

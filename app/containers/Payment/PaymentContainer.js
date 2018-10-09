@@ -168,7 +168,7 @@ class PaymentContainer extends React.Component {
         setSelectedCard={card => this.setState({ selectedCard: card })}
         selectedCard={this.state.selectedCard}
         showFullScreenLoading={this.state.showFullScreenLoading}
-        featureFlagEnableAddCardInApp={this.props.remoteConfig.featureFlagEnableAddCardInApp}
+        featureFlagShowAddCardButton={this.props.remoteConfig.featureFlagShowAddCardButton}
       />
     )
   }

@@ -23,7 +23,7 @@ export const getRemoteConfig = (callback) => {
     })
     .then((activated) => {
       console.log('Fetched data is activated');
-      return firebase.config().getValues(['productSku', 'offerSku', 'featureFlagShowAddCardButton'])
+      return firebase.config().getValues(['productSKU', 'offerSKU', 'featureFlagShowAddCardButton'])
     })
     .then((objects) => {
 

@@ -31,7 +31,7 @@ import {connect} from "react-redux";
 
 
 const CardList = compose(
-  connect(({ remoteConfig }) => ({ showAddCardButton: remoteConfig.featureFlagEnableAddCardInApp }))
+  connect(({ remoteConfig }) => ({ showAddCardButton: remoteConfig.featureFlagShowAddCardButton }))
   )(props => {
   const { cards, onAddClick, onItemClick, onRightItemClick, showAddCardButton } = props;
   // console.log('cardList', cards);
@@ -102,7 +102,7 @@ const ConfirmDialogContainer = compose(
 });
 
 const Payment = props => {
-  const { goBack, selectedCard, showFullScreenLoading, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault, cardRemove, isConfirmDialogVisible, setIsConfirmDialogVisible, setSelectedCard, featureFlagEnableAddCardInApp } = props;
+  const { goBack, selectedCard, showFullScreenLoading, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault, cardRemove, isConfirmDialogVisible, setIsConfirmDialogVisible, setSelectedCard, featureFlagShowAddCardButton } = props;
   // console.log('Payment', props);
   return (
     <Container style={styles.container}>
@@ -158,7 +158,7 @@ const Payment = props => {
               }
             </View>
           </ScrollView>
-        ) : (featureFlagEnableAddCardInApp ? (
+        ) : (featureFlagShowAddCardButton ? (
             <View style={styles.paymentFormContainer}>
               <LiteCreditCardInput onChange={onChange} />
 

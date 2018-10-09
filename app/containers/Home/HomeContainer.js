@@ -92,6 +92,7 @@ function defaultProduct(products, sku) {
     if (sku) {
       const tmp = products.find(product => product.sku === sku);
       if (tmp) {
+        console.log('Found default product by sku:', sku)
         return tmp;
       }
     }
@@ -112,6 +113,7 @@ function customProduct(products, sku) {
     if (sku) {
       const tmp = products.find(product => product.sku === sku);
       if (tmp) {
+        console.log('Found custom product by sku:', sku)
         return tmp;
       }
     }

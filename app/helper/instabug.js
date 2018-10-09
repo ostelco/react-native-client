@@ -15,7 +15,7 @@ export const initInstabug = async () => {
     if (isLive) {
       Instabug.startWithToken(Config.INSTABUG_TOKEN, [BugReporting.invocationEvent.shake]);
     } else {
-      Instabug.startWithToken(Config.INSTABUG_TOKEN, [BugReporting.invocationEvent.shake]);
+      Instabug.startWithToken(Config.INSTABUG_TOKEN, [BugReporting.invocationEvent.none]);
     }
   });
 };

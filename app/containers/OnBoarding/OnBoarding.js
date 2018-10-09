@@ -11,7 +11,7 @@ const OnBoarding = (props) => {
   const { showTermsAndConditions, signIn, style, textStyles, androidStatusBarColor, loginButtonLabel, termsAndConditionsLabel, onBoardingDescriptionLabel, loginButtonIconName, title } = props;
   return (
     <Container>
-      <Image source={require('../../../assets/sweets.jpg')} style={style.containerImage} />
+      <Image source={require('../../../assets/bg.png')} style={style.containerImage} />
       <View style={{ position: 'absolute', bottom: 5, right: 5 }}>
         <AppVersion />
       </View>

@@ -41,10 +41,10 @@ export default compose(
     showTermsAndConditions: () => {
       navigation.navigate(screens.TermsAndConditions);
     },
-    onBoardingDescriptionLabel: 'If you think data is the most important, Pi is the carrier for you.',
+    onBoardingDescriptionLabel: 'We believe that staying connected should be easy and affordable.',
     loginButtonLabel: 'Sign in with Google',
     loginButtonIconName: 'logo-google',
-    termsAndConditionsLabel: 'By using Pi you agree to the terms & conditions',
-    title: 'pi',
+    termsAndConditionsLabel: 'By using this app you agree to the terms & conditions',
+    title: 'Red Otter',
   }))
 )(OnBoarding);

@@ -27,10 +27,11 @@ import { LiteCreditCardInput } from "react-native-credit-card-input";
 import {colors} from "../../config/colors";
 import {ConfirmDialog} from "react-native-simple-dialogs";
 import {compose} from "recompose";
+import {connect} from "react-redux";
 
 
 const CardList = compose(
-  mapStateToProps(({ remoteConfig }) => ({ showAddCardButton: remoteConfig.featureFlagEnableAddCardInApp }))
+  connect(({ remoteConfig }) => ({ showAddCardButton: remoteConfig.featureFlagEnableAddCardInApp }))
   )(props => {
   const { cards, onAddClick, onItemClick, onRightItemClick, showAddCardButton } = props;
   // console.log('cardList', cards);

@@ -3,17 +3,16 @@
   "version": "2.11.0",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-preset-react-native": "^4.0.1",
-    "babel-preset-react-native-stage-0": "^1.0.1",
-    "babel-runtime": "^7.0.0-beta.3",
+    "@babel/core": "^7.0.0-beta",
+    "babel-core": "^7.0.0-beta",
+    "babel-runtime": "^7.0.0-beta",
     "jest": "^23.5.0",
     "jest-react-native": "^18.0.0",
     "prop-types": "^15.6.1",
     "react-dom": "16.3.1",
     "react-native-version": "^2.6.3",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "^16.4.2",
+    "schedule": "^0.4.0"
   },
   "scripts": {
     "start": "react-native start",
@@ -28,13 +27,14 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
     "instabug-reactnative": "8.0.9",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
     "native-base": "2.7.2",
     "pretty-bytes": "^5.1.0",
     "react": "16.3.1",
-    "react-native": "^0.57.2",
+    "react-native": "0.55.4",
     "react-native-auth0": "^1.2.2",
     "react-native-confetti": "^0.0.6",
     "react-native-config": "^0.11.5",

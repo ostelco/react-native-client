@@ -6,7 +6,9 @@ if (__DEV__) {
 
 // Set default values
 firebase.config().setDefaults({
-  productSku: false
+  productSKU: false,
+  offerSKU: false,
+  featureFlagEnableAddCardInApp: false,
 });
 
 export const getRemoteConfig = (callback) => {
@@ -21,23 +23,18 @@ export const getRemoteConfig = (callback) => {
     })
     .then((activated) => {
       console.log('Fetched data is activated');
-      return firebase.config().getValue('productSku');
+      return firebase.config().getValues(['productSku', 'offerSku', 'featureFlagShowAddCardButton'])
     })
-    .then((snapshot) => {
+    .then((objects) => {
+
+      let data = {};
+      Object.keys(objects).forEach((key) => {
+        data[key] = objects[key].val()
+      });
 
       if (callback) {
-        callback({ productSku: snapshot.val() });
+        callback(data);
       }
-
-      const hasExperimentalFeature = snapshot.val();
-      if(hasExperimentalFeature) {
-        console.log('experimental feature is enabled');
-        //enableSuperCoolFeature();
-      } else {
-        console.log('experimental feature is disabled');
-      }
-
-      // continue booting app
     })
     .catch(console.error);
 };

@@ -30,25 +30,31 @@ import {compose} from "recompose";
 
 
 const CardList = compose(
-
+  mapStateToProps(({ remoteConfig }) => ({ showAddCardButton: remoteConfig.featureFlagEnableAddCardInApp }))
   )(props => {
-  const { cards, onAddClick, onItemClick, onRightItemClick } = props;
+  const { cards, onAddClick, onItemClick, onRightItemClick, showAddCardButton } = props;
   // console.log('cardList', cards);
 
   return (
     <FlatList containerStyle={{ backgroundColor: colors.whiteTwo }}
       data={cards}
       keyExtractor={item => item.id}
-      ListFooterComponent={() => (
-        <ListItem onPress={onAddClick}>
-          <Left>
-            <Text>Add</Text>
-          </Left>
-          <Right>
-            <Icon name="add" type="MaterialIcons"></Icon>
-          </Right>
-        </ListItem>
-      )}
+      ListFooterComponent={() => {
+        if (showAddCardButton) {
+          return (
+            <ListItem onPress={onAddClick}>
+              <Left>
+                <Text>Add</Text>
+              </Left>
+              <Right>
+                <Icon name="add" type="MaterialIcons"></Icon>
+              </Right>
+            </ListItem>
+          )
+        } else {
+          return null;
+        }
+      }}
 
       renderItem={({ item }) => (
         <SwipeRow
@@ -95,7 +101,7 @@ const ConfirmDialogContainer = compose(
 });
 
 const Payment = props => {
-  const { goBack, selectedCard, showFullScreenLoading, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault, cardRemove, isConfirmDialogVisible, setIsConfirmDialogVisible, setSelectedCard } = props;
+  const { goBack, selectedCard, showFullScreenLoading, isDialogVisible, priceLabel, productLabel, onChange, onSubmit, isValid, isLoading, saveCard, setSaveCard, cards, showCardList, addNewCard, showAddNewCard, cardSetDefault, cardRemove, isConfirmDialogVisible, setIsConfirmDialogVisible, setSelectedCard, featureFlagEnableAddCardInApp } = props;
   // console.log('Payment', props);
   return (
     <Container style={styles.container}>
@@ -151,30 +157,31 @@ const Payment = props => {
               }
             </View>
           </ScrollView>
-        ) : (
-          <View style={styles.paymentFormContainer}>
-            <LiteCreditCardInput onChange={onChange} />
+        ) : (featureFlagEnableAddCardInApp ? (
+            <View style={styles.paymentFormContainer}>
+              <LiteCreditCardInput onChange={onChange} />
 
-            <ListItem noBorder />
+              <ListItem noBorder />
 
-            <ListItem>
-              <Switch value={saveCard} onValueChange={value => setSaveCard(value)} />
-              <Body>
-              <Text>Save card for later</Text>
-              </Body>
-            </ListItem>
+              <ListItem>
+                <Switch value={saveCard} onValueChange={value => setSaveCard(value)} />
+                <Body>
+                <Text>Save card for later</Text>
+                </Body>
+              </ListItem>
 
-            <ListItem noBorder />
+              <ListItem noBorder />
 
-            <View style={[styles.submitButtonContainer, isValid ? {} : {opacity: 0.5}]}>
-              { isLoading ? <Spinner color="white" /> : (
-                <TouchableOpacity onPress={() => { isValid ? onSubmit() : null}}>
-                  <Text style={textStyles.textStyle6}>Purchase</Text>
-                </TouchableOpacity>
-              )
-              }
+              <View style={[styles.submitButtonContainer, isValid ? {} : {opacity: 0.5}]}>
+                { isLoading ? <Spinner color="white" /> : (
+                  <TouchableOpacity onPress={() => { isValid ? onSubmit() : null}}>
+                    <Text style={textStyles.textStyle6}>Purchase</Text>
+                  </TouchableOpacity>
+                )
+                }
+              </View>
             </View>
-          </View>
+          ) : <Text>There are no cards connected to your profile. Please use our webpages to add a card.</Text>
         )
         }
       </Content>

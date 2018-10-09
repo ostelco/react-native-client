@@ -19,14 +19,15 @@ export default StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 80,
-    paddingBottom: 30,
-    paddingHorizontal: 30,
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
     justifyContent: 'space-between'
   },
   textContainer: {
     width: 210,
-    height: 72
+    flex: 1,
+    paddingTop: 10
   },
   footerContainer: {
     flex: -1,

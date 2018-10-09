@@ -15,14 +15,12 @@ const OnBoarding = (props) => {
       <View style={{ position: 'absolute', bottom: 5, right: 5 }}>
         <AppVersion />
       </View>
-      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow>
-        <Body style={style.headerContent}>
-          <Title style={textStyles.textStyle11}>{title}</Title>
-        </Body>
-      </Header>
       <Content contentContainerStyle={style.contentContainer}>
-        <View style={style.textContainer}>
-          <Text style={textStyles.textStyle}>{onBoardingDescriptionLabel}</Text>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between' }}>
+          <Image source={require('../../../assets/logo.png')} />
+          <View style={style.textContainer}>
+            <Text style={textStyles.textStyle}>{onBoardingDescriptionLabel}</Text>
+          </View>
         </View>
         <List style={style.footerContainer}>
           <ListItem noBorder>

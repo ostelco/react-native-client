@@ -6,7 +6,7 @@ export default StyleSheet.create({
     backgroundColor: colors.whiteTwo
   },
   header: {
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     borderBottomWidth: 0,
     zIndex: 1
   },
@@ -20,7 +20,7 @@ export default StyleSheet.create({
     flex: 1
   },
   topContentContainer: {
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     zIndex: 1
   },
   staticOfferContainer: {

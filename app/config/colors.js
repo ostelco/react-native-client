@@ -6,5 +6,5 @@ export const colors = {
   brownishGrey: "#646464",
   whiteTwo: "#f6f6f6",
   black: "#000000",
-  lipstick: "#"
+  lipstick: "#bf1d42"
 };

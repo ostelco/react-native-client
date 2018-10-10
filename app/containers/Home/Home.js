@@ -124,6 +124,7 @@ const Home = props => {
 
 import { compose } from 'recompose';
 import { ReferralMessageModal } from "./components";
+import {connect} from "react-redux";
 
 const ReferralFooter = (props) => {
   const { referralLink, profile } = props;
@@ -135,15 +136,24 @@ const ReferralFooter = (props) => {
 }
 
 const ReferralFooterContainer = compose(
+  connect(({ remoteConfig }) => ({ isEnabled: remoteConfig.featureFlagEnableReferrals })),
+  branch(({ isEnabled }) => !isEnabled, renderNothing),
   withReferralIdFromState,
   withProfileFromState,
-  branch(({ referralId, profile }) => !referralId || profile.isFetching || !profile.queried, renderNothing),
+  branch(({ referralId, profile }) => {
+    console.log('referral', referralId, profile.isFetching, profile.queried)
+    return !referralId || profile.isFetching || !profile.queried
+  }, renderNothing),
   withState('referralLink', 'setReferralLink', ''),
   lifecycle({
     async componentDidMount() {
       const { referralId, setReferralLink, profile } = this.props;
-      const referralLink = await getReferralLink(referralId, profile.data.name)
-      setReferralLink(referralLink);
+      try {
+        const referralLink = await getReferralLink(referralId, profile.data.name);
+        setReferralLink(referralLink);
+      } catch (err) {
+        console.error('Failed to fetch referral link:', err);
+      }
     }
   }),
   branch(({ referralLink}) => referralLink === '', renderNothing)

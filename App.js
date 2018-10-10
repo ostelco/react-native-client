@@ -62,7 +62,7 @@ export default class App extends React.Component {
     // Get remote config when app enters foreground
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       getRemoteConfig(_getRemoteConfigCallback);
-      this._setBundlesTimer();
+      // this._setBundlesTimer();
     }
     this.setState({appState: nextAppState});
   };

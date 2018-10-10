@@ -9,6 +9,7 @@ firebase.config().setDefaults({
   productSKU: false,
   offerSKU: false,
   featureFlagEnableAddCardInApp: false,
+  featureFlagEnableReferrals: false,
 });
 
 export const getRemoteConfig = (callback) => {
@@ -23,7 +24,7 @@ export const getRemoteConfig = (callback) => {
     })
     .then((activated) => {
       console.log('Fetched data is activated');
-      return firebase.config().getValues(['productSKU', 'offerSKU', 'featureFlagShowAddCardButton'])
+      return firebase.config().getValues(['productSKU', 'offerSKU', 'featureFlagShowAddCardButton', 'featureFlagEnableReferrals'])
     })
     .then((objects) => {
 

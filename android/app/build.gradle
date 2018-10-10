@@ -124,11 +124,10 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 22
-        versionName "2.11.0"
+        versionName "2.12.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        resValue "string", "build_config_package", "digital.telenor.panacea"
         // Enabling multidex support.
         multiDexEnabled true
         resValue "string", "build_config_package", "digital.telenor.panacea"
@@ -136,10 +135,10 @@ android {
     signingConfigs {
         release {
             if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword pass // Change this
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword pass // Change this
+                storeFile file("panacea-react-native-client-key.keystore")
+                storePassword MYAPP_RELEASE_STORE_FILE_PASS
+                keyAlias "panacea-react-native-client-alias"
+                keyPassword MYAPP_RELEASE_STORE_FILE_PASS
             }
         }
     }

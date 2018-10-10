@@ -21,7 +21,8 @@
     "test": "jest",
     "ios:beta": "fastlane ios beta",
     "android:beta": "fastlane android beta",
-    "postversion": "react-native-version"
+    "postversion": "react-native-version",
+    "postinstall": "node ./android-release-gradle-fix.js"
   },
   "jest": {
     "preset": "react-native"
@@ -34,7 +35,7 @@
     "native-base": "2.7.2",
     "pretty-bytes": "^5.1.0",
     "react": "16.3.1",
-    "react-native": "0.55.4",
+    "react-native": "0.55.0",
     "react-native-auth0": "^1.2.2",
     "react-native-confetti": "^0.0.6",
     "react-native-config": "^0.11.5",

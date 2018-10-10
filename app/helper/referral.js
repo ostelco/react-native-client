@@ -19,7 +19,6 @@ export const getReferralLink = async (uid, name) => {
   .social.setDescriptionText('Join our service and get 1 GB free data on signup.');
 
   // link.android.setMinimumVersion(14);
-
   return firebase.links().createShortDynamicLink(link, 'UNGUESSABLE')
 };
 

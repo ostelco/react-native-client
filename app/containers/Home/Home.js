@@ -100,7 +100,7 @@ const Home = props => {
                 </View>
               </TouchableHighlight>
               <Text style={textStyles.textStyle18}>
-                Lorem ipsum dolor sit amet, consec tetur dipiscing elit lorum ipsum…
+                {_.get(specialOffer, "presentation.offerDescription")}
               </Text>
             </View>
           </View>

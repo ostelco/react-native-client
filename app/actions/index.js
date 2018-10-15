@@ -17,11 +17,59 @@ export const loadSubscription = () => (dispatch, getState) => {
   if (subscription && subscription.isFetching) {
     // We are curently fetching the subscription,
     // wait before sending a new request
-    console.log("In the middle of fetching subscription")
+    console.log("In the middle of fetching subscription");
     return null;
   }
-  console.log("Fetching subscription")
+  console.log("Fetching subscription");
   return dispatch(fetchSubscription());
+}
+
+export const BUNDLES_REQUEST = 'BUNDLES_REQUEST';
+export const BUNDLES_SUCCESS = 'BUNDLES_SUCCESS';
+export const BUNDLES_FAILURE = 'BUNDLES_FAILURE';
+
+const fetchBundles = () => ({
+  [CALL_API]: {
+    types: [ BUNDLES_REQUEST, BUNDLES_SUCCESS, BUNDLES_FAILURE ],
+    endpoint: 'bundles',
+    method: 'GET'
+  }
+});
+
+export const loadBundles = () => (dispatch, getState) => {
+  const bundles = getState().bundles;
+  if (bundles && bundles.isFetching) {
+    // We are curently fetching the subscription,
+    // wait before sending a new request
+    console.log("In the middle of fetching bundles");
+    return null;
+  }
+  console.log("Fetching bundles");
+  return dispatch(fetchBundles());
+}
+
+export const PURCHASE_HISTORY_REQUEST = 'PURCHASE_HISTORY_REQUEST';
+export const PURCHASE_HISTORY_SUCCESS = 'PURCHASE_HISTORY_SUCCESS';
+export const PURCHASE_HISTORY_FAILURE = 'PURCHASE_HISTORY_FAILURE';
+
+const fetchPurchaseHistory = () => ({
+  [CALL_API]: {
+    types: [ PURCHASE_HISTORY_REQUEST, PURCHASE_HISTORY_SUCCESS, PURCHASE_HISTORY_FAILURE ],
+    endpoint: 'purchases',
+    method: 'GET'
+  }
+});
+
+export const loadPurchaseHistory = () => (dispatch, getState) => {
+  const purchaseHistory = getState().purchaseHistory;
+  if (purchaseHistory && purchaseHistory.isFetching) {
+    // We are curently fetching the subscription,
+    // wait before sending a new request
+    console.log("In the middle of fetching purchaseHistory");
+    return null;
+  }
+  console.log("Fetching purchaseHistory");
+  return dispatch(fetchPurchaseHistory());
 }
 
 export const PSEUDONYM_REQUEST = 'PSEUDONYM_REQUEST';
@@ -267,11 +315,9 @@ export const userLogout = () => ({
 
 export const SET_REMOTE_CONFIG = 'SET_REMOTE_CONFIG';
 
-export const setRemoteConfig = ({ productSku }) => ({
+export const setRemoteConfig = (data) => ({
   type: SET_REMOTE_CONFIG,
-  data: {
-    productSku
-  }
+  data,
 });
 
 export const CARD_ADD = 'CARD_ADD';

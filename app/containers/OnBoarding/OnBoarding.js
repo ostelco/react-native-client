@@ -5,6 +5,7 @@ import {Image} from "react-native";
 import styles from './styles';
 import {textStyles} from "../../config/fonts";
 import { AppVersion } from "../../components";
+import {TermsAndConditionsLinkAsListItemContainer} from "../../components/ExternalLink/ExternalLink";
 
 const OnBoarding = (props) => {
   console.log('render onboarding');
@@ -30,11 +31,7 @@ const OnBoarding = (props) => {
               </Button>
             </Body>
           </ListItem>
-          <ListItem noBorder button onPress={showTermsAndConditions}>
-            <Body>
-              <Text style={textStyles.textStyle2}>{termsAndConditionsLabel}</Text>
-            </Body>
-          </ListItem>
+          <TermsAndConditionsLinkAsListItemContainer />
         </List>
       </Content>
     </Container>
@@ -49,7 +46,6 @@ OnBoarding.propTypes = {
   showTermsAndConditions: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   style: PropTypes.any.isRequired,
-  termsAndConditionsLabel: PropTypes.string.isRequired,
   textStyles: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
 };

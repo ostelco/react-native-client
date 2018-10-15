@@ -11,6 +11,7 @@ import {withNavigation} from "react-navigation";
 export default compose(
   withProfileFromState,
   withNavigation,
+  /*
   lifecycle({
     componentDidUpdate(prevProps, prevState, snapshot) {
       const forceSignUp = this.props.navigation.getParam('forceSignUp', false);
@@ -27,15 +28,23 @@ export default compose(
       }
     }
   }),
+  */
   withProps(({ navigation }) => ({
     signIn: async () => {
-      const loginStatus = await login();
-      if (loginStatus ===  true) {
-        console.debug("Load subscription & products");
-        logLoginEvent();
-        storeFcmToken();
-      } else {
-        console.debug("Login failed.");
+      try {
+        const loginStatus = await login(true, true);
+        if (loginStatus === true) {
+          console.debug("Load subscription & products");
+          logLoginEvent();
+          storeFcmToken();
+          navigation.navigate(screens.Home);
+        } else {
+          console.debug("Login failed.");
+          alert('Login failed. Try again later');
+        }
+      } catch (err) {
+        console.log('login failed', err);
+        alert('Login failed. Try again later');
       }
     },
     showTermsAndConditions: () => {
@@ -44,7 +53,6 @@ export default compose(
     onBoardingDescriptionLabel: 'If you think data is the most important, Pi is the carrier for you.',
     loginButtonLabel: 'Sign in with Google',
     loginButtonIconName: 'logo-google',
-    termsAndConditionsLabel: 'By using Pi you agree to the terms & conditions',
     title: 'pi',
   }))
 )(OnBoarding);

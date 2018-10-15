@@ -2,7 +2,7 @@ import React from 'react';
 import { Root } from "native-base";
 import { Provider } from 'react-redux';
 import configureStore from './app/store/configureStore'
-import { setStore } from './app/helper/auth'
+import {autoLogin, setStore} from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
@@ -14,6 +14,8 @@ import { initFCM } from './app/helper/firebaseCloudMessaging';
 import { RootStack } from './app/config/routes';
 import { initReferral } from "./app/helper/referral";
 import SplashScreen from "react-native-splash-screen";
+import * as actions from "./app/actions";
+import screens from "./app/helper/screens";
 
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
@@ -50,27 +52,47 @@ export default class App extends React.Component {
     analytics.setCurrentScreen('OnBoarding');
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     this._setBundlesTimer();
     AppState.addEventListener('change', this._handleAppStateChange);
     // TODO: Check login here then hide splashscreen
-    SplashScreen.hide();
+    const loginStatus = await autoLogin();
+    if (loginStatus) {
+      console.log('User logged in, hide splash screen and redirect to home.')
+      setTimeout((() => {
+        NavigationService.navigate(screens.Home);
+        console.log('Hide splash screen...')
+        SplashScreen.hide();
+      }), 200);
+    } else {
+      console.log('User not logged in, hide splash screen and redirect to login');
+      store.dispatch(actions.userLogout());
+      setTimeout((() => {
+        NavigationService.navigate(screens.Home);
+        console.log('Hide splash screen...')
+        SplashScreen.hide();
+      }), 200);
+    }
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
-  _handleAppStateChange = (nextAppState) => {
+  _handleAppStateChange = async (nextAppState) => {
     // Get remote config when app enters foreground
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       getRemoteConfig(_getRemoteConfigCallback);
       this._setBundlesTimer();
       SplashScreen.show();
-      setTimeout(() => {
-        // TODO: Check login here then hide splashscreen
-        SplashScreen.hide();
-      }, 2000)
+      const loginStatus = await autoLogin();
+      if (loginStatus) {
+        NavigationService.navigate(screens.Home);
+      } else {
+        store.dispatch(actions.userLogout());
+        NavigationService.navigate(screens.OnBoarding);
+      }
+      SplashScreen.hide();
     }
     this.setState({appState: nextAppState});
   };

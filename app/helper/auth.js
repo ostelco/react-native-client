@@ -44,7 +44,7 @@ function cleanup() {
   _store.dispatch(actions.userLogout());
 }
 
-export async function login() {
+export async function login(loadStateFromServer=true) {
   console.log('login');
   let authOptions = {
     scope: 'openid profile email offline_access',
@@ -62,7 +62,9 @@ export async function login() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          loadStateFromServer(credentials, userinfo, credentials.refreshToken);
+          if (loadStateFromServer) {
+            loadStateFromServer(credentials, userinfo, credentials.refreshToken);
+          }
           return true;
         });
     })
@@ -74,7 +76,7 @@ export async function login() {
 }
 
 
-export async function autoLogin() {
+export async function autoLogin(loadStateFromServer=true) {
   console.log('autoLogin', _store.getState());
   const { auth } = _store.getState();
   const refreshToken = _.get(auth, 'refreshToken');
@@ -95,7 +97,9 @@ export async function autoLogin() {
         .auth
         .userInfo({ token: credentials.accessToken })
         .then(userinfo => {
-          loadStateFromServer(credentials, userinfo, refreshToken);
+          if (loadStateFromServer) {
+            loadStateFromServer(credentials, userinfo, refreshToken);
+          }
           return true;
         });
     })

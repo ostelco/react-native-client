@@ -1,6 +1,5 @@
 import {createStackNavigator, createSwitchNavigator} from "react-navigation";
 import {
-  AppLoadingContainer,
   DeleteAccountContainer, GDPRContainer, HomeContainer, OnBoardingContainer,
   PaymentContainer, PrivacyContainer, PrivacyPolicyContainer, PurchaseHistoryContainer, SettingsContainer,
   SignupContainer, TermsAndConditionsContainer,
@@ -56,8 +55,7 @@ export const RootStack = createSwitchNavigator({
     headerMode: 'none'
   }),
   GDPR: GDPRContainer,
-  AppStack: AppStack,
-  AppLoading: AppLoadingContainer,
+  AppStack: AppStack
 }, {
-  initialRouteName: 'AppLoading'
+  initialRouteName: 'AppStack'
 });

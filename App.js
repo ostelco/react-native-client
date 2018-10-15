@@ -13,6 +13,7 @@ import { initInstabug } from "./app/helper/instabug";
 import { initFCM } from './app/helper/firebaseCloudMessaging';
 import { RootStack } from './app/config/routes';
 import { initReferral } from "./app/helper/referral";
+import SplashScreen from "react-native-splash-screen";
 
 const { store, persistor } = configureStore();
 setStore(store); // For auth related properties
@@ -52,6 +53,8 @@ export default class App extends React.Component {
   componentDidMount() {
     this._setBundlesTimer();
     AppState.addEventListener('change', this._handleAppStateChange);
+    // TODO: Check login here then hide splashscreen
+    SplashScreen.hide();
   }
 
   componentWillUnmount() {
@@ -63,6 +66,11 @@ export default class App extends React.Component {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       getRemoteConfig(_getRemoteConfigCallback);
       this._setBundlesTimer();
+      SplashScreen.show();
+      setTimeout(() => {
+        // TODO: Check login here then hide splashscreen
+        SplashScreen.hide();
+      }, 2000)
     }
     this.setState({appState: nextAppState});
   };

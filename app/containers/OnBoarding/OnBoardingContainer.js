@@ -11,6 +11,7 @@ import {withNavigation} from "react-navigation";
 export default compose(
   withProfileFromState,
   withNavigation,
+  /*
   lifecycle({
     componentDidUpdate(prevProps, prevState, snapshot) {
       const forceSignUp = this.props.navigation.getParam('forceSignUp', false);
@@ -27,6 +28,7 @@ export default compose(
       }
     }
   }),
+  */
   withProps(({ navigation }) => ({
     signIn: async () => {
       const loginStatus = await login();

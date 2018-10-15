@@ -180,6 +180,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-splash-screen')
     compile project(':react-native-config')
     compile project(':instabug-reactnative')
     compile(project(':react-native-firebase')) {

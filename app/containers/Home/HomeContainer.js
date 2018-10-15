@@ -111,14 +111,16 @@ function defaultProduct(products, sku) {
 function customProduct(products, sku) {
   if (Array.isArray(products)) {
 
+    let result = products.filter(product => _.has(product, 'presentation.offerLabel') && _.has(product, 'presentation.offerDescription'));
+
     if (sku) {
-      const tmp = products.find(product => product.sku === sku);
+      const tmp = result.find(product => product.sku === sku);
       if (tmp) {
         return tmp;
       }
     }
 
-    const result = products.filter(product => _.get(product, "presentation.isDefault", "false") === "false");
+    result = result.filter(product => _.get(product, "presentation.isDefault", "false") === "false");
     if (result && result.length > 0) {
       // We only use 1 special product
       return result[0];

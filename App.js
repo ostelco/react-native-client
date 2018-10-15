@@ -73,6 +73,7 @@ export default class App extends React.Component {
           console.log('Hide splash screen...');
           SplashScreen.hide();
         }
+        SplashScreen.hide();
       }
     }, 200)
   }

@@ -118,7 +118,7 @@ class PaymentContainer extends React.Component {
           })
           .catch(error => {
             console.log(error);
-            alert('Error: ' + error)
+            alert('Error: ' + JSON.stringify(error))
           })
           .finally(() => {
             this.setState({ isLoading: false });

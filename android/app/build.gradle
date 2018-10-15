@@ -125,8 +125,8 @@ android {
         applicationId "sg.redotter.otterdelight"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 22
-        versionName "2.12.0"
+        versionCode 23
+        versionName "2.12.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

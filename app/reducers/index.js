@@ -217,7 +217,7 @@ const rootReducer = (state, action) => {
   console.log('root reducer', action, state);
 
   if (action.type === ActionTypes.USER_LOGOUT) {
-    state = undefined
+    state = {}
   }
 
   switch (action.type) {

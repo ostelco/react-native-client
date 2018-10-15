@@ -6,7 +6,9 @@ if (__DEV__) {
 
 // Set default values
 firebase.config().setDefaults({
-  productSku: false
+  productSku: false,
+  offerSKU: false,
+  featureFlagEnableAddNewCreditCard: false,
 });
 
 export const getRemoteConfig = (callback) => {

@@ -5,3 +5,4 @@ export {RNConfetti} from './RNConfetti';
 export {RoundedBorder} from './RoundedBorder';
 export {BackgroundImage} from './BackgroundImage';
 export {AppVersion} from './AppVersion';
+export {OnlyInDebugMode} from './OnlyInDebugMode';

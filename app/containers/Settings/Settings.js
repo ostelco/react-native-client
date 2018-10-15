@@ -3,7 +3,7 @@ import {Container, Body, Left, Title, Text, Button, Icon, Content, Header, Right
 import {textStyles} from "../../config/fonts";
 import styles from "./styles";
 import {colors} from "../../config/colors";
-import { RoundedBorder } from "../../components";
+import { RoundedBorder, OnlyInDebugMode } from "../../components";
 import {TouchableOpacity} from "react-native";
 import { IconButton } from './components';
 import { version } from '../../../package';
@@ -44,11 +44,13 @@ const Settings = props => {
               <Text style={textStyles.textStyle8}>Logout</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleShowSignUp}>
-            <View style={styles.bottomButton}>
-              <Text style={textStyles.textStyle8}>Sign Up Flow</Text>
-            </View>
-          </TouchableOpacity>
+          <OnlyInDebugMode>
+            <TouchableOpacity onPress={handleShowSignUp}>
+              <View style={styles.bottomButton}>
+                <Text style={textStyles.textStyle8}>Sign Up Flow</Text>
+              </View>
+            </TouchableOpacity>
+          </OnlyInDebugMode>
           <TouchableOpacity onPress={handleFeedback}>
             <View style={styles.bottomButton}>
               <Text style={textStyles.textStyle8}>Report a problem</Text>

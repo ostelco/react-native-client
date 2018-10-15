@@ -168,17 +168,19 @@ class PaymentContainer extends React.Component {
         setSelectedCard={card => this.setState({ selectedCard: card })}
         selectedCard={this.state.selectedCard}
         showFullScreenLoading={this.state.showFullScreenLoading}
+        featureFlagEnableAddNewCreditCard={this.props.remoteConfig.featureFlagEnableAddNewCreditCard}
       />
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { error, selectedProduct, cards } = state;
+  const { error, selectedProduct, cards, remoteConfig } = state;
   return {
     error,
     selectedProduct,
-    cards
+    cards,
+    remoteConfig,
   };
 };
 

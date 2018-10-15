@@ -11,10 +11,10 @@
     "version": "1.10.1",
     "slug": "ostelco-react-native-client",
     "ios": {
-      "bundleIdentifier": "digital.telenor.panacea"
+      "bundleIdentifier": "sg.redotter.otterdelight"
     },
     "android": {
-      "package": "digital.telenor.panacea"
+      "package": "sg.redotter.otterdelight"
     }
   },
   "name": "PanaceaReactNativeClient",

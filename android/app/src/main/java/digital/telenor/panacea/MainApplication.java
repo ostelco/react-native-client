@@ -3,6 +3,7 @@ package digital.telenor.panacea;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.instabug.reactlibrary.RNInstabugReactnativePackage;
 import io.invertase.firebase.RNFirebasePackage;
@@ -18,6 +19,8 @@ import io.invertase.firebase.crash.RNFirebaseCrashPackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.instanceid.RNFirebaseInstanceIdPackage;
 import io.invertase.firebase.links.RNFirebaseLinksPackage;
+import org.devio.rn.splashscreen.SplashScreen; // here
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new SplashScreenReactPackage(),
         new ReactNativeConfigPackage(),
         new RNInstabugReactnativePackage.Builder(BuildConfig.INSTABUG_TOKEN, MainApplication.this)
                 .setInvocationEvent(BuildConfig.INSTABUG_INVOCATION_EVENT)

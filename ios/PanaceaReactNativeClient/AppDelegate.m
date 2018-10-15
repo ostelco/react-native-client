@@ -12,6 +12,7 @@
 #import <React/RCTLinkingManager.h>
 #import <Firebase.h>
 #import "RNFirebaseLinks.h"
+#import "RNSplashScreen.h"  // here
 
 @implementation AppDelegate
 
@@ -51,6 +52,7 @@ continueUserActivity:(NSUserActivity *)userActivity
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [RNSplashScreen show];  // here
   return YES;
 }
 

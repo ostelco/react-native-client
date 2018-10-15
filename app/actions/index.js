@@ -315,11 +315,9 @@ export const userLogout = () => ({
 
 export const SET_REMOTE_CONFIG = 'SET_REMOTE_CONFIG';
 
-export const setRemoteConfig = ({ productSku }) => ({
+export const setRemoteConfig = (data) => ({
   type: SET_REMOTE_CONFIG,
-  data: {
-    productSku
-  }
+  data,
 });
 
 export const CARD_ADD = 'CARD_ADD';

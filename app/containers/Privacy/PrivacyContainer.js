@@ -1,8 +1,8 @@
 import React from "react";
 import Privacy from "./Privacy";
 import { connect } from 'react-redux';
-import { setConsent } from "../../actions";
 import screens from "../../helper/screens";
+import {compose} from "recompose";
 
 class PrivacyContainer extends React.Component {
 
@@ -10,35 +10,15 @@ class PrivacyContainer extends React.Component {
     this.props.navigation.pop();
   };
 
-  _showPrivacyPolicy = () => {
-    this.props.navigation.navigate(screens.PrivacyPolicy);
-  };
-
-  _showTermsAndConditions = () => {
-    this.props.navigation.navigate(screens.TermsAndConditions, { isModal: true })
-  };
-
   render() {
     return (
       <Privacy
         goBack={this._goBack}
-        consent={this.props.privacy}
-        setConsent={this.props.setConsent}
-        showPrivacyPolicy={this._showPrivacyPolicy}
-        showTermsAndConditions={this._showTermsAndConditions}
       />
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  const { consents, error } = state;
-  return {
-    privacy: consents.privacy || { accepted: true },
-    error
-  };
-};
+export default compose(
 
-export default connect(mapStateToProps, {
-  setConsent
-})(PrivacyContainer);
+)(PrivacyContainer);

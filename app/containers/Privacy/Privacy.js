@@ -3,11 +3,10 @@ import {Container, Body, Left, Title, Right, Text, Button, Icon, Content, Header
 import styles from './styles';
 import {RoundedBorder} from "../../components";
 import {textStyles} from "../../config/fonts";
-import {colors} from "../../config/colors";
-import { Switch, TouchableHighlight } from "react-native";
+import {TermsAndConditionsLinkContainer} from "../../components/ExternalLink/ExternalLink";
 
 const Privacy = props => {
-    const { goBack,  showPrivacyPolicy, showTermsAndConditions, consent, setConsent} = props;
+    const { goBack } = props;
     return (
       <Container style={styles.container}>
         <Header style={styles.header} noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'}>
@@ -23,27 +22,8 @@ const Privacy = props => {
         </Header>
         <RoundedBorder />
         <Content style={styles.content}>
-          <View style={styles.consentContainer}>
-            <Text style={textStyles.textStyle5}>Personalized Offer</Text>
-            <Switch value={consent.accepted} onTintColor={colors.rosa}
-                    onValueChange={(value) => {setConsent(consent.consentId, value)}}
-            />
-          </View>
-          <View style={styles.separator} />
-          <Text style={textStyles.textStyle15}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec nibh justo. Fusce interdum tellus sit amet augue eleifend, in porttitor nulla scelerisque.
-          </Text>
           <View style={styles.linkButtonContainer}>
-            <TouchableHighlight onPress={showPrivacyPolicy}>
-              <View style={styles.linkButton}>
-                <Text style={textStyles.textStyle26}>Privacy Policy</Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={showTermsAndConditions}>
-              <View style={styles.linkButton}>
-                <Text style={textStyles.textStyle26}>Terms & Conditions</Text>
-              </View>
-            </TouchableHighlight>
+            <TermsAndConditionsLinkContainer />
           </View>
         </Content>
       </Container>

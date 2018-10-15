@@ -44,7 +44,6 @@ export default compose(
     onBoardingDescriptionLabel: 'If you think data is the most important, Pi is the carrier for you.',
     loginButtonLabel: 'Sign in with Google',
     loginButtonIconName: 'logo-google',
-    termsAndConditionsLabel: 'By using Pi you agree to the terms & conditions',
     title: 'pi',
   }))
 )(OnBoarding);

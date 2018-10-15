@@ -6,3 +6,4 @@ export {RoundedBorder} from './RoundedBorder';
 export {BackgroundImage} from './BackgroundImage';
 export {AppVersion} from './AppVersion';
 export {OnlyInDebugMode} from './OnlyInDebugMode';
+export {ExternalLink} from './ExternalLink';

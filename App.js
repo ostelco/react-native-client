@@ -56,23 +56,25 @@ export default class App extends React.Component {
     this._setBundlesTimer();
     AppState.addEventListener('change', this._handleAppStateChange);
     // TODO: Check login here then hide splashscreen
-    const loginStatus = await autoLogin();
-    if (loginStatus) {
-      console.log('User logged in, hide splash screen and redirect to home.')
-      setTimeout((() => {
+    setTimeout(async () => {
+      const loginStatus = await autoLogin();
+
+      console.log('autologin', loginStatus);
+      if (!loginStatus.failed) {
+        console.log('User logged in, hide splash screen and redirect to home.')
         NavigationService.navigate(screens.Home);
-        console.log('Hide splash screen...')
+        console.log('Hide splash screen...');
         SplashScreen.hide();
-      }), 200);
-    } else {
-      console.log('User not logged in, hide splash screen and redirect to login');
-      store.dispatch(actions.userLogout());
-      setTimeout((() => {
-        NavigationService.navigate(screens.Home);
-        console.log('Hide splash screen...')
-        SplashScreen.hide();
-      }), 200);
-    }
+      } else {
+        if (!loginStatus.missingProfile) {
+          console.log('User not logged in, hide splash screen and redirect to login');
+          store.dispatch(actions.userLogout());
+          NavigationService.navigate(screens.OnBoarding);
+          console.log('Hide splash screen...');
+          SplashScreen.hide();
+        }
+      }
+    }, 200)
   }
 
   componentWillUnmount() {
@@ -85,14 +87,22 @@ export default class App extends React.Component {
       getRemoteConfig(_getRemoteConfigCallback);
       this._setBundlesTimer();
       SplashScreen.show();
-      const loginStatus = await autoLogin();
-      if (loginStatus) {
-        NavigationService.navigate(screens.Home);
-      } else {
-        store.dispatch(actions.userLogout());
-        NavigationService.navigate(screens.OnBoarding);
-      }
-      SplashScreen.hide();
+      setTimeout(async () => {
+        const loginStatus = await autoLogin();
+        console.log('autologin', loginStatus);
+
+        if (!loginStatus.failed) {
+          NavigationService.navigate(screens.Home);
+
+        } else {
+          if (!loginStatus.missingProfile) {
+            store.dispatch(actions.userLogout());
+            NavigationService.navigate(screens.OnBoarding);
+          }
+        }
+
+        SplashScreen.hide();
+      }, 200)
     }
     this.setState({appState: nextAppState});
   };
@@ -103,8 +113,16 @@ export default class App extends React.Component {
   }
 
   _setBundlesTimer() {
+    console.log('set bundles timer...');
     if (typeof this.interval === 'undefined' || this.interval === 0) {
       this.interval = setInterval(() => this._reloadBundles() , 5000);
+    }
+  }
+
+  _removeBundlesTimer() {
+    console.log('remove bundles timer...', this.interval);
+    if (this.interval) {
+      clearInterval(this.interval);
     }
   }
 

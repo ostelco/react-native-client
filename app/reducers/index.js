@@ -214,11 +214,11 @@ const appReducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
+  console.log('root reducer', action, state);
+
   if (action.type === ActionTypes.USER_LOGOUT) {
     state = undefined
   }
-
-  console.log(action, state);
 
   switch (action.type) {
     case ActionTypes.SUBSCRIPTION_FAILURE:

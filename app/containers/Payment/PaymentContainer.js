@@ -1,6 +1,6 @@
 import React from "react";
 import Payment from "./Payment";
-import {buyProduct, cardAdd, cardRemove, cardSetDefault} from "../../actions";
+import {buyProduct, cardAdd, cardRemove, cardSetDefault, loadPurchaseHistory} from "../../actions";
 import { connect } from 'react-redux';
 import * as _ from "lodash";
 import {logECommercePurchaseEvent} from "../../helper/analytics";
@@ -56,6 +56,7 @@ class PaymentContainer extends React.Component {
           .then(() => {
             // console.log('Payment success');
             this.setState({ isDialogVisible: true });
+            this.props.loadPurchaseHistory()
           })
           .catch(error => {
             console.log('error payment failed', error);
@@ -103,6 +104,7 @@ class PaymentContainer extends React.Component {
               })
               .then(() => {
                 this.setState({ isDialogVisible: true });
+                this.props.loadPurchaseHistory();
               })
               .catch(err => {
                 // console.log('----------------------');
@@ -189,6 +191,7 @@ export default connect(mapStateToProps, {
   cardAdd,
   cardRemove,
   cardSetDefault,
+  loadPurchaseHistory,
 })(PaymentContainer);
 
 

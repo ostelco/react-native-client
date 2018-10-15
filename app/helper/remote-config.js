@@ -19,22 +19,21 @@ export const getRemoteConfig = (callback) => {
     .then(() => {
       return firebase.config().activateFetched();
     })
-    .then((activated) => {
-      console.log('Fetched data is activated');
-      return firebase.config().getValue('productSku');
+    .then(() => {
+      // console.log('Fetched data is activated');
+      return firebase.config().getValues(['productSKU', 'offerSKU']);
     })
-    .then((snapshot) => {
+    .then((objects) => {
+
+      let data = {};
+      Object.keys(objects).forEach((key) => {
+        data[key] = objects[key].val()
+      });
+
+      console.log('Fetched remote config values', data);
 
       if (callback) {
-        callback({ productSku: snapshot.val() });
-      }
-
-      const hasExperimentalFeature = snapshot.val();
-      if(hasExperimentalFeature) {
-        console.log('experimental feature is enabled');
-        //enableSuperCoolFeature();
-      } else {
-        console.log('experimental feature is disabled');
+        callback(data);
       }
 
       // continue booting app

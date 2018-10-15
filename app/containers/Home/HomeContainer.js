@@ -86,33 +86,45 @@ class HomeContainer extends React.Component {
   }
 }
 
-function defaultProduct(products) {
-  if (Array.isArray(products)) {
-    const result = products.filter(product => _.get(product, "presentation.isDefault", "false") !== "false");
-    if (result && result.length > 0) {
-      // We only use 1 default product
-      return result[0];
-    }
-    console.log("Cannot find any default products");
-    return null;
-  }
-}
-
-function customProduct(products, productSku) {
+function defaultProduct(products, sku) {
   if (Array.isArray(products)) {
 
-    if (productSku) {
-      const tmp = products.find(product => product.sku === productSku);
+    if (sku) {
+      const tmp = products.find(product => product.sku === sku);
       if (tmp) {
         return tmp;
       }
     }
+
+    const result = products.filter(product => _.get(product, "presentation.isDefault", "false") !== "false");
+
+    if (result && result.length > 0) {
+      // We only use 1 default product
+      return result[0];
+    }
+
+    console.log("Cannot find any default products", products, sku);
+    return null;
+  }
+}
+
+function customProduct(products, sku) {
+  if (Array.isArray(products)) {
+
+    if (sku) {
+      const tmp = products.find(product => product.sku === sku);
+      if (tmp) {
+        return tmp;
+      }
+    }
+
     const result = products.filter(product => _.get(product, "presentation.isDefault", "false") === "false");
     if (result && result.length > 0) {
       // We only use 1 special product
       return result[0];
     }
-    console.log("Cannot find any custom products");
+
+    console.log("Cannot find any custom products", products, sku);
     return null;
   }
 }
@@ -122,8 +134,8 @@ const mapStateToProps = (state) => {
   return {
     subscription,
     bundles,
-    defaultOffer: defaultProduct(products.list),
-    specialOffer: customProduct(products.list, remoteConfig.productSku),
+    defaultOffer: defaultProduct(products.list, remoteConfig.productSKU),
+    specialOffer: customProduct(products.list, remoteConfig.offerSKU),
     error
   };
 };

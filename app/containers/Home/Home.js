@@ -142,8 +142,15 @@ const ReferralFooterContainer = compose(
   lifecycle({
     async componentDidMount() {
       const { referralId, setReferralLink, profile } = this.props;
-      const referralLink = await getReferralLink(referralId, profile.data.name)
-      setReferralLink(referralLink);
+      try {
+        const referralLink = await getReferralLink(referralId, profile.data.name)
+        console.log('ref link', referralLink)
+        setReferralLink(referralLink);
+      } catch (err) {
+        console.log('Failed to create referral link', err);
+        alert('Failed to create referral link.')
+      }
+
     }
   }),
   branch(({ referralLink}) => referralLink === '', renderNothing)

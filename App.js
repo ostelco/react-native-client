@@ -1,12 +1,12 @@
 import React from 'react';
 import { Root } from "native-base";
 import { Provider } from 'react-redux';
-import configureStore from './app/store/configureStore'
+import configureStore, {setBundlesTimer} from './app/store/configureStore'
 import {autoLogin, setStore} from './app/helper/auth'
 import NavigationService from './NavigationService';
 import { getRemoteConfig } from './app/helper/remote-config';
 import { AppState } from 'react-native';
-import {setRemoteConfig, loadBundles, loadProducts} from './app/actions';
+import {setRemoteConfig} from './app/actions';
 import { PersistGate } from 'redux-persist/integration/react'
 import analytics from "./app/helper/analytics";
 import { initInstabug } from "./app/helper/instabug";
@@ -52,30 +52,8 @@ export default class App extends React.Component {
     analytics.setCurrentScreen('OnBoarding');
   }
 
-  componentDidMount = async() => {
-    this._setBundlesTimer();
+  componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
-    // TODO: Check login here then hide splashscreen
-    setTimeout(async () => {
-      const loginStatus = await autoLogin();
-
-      console.log('autologin', loginStatus);
-      if (!loginStatus.failed) {
-        console.log('User logged in, hide splash screen and redirect to home.')
-        NavigationService.navigate(screens.Home);
-        console.log('Hide splash screen...');
-        SplashScreen.hide();
-      } else {
-        if (!loginStatus.missingProfile) {
-          console.log('User not logged in, hide splash screen and redirect to login');
-          store.dispatch(actions.userLogout());
-          NavigationService.navigate(screens.OnBoarding);
-          console.log('Hide splash screen...');
-          SplashScreen.hide();
-        }
-        SplashScreen.hide();
-      }
-    }, 200)
   }
 
   componentWillUnmount() {
@@ -84,48 +62,29 @@ export default class App extends React.Component {
 
   _handleAppStateChange = async (nextAppState) => {
     // Get remote config when app enters foreground
-    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      getRemoteConfig(_getRemoteConfigCallback);
-      this._setBundlesTimer();
+    if (this.state.appState === 'active' && nextAppState.match(/inactive|background/)) {
       SplashScreen.show();
-      setTimeout(async () => {
-        const loginStatus = await autoLogin();
-        console.log('autologin', loginStatus);
+    } else if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      getRemoteConfig(_getRemoteConfigCallback);
+      setBundlesTimer()
+      const loginStatus = await autoLogin();
+      console.log('autologin', loginStatus);
 
-        if (!loginStatus.failed) {
-          NavigationService.navigate(screens.Home);
+      if (!loginStatus.failed) {
+        NavigationService.navigate(screens.Home);
 
-        } else {
-          if (!loginStatus.missingProfile) {
-            store.dispatch(actions.userLogout());
-            NavigationService.navigate(screens.OnBoarding);
-          }
+      } else {
+        if (!loginStatus.missingProfile) {
+          store.dispatch(actions.userLogout());
+          NavigationService.navigate(screens.OnBoarding);
         }
+      }
 
-        SplashScreen.hide();
-      }, 200)
+      console.log('hide splash screen');
+      SplashScreen.hide();
     }
     this.setState({appState: nextAppState});
   };
-
-  _reloadBundles() {
-    store.dispatch(loadBundles());
-    store.dispatch(loadProducts());
-  }
-
-  _setBundlesTimer() {
-    console.log('set bundles timer...');
-    if (typeof this.interval === 'undefined' || this.interval === 0) {
-      this.interval = setInterval(() => this._reloadBundles() , 5000);
-    }
-  }
-
-  _removeBundlesTimer() {
-    console.log('remove bundles timer...', this.interval);
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  }
 
   render() {
     return (

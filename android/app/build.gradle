@@ -125,7 +125,7 @@ android {
         applicationId "digital.telenor.panacea"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 25
+        versionCode 26
         versionName "2.13.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"

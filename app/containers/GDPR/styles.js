@@ -40,7 +40,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: 60,
     borderRadius: 5,
-    backgroundColor: colors.rosa
+    backgroundColor: colors.lipstick
   },
   privacyTextContainer: {
     flex: 1,

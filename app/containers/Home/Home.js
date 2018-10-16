@@ -46,7 +46,7 @@ const Home = props => {
         </View>
       ) : null}
       <ReferralMessageModal isDialogVisible={showReferralMessage} goBack={closeReferralMessage} itemDescription={'1 GB'} closeButtonLabel={'Much Appreciated!'} />
-      <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
+      <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.95)'} style={styles.header}>
         <Left></Left>
         <Body>
           <Title style={textStyles.textStyle11}>
@@ -82,7 +82,7 @@ const Home = props => {
             </Body>
           </ListItem>
         </List>
-        <RoundedBorder color={colors.rosa} />
+        <RoundedBorder color={colors.lipstick} />
         { specialOffer ? (
           <View style={styles.specialOfferContainer}>
             <View style={styles.specialOffer}>

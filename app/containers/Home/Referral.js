@@ -8,7 +8,7 @@ const Referral = (props) => {
   const { referralLink, name } = props;
 
   return (
-    <TouchableOpacity style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 30, paddingVertical: 12, backgroundColor: colors.rosa }} onPress={() => {
+    <TouchableOpacity style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 30, paddingVertical: 12, backgroundColor: colors.lipstick }} onPress={() => {
       Share.share({
         title: 'Share the love',
         message: `Hi there, just sending you the share link to the awesome service I mentioned.\n${name ? `Sincerely ${name}.` : '' }${ Platform.OS === 'ios' ? '' : `\n${referralLink}`}`,

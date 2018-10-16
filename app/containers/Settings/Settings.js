@@ -26,7 +26,7 @@ const Settings = props => {
       <Content>
         <View style={styles.topButtonContainer}>
           <TouchableOpacity onPress={showUserDetails} style={styles.flex}>
-            <IconButton iconName="person" label="Personal details" color={colors.rosa} />
+            <IconButton iconName="person" label="Personal details" color={colors.lipstick} />
           </TouchableOpacity>
           <TouchableOpacity onPress={showPrivacy} style={styles.flex}>
             <IconButton iconName="shirt" label="Privacy" color={colors.duskBlue} />

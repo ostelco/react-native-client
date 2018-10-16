@@ -6,7 +6,7 @@ export default StyleSheet.create({
     backgroundColor: colors.whiteTwo
   },
   header: {
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     borderBottomWidth: 0,
     zIndex: 1
   },
@@ -20,7 +20,7 @@ export default StyleSheet.create({
     flex: 1
   },
   topContentContainer: {
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     zIndex: 1
   },
   staticOfferContainer: {
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     width: 220,
     height: 60,
     borderRadius: 5,
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     paddingHorizontal: 40,
     flexDirection: 'row',
     justifyContent: 'center'
@@ -68,7 +68,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   emptyOfferIcon: {
-    color: colors.rosa
+    color: colors.lipstick
   },
   footer: {
     padding: 0

@@ -23,7 +23,7 @@ export default StyleSheet.create({
   button: {
     height: 60,
     borderRadius: 5,
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     justifyContent: 'center'
   }
 });

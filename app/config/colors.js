@@ -5,5 +5,6 @@ export const colors = {
   duskBlue: "#214577",
   brownishGrey: "#646464",
   whiteTwo: "#f6f6f6",
-  black: "#000000"
+  black: "#000000",
+  lipstick: "#bf1d42"
 };

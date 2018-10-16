@@ -63,8 +63,9 @@ export default class App extends React.Component {
   _handleAppStateChange = async (nextAppState) => {
     // Get remote config when app enters foreground
     if (this.state.appState === 'active' && nextAppState.match(/inactive|background/)) {
-      SplashScreen.show();
+
     } else if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      SplashScreen.show();
       getRemoteConfig(_getRemoteConfigCallback);
       setBundlesTimer()
       const loginStatus = await autoLogin();

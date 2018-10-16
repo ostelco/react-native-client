@@ -16,7 +16,7 @@ const OnBoarding = (props) => {
       <View style={{ position: 'absolute', bottom: 5, right: 5 }}>
         <AppVersion />
       </View>
-      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow>
+      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow transparent>
         <Body style={style.headerContent}>
           <Title style={textStyles.textStyle11}>{title}</Title>
         </Body>
@@ -54,7 +54,7 @@ OnBoarding.propTypes = {
 };
 
 OnBoarding.defaultProps = {
-  androidStatusBarColor: 'rgba(0,0,0,0.5)',
+  androidStatusBarColor: 'rgba(0,0,0,0.95)',
   style: styles,
   textStyles,
 };

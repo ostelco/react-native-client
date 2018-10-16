@@ -1,6 +1,6 @@
 {
   "name": "PanaceaReactNativeClient",
-  "version": "2.13.0",
+  "version": "2.13.1",
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.0.0",

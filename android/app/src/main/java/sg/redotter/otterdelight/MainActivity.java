@@ -1,4 +1,4 @@
-package digital.telenor.panacea;
+package sg.redotter.otterdelight;
 
 import android.os.Bundle; // here
 import org.devio.rn.splashscreen.SplashScreen; // here

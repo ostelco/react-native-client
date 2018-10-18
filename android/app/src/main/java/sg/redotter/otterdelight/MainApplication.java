@@ -1,4 +1,4 @@
-package digital.telenor.panacea;
+package sg.redotter.otterdelight;
 
 import android.app.Application;
 

@@ -60,10 +60,10 @@
               "client_type": 3
             },
             {
-              "client_id": "1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com",
+              "client_id": "1032906769274-c69okkkaguadgd01fk1t03kml7iq2ke9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "digital.telenor.panacea",
+                "bundle_id": "digital.telenor.panacea.debug",
                 "app_store_id": "1369918482"
               }
             }
@@ -91,6 +91,22 @@
           }
         },
         {
+          "client_id": "1032906769274-1qk19nlojkq7rrljsvq4574f72l452e0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea.debug",
+            "certificate_hash": "c149e04748eb16d47b6d67867e3abec9647f2cad"
+          }
+        },
+        {
+          "client_id": "1032906769274-nmfvmjvih8af682r47h7jkbk6vtbmi9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digital.telenor.panacea.debug",
+            "certificate_hash": "bd4b00e52dd86571297966185f92c3376eaeb2b9"
+          }
+        },
+        {
           "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -112,10 +128,62 @@
               "client_type": 3
             },
             {
-              "client_id": "1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com",
+              "client_id": "1032906769274-c69okkkaguadgd01fk1t03kml7iq2ke9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "digital.telenor.panacea",
+                "bundle_id": "digital.telenor.panacea.debug",
+                "app_store_id": "1369918482"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032906769274:android:6f54141c7bd086a6",
+        "android_client_info": {
+          "package_name": "org.ostelco.client.android.pi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032906769274-b78hjr5vaugi9sm51t7dr6hecs34s2dt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ostelco.client.android.pi",
+            "certificate_hash": "d4e856b4af7dd3abd5b4f759ac310f261fe36b0f"
+          }
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQKBaMZvEHSbSyHVKWb0pFKdhCCkL5eP4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032906769274-c69okkkaguadgd01fk1t03kml7iq2ke9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "digital.telenor.panacea.debug",
                 "app_store_id": "1369918482"
               }
             }
@@ -164,10 +232,146 @@
               "client_type": 3
             },
             {
-              "client_id": "1032906769274-3gsa4hg29d1kii85lc5lci52jan3shuc.apps.googleusercontent.com",
+              "client_id": "1032906769274-c69okkkaguadgd01fk1t03kml7iq2ke9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "digital.telenor.panacea",
+                "bundle_id": "digital.telenor.panacea.debug",
+                "app_store_id": "1369918482"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032906769274:android:38e6448cae158718",
+        "android_client_info": {
+          "package_name": "sg.redotter.otterdelight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032906769274-fgkimaige9lr93rs9lbgbtgpvkup21tc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.redotter.otterdelight",
+            "certificate_hash": "c149e04748eb16d47b6d67867e3abec9647f2cad"
+          }
+        },
+        {
+          "client_id": "1032906769274-tn34okda3b8er6aildrn2at4u5ecvv9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.redotter.otterdelight",
+            "certificate_hash": "bd4b00e52dd86571297966185f92c3376eaeb2b9"
+          }
+        },
+        {
+          "client_id": "1032906769274-rd1ok9rcpa35ebibvncfj52c4pik8l3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.redotter.otterdelight",
+            "certificate_hash": "7464545b0578ba2a336064063ad36b5f433155cd"
+          }
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQKBaMZvEHSbSyHVKWb0pFKdhCCkL5eP4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032906769274-c69okkkaguadgd01fk1t03kml7iq2ke9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "digital.telenor.panacea.debug",
+                "app_store_id": "1369918482"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032906769274:android:34faa8f13ea8b58f",
+        "android_client_info": {
+          "package_name": "sg.redotter.otterdelight.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032906769274-ickhibn9f4nc65sbq04mce540og64g7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.redotter.otterdelight.debug",
+            "certificate_hash": "7464545b0578ba2a336064063ad36b5f433155cd"
+          }
+        },
+        {
+          "client_id": "1032906769274-hnfdmjeonid3t0et4ek8b9fohpic8e64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.redotter.otterdelight.debug",
+            "certificate_hash": "c149e04748eb16d47b6d67867e3abec9647f2cad"
+          }
+        },
+        {
+          "client_id": "1032906769274-59ks06jdc6ukai7qip3jdgdcbrm0j2ov.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.redotter.otterdelight.debug",
+            "certificate_hash": "bd4b00e52dd86571297966185f92c3376eaeb2b9"
+          }
+        },
+        {
+          "client_id": "1032906769274-en50mmlrb4rhae1656hvgstq5dhg1o1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQKBaMZvEHSbSyHVKWb0pFKdhCCkL5eP4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032906769274-gdt8c8qeo0vtv7odcpd6n5ptjqbchhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1032906769274-c69okkkaguadgd01fk1t03kml7iq2ke9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "digital.telenor.panacea.debug",
                 "app_store_id": "1369918482"
               }
             }

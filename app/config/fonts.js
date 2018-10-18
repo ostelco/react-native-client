@@ -129,7 +129,7 @@ export const textStyles = StyleSheet.create({
     lineHeight: 28,
     letterSpacing: 0,
     textAlign: "left",
-    color: colors.rosa
+    color: colors.lipstick
   },
   textStyle6: {
     // fontFamily: "Nudista",

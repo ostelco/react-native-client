@@ -3,11 +3,14 @@ import { AsyncStorage } from "react-native";
 import URI from 'urijs';
 
 export const getReferralLink = async (uid, name) => {
-  let shareLink = `https://digital.telenor.panacea/invite?uid=${encodeURI(uid)}`;
 
+  console.log('1');
+  let shareLink = `https://digital.telenor.panacea/invite?uid=${encodeURI(uid)}`;
+  console.log('2');
   if (name) {
     shareLink += `&name=${encodeURI(name)}`
   }
+  console.log('3');
 
   const link = new firebase.links.DynamicLink(shareLink, 'wm3db.app.goo.gl')
   .ios.setBundleId('digital.telenor.panacea')
@@ -17,7 +20,7 @@ export const getReferralLink = async (uid, name) => {
   .social.setImageUrl('https://picsum.photos/400/300?image=0')
   .social.setTitle('FREE DATA!!!')
   .social.setDescriptionText('Join our service and get 1 GB free data on signup.');
-
+  console.log('4');
   // link.android.setMinimumVersion(14);
 
   return firebase.links().createShortDynamicLink(link, 'UNGUESSABLE')

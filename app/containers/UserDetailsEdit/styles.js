@@ -27,7 +27,7 @@ export default StyleSheet.create({
     borderRadius: 0
   },
   submitButton: {
-    backgroundColor: colors.rosa
+    backgroundColor: colors.lipstick
   },
   cancelButton: {
     backgroundColor: colors.white

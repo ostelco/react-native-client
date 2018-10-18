@@ -60,7 +60,7 @@ export default StyleSheet.create({
     width: '100%',
     height: 60,
     borderRadius: 5,
-    backgroundColor: colors.rosa,
+    backgroundColor: colors.lipstick,
     justifyContent: 'center'
   }
 });

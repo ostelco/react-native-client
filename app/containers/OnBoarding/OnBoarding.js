@@ -12,10 +12,13 @@ const OnBoarding = (props) => {
   const { showTermsAndConditions, signIn, style, textStyles, androidStatusBarColor, loginButtonLabel, termsAndConditionsLabel, onBoardingDescriptionLabel, loginButtonIconName, title } = props;
   return (
     <Container>
-      <Image source={require('../../../assets/sweets.jpg')} style={style.containerImage} />
-      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow>
+      <Image source={require('../../../assets/bg.png')} style={style.containerImage} />
+      <View style={{ position: 'absolute', bottom: 5, right: 5 }}>
+        <AppVersion />
+      </View>
+      <Header androidStatusBarColor={androidStatusBarColor} style={style.header} noShadow transparent>
         <Body style={style.headerContent}>
-          <Title style={textStyles.textStyle11}>{title} <AppVersion /> </Title>
+          <Title style={textStyles.textStyle11}>{title}</Title>
         </Body>
       </Header>
       <Content contentContainerStyle={style.contentContainer}>
@@ -51,7 +54,7 @@ OnBoarding.propTypes = {
 };
 
 OnBoarding.defaultProps = {
-  androidStatusBarColor: 'rgba(0,0,0,0.5)',
+  androidStatusBarColor: 'rgba(0,0,0,0.95)',
   style: styles,
   textStyles,
 };

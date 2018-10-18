@@ -46,7 +46,7 @@ const Home = props => {
         </View>
       ) : null}
       <ReferralMessageModal isDialogVisible={showReferralMessage} goBack={closeReferralMessage} itemDescription={'1 GB'} closeButtonLabel={'Much Appreciated!'} />
-      <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.5)'} style={styles.header}>
+      <Header noShadow androidStatusBarColor={'rgba(0,0,0,0.95)'} style={styles.header}>
         <Left></Left>
         <Body>
           <Title style={textStyles.textStyle11}>
@@ -82,7 +82,7 @@ const Home = props => {
             </Body>
           </ListItem>
         </List>
-        <RoundedBorder color={colors.rosa} />
+        <RoundedBorder color={colors.lipstick} />
         { specialOffer ? (
           <View style={styles.specialOfferContainer}>
             <View style={styles.specialOffer}>
@@ -142,8 +142,15 @@ const ReferralFooterContainer = compose(
   lifecycle({
     async componentDidMount() {
       const { referralId, setReferralLink, profile } = this.props;
-      const referralLink = await getReferralLink(referralId, profile.data.name)
-      setReferralLink(referralLink);
+      try {
+        const referralLink = await getReferralLink(referralId, profile.data.name)
+        console.log('ref link', referralLink)
+        setReferralLink(referralLink);
+      } catch (err) {
+        console.log('Failed to create referral link', err);
+        alert('Failed to create referral link.')
+      }
+
     }
   }),
   branch(({ referralLink}) => referralLink === '', renderNothing)
